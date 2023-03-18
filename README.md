@@ -1,2 +1,2 @@
 # KanoaV2
-Kanoa V2
+Kanoa V2.
