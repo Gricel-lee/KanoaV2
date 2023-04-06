@@ -1,0 +1,2849 @@
+ProblemSpecification{
+WorldModel:
+l1 : ( x 0.0 y 0.0 ) //robot1
+room1 : ( x 1.0 y 0.0) //room1
+room2 : ( x 2.0 y 0.0) //room2
+room3 : ( x 3.0 y 0.0) //room3
+room4 : ( x 4.0 y 0.0) //room4
+room5 : ( x 5.0 y 0.0) //room5
+room6 : ( x 6.0 y 0.0) //room6
+room7 : ( x 7.0 y 0.0) //room7
+room8 : ( x 8.0 y 0.0) //room8
+room9 : ( x 9.0 y 0.0) //room9
+room10 : ( x 10.0 y 0.0) //room10
+room11 : ( x 11.0 y 0.0) //room11
+room12 : ( x 12.0 y 0.0) //room12
+room13 : ( x 13.0 y 0.0) //room13
+room14 : ( x 14.0 y 0.0) //room14
+room15 : ( x 15.0 y 0.0) //room15
+room16 : ( x 16.0 y 0.0) //room16
+room17 : ( x 17.0 y 0.0) //room17
+room18 : ( x 18.0 y 0.0) //room18
+room19 : ( x 19.0 y 0.0) //room19
+room20 : ( x 20.0 y 0.0) //room20
+room21 : ( x 21.0 y 0.0) //room21
+room22 : ( x 22.0 y 0.0) //room22
+room23 : ( x 23.0 y 0.0) //room23
+room24 : ( x 24.0 y 0.0) //room24
+room25 : ( x 25.0 y 0.0) //room25
+room26 : ( x 26.0 y 0.0) //room26
+room27 : ( x 27.0 y 0.0) //room27
+room28 : ( x 28.0 y 0.0) //room28
+room29 : ( x 29.0 y 0.0) //room29
+room30 : ( x 30.0 y 0.0) //room30
+room31 : ( x 31.0 y 0.0) //room31
+room32 : ( x 32.0 y 0.0) //room32
+room33 : ( x 33.0 y 0.0) //room33
+room34 : ( x 34.0 y 0.0) //room34
+room35 : ( x 35.0 y 0.0) //room35
+room36 : ( x 36.0 y 0.0) //room36
+room37 : ( x 37.0 y 0.0) //room37
+room38 : ( x 38.0 y 0.0) //room38
+room39 : ( x 39.0 y 0.0) //room39
+room40 : ( x 40.0 y 0.0) //room40
+room41 : ( x 41.0 y 0.0) //room41
+room42 : ( x 42.0 y 0.0) //room42
+room43 : ( x 43.0 y 0.0) //room43
+room44 : ( x 44.0 y 0.0) //room44
+room45 : ( x 45.0 y 0.0) //room45
+room46 : ( x 46.0 y 0.0) //room46
+room47 : ( x 47.0 y 0.0) //room47
+room48 : ( x 48.0 y 0.0) //room48
+room49 : ( x 49.0 y 0.0) //room49
+room50 : ( x 50.0 y 0.0) //room50
+//paths
+l1 to room1, distance 1.0
+l1 to room2, distance 2.0
+l1 to room3, distance 3.0
+l1 to room4, distance 4.0
+l1 to room5, distance 5.0
+l1 to room6, distance 6.0
+l1 to room7, distance 7.0
+l1 to room8, distance 8.0
+l1 to room9, distance 9.0
+l1 to room10, distance 10.0
+l1 to room11, distance 11.0
+l1 to room12, distance 12.0
+l1 to room13, distance 13.0
+l1 to room14, distance 14.0
+l1 to room15, distance 15.0
+l1 to room16, distance 16.0
+l1 to room17, distance 17.0
+l1 to room18, distance 18.0
+l1 to room19, distance 19.0
+l1 to room20, distance 20.0
+l1 to room21, distance 21.0
+l1 to room22, distance 22.0
+l1 to room23, distance 23.0
+l1 to room24, distance 24.0
+l1 to room25, distance 25.0
+l1 to room26, distance 26.0
+l1 to room27, distance 27.0
+l1 to room28, distance 28.0
+l1 to room29, distance 29.0
+l1 to room30, distance 30.0
+l1 to room31, distance 31.0
+l1 to room32, distance 32.0
+l1 to room33, distance 33.0
+l1 to room34, distance 34.0
+l1 to room35, distance 35.0
+l1 to room36, distance 36.0
+l1 to room37, distance 37.0
+l1 to room38, distance 38.0
+l1 to room39, distance 39.0
+l1 to room40, distance 40.0
+l1 to room41, distance 41.0
+l1 to room42, distance 42.0
+l1 to room43, distance 43.0
+l1 to room44, distance 44.0
+l1 to room45, distance 45.0
+l1 to room46, distance 46.0
+l1 to room47, distance 47.0
+l1 to room48, distance 48.0
+l1 to room49, distance 49.0
+l1 to room50, distance 50.0
+room1 to room2, distance 1.0
+room1 to room3, distance 2.0
+room1 to room4, distance 3.0
+room1 to room5, distance 4.0
+room1 to room6, distance 5.0
+room1 to room7, distance 6.0
+room1 to room8, distance 7.0
+room1 to room9, distance 8.0
+room1 to room10, distance 9.0
+room1 to room11, distance 10.0
+room1 to room12, distance 11.0
+room1 to room13, distance 12.0
+room1 to room14, distance 13.0
+room1 to room15, distance 14.0
+room1 to room16, distance 15.0
+room1 to room17, distance 16.0
+room1 to room18, distance 17.0
+room1 to room19, distance 18.0
+room1 to room20, distance 19.0
+room1 to room21, distance 20.0
+room1 to room22, distance 21.0
+room1 to room23, distance 22.0
+room1 to room24, distance 23.0
+room1 to room25, distance 24.0
+room1 to room26, distance 25.0
+room1 to room27, distance 26.0
+room1 to room28, distance 27.0
+room1 to room29, distance 28.0
+room1 to room30, distance 29.0
+room1 to room31, distance 30.0
+room1 to room32, distance 31.0
+room1 to room33, distance 32.0
+room1 to room34, distance 33.0
+room1 to room35, distance 34.0
+room1 to room36, distance 35.0
+room1 to room37, distance 36.0
+room1 to room38, distance 37.0
+room1 to room39, distance 38.0
+room1 to room40, distance 39.0
+room1 to room41, distance 40.0
+room1 to room42, distance 41.0
+room1 to room43, distance 42.0
+room1 to room44, distance 43.0
+room1 to room45, distance 44.0
+room1 to room46, distance 45.0
+room1 to room47, distance 46.0
+room1 to room48, distance 47.0
+room1 to room49, distance 48.0
+room1 to room50, distance 49.0
+room2 to room1, distance 1.0
+room2 to room3, distance 1.0
+room2 to room4, distance 2.0
+room2 to room5, distance 3.0
+room2 to room6, distance 4.0
+room2 to room7, distance 5.0
+room2 to room8, distance 6.0
+room2 to room9, distance 7.0
+room2 to room10, distance 8.0
+room2 to room11, distance 9.0
+room2 to room12, distance 10.0
+room2 to room13, distance 11.0
+room2 to room14, distance 12.0
+room2 to room15, distance 13.0
+room2 to room16, distance 14.0
+room2 to room17, distance 15.0
+room2 to room18, distance 16.0
+room2 to room19, distance 17.0
+room2 to room20, distance 18.0
+room2 to room21, distance 19.0
+room2 to room22, distance 20.0
+room2 to room23, distance 21.0
+room2 to room24, distance 22.0
+room2 to room25, distance 23.0
+room2 to room26, distance 24.0
+room2 to room27, distance 25.0
+room2 to room28, distance 26.0
+room2 to room29, distance 27.0
+room2 to room30, distance 28.0
+room2 to room31, distance 29.0
+room2 to room32, distance 30.0
+room2 to room33, distance 31.0
+room2 to room34, distance 32.0
+room2 to room35, distance 33.0
+room2 to room36, distance 34.0
+room2 to room37, distance 35.0
+room2 to room38, distance 36.0
+room2 to room39, distance 37.0
+room2 to room40, distance 38.0
+room2 to room41, distance 39.0
+room2 to room42, distance 40.0
+room2 to room43, distance 41.0
+room2 to room44, distance 42.0
+room2 to room45, distance 43.0
+room2 to room46, distance 44.0
+room2 to room47, distance 45.0
+room2 to room48, distance 46.0
+room2 to room49, distance 47.0
+room2 to room50, distance 48.0
+room3 to room1, distance 2.0
+room3 to room2, distance 1.0
+room3 to room4, distance 1.0
+room3 to room5, distance 2.0
+room3 to room6, distance 3.0
+room3 to room7, distance 4.0
+room3 to room8, distance 5.0
+room3 to room9, distance 6.0
+room3 to room10, distance 7.0
+room3 to room11, distance 8.0
+room3 to room12, distance 9.0
+room3 to room13, distance 10.0
+room3 to room14, distance 11.0
+room3 to room15, distance 12.0
+room3 to room16, distance 13.0
+room3 to room17, distance 14.0
+room3 to room18, distance 15.0
+room3 to room19, distance 16.0
+room3 to room20, distance 17.0
+room3 to room21, distance 18.0
+room3 to room22, distance 19.0
+room3 to room23, distance 20.0
+room3 to room24, distance 21.0
+room3 to room25, distance 22.0
+room3 to room26, distance 23.0
+room3 to room27, distance 24.0
+room3 to room28, distance 25.0
+room3 to room29, distance 26.0
+room3 to room30, distance 27.0
+room3 to room31, distance 28.0
+room3 to room32, distance 29.0
+room3 to room33, distance 30.0
+room3 to room34, distance 31.0
+room3 to room35, distance 32.0
+room3 to room36, distance 33.0
+room3 to room37, distance 34.0
+room3 to room38, distance 35.0
+room3 to room39, distance 36.0
+room3 to room40, distance 37.0
+room3 to room41, distance 38.0
+room3 to room42, distance 39.0
+room3 to room43, distance 40.0
+room3 to room44, distance 41.0
+room3 to room45, distance 42.0
+room3 to room46, distance 43.0
+room3 to room47, distance 44.0
+room3 to room48, distance 45.0
+room3 to room49, distance 46.0
+room3 to room50, distance 47.0
+room4 to room1, distance 3.0
+room4 to room2, distance 2.0
+room4 to room3, distance 1.0
+room4 to room5, distance 1.0
+room4 to room6, distance 2.0
+room4 to room7, distance 3.0
+room4 to room8, distance 4.0
+room4 to room9, distance 5.0
+room4 to room10, distance 6.0
+room4 to room11, distance 7.0
+room4 to room12, distance 8.0
+room4 to room13, distance 9.0
+room4 to room14, distance 10.0
+room4 to room15, distance 11.0
+room4 to room16, distance 12.0
+room4 to room17, distance 13.0
+room4 to room18, distance 14.0
+room4 to room19, distance 15.0
+room4 to room20, distance 16.0
+room4 to room21, distance 17.0
+room4 to room22, distance 18.0
+room4 to room23, distance 19.0
+room4 to room24, distance 20.0
+room4 to room25, distance 21.0
+room4 to room26, distance 22.0
+room4 to room27, distance 23.0
+room4 to room28, distance 24.0
+room4 to room29, distance 25.0
+room4 to room30, distance 26.0
+room4 to room31, distance 27.0
+room4 to room32, distance 28.0
+room4 to room33, distance 29.0
+room4 to room34, distance 30.0
+room4 to room35, distance 31.0
+room4 to room36, distance 32.0
+room4 to room37, distance 33.0
+room4 to room38, distance 34.0
+room4 to room39, distance 35.0
+room4 to room40, distance 36.0
+room4 to room41, distance 37.0
+room4 to room42, distance 38.0
+room4 to room43, distance 39.0
+room4 to room44, distance 40.0
+room4 to room45, distance 41.0
+room4 to room46, distance 42.0
+room4 to room47, distance 43.0
+room4 to room48, distance 44.0
+room4 to room49, distance 45.0
+room4 to room50, distance 46.0
+room5 to room1, distance 4.0
+room5 to room2, distance 3.0
+room5 to room3, distance 2.0
+room5 to room4, distance 1.0
+room5 to room6, distance 1.0
+room5 to room7, distance 2.0
+room5 to room8, distance 3.0
+room5 to room9, distance 4.0
+room5 to room10, distance 5.0
+room5 to room11, distance 6.0
+room5 to room12, distance 7.0
+room5 to room13, distance 8.0
+room5 to room14, distance 9.0
+room5 to room15, distance 10.0
+room5 to room16, distance 11.0
+room5 to room17, distance 12.0
+room5 to room18, distance 13.0
+room5 to room19, distance 14.0
+room5 to room20, distance 15.0
+room5 to room21, distance 16.0
+room5 to room22, distance 17.0
+room5 to room23, distance 18.0
+room5 to room24, distance 19.0
+room5 to room25, distance 20.0
+room5 to room26, distance 21.0
+room5 to room27, distance 22.0
+room5 to room28, distance 23.0
+room5 to room29, distance 24.0
+room5 to room30, distance 25.0
+room5 to room31, distance 26.0
+room5 to room32, distance 27.0
+room5 to room33, distance 28.0
+room5 to room34, distance 29.0
+room5 to room35, distance 30.0
+room5 to room36, distance 31.0
+room5 to room37, distance 32.0
+room5 to room38, distance 33.0
+room5 to room39, distance 34.0
+room5 to room40, distance 35.0
+room5 to room41, distance 36.0
+room5 to room42, distance 37.0
+room5 to room43, distance 38.0
+room5 to room44, distance 39.0
+room5 to room45, distance 40.0
+room5 to room46, distance 41.0
+room5 to room47, distance 42.0
+room5 to room48, distance 43.0
+room5 to room49, distance 44.0
+room5 to room50, distance 45.0
+room6 to room1, distance 5.0
+room6 to room2, distance 4.0
+room6 to room3, distance 3.0
+room6 to room4, distance 2.0
+room6 to room5, distance 1.0
+room6 to room7, distance 1.0
+room6 to room8, distance 2.0
+room6 to room9, distance 3.0
+room6 to room10, distance 4.0
+room6 to room11, distance 5.0
+room6 to room12, distance 6.0
+room6 to room13, distance 7.0
+room6 to room14, distance 8.0
+room6 to room15, distance 9.0
+room6 to room16, distance 10.0
+room6 to room17, distance 11.0
+room6 to room18, distance 12.0
+room6 to room19, distance 13.0
+room6 to room20, distance 14.0
+room6 to room21, distance 15.0
+room6 to room22, distance 16.0
+room6 to room23, distance 17.0
+room6 to room24, distance 18.0
+room6 to room25, distance 19.0
+room6 to room26, distance 20.0
+room6 to room27, distance 21.0
+room6 to room28, distance 22.0
+room6 to room29, distance 23.0
+room6 to room30, distance 24.0
+room6 to room31, distance 25.0
+room6 to room32, distance 26.0
+room6 to room33, distance 27.0
+room6 to room34, distance 28.0
+room6 to room35, distance 29.0
+room6 to room36, distance 30.0
+room6 to room37, distance 31.0
+room6 to room38, distance 32.0
+room6 to room39, distance 33.0
+room6 to room40, distance 34.0
+room6 to room41, distance 35.0
+room6 to room42, distance 36.0
+room6 to room43, distance 37.0
+room6 to room44, distance 38.0
+room6 to room45, distance 39.0
+room6 to room46, distance 40.0
+room6 to room47, distance 41.0
+room6 to room48, distance 42.0
+room6 to room49, distance 43.0
+room6 to room50, distance 44.0
+room7 to room1, distance 6.0
+room7 to room2, distance 5.0
+room7 to room3, distance 4.0
+room7 to room4, distance 3.0
+room7 to room5, distance 2.0
+room7 to room6, distance 1.0
+room7 to room8, distance 1.0
+room7 to room9, distance 2.0
+room7 to room10, distance 3.0
+room7 to room11, distance 4.0
+room7 to room12, distance 5.0
+room7 to room13, distance 6.0
+room7 to room14, distance 7.0
+room7 to room15, distance 8.0
+room7 to room16, distance 9.0
+room7 to room17, distance 10.0
+room7 to room18, distance 11.0
+room7 to room19, distance 12.0
+room7 to room20, distance 13.0
+room7 to room21, distance 14.0
+room7 to room22, distance 15.0
+room7 to room23, distance 16.0
+room7 to room24, distance 17.0
+room7 to room25, distance 18.0
+room7 to room26, distance 19.0
+room7 to room27, distance 20.0
+room7 to room28, distance 21.0
+room7 to room29, distance 22.0
+room7 to room30, distance 23.0
+room7 to room31, distance 24.0
+room7 to room32, distance 25.0
+room7 to room33, distance 26.0
+room7 to room34, distance 27.0
+room7 to room35, distance 28.0
+room7 to room36, distance 29.0
+room7 to room37, distance 30.0
+room7 to room38, distance 31.0
+room7 to room39, distance 32.0
+room7 to room40, distance 33.0
+room7 to room41, distance 34.0
+room7 to room42, distance 35.0
+room7 to room43, distance 36.0
+room7 to room44, distance 37.0
+room7 to room45, distance 38.0
+room7 to room46, distance 39.0
+room7 to room47, distance 40.0
+room7 to room48, distance 41.0
+room7 to room49, distance 42.0
+room7 to room50, distance 43.0
+room8 to room1, distance 7.0
+room8 to room2, distance 6.0
+room8 to room3, distance 5.0
+room8 to room4, distance 4.0
+room8 to room5, distance 3.0
+room8 to room6, distance 2.0
+room8 to room7, distance 1.0
+room8 to room9, distance 1.0
+room8 to room10, distance 2.0
+room8 to room11, distance 3.0
+room8 to room12, distance 4.0
+room8 to room13, distance 5.0
+room8 to room14, distance 6.0
+room8 to room15, distance 7.0
+room8 to room16, distance 8.0
+room8 to room17, distance 9.0
+room8 to room18, distance 10.0
+room8 to room19, distance 11.0
+room8 to room20, distance 12.0
+room8 to room21, distance 13.0
+room8 to room22, distance 14.0
+room8 to room23, distance 15.0
+room8 to room24, distance 16.0
+room8 to room25, distance 17.0
+room8 to room26, distance 18.0
+room8 to room27, distance 19.0
+room8 to room28, distance 20.0
+room8 to room29, distance 21.0
+room8 to room30, distance 22.0
+room8 to room31, distance 23.0
+room8 to room32, distance 24.0
+room8 to room33, distance 25.0
+room8 to room34, distance 26.0
+room8 to room35, distance 27.0
+room8 to room36, distance 28.0
+room8 to room37, distance 29.0
+room8 to room38, distance 30.0
+room8 to room39, distance 31.0
+room8 to room40, distance 32.0
+room8 to room41, distance 33.0
+room8 to room42, distance 34.0
+room8 to room43, distance 35.0
+room8 to room44, distance 36.0
+room8 to room45, distance 37.0
+room8 to room46, distance 38.0
+room8 to room47, distance 39.0
+room8 to room48, distance 40.0
+room8 to room49, distance 41.0
+room8 to room50, distance 42.0
+room9 to room1, distance 8.0
+room9 to room2, distance 7.0
+room9 to room3, distance 6.0
+room9 to room4, distance 5.0
+room9 to room5, distance 4.0
+room9 to room6, distance 3.0
+room9 to room7, distance 2.0
+room9 to room8, distance 1.0
+room9 to room10, distance 1.0
+room9 to room11, distance 2.0
+room9 to room12, distance 3.0
+room9 to room13, distance 4.0
+room9 to room14, distance 5.0
+room9 to room15, distance 6.0
+room9 to room16, distance 7.0
+room9 to room17, distance 8.0
+room9 to room18, distance 9.0
+room9 to room19, distance 10.0
+room9 to room20, distance 11.0
+room9 to room21, distance 12.0
+room9 to room22, distance 13.0
+room9 to room23, distance 14.0
+room9 to room24, distance 15.0
+room9 to room25, distance 16.0
+room9 to room26, distance 17.0
+room9 to room27, distance 18.0
+room9 to room28, distance 19.0
+room9 to room29, distance 20.0
+room9 to room30, distance 21.0
+room9 to room31, distance 22.0
+room9 to room32, distance 23.0
+room9 to room33, distance 24.0
+room9 to room34, distance 25.0
+room9 to room35, distance 26.0
+room9 to room36, distance 27.0
+room9 to room37, distance 28.0
+room9 to room38, distance 29.0
+room9 to room39, distance 30.0
+room9 to room40, distance 31.0
+room9 to room41, distance 32.0
+room9 to room42, distance 33.0
+room9 to room43, distance 34.0
+room9 to room44, distance 35.0
+room9 to room45, distance 36.0
+room9 to room46, distance 37.0
+room9 to room47, distance 38.0
+room9 to room48, distance 39.0
+room9 to room49, distance 40.0
+room9 to room50, distance 41.0
+room10 to room1, distance 9.0
+room10 to room2, distance 8.0
+room10 to room3, distance 7.0
+room10 to room4, distance 6.0
+room10 to room5, distance 5.0
+room10 to room6, distance 4.0
+room10 to room7, distance 3.0
+room10 to room8, distance 2.0
+room10 to room9, distance 1.0
+room10 to room11, distance 1.0
+room10 to room12, distance 2.0
+room10 to room13, distance 3.0
+room10 to room14, distance 4.0
+room10 to room15, distance 5.0
+room10 to room16, distance 6.0
+room10 to room17, distance 7.0
+room10 to room18, distance 8.0
+room10 to room19, distance 9.0
+room10 to room20, distance 10.0
+room10 to room21, distance 11.0
+room10 to room22, distance 12.0
+room10 to room23, distance 13.0
+room10 to room24, distance 14.0
+room10 to room25, distance 15.0
+room10 to room26, distance 16.0
+room10 to room27, distance 17.0
+room10 to room28, distance 18.0
+room10 to room29, distance 19.0
+room10 to room30, distance 20.0
+room10 to room31, distance 21.0
+room10 to room32, distance 22.0
+room10 to room33, distance 23.0
+room10 to room34, distance 24.0
+room10 to room35, distance 25.0
+room10 to room36, distance 26.0
+room10 to room37, distance 27.0
+room10 to room38, distance 28.0
+room10 to room39, distance 29.0
+room10 to room40, distance 30.0
+room10 to room41, distance 31.0
+room10 to room42, distance 32.0
+room10 to room43, distance 33.0
+room10 to room44, distance 34.0
+room10 to room45, distance 35.0
+room10 to room46, distance 36.0
+room10 to room47, distance 37.0
+room10 to room48, distance 38.0
+room10 to room49, distance 39.0
+room10 to room50, distance 40.0
+room11 to room1, distance 10.0
+room11 to room2, distance 9.0
+room11 to room3, distance 8.0
+room11 to room4, distance 7.0
+room11 to room5, distance 6.0
+room11 to room6, distance 5.0
+room11 to room7, distance 4.0
+room11 to room8, distance 3.0
+room11 to room9, distance 2.0
+room11 to room10, distance 1.0
+room11 to room12, distance 1.0
+room11 to room13, distance 2.0
+room11 to room14, distance 3.0
+room11 to room15, distance 4.0
+room11 to room16, distance 5.0
+room11 to room17, distance 6.0
+room11 to room18, distance 7.0
+room11 to room19, distance 8.0
+room11 to room20, distance 9.0
+room11 to room21, distance 10.0
+room11 to room22, distance 11.0
+room11 to room23, distance 12.0
+room11 to room24, distance 13.0
+room11 to room25, distance 14.0
+room11 to room26, distance 15.0
+room11 to room27, distance 16.0
+room11 to room28, distance 17.0
+room11 to room29, distance 18.0
+room11 to room30, distance 19.0
+room11 to room31, distance 20.0
+room11 to room32, distance 21.0
+room11 to room33, distance 22.0
+room11 to room34, distance 23.0
+room11 to room35, distance 24.0
+room11 to room36, distance 25.0
+room11 to room37, distance 26.0
+room11 to room38, distance 27.0
+room11 to room39, distance 28.0
+room11 to room40, distance 29.0
+room11 to room41, distance 30.0
+room11 to room42, distance 31.0
+room11 to room43, distance 32.0
+room11 to room44, distance 33.0
+room11 to room45, distance 34.0
+room11 to room46, distance 35.0
+room11 to room47, distance 36.0
+room11 to room48, distance 37.0
+room11 to room49, distance 38.0
+room11 to room50, distance 39.0
+room12 to room1, distance 11.0
+room12 to room2, distance 10.0
+room12 to room3, distance 9.0
+room12 to room4, distance 8.0
+room12 to room5, distance 7.0
+room12 to room6, distance 6.0
+room12 to room7, distance 5.0
+room12 to room8, distance 4.0
+room12 to room9, distance 3.0
+room12 to room10, distance 2.0
+room12 to room11, distance 1.0
+room12 to room13, distance 1.0
+room12 to room14, distance 2.0
+room12 to room15, distance 3.0
+room12 to room16, distance 4.0
+room12 to room17, distance 5.0
+room12 to room18, distance 6.0
+room12 to room19, distance 7.0
+room12 to room20, distance 8.0
+room12 to room21, distance 9.0
+room12 to room22, distance 10.0
+room12 to room23, distance 11.0
+room12 to room24, distance 12.0
+room12 to room25, distance 13.0
+room12 to room26, distance 14.0
+room12 to room27, distance 15.0
+room12 to room28, distance 16.0
+room12 to room29, distance 17.0
+room12 to room30, distance 18.0
+room12 to room31, distance 19.0
+room12 to room32, distance 20.0
+room12 to room33, distance 21.0
+room12 to room34, distance 22.0
+room12 to room35, distance 23.0
+room12 to room36, distance 24.0
+room12 to room37, distance 25.0
+room12 to room38, distance 26.0
+room12 to room39, distance 27.0
+room12 to room40, distance 28.0
+room12 to room41, distance 29.0
+room12 to room42, distance 30.0
+room12 to room43, distance 31.0
+room12 to room44, distance 32.0
+room12 to room45, distance 33.0
+room12 to room46, distance 34.0
+room12 to room47, distance 35.0
+room12 to room48, distance 36.0
+room12 to room49, distance 37.0
+room12 to room50, distance 38.0
+room13 to room1, distance 12.0
+room13 to room2, distance 11.0
+room13 to room3, distance 10.0
+room13 to room4, distance 9.0
+room13 to room5, distance 8.0
+room13 to room6, distance 7.0
+room13 to room7, distance 6.0
+room13 to room8, distance 5.0
+room13 to room9, distance 4.0
+room13 to room10, distance 3.0
+room13 to room11, distance 2.0
+room13 to room12, distance 1.0
+room13 to room14, distance 1.0
+room13 to room15, distance 2.0
+room13 to room16, distance 3.0
+room13 to room17, distance 4.0
+room13 to room18, distance 5.0
+room13 to room19, distance 6.0
+room13 to room20, distance 7.0
+room13 to room21, distance 8.0
+room13 to room22, distance 9.0
+room13 to room23, distance 10.0
+room13 to room24, distance 11.0
+room13 to room25, distance 12.0
+room13 to room26, distance 13.0
+room13 to room27, distance 14.0
+room13 to room28, distance 15.0
+room13 to room29, distance 16.0
+room13 to room30, distance 17.0
+room13 to room31, distance 18.0
+room13 to room32, distance 19.0
+room13 to room33, distance 20.0
+room13 to room34, distance 21.0
+room13 to room35, distance 22.0
+room13 to room36, distance 23.0
+room13 to room37, distance 24.0
+room13 to room38, distance 25.0
+room13 to room39, distance 26.0
+room13 to room40, distance 27.0
+room13 to room41, distance 28.0
+room13 to room42, distance 29.0
+room13 to room43, distance 30.0
+room13 to room44, distance 31.0
+room13 to room45, distance 32.0
+room13 to room46, distance 33.0
+room13 to room47, distance 34.0
+room13 to room48, distance 35.0
+room13 to room49, distance 36.0
+room13 to room50, distance 37.0
+room14 to room1, distance 13.0
+room14 to room2, distance 12.0
+room14 to room3, distance 11.0
+room14 to room4, distance 10.0
+room14 to room5, distance 9.0
+room14 to room6, distance 8.0
+room14 to room7, distance 7.0
+room14 to room8, distance 6.0
+room14 to room9, distance 5.0
+room14 to room10, distance 4.0
+room14 to room11, distance 3.0
+room14 to room12, distance 2.0
+room14 to room13, distance 1.0
+room14 to room15, distance 1.0
+room14 to room16, distance 2.0
+room14 to room17, distance 3.0
+room14 to room18, distance 4.0
+room14 to room19, distance 5.0
+room14 to room20, distance 6.0
+room14 to room21, distance 7.0
+room14 to room22, distance 8.0
+room14 to room23, distance 9.0
+room14 to room24, distance 10.0
+room14 to room25, distance 11.0
+room14 to room26, distance 12.0
+room14 to room27, distance 13.0
+room14 to room28, distance 14.0
+room14 to room29, distance 15.0
+room14 to room30, distance 16.0
+room14 to room31, distance 17.0
+room14 to room32, distance 18.0
+room14 to room33, distance 19.0
+room14 to room34, distance 20.0
+room14 to room35, distance 21.0
+room14 to room36, distance 22.0
+room14 to room37, distance 23.0
+room14 to room38, distance 24.0
+room14 to room39, distance 25.0
+room14 to room40, distance 26.0
+room14 to room41, distance 27.0
+room14 to room42, distance 28.0
+room14 to room43, distance 29.0
+room14 to room44, distance 30.0
+room14 to room45, distance 31.0
+room14 to room46, distance 32.0
+room14 to room47, distance 33.0
+room14 to room48, distance 34.0
+room14 to room49, distance 35.0
+room14 to room50, distance 36.0
+room15 to room1, distance 14.0
+room15 to room2, distance 13.0
+room15 to room3, distance 12.0
+room15 to room4, distance 11.0
+room15 to room5, distance 10.0
+room15 to room6, distance 9.0
+room15 to room7, distance 8.0
+room15 to room8, distance 7.0
+room15 to room9, distance 6.0
+room15 to room10, distance 5.0
+room15 to room11, distance 4.0
+room15 to room12, distance 3.0
+room15 to room13, distance 2.0
+room15 to room14, distance 1.0
+room15 to room16, distance 1.0
+room15 to room17, distance 2.0
+room15 to room18, distance 3.0
+room15 to room19, distance 4.0
+room15 to room20, distance 5.0
+room15 to room21, distance 6.0
+room15 to room22, distance 7.0
+room15 to room23, distance 8.0
+room15 to room24, distance 9.0
+room15 to room25, distance 10.0
+room15 to room26, distance 11.0
+room15 to room27, distance 12.0
+room15 to room28, distance 13.0
+room15 to room29, distance 14.0
+room15 to room30, distance 15.0
+room15 to room31, distance 16.0
+room15 to room32, distance 17.0
+room15 to room33, distance 18.0
+room15 to room34, distance 19.0
+room15 to room35, distance 20.0
+room15 to room36, distance 21.0
+room15 to room37, distance 22.0
+room15 to room38, distance 23.0
+room15 to room39, distance 24.0
+room15 to room40, distance 25.0
+room15 to room41, distance 26.0
+room15 to room42, distance 27.0
+room15 to room43, distance 28.0
+room15 to room44, distance 29.0
+room15 to room45, distance 30.0
+room15 to room46, distance 31.0
+room15 to room47, distance 32.0
+room15 to room48, distance 33.0
+room15 to room49, distance 34.0
+room15 to room50, distance 35.0
+room16 to room1, distance 15.0
+room16 to room2, distance 14.0
+room16 to room3, distance 13.0
+room16 to room4, distance 12.0
+room16 to room5, distance 11.0
+room16 to room6, distance 10.0
+room16 to room7, distance 9.0
+room16 to room8, distance 8.0
+room16 to room9, distance 7.0
+room16 to room10, distance 6.0
+room16 to room11, distance 5.0
+room16 to room12, distance 4.0
+room16 to room13, distance 3.0
+room16 to room14, distance 2.0
+room16 to room15, distance 1.0
+room16 to room17, distance 1.0
+room16 to room18, distance 2.0
+room16 to room19, distance 3.0
+room16 to room20, distance 4.0
+room16 to room21, distance 5.0
+room16 to room22, distance 6.0
+room16 to room23, distance 7.0
+room16 to room24, distance 8.0
+room16 to room25, distance 9.0
+room16 to room26, distance 10.0
+room16 to room27, distance 11.0
+room16 to room28, distance 12.0
+room16 to room29, distance 13.0
+room16 to room30, distance 14.0
+room16 to room31, distance 15.0
+room16 to room32, distance 16.0
+room16 to room33, distance 17.0
+room16 to room34, distance 18.0
+room16 to room35, distance 19.0
+room16 to room36, distance 20.0
+room16 to room37, distance 21.0
+room16 to room38, distance 22.0
+room16 to room39, distance 23.0
+room16 to room40, distance 24.0
+room16 to room41, distance 25.0
+room16 to room42, distance 26.0
+room16 to room43, distance 27.0
+room16 to room44, distance 28.0
+room16 to room45, distance 29.0
+room16 to room46, distance 30.0
+room16 to room47, distance 31.0
+room16 to room48, distance 32.0
+room16 to room49, distance 33.0
+room16 to room50, distance 34.0
+room17 to room1, distance 16.0
+room17 to room2, distance 15.0
+room17 to room3, distance 14.0
+room17 to room4, distance 13.0
+room17 to room5, distance 12.0
+room17 to room6, distance 11.0
+room17 to room7, distance 10.0
+room17 to room8, distance 9.0
+room17 to room9, distance 8.0
+room17 to room10, distance 7.0
+room17 to room11, distance 6.0
+room17 to room12, distance 5.0
+room17 to room13, distance 4.0
+room17 to room14, distance 3.0
+room17 to room15, distance 2.0
+room17 to room16, distance 1.0
+room17 to room18, distance 1.0
+room17 to room19, distance 2.0
+room17 to room20, distance 3.0
+room17 to room21, distance 4.0
+room17 to room22, distance 5.0
+room17 to room23, distance 6.0
+room17 to room24, distance 7.0
+room17 to room25, distance 8.0
+room17 to room26, distance 9.0
+room17 to room27, distance 10.0
+room17 to room28, distance 11.0
+room17 to room29, distance 12.0
+room17 to room30, distance 13.0
+room17 to room31, distance 14.0
+room17 to room32, distance 15.0
+room17 to room33, distance 16.0
+room17 to room34, distance 17.0
+room17 to room35, distance 18.0
+room17 to room36, distance 19.0
+room17 to room37, distance 20.0
+room17 to room38, distance 21.0
+room17 to room39, distance 22.0
+room17 to room40, distance 23.0
+room17 to room41, distance 24.0
+room17 to room42, distance 25.0
+room17 to room43, distance 26.0
+room17 to room44, distance 27.0
+room17 to room45, distance 28.0
+room17 to room46, distance 29.0
+room17 to room47, distance 30.0
+room17 to room48, distance 31.0
+room17 to room49, distance 32.0
+room17 to room50, distance 33.0
+room18 to room1, distance 17.0
+room18 to room2, distance 16.0
+room18 to room3, distance 15.0
+room18 to room4, distance 14.0
+room18 to room5, distance 13.0
+room18 to room6, distance 12.0
+room18 to room7, distance 11.0
+room18 to room8, distance 10.0
+room18 to room9, distance 9.0
+room18 to room10, distance 8.0
+room18 to room11, distance 7.0
+room18 to room12, distance 6.0
+room18 to room13, distance 5.0
+room18 to room14, distance 4.0
+room18 to room15, distance 3.0
+room18 to room16, distance 2.0
+room18 to room17, distance 1.0
+room18 to room19, distance 1.0
+room18 to room20, distance 2.0
+room18 to room21, distance 3.0
+room18 to room22, distance 4.0
+room18 to room23, distance 5.0
+room18 to room24, distance 6.0
+room18 to room25, distance 7.0
+room18 to room26, distance 8.0
+room18 to room27, distance 9.0
+room18 to room28, distance 10.0
+room18 to room29, distance 11.0
+room18 to room30, distance 12.0
+room18 to room31, distance 13.0
+room18 to room32, distance 14.0
+room18 to room33, distance 15.0
+room18 to room34, distance 16.0
+room18 to room35, distance 17.0
+room18 to room36, distance 18.0
+room18 to room37, distance 19.0
+room18 to room38, distance 20.0
+room18 to room39, distance 21.0
+room18 to room40, distance 22.0
+room18 to room41, distance 23.0
+room18 to room42, distance 24.0
+room18 to room43, distance 25.0
+room18 to room44, distance 26.0
+room18 to room45, distance 27.0
+room18 to room46, distance 28.0
+room18 to room47, distance 29.0
+room18 to room48, distance 30.0
+room18 to room49, distance 31.0
+room18 to room50, distance 32.0
+room19 to room1, distance 18.0
+room19 to room2, distance 17.0
+room19 to room3, distance 16.0
+room19 to room4, distance 15.0
+room19 to room5, distance 14.0
+room19 to room6, distance 13.0
+room19 to room7, distance 12.0
+room19 to room8, distance 11.0
+room19 to room9, distance 10.0
+room19 to room10, distance 9.0
+room19 to room11, distance 8.0
+room19 to room12, distance 7.0
+room19 to room13, distance 6.0
+room19 to room14, distance 5.0
+room19 to room15, distance 4.0
+room19 to room16, distance 3.0
+room19 to room17, distance 2.0
+room19 to room18, distance 1.0
+room19 to room20, distance 1.0
+room19 to room21, distance 2.0
+room19 to room22, distance 3.0
+room19 to room23, distance 4.0
+room19 to room24, distance 5.0
+room19 to room25, distance 6.0
+room19 to room26, distance 7.0
+room19 to room27, distance 8.0
+room19 to room28, distance 9.0
+room19 to room29, distance 10.0
+room19 to room30, distance 11.0
+room19 to room31, distance 12.0
+room19 to room32, distance 13.0
+room19 to room33, distance 14.0
+room19 to room34, distance 15.0
+room19 to room35, distance 16.0
+room19 to room36, distance 17.0
+room19 to room37, distance 18.0
+room19 to room38, distance 19.0
+room19 to room39, distance 20.0
+room19 to room40, distance 21.0
+room19 to room41, distance 22.0
+room19 to room42, distance 23.0
+room19 to room43, distance 24.0
+room19 to room44, distance 25.0
+room19 to room45, distance 26.0
+room19 to room46, distance 27.0
+room19 to room47, distance 28.0
+room19 to room48, distance 29.0
+room19 to room49, distance 30.0
+room19 to room50, distance 31.0
+room20 to room1, distance 19.0
+room20 to room2, distance 18.0
+room20 to room3, distance 17.0
+room20 to room4, distance 16.0
+room20 to room5, distance 15.0
+room20 to room6, distance 14.0
+room20 to room7, distance 13.0
+room20 to room8, distance 12.0
+room20 to room9, distance 11.0
+room20 to room10, distance 10.0
+room20 to room11, distance 9.0
+room20 to room12, distance 8.0
+room20 to room13, distance 7.0
+room20 to room14, distance 6.0
+room20 to room15, distance 5.0
+room20 to room16, distance 4.0
+room20 to room17, distance 3.0
+room20 to room18, distance 2.0
+room20 to room19, distance 1.0
+room20 to room21, distance 1.0
+room20 to room22, distance 2.0
+room20 to room23, distance 3.0
+room20 to room24, distance 4.0
+room20 to room25, distance 5.0
+room20 to room26, distance 6.0
+room20 to room27, distance 7.0
+room20 to room28, distance 8.0
+room20 to room29, distance 9.0
+room20 to room30, distance 10.0
+room20 to room31, distance 11.0
+room20 to room32, distance 12.0
+room20 to room33, distance 13.0
+room20 to room34, distance 14.0
+room20 to room35, distance 15.0
+room20 to room36, distance 16.0
+room20 to room37, distance 17.0
+room20 to room38, distance 18.0
+room20 to room39, distance 19.0
+room20 to room40, distance 20.0
+room20 to room41, distance 21.0
+room20 to room42, distance 22.0
+room20 to room43, distance 23.0
+room20 to room44, distance 24.0
+room20 to room45, distance 25.0
+room20 to room46, distance 26.0
+room20 to room47, distance 27.0
+room20 to room48, distance 28.0
+room20 to room49, distance 29.0
+room20 to room50, distance 30.0
+room21 to room1, distance 20.0
+room21 to room2, distance 19.0
+room21 to room3, distance 18.0
+room21 to room4, distance 17.0
+room21 to room5, distance 16.0
+room21 to room6, distance 15.0
+room21 to room7, distance 14.0
+room21 to room8, distance 13.0
+room21 to room9, distance 12.0
+room21 to room10, distance 11.0
+room21 to room11, distance 10.0
+room21 to room12, distance 9.0
+room21 to room13, distance 8.0
+room21 to room14, distance 7.0
+room21 to room15, distance 6.0
+room21 to room16, distance 5.0
+room21 to room17, distance 4.0
+room21 to room18, distance 3.0
+room21 to room19, distance 2.0
+room21 to room20, distance 1.0
+room21 to room22, distance 1.0
+room21 to room23, distance 2.0
+room21 to room24, distance 3.0
+room21 to room25, distance 4.0
+room21 to room26, distance 5.0
+room21 to room27, distance 6.0
+room21 to room28, distance 7.0
+room21 to room29, distance 8.0
+room21 to room30, distance 9.0
+room21 to room31, distance 10.0
+room21 to room32, distance 11.0
+room21 to room33, distance 12.0
+room21 to room34, distance 13.0
+room21 to room35, distance 14.0
+room21 to room36, distance 15.0
+room21 to room37, distance 16.0
+room21 to room38, distance 17.0
+room21 to room39, distance 18.0
+room21 to room40, distance 19.0
+room21 to room41, distance 20.0
+room21 to room42, distance 21.0
+room21 to room43, distance 22.0
+room21 to room44, distance 23.0
+room21 to room45, distance 24.0
+room21 to room46, distance 25.0
+room21 to room47, distance 26.0
+room21 to room48, distance 27.0
+room21 to room49, distance 28.0
+room21 to room50, distance 29.0
+room22 to room1, distance 21.0
+room22 to room2, distance 20.0
+room22 to room3, distance 19.0
+room22 to room4, distance 18.0
+room22 to room5, distance 17.0
+room22 to room6, distance 16.0
+room22 to room7, distance 15.0
+room22 to room8, distance 14.0
+room22 to room9, distance 13.0
+room22 to room10, distance 12.0
+room22 to room11, distance 11.0
+room22 to room12, distance 10.0
+room22 to room13, distance 9.0
+room22 to room14, distance 8.0
+room22 to room15, distance 7.0
+room22 to room16, distance 6.0
+room22 to room17, distance 5.0
+room22 to room18, distance 4.0
+room22 to room19, distance 3.0
+room22 to room20, distance 2.0
+room22 to room21, distance 1.0
+room22 to room23, distance 1.0
+room22 to room24, distance 2.0
+room22 to room25, distance 3.0
+room22 to room26, distance 4.0
+room22 to room27, distance 5.0
+room22 to room28, distance 6.0
+room22 to room29, distance 7.0
+room22 to room30, distance 8.0
+room22 to room31, distance 9.0
+room22 to room32, distance 10.0
+room22 to room33, distance 11.0
+room22 to room34, distance 12.0
+room22 to room35, distance 13.0
+room22 to room36, distance 14.0
+room22 to room37, distance 15.0
+room22 to room38, distance 16.0
+room22 to room39, distance 17.0
+room22 to room40, distance 18.0
+room22 to room41, distance 19.0
+room22 to room42, distance 20.0
+room22 to room43, distance 21.0
+room22 to room44, distance 22.0
+room22 to room45, distance 23.0
+room22 to room46, distance 24.0
+room22 to room47, distance 25.0
+room22 to room48, distance 26.0
+room22 to room49, distance 27.0
+room22 to room50, distance 28.0
+room23 to room1, distance 22.0
+room23 to room2, distance 21.0
+room23 to room3, distance 20.0
+room23 to room4, distance 19.0
+room23 to room5, distance 18.0
+room23 to room6, distance 17.0
+room23 to room7, distance 16.0
+room23 to room8, distance 15.0
+room23 to room9, distance 14.0
+room23 to room10, distance 13.0
+room23 to room11, distance 12.0
+room23 to room12, distance 11.0
+room23 to room13, distance 10.0
+room23 to room14, distance 9.0
+room23 to room15, distance 8.0
+room23 to room16, distance 7.0
+room23 to room17, distance 6.0
+room23 to room18, distance 5.0
+room23 to room19, distance 4.0
+room23 to room20, distance 3.0
+room23 to room21, distance 2.0
+room23 to room22, distance 1.0
+room23 to room24, distance 1.0
+room23 to room25, distance 2.0
+room23 to room26, distance 3.0
+room23 to room27, distance 4.0
+room23 to room28, distance 5.0
+room23 to room29, distance 6.0
+room23 to room30, distance 7.0
+room23 to room31, distance 8.0
+room23 to room32, distance 9.0
+room23 to room33, distance 10.0
+room23 to room34, distance 11.0
+room23 to room35, distance 12.0
+room23 to room36, distance 13.0
+room23 to room37, distance 14.0
+room23 to room38, distance 15.0
+room23 to room39, distance 16.0
+room23 to room40, distance 17.0
+room23 to room41, distance 18.0
+room23 to room42, distance 19.0
+room23 to room43, distance 20.0
+room23 to room44, distance 21.0
+room23 to room45, distance 22.0
+room23 to room46, distance 23.0
+room23 to room47, distance 24.0
+room23 to room48, distance 25.0
+room23 to room49, distance 26.0
+room23 to room50, distance 27.0
+room24 to room1, distance 23.0
+room24 to room2, distance 22.0
+room24 to room3, distance 21.0
+room24 to room4, distance 20.0
+room24 to room5, distance 19.0
+room24 to room6, distance 18.0
+room24 to room7, distance 17.0
+room24 to room8, distance 16.0
+room24 to room9, distance 15.0
+room24 to room10, distance 14.0
+room24 to room11, distance 13.0
+room24 to room12, distance 12.0
+room24 to room13, distance 11.0
+room24 to room14, distance 10.0
+room24 to room15, distance 9.0
+room24 to room16, distance 8.0
+room24 to room17, distance 7.0
+room24 to room18, distance 6.0
+room24 to room19, distance 5.0
+room24 to room20, distance 4.0
+room24 to room21, distance 3.0
+room24 to room22, distance 2.0
+room24 to room23, distance 1.0
+room24 to room25, distance 1.0
+room24 to room26, distance 2.0
+room24 to room27, distance 3.0
+room24 to room28, distance 4.0
+room24 to room29, distance 5.0
+room24 to room30, distance 6.0
+room24 to room31, distance 7.0
+room24 to room32, distance 8.0
+room24 to room33, distance 9.0
+room24 to room34, distance 10.0
+room24 to room35, distance 11.0
+room24 to room36, distance 12.0
+room24 to room37, distance 13.0
+room24 to room38, distance 14.0
+room24 to room39, distance 15.0
+room24 to room40, distance 16.0
+room24 to room41, distance 17.0
+room24 to room42, distance 18.0
+room24 to room43, distance 19.0
+room24 to room44, distance 20.0
+room24 to room45, distance 21.0
+room24 to room46, distance 22.0
+room24 to room47, distance 23.0
+room24 to room48, distance 24.0
+room24 to room49, distance 25.0
+room24 to room50, distance 26.0
+room25 to room1, distance 24.0
+room25 to room2, distance 23.0
+room25 to room3, distance 22.0
+room25 to room4, distance 21.0
+room25 to room5, distance 20.0
+room25 to room6, distance 19.0
+room25 to room7, distance 18.0
+room25 to room8, distance 17.0
+room25 to room9, distance 16.0
+room25 to room10, distance 15.0
+room25 to room11, distance 14.0
+room25 to room12, distance 13.0
+room25 to room13, distance 12.0
+room25 to room14, distance 11.0
+room25 to room15, distance 10.0
+room25 to room16, distance 9.0
+room25 to room17, distance 8.0
+room25 to room18, distance 7.0
+room25 to room19, distance 6.0
+room25 to room20, distance 5.0
+room25 to room21, distance 4.0
+room25 to room22, distance 3.0
+room25 to room23, distance 2.0
+room25 to room24, distance 1.0
+room25 to room26, distance 1.0
+room25 to room27, distance 2.0
+room25 to room28, distance 3.0
+room25 to room29, distance 4.0
+room25 to room30, distance 5.0
+room25 to room31, distance 6.0
+room25 to room32, distance 7.0
+room25 to room33, distance 8.0
+room25 to room34, distance 9.0
+room25 to room35, distance 10.0
+room25 to room36, distance 11.0
+room25 to room37, distance 12.0
+room25 to room38, distance 13.0
+room25 to room39, distance 14.0
+room25 to room40, distance 15.0
+room25 to room41, distance 16.0
+room25 to room42, distance 17.0
+room25 to room43, distance 18.0
+room25 to room44, distance 19.0
+room25 to room45, distance 20.0
+room25 to room46, distance 21.0
+room25 to room47, distance 22.0
+room25 to room48, distance 23.0
+room25 to room49, distance 24.0
+room25 to room50, distance 25.0
+room26 to room1, distance 25.0
+room26 to room2, distance 24.0
+room26 to room3, distance 23.0
+room26 to room4, distance 22.0
+room26 to room5, distance 21.0
+room26 to room6, distance 20.0
+room26 to room7, distance 19.0
+room26 to room8, distance 18.0
+room26 to room9, distance 17.0
+room26 to room10, distance 16.0
+room26 to room11, distance 15.0
+room26 to room12, distance 14.0
+room26 to room13, distance 13.0
+room26 to room14, distance 12.0
+room26 to room15, distance 11.0
+room26 to room16, distance 10.0
+room26 to room17, distance 9.0
+room26 to room18, distance 8.0
+room26 to room19, distance 7.0
+room26 to room20, distance 6.0
+room26 to room21, distance 5.0
+room26 to room22, distance 4.0
+room26 to room23, distance 3.0
+room26 to room24, distance 2.0
+room26 to room25, distance 1.0
+room26 to room27, distance 1.0
+room26 to room28, distance 2.0
+room26 to room29, distance 3.0
+room26 to room30, distance 4.0
+room26 to room31, distance 5.0
+room26 to room32, distance 6.0
+room26 to room33, distance 7.0
+room26 to room34, distance 8.0
+room26 to room35, distance 9.0
+room26 to room36, distance 10.0
+room26 to room37, distance 11.0
+room26 to room38, distance 12.0
+room26 to room39, distance 13.0
+room26 to room40, distance 14.0
+room26 to room41, distance 15.0
+room26 to room42, distance 16.0
+room26 to room43, distance 17.0
+room26 to room44, distance 18.0
+room26 to room45, distance 19.0
+room26 to room46, distance 20.0
+room26 to room47, distance 21.0
+room26 to room48, distance 22.0
+room26 to room49, distance 23.0
+room26 to room50, distance 24.0
+room27 to room1, distance 26.0
+room27 to room2, distance 25.0
+room27 to room3, distance 24.0
+room27 to room4, distance 23.0
+room27 to room5, distance 22.0
+room27 to room6, distance 21.0
+room27 to room7, distance 20.0
+room27 to room8, distance 19.0
+room27 to room9, distance 18.0
+room27 to room10, distance 17.0
+room27 to room11, distance 16.0
+room27 to room12, distance 15.0
+room27 to room13, distance 14.0
+room27 to room14, distance 13.0
+room27 to room15, distance 12.0
+room27 to room16, distance 11.0
+room27 to room17, distance 10.0
+room27 to room18, distance 9.0
+room27 to room19, distance 8.0
+room27 to room20, distance 7.0
+room27 to room21, distance 6.0
+room27 to room22, distance 5.0
+room27 to room23, distance 4.0
+room27 to room24, distance 3.0
+room27 to room25, distance 2.0
+room27 to room26, distance 1.0
+room27 to room28, distance 1.0
+room27 to room29, distance 2.0
+room27 to room30, distance 3.0
+room27 to room31, distance 4.0
+room27 to room32, distance 5.0
+room27 to room33, distance 6.0
+room27 to room34, distance 7.0
+room27 to room35, distance 8.0
+room27 to room36, distance 9.0
+room27 to room37, distance 10.0
+room27 to room38, distance 11.0
+room27 to room39, distance 12.0
+room27 to room40, distance 13.0
+room27 to room41, distance 14.0
+room27 to room42, distance 15.0
+room27 to room43, distance 16.0
+room27 to room44, distance 17.0
+room27 to room45, distance 18.0
+room27 to room46, distance 19.0
+room27 to room47, distance 20.0
+room27 to room48, distance 21.0
+room27 to room49, distance 22.0
+room27 to room50, distance 23.0
+room28 to room1, distance 27.0
+room28 to room2, distance 26.0
+room28 to room3, distance 25.0
+room28 to room4, distance 24.0
+room28 to room5, distance 23.0
+room28 to room6, distance 22.0
+room28 to room7, distance 21.0
+room28 to room8, distance 20.0
+room28 to room9, distance 19.0
+room28 to room10, distance 18.0
+room28 to room11, distance 17.0
+room28 to room12, distance 16.0
+room28 to room13, distance 15.0
+room28 to room14, distance 14.0
+room28 to room15, distance 13.0
+room28 to room16, distance 12.0
+room28 to room17, distance 11.0
+room28 to room18, distance 10.0
+room28 to room19, distance 9.0
+room28 to room20, distance 8.0
+room28 to room21, distance 7.0
+room28 to room22, distance 6.0
+room28 to room23, distance 5.0
+room28 to room24, distance 4.0
+room28 to room25, distance 3.0
+room28 to room26, distance 2.0
+room28 to room27, distance 1.0
+room28 to room29, distance 1.0
+room28 to room30, distance 2.0
+room28 to room31, distance 3.0
+room28 to room32, distance 4.0
+room28 to room33, distance 5.0
+room28 to room34, distance 6.0
+room28 to room35, distance 7.0
+room28 to room36, distance 8.0
+room28 to room37, distance 9.0
+room28 to room38, distance 10.0
+room28 to room39, distance 11.0
+room28 to room40, distance 12.0
+room28 to room41, distance 13.0
+room28 to room42, distance 14.0
+room28 to room43, distance 15.0
+room28 to room44, distance 16.0
+room28 to room45, distance 17.0
+room28 to room46, distance 18.0
+room28 to room47, distance 19.0
+room28 to room48, distance 20.0
+room28 to room49, distance 21.0
+room28 to room50, distance 22.0
+room29 to room1, distance 28.0
+room29 to room2, distance 27.0
+room29 to room3, distance 26.0
+room29 to room4, distance 25.0
+room29 to room5, distance 24.0
+room29 to room6, distance 23.0
+room29 to room7, distance 22.0
+room29 to room8, distance 21.0
+room29 to room9, distance 20.0
+room29 to room10, distance 19.0
+room29 to room11, distance 18.0
+room29 to room12, distance 17.0
+room29 to room13, distance 16.0
+room29 to room14, distance 15.0
+room29 to room15, distance 14.0
+room29 to room16, distance 13.0
+room29 to room17, distance 12.0
+room29 to room18, distance 11.0
+room29 to room19, distance 10.0
+room29 to room20, distance 9.0
+room29 to room21, distance 8.0
+room29 to room22, distance 7.0
+room29 to room23, distance 6.0
+room29 to room24, distance 5.0
+room29 to room25, distance 4.0
+room29 to room26, distance 3.0
+room29 to room27, distance 2.0
+room29 to room28, distance 1.0
+room29 to room30, distance 1.0
+room29 to room31, distance 2.0
+room29 to room32, distance 3.0
+room29 to room33, distance 4.0
+room29 to room34, distance 5.0
+room29 to room35, distance 6.0
+room29 to room36, distance 7.0
+room29 to room37, distance 8.0
+room29 to room38, distance 9.0
+room29 to room39, distance 10.0
+room29 to room40, distance 11.0
+room29 to room41, distance 12.0
+room29 to room42, distance 13.0
+room29 to room43, distance 14.0
+room29 to room44, distance 15.0
+room29 to room45, distance 16.0
+room29 to room46, distance 17.0
+room29 to room47, distance 18.0
+room29 to room48, distance 19.0
+room29 to room49, distance 20.0
+room29 to room50, distance 21.0
+room30 to room1, distance 29.0
+room30 to room2, distance 28.0
+room30 to room3, distance 27.0
+room30 to room4, distance 26.0
+room30 to room5, distance 25.0
+room30 to room6, distance 24.0
+room30 to room7, distance 23.0
+room30 to room8, distance 22.0
+room30 to room9, distance 21.0
+room30 to room10, distance 20.0
+room30 to room11, distance 19.0
+room30 to room12, distance 18.0
+room30 to room13, distance 17.0
+room30 to room14, distance 16.0
+room30 to room15, distance 15.0
+room30 to room16, distance 14.0
+room30 to room17, distance 13.0
+room30 to room18, distance 12.0
+room30 to room19, distance 11.0
+room30 to room20, distance 10.0
+room30 to room21, distance 9.0
+room30 to room22, distance 8.0
+room30 to room23, distance 7.0
+room30 to room24, distance 6.0
+room30 to room25, distance 5.0
+room30 to room26, distance 4.0
+room30 to room27, distance 3.0
+room30 to room28, distance 2.0
+room30 to room29, distance 1.0
+room30 to room31, distance 1.0
+room30 to room32, distance 2.0
+room30 to room33, distance 3.0
+room30 to room34, distance 4.0
+room30 to room35, distance 5.0
+room30 to room36, distance 6.0
+room30 to room37, distance 7.0
+room30 to room38, distance 8.0
+room30 to room39, distance 9.0
+room30 to room40, distance 10.0
+room30 to room41, distance 11.0
+room30 to room42, distance 12.0
+room30 to room43, distance 13.0
+room30 to room44, distance 14.0
+room30 to room45, distance 15.0
+room30 to room46, distance 16.0
+room30 to room47, distance 17.0
+room30 to room48, distance 18.0
+room30 to room49, distance 19.0
+room30 to room50, distance 20.0
+room31 to room1, distance 30.0
+room31 to room2, distance 29.0
+room31 to room3, distance 28.0
+room31 to room4, distance 27.0
+room31 to room5, distance 26.0
+room31 to room6, distance 25.0
+room31 to room7, distance 24.0
+room31 to room8, distance 23.0
+room31 to room9, distance 22.0
+room31 to room10, distance 21.0
+room31 to room11, distance 20.0
+room31 to room12, distance 19.0
+room31 to room13, distance 18.0
+room31 to room14, distance 17.0
+room31 to room15, distance 16.0
+room31 to room16, distance 15.0
+room31 to room17, distance 14.0
+room31 to room18, distance 13.0
+room31 to room19, distance 12.0
+room31 to room20, distance 11.0
+room31 to room21, distance 10.0
+room31 to room22, distance 9.0
+room31 to room23, distance 8.0
+room31 to room24, distance 7.0
+room31 to room25, distance 6.0
+room31 to room26, distance 5.0
+room31 to room27, distance 4.0
+room31 to room28, distance 3.0
+room31 to room29, distance 2.0
+room31 to room30, distance 1.0
+room31 to room32, distance 1.0
+room31 to room33, distance 2.0
+room31 to room34, distance 3.0
+room31 to room35, distance 4.0
+room31 to room36, distance 5.0
+room31 to room37, distance 6.0
+room31 to room38, distance 7.0
+room31 to room39, distance 8.0
+room31 to room40, distance 9.0
+room31 to room41, distance 10.0
+room31 to room42, distance 11.0
+room31 to room43, distance 12.0
+room31 to room44, distance 13.0
+room31 to room45, distance 14.0
+room31 to room46, distance 15.0
+room31 to room47, distance 16.0
+room31 to room48, distance 17.0
+room31 to room49, distance 18.0
+room31 to room50, distance 19.0
+room32 to room1, distance 31.0
+room32 to room2, distance 30.0
+room32 to room3, distance 29.0
+room32 to room4, distance 28.0
+room32 to room5, distance 27.0
+room32 to room6, distance 26.0
+room32 to room7, distance 25.0
+room32 to room8, distance 24.0
+room32 to room9, distance 23.0
+room32 to room10, distance 22.0
+room32 to room11, distance 21.0
+room32 to room12, distance 20.0
+room32 to room13, distance 19.0
+room32 to room14, distance 18.0
+room32 to room15, distance 17.0
+room32 to room16, distance 16.0
+room32 to room17, distance 15.0
+room32 to room18, distance 14.0
+room32 to room19, distance 13.0
+room32 to room20, distance 12.0
+room32 to room21, distance 11.0
+room32 to room22, distance 10.0
+room32 to room23, distance 9.0
+room32 to room24, distance 8.0
+room32 to room25, distance 7.0
+room32 to room26, distance 6.0
+room32 to room27, distance 5.0
+room32 to room28, distance 4.0
+room32 to room29, distance 3.0
+room32 to room30, distance 2.0
+room32 to room31, distance 1.0
+room32 to room33, distance 1.0
+room32 to room34, distance 2.0
+room32 to room35, distance 3.0
+room32 to room36, distance 4.0
+room32 to room37, distance 5.0
+room32 to room38, distance 6.0
+room32 to room39, distance 7.0
+room32 to room40, distance 8.0
+room32 to room41, distance 9.0
+room32 to room42, distance 10.0
+room32 to room43, distance 11.0
+room32 to room44, distance 12.0
+room32 to room45, distance 13.0
+room32 to room46, distance 14.0
+room32 to room47, distance 15.0
+room32 to room48, distance 16.0
+room32 to room49, distance 17.0
+room32 to room50, distance 18.0
+room33 to room1, distance 32.0
+room33 to room2, distance 31.0
+room33 to room3, distance 30.0
+room33 to room4, distance 29.0
+room33 to room5, distance 28.0
+room33 to room6, distance 27.0
+room33 to room7, distance 26.0
+room33 to room8, distance 25.0
+room33 to room9, distance 24.0
+room33 to room10, distance 23.0
+room33 to room11, distance 22.0
+room33 to room12, distance 21.0
+room33 to room13, distance 20.0
+room33 to room14, distance 19.0
+room33 to room15, distance 18.0
+room33 to room16, distance 17.0
+room33 to room17, distance 16.0
+room33 to room18, distance 15.0
+room33 to room19, distance 14.0
+room33 to room20, distance 13.0
+room33 to room21, distance 12.0
+room33 to room22, distance 11.0
+room33 to room23, distance 10.0
+room33 to room24, distance 9.0
+room33 to room25, distance 8.0
+room33 to room26, distance 7.0
+room33 to room27, distance 6.0
+room33 to room28, distance 5.0
+room33 to room29, distance 4.0
+room33 to room30, distance 3.0
+room33 to room31, distance 2.0
+room33 to room32, distance 1.0
+room33 to room34, distance 1.0
+room33 to room35, distance 2.0
+room33 to room36, distance 3.0
+room33 to room37, distance 4.0
+room33 to room38, distance 5.0
+room33 to room39, distance 6.0
+room33 to room40, distance 7.0
+room33 to room41, distance 8.0
+room33 to room42, distance 9.0
+room33 to room43, distance 10.0
+room33 to room44, distance 11.0
+room33 to room45, distance 12.0
+room33 to room46, distance 13.0
+room33 to room47, distance 14.0
+room33 to room48, distance 15.0
+room33 to room49, distance 16.0
+room33 to room50, distance 17.0
+room34 to room1, distance 33.0
+room34 to room2, distance 32.0
+room34 to room3, distance 31.0
+room34 to room4, distance 30.0
+room34 to room5, distance 29.0
+room34 to room6, distance 28.0
+room34 to room7, distance 27.0
+room34 to room8, distance 26.0
+room34 to room9, distance 25.0
+room34 to room10, distance 24.0
+room34 to room11, distance 23.0
+room34 to room12, distance 22.0
+room34 to room13, distance 21.0
+room34 to room14, distance 20.0
+room34 to room15, distance 19.0
+room34 to room16, distance 18.0
+room34 to room17, distance 17.0
+room34 to room18, distance 16.0
+room34 to room19, distance 15.0
+room34 to room20, distance 14.0
+room34 to room21, distance 13.0
+room34 to room22, distance 12.0
+room34 to room23, distance 11.0
+room34 to room24, distance 10.0
+room34 to room25, distance 9.0
+room34 to room26, distance 8.0
+room34 to room27, distance 7.0
+room34 to room28, distance 6.0
+room34 to room29, distance 5.0
+room34 to room30, distance 4.0
+room34 to room31, distance 3.0
+room34 to room32, distance 2.0
+room34 to room33, distance 1.0
+room34 to room35, distance 1.0
+room34 to room36, distance 2.0
+room34 to room37, distance 3.0
+room34 to room38, distance 4.0
+room34 to room39, distance 5.0
+room34 to room40, distance 6.0
+room34 to room41, distance 7.0
+room34 to room42, distance 8.0
+room34 to room43, distance 9.0
+room34 to room44, distance 10.0
+room34 to room45, distance 11.0
+room34 to room46, distance 12.0
+room34 to room47, distance 13.0
+room34 to room48, distance 14.0
+room34 to room49, distance 15.0
+room34 to room50, distance 16.0
+room35 to room1, distance 34.0
+room35 to room2, distance 33.0
+room35 to room3, distance 32.0
+room35 to room4, distance 31.0
+room35 to room5, distance 30.0
+room35 to room6, distance 29.0
+room35 to room7, distance 28.0
+room35 to room8, distance 27.0
+room35 to room9, distance 26.0
+room35 to room10, distance 25.0
+room35 to room11, distance 24.0
+room35 to room12, distance 23.0
+room35 to room13, distance 22.0
+room35 to room14, distance 21.0
+room35 to room15, distance 20.0
+room35 to room16, distance 19.0
+room35 to room17, distance 18.0
+room35 to room18, distance 17.0
+room35 to room19, distance 16.0
+room35 to room20, distance 15.0
+room35 to room21, distance 14.0
+room35 to room22, distance 13.0
+room35 to room23, distance 12.0
+room35 to room24, distance 11.0
+room35 to room25, distance 10.0
+room35 to room26, distance 9.0
+room35 to room27, distance 8.0
+room35 to room28, distance 7.0
+room35 to room29, distance 6.0
+room35 to room30, distance 5.0
+room35 to room31, distance 4.0
+room35 to room32, distance 3.0
+room35 to room33, distance 2.0
+room35 to room34, distance 1.0
+room35 to room36, distance 1.0
+room35 to room37, distance 2.0
+room35 to room38, distance 3.0
+room35 to room39, distance 4.0
+room35 to room40, distance 5.0
+room35 to room41, distance 6.0
+room35 to room42, distance 7.0
+room35 to room43, distance 8.0
+room35 to room44, distance 9.0
+room35 to room45, distance 10.0
+room35 to room46, distance 11.0
+room35 to room47, distance 12.0
+room35 to room48, distance 13.0
+room35 to room49, distance 14.0
+room35 to room50, distance 15.0
+room36 to room1, distance 35.0
+room36 to room2, distance 34.0
+room36 to room3, distance 33.0
+room36 to room4, distance 32.0
+room36 to room5, distance 31.0
+room36 to room6, distance 30.0
+room36 to room7, distance 29.0
+room36 to room8, distance 28.0
+room36 to room9, distance 27.0
+room36 to room10, distance 26.0
+room36 to room11, distance 25.0
+room36 to room12, distance 24.0
+room36 to room13, distance 23.0
+room36 to room14, distance 22.0
+room36 to room15, distance 21.0
+room36 to room16, distance 20.0
+room36 to room17, distance 19.0
+room36 to room18, distance 18.0
+room36 to room19, distance 17.0
+room36 to room20, distance 16.0
+room36 to room21, distance 15.0
+room36 to room22, distance 14.0
+room36 to room23, distance 13.0
+room36 to room24, distance 12.0
+room36 to room25, distance 11.0
+room36 to room26, distance 10.0
+room36 to room27, distance 9.0
+room36 to room28, distance 8.0
+room36 to room29, distance 7.0
+room36 to room30, distance 6.0
+room36 to room31, distance 5.0
+room36 to room32, distance 4.0
+room36 to room33, distance 3.0
+room36 to room34, distance 2.0
+room36 to room35, distance 1.0
+room36 to room37, distance 1.0
+room36 to room38, distance 2.0
+room36 to room39, distance 3.0
+room36 to room40, distance 4.0
+room36 to room41, distance 5.0
+room36 to room42, distance 6.0
+room36 to room43, distance 7.0
+room36 to room44, distance 8.0
+room36 to room45, distance 9.0
+room36 to room46, distance 10.0
+room36 to room47, distance 11.0
+room36 to room48, distance 12.0
+room36 to room49, distance 13.0
+room36 to room50, distance 14.0
+room37 to room1, distance 36.0
+room37 to room2, distance 35.0
+room37 to room3, distance 34.0
+room37 to room4, distance 33.0
+room37 to room5, distance 32.0
+room37 to room6, distance 31.0
+room37 to room7, distance 30.0
+room37 to room8, distance 29.0
+room37 to room9, distance 28.0
+room37 to room10, distance 27.0
+room37 to room11, distance 26.0
+room37 to room12, distance 25.0
+room37 to room13, distance 24.0
+room37 to room14, distance 23.0
+room37 to room15, distance 22.0
+room37 to room16, distance 21.0
+room37 to room17, distance 20.0
+room37 to room18, distance 19.0
+room37 to room19, distance 18.0
+room37 to room20, distance 17.0
+room37 to room21, distance 16.0
+room37 to room22, distance 15.0
+room37 to room23, distance 14.0
+room37 to room24, distance 13.0
+room37 to room25, distance 12.0
+room37 to room26, distance 11.0
+room37 to room27, distance 10.0
+room37 to room28, distance 9.0
+room37 to room29, distance 8.0
+room37 to room30, distance 7.0
+room37 to room31, distance 6.0
+room37 to room32, distance 5.0
+room37 to room33, distance 4.0
+room37 to room34, distance 3.0
+room37 to room35, distance 2.0
+room37 to room36, distance 1.0
+room37 to room38, distance 1.0
+room37 to room39, distance 2.0
+room37 to room40, distance 3.0
+room37 to room41, distance 4.0
+room37 to room42, distance 5.0
+room37 to room43, distance 6.0
+room37 to room44, distance 7.0
+room37 to room45, distance 8.0
+room37 to room46, distance 9.0
+room37 to room47, distance 10.0
+room37 to room48, distance 11.0
+room37 to room49, distance 12.0
+room37 to room50, distance 13.0
+room38 to room1, distance 37.0
+room38 to room2, distance 36.0
+room38 to room3, distance 35.0
+room38 to room4, distance 34.0
+room38 to room5, distance 33.0
+room38 to room6, distance 32.0
+room38 to room7, distance 31.0
+room38 to room8, distance 30.0
+room38 to room9, distance 29.0
+room38 to room10, distance 28.0
+room38 to room11, distance 27.0
+room38 to room12, distance 26.0
+room38 to room13, distance 25.0
+room38 to room14, distance 24.0
+room38 to room15, distance 23.0
+room38 to room16, distance 22.0
+room38 to room17, distance 21.0
+room38 to room18, distance 20.0
+room38 to room19, distance 19.0
+room38 to room20, distance 18.0
+room38 to room21, distance 17.0
+room38 to room22, distance 16.0
+room38 to room23, distance 15.0
+room38 to room24, distance 14.0
+room38 to room25, distance 13.0
+room38 to room26, distance 12.0
+room38 to room27, distance 11.0
+room38 to room28, distance 10.0
+room38 to room29, distance 9.0
+room38 to room30, distance 8.0
+room38 to room31, distance 7.0
+room38 to room32, distance 6.0
+room38 to room33, distance 5.0
+room38 to room34, distance 4.0
+room38 to room35, distance 3.0
+room38 to room36, distance 2.0
+room38 to room37, distance 1.0
+room38 to room39, distance 1.0
+room38 to room40, distance 2.0
+room38 to room41, distance 3.0
+room38 to room42, distance 4.0
+room38 to room43, distance 5.0
+room38 to room44, distance 6.0
+room38 to room45, distance 7.0
+room38 to room46, distance 8.0
+room38 to room47, distance 9.0
+room38 to room48, distance 10.0
+room38 to room49, distance 11.0
+room38 to room50, distance 12.0
+room39 to room1, distance 38.0
+room39 to room2, distance 37.0
+room39 to room3, distance 36.0
+room39 to room4, distance 35.0
+room39 to room5, distance 34.0
+room39 to room6, distance 33.0
+room39 to room7, distance 32.0
+room39 to room8, distance 31.0
+room39 to room9, distance 30.0
+room39 to room10, distance 29.0
+room39 to room11, distance 28.0
+room39 to room12, distance 27.0
+room39 to room13, distance 26.0
+room39 to room14, distance 25.0
+room39 to room15, distance 24.0
+room39 to room16, distance 23.0
+room39 to room17, distance 22.0
+room39 to room18, distance 21.0
+room39 to room19, distance 20.0
+room39 to room20, distance 19.0
+room39 to room21, distance 18.0
+room39 to room22, distance 17.0
+room39 to room23, distance 16.0
+room39 to room24, distance 15.0
+room39 to room25, distance 14.0
+room39 to room26, distance 13.0
+room39 to room27, distance 12.0
+room39 to room28, distance 11.0
+room39 to room29, distance 10.0
+room39 to room30, distance 9.0
+room39 to room31, distance 8.0
+room39 to room32, distance 7.0
+room39 to room33, distance 6.0
+room39 to room34, distance 5.0
+room39 to room35, distance 4.0
+room39 to room36, distance 3.0
+room39 to room37, distance 2.0
+room39 to room38, distance 1.0
+room39 to room40, distance 1.0
+room39 to room41, distance 2.0
+room39 to room42, distance 3.0
+room39 to room43, distance 4.0
+room39 to room44, distance 5.0
+room39 to room45, distance 6.0
+room39 to room46, distance 7.0
+room39 to room47, distance 8.0
+room39 to room48, distance 9.0
+room39 to room49, distance 10.0
+room39 to room50, distance 11.0
+room40 to room1, distance 39.0
+room40 to room2, distance 38.0
+room40 to room3, distance 37.0
+room40 to room4, distance 36.0
+room40 to room5, distance 35.0
+room40 to room6, distance 34.0
+room40 to room7, distance 33.0
+room40 to room8, distance 32.0
+room40 to room9, distance 31.0
+room40 to room10, distance 30.0
+room40 to room11, distance 29.0
+room40 to room12, distance 28.0
+room40 to room13, distance 27.0
+room40 to room14, distance 26.0
+room40 to room15, distance 25.0
+room40 to room16, distance 24.0
+room40 to room17, distance 23.0
+room40 to room18, distance 22.0
+room40 to room19, distance 21.0
+room40 to room20, distance 20.0
+room40 to room21, distance 19.0
+room40 to room22, distance 18.0
+room40 to room23, distance 17.0
+room40 to room24, distance 16.0
+room40 to room25, distance 15.0
+room40 to room26, distance 14.0
+room40 to room27, distance 13.0
+room40 to room28, distance 12.0
+room40 to room29, distance 11.0
+room40 to room30, distance 10.0
+room40 to room31, distance 9.0
+room40 to room32, distance 8.0
+room40 to room33, distance 7.0
+room40 to room34, distance 6.0
+room40 to room35, distance 5.0
+room40 to room36, distance 4.0
+room40 to room37, distance 3.0
+room40 to room38, distance 2.0
+room40 to room39, distance 1.0
+room40 to room41, distance 1.0
+room40 to room42, distance 2.0
+room40 to room43, distance 3.0
+room40 to room44, distance 4.0
+room40 to room45, distance 5.0
+room40 to room46, distance 6.0
+room40 to room47, distance 7.0
+room40 to room48, distance 8.0
+room40 to room49, distance 9.0
+room40 to room50, distance 10.0
+room41 to room1, distance 40.0
+room41 to room2, distance 39.0
+room41 to room3, distance 38.0
+room41 to room4, distance 37.0
+room41 to room5, distance 36.0
+room41 to room6, distance 35.0
+room41 to room7, distance 34.0
+room41 to room8, distance 33.0
+room41 to room9, distance 32.0
+room41 to room10, distance 31.0
+room41 to room11, distance 30.0
+room41 to room12, distance 29.0
+room41 to room13, distance 28.0
+room41 to room14, distance 27.0
+room41 to room15, distance 26.0
+room41 to room16, distance 25.0
+room41 to room17, distance 24.0
+room41 to room18, distance 23.0
+room41 to room19, distance 22.0
+room41 to room20, distance 21.0
+room41 to room21, distance 20.0
+room41 to room22, distance 19.0
+room41 to room23, distance 18.0
+room41 to room24, distance 17.0
+room41 to room25, distance 16.0
+room41 to room26, distance 15.0
+room41 to room27, distance 14.0
+room41 to room28, distance 13.0
+room41 to room29, distance 12.0
+room41 to room30, distance 11.0
+room41 to room31, distance 10.0
+room41 to room32, distance 9.0
+room41 to room33, distance 8.0
+room41 to room34, distance 7.0
+room41 to room35, distance 6.0
+room41 to room36, distance 5.0
+room41 to room37, distance 4.0
+room41 to room38, distance 3.0
+room41 to room39, distance 2.0
+room41 to room40, distance 1.0
+room41 to room42, distance 1.0
+room41 to room43, distance 2.0
+room41 to room44, distance 3.0
+room41 to room45, distance 4.0
+room41 to room46, distance 5.0
+room41 to room47, distance 6.0
+room41 to room48, distance 7.0
+room41 to room49, distance 8.0
+room41 to room50, distance 9.0
+room42 to room1, distance 41.0
+room42 to room2, distance 40.0
+room42 to room3, distance 39.0
+room42 to room4, distance 38.0
+room42 to room5, distance 37.0
+room42 to room6, distance 36.0
+room42 to room7, distance 35.0
+room42 to room8, distance 34.0
+room42 to room9, distance 33.0
+room42 to room10, distance 32.0
+room42 to room11, distance 31.0
+room42 to room12, distance 30.0
+room42 to room13, distance 29.0
+room42 to room14, distance 28.0
+room42 to room15, distance 27.0
+room42 to room16, distance 26.0
+room42 to room17, distance 25.0
+room42 to room18, distance 24.0
+room42 to room19, distance 23.0
+room42 to room20, distance 22.0
+room42 to room21, distance 21.0
+room42 to room22, distance 20.0
+room42 to room23, distance 19.0
+room42 to room24, distance 18.0
+room42 to room25, distance 17.0
+room42 to room26, distance 16.0
+room42 to room27, distance 15.0
+room42 to room28, distance 14.0
+room42 to room29, distance 13.0
+room42 to room30, distance 12.0
+room42 to room31, distance 11.0
+room42 to room32, distance 10.0
+room42 to room33, distance 9.0
+room42 to room34, distance 8.0
+room42 to room35, distance 7.0
+room42 to room36, distance 6.0
+room42 to room37, distance 5.0
+room42 to room38, distance 4.0
+room42 to room39, distance 3.0
+room42 to room40, distance 2.0
+room42 to room41, distance 1.0
+room42 to room43, distance 1.0
+room42 to room44, distance 2.0
+room42 to room45, distance 3.0
+room42 to room46, distance 4.0
+room42 to room47, distance 5.0
+room42 to room48, distance 6.0
+room42 to room49, distance 7.0
+room42 to room50, distance 8.0
+room43 to room1, distance 42.0
+room43 to room2, distance 41.0
+room43 to room3, distance 40.0
+room43 to room4, distance 39.0
+room43 to room5, distance 38.0
+room43 to room6, distance 37.0
+room43 to room7, distance 36.0
+room43 to room8, distance 35.0
+room43 to room9, distance 34.0
+room43 to room10, distance 33.0
+room43 to room11, distance 32.0
+room43 to room12, distance 31.0
+room43 to room13, distance 30.0
+room43 to room14, distance 29.0
+room43 to room15, distance 28.0
+room43 to room16, distance 27.0
+room43 to room17, distance 26.0
+room43 to room18, distance 25.0
+room43 to room19, distance 24.0
+room43 to room20, distance 23.0
+room43 to room21, distance 22.0
+room43 to room22, distance 21.0
+room43 to room23, distance 20.0
+room43 to room24, distance 19.0
+room43 to room25, distance 18.0
+room43 to room26, distance 17.0
+room43 to room27, distance 16.0
+room43 to room28, distance 15.0
+room43 to room29, distance 14.0
+room43 to room30, distance 13.0
+room43 to room31, distance 12.0
+room43 to room32, distance 11.0
+room43 to room33, distance 10.0
+room43 to room34, distance 9.0
+room43 to room35, distance 8.0
+room43 to room36, distance 7.0
+room43 to room37, distance 6.0
+room43 to room38, distance 5.0
+room43 to room39, distance 4.0
+room43 to room40, distance 3.0
+room43 to room41, distance 2.0
+room43 to room42, distance 1.0
+room43 to room44, distance 1.0
+room43 to room45, distance 2.0
+room43 to room46, distance 3.0
+room43 to room47, distance 4.0
+room43 to room48, distance 5.0
+room43 to room49, distance 6.0
+room43 to room50, distance 7.0
+room44 to room1, distance 43.0
+room44 to room2, distance 42.0
+room44 to room3, distance 41.0
+room44 to room4, distance 40.0
+room44 to room5, distance 39.0
+room44 to room6, distance 38.0
+room44 to room7, distance 37.0
+room44 to room8, distance 36.0
+room44 to room9, distance 35.0
+room44 to room10, distance 34.0
+room44 to room11, distance 33.0
+room44 to room12, distance 32.0
+room44 to room13, distance 31.0
+room44 to room14, distance 30.0
+room44 to room15, distance 29.0
+room44 to room16, distance 28.0
+room44 to room17, distance 27.0
+room44 to room18, distance 26.0
+room44 to room19, distance 25.0
+room44 to room20, distance 24.0
+room44 to room21, distance 23.0
+room44 to room22, distance 22.0
+room44 to room23, distance 21.0
+room44 to room24, distance 20.0
+room44 to room25, distance 19.0
+room44 to room26, distance 18.0
+room44 to room27, distance 17.0
+room44 to room28, distance 16.0
+room44 to room29, distance 15.0
+room44 to room30, distance 14.0
+room44 to room31, distance 13.0
+room44 to room32, distance 12.0
+room44 to room33, distance 11.0
+room44 to room34, distance 10.0
+room44 to room35, distance 9.0
+room44 to room36, distance 8.0
+room44 to room37, distance 7.0
+room44 to room38, distance 6.0
+room44 to room39, distance 5.0
+room44 to room40, distance 4.0
+room44 to room41, distance 3.0
+room44 to room42, distance 2.0
+room44 to room43, distance 1.0
+room44 to room45, distance 1.0
+room44 to room46, distance 2.0
+room44 to room47, distance 3.0
+room44 to room48, distance 4.0
+room44 to room49, distance 5.0
+room44 to room50, distance 6.0
+room45 to room1, distance 44.0
+room45 to room2, distance 43.0
+room45 to room3, distance 42.0
+room45 to room4, distance 41.0
+room45 to room5, distance 40.0
+room45 to room6, distance 39.0
+room45 to room7, distance 38.0
+room45 to room8, distance 37.0
+room45 to room9, distance 36.0
+room45 to room10, distance 35.0
+room45 to room11, distance 34.0
+room45 to room12, distance 33.0
+room45 to room13, distance 32.0
+room45 to room14, distance 31.0
+room45 to room15, distance 30.0
+room45 to room16, distance 29.0
+room45 to room17, distance 28.0
+room45 to room18, distance 27.0
+room45 to room19, distance 26.0
+room45 to room20, distance 25.0
+room45 to room21, distance 24.0
+room45 to room22, distance 23.0
+room45 to room23, distance 22.0
+room45 to room24, distance 21.0
+room45 to room25, distance 20.0
+room45 to room26, distance 19.0
+room45 to room27, distance 18.0
+room45 to room28, distance 17.0
+room45 to room29, distance 16.0
+room45 to room30, distance 15.0
+room45 to room31, distance 14.0
+room45 to room32, distance 13.0
+room45 to room33, distance 12.0
+room45 to room34, distance 11.0
+room45 to room35, distance 10.0
+room45 to room36, distance 9.0
+room45 to room37, distance 8.0
+room45 to room38, distance 7.0
+room45 to room39, distance 6.0
+room45 to room40, distance 5.0
+room45 to room41, distance 4.0
+room45 to room42, distance 3.0
+room45 to room43, distance 2.0
+room45 to room44, distance 1.0
+room45 to room46, distance 1.0
+room45 to room47, distance 2.0
+room45 to room48, distance 3.0
+room45 to room49, distance 4.0
+room45 to room50, distance 5.0
+room46 to room1, distance 45.0
+room46 to room2, distance 44.0
+room46 to room3, distance 43.0
+room46 to room4, distance 42.0
+room46 to room5, distance 41.0
+room46 to room6, distance 40.0
+room46 to room7, distance 39.0
+room46 to room8, distance 38.0
+room46 to room9, distance 37.0
+room46 to room10, distance 36.0
+room46 to room11, distance 35.0
+room46 to room12, distance 34.0
+room46 to room13, distance 33.0
+room46 to room14, distance 32.0
+room46 to room15, distance 31.0
+room46 to room16, distance 30.0
+room46 to room17, distance 29.0
+room46 to room18, distance 28.0
+room46 to room19, distance 27.0
+room46 to room20, distance 26.0
+room46 to room21, distance 25.0
+room46 to room22, distance 24.0
+room46 to room23, distance 23.0
+room46 to room24, distance 22.0
+room46 to room25, distance 21.0
+room46 to room26, distance 20.0
+room46 to room27, distance 19.0
+room46 to room28, distance 18.0
+room46 to room29, distance 17.0
+room46 to room30, distance 16.0
+room46 to room31, distance 15.0
+room46 to room32, distance 14.0
+room46 to room33, distance 13.0
+room46 to room34, distance 12.0
+room46 to room35, distance 11.0
+room46 to room36, distance 10.0
+room46 to room37, distance 9.0
+room46 to room38, distance 8.0
+room46 to room39, distance 7.0
+room46 to room40, distance 6.0
+room46 to room41, distance 5.0
+room46 to room42, distance 4.0
+room46 to room43, distance 3.0
+room46 to room44, distance 2.0
+room46 to room45, distance 1.0
+room46 to room47, distance 1.0
+room46 to room48, distance 2.0
+room46 to room49, distance 3.0
+room46 to room50, distance 4.0
+room47 to room1, distance 46.0
+room47 to room2, distance 45.0
+room47 to room3, distance 44.0
+room47 to room4, distance 43.0
+room47 to room5, distance 42.0
+room47 to room6, distance 41.0
+room47 to room7, distance 40.0
+room47 to room8, distance 39.0
+room47 to room9, distance 38.0
+room47 to room10, distance 37.0
+room47 to room11, distance 36.0
+room47 to room12, distance 35.0
+room47 to room13, distance 34.0
+room47 to room14, distance 33.0
+room47 to room15, distance 32.0
+room47 to room16, distance 31.0
+room47 to room17, distance 30.0
+room47 to room18, distance 29.0
+room47 to room19, distance 28.0
+room47 to room20, distance 27.0
+room47 to room21, distance 26.0
+room47 to room22, distance 25.0
+room47 to room23, distance 24.0
+room47 to room24, distance 23.0
+room47 to room25, distance 22.0
+room47 to room26, distance 21.0
+room47 to room27, distance 20.0
+room47 to room28, distance 19.0
+room47 to room29, distance 18.0
+room47 to room30, distance 17.0
+room47 to room31, distance 16.0
+room47 to room32, distance 15.0
+room47 to room33, distance 14.0
+room47 to room34, distance 13.0
+room47 to room35, distance 12.0
+room47 to room36, distance 11.0
+room47 to room37, distance 10.0
+room47 to room38, distance 9.0
+room47 to room39, distance 8.0
+room47 to room40, distance 7.0
+room47 to room41, distance 6.0
+room47 to room42, distance 5.0
+room47 to room43, distance 4.0
+room47 to room44, distance 3.0
+room47 to room45, distance 2.0
+room47 to room46, distance 1.0
+room47 to room48, distance 1.0
+room47 to room49, distance 2.0
+room47 to room50, distance 3.0
+room48 to room1, distance 47.0
+room48 to room2, distance 46.0
+room48 to room3, distance 45.0
+room48 to room4, distance 44.0
+room48 to room5, distance 43.0
+room48 to room6, distance 42.0
+room48 to room7, distance 41.0
+room48 to room8, distance 40.0
+room48 to room9, distance 39.0
+room48 to room10, distance 38.0
+room48 to room11, distance 37.0
+room48 to room12, distance 36.0
+room48 to room13, distance 35.0
+room48 to room14, distance 34.0
+room48 to room15, distance 33.0
+room48 to room16, distance 32.0
+room48 to room17, distance 31.0
+room48 to room18, distance 30.0
+room48 to room19, distance 29.0
+room48 to room20, distance 28.0
+room48 to room21, distance 27.0
+room48 to room22, distance 26.0
+room48 to room23, distance 25.0
+room48 to room24, distance 24.0
+room48 to room25, distance 23.0
+room48 to room26, distance 22.0
+room48 to room27, distance 21.0
+room48 to room28, distance 20.0
+room48 to room29, distance 19.0
+room48 to room30, distance 18.0
+room48 to room31, distance 17.0
+room48 to room32, distance 16.0
+room48 to room33, distance 15.0
+room48 to room34, distance 14.0
+room48 to room35, distance 13.0
+room48 to room36, distance 12.0
+room48 to room37, distance 11.0
+room48 to room38, distance 10.0
+room48 to room39, distance 9.0
+room48 to room40, distance 8.0
+room48 to room41, distance 7.0
+room48 to room42, distance 6.0
+room48 to room43, distance 5.0
+room48 to room44, distance 4.0
+room48 to room45, distance 3.0
+room48 to room46, distance 2.0
+room48 to room47, distance 1.0
+room48 to room49, distance 1.0
+room48 to room50, distance 2.0
+room49 to room1, distance 48.0
+room49 to room2, distance 47.0
+room49 to room3, distance 46.0
+room49 to room4, distance 45.0
+room49 to room5, distance 44.0
+room49 to room6, distance 43.0
+room49 to room7, distance 42.0
+room49 to room8, distance 41.0
+room49 to room9, distance 40.0
+room49 to room10, distance 39.0
+room49 to room11, distance 38.0
+room49 to room12, distance 37.0
+room49 to room13, distance 36.0
+room49 to room14, distance 35.0
+room49 to room15, distance 34.0
+room49 to room16, distance 33.0
+room49 to room17, distance 32.0
+room49 to room18, distance 31.0
+room49 to room19, distance 30.0
+room49 to room20, distance 29.0
+room49 to room21, distance 28.0
+room49 to room22, distance 27.0
+room49 to room23, distance 26.0
+room49 to room24, distance 25.0
+room49 to room25, distance 24.0
+room49 to room26, distance 23.0
+room49 to room27, distance 22.0
+room49 to room28, distance 21.0
+room49 to room29, distance 20.0
+room49 to room30, distance 19.0
+room49 to room31, distance 18.0
+room49 to room32, distance 17.0
+room49 to room33, distance 16.0
+room49 to room34, distance 15.0
+room49 to room35, distance 14.0
+room49 to room36, distance 13.0
+room49 to room37, distance 12.0
+room49 to room38, distance 11.0
+room49 to room39, distance 10.0
+room49 to room40, distance 9.0
+room49 to room41, distance 8.0
+room49 to room42, distance 7.0
+room49 to room43, distance 6.0
+room49 to room44, distance 5.0
+room49 to room45, distance 4.0
+room49 to room46, distance 3.0
+room49 to room47, distance 2.0
+room49 to room48, distance 1.0
+room49 to room50, distance 1.0
+room50 to room1, distance 49.0
+room50 to room2, distance 48.0
+room50 to room3, distance 47.0
+room50 to room4, distance 46.0
+room50 to room5, distance 45.0
+room50 to room6, distance 44.0
+room50 to room7, distance 43.0
+room50 to room8, distance 42.0
+room50 to room9, distance 41.0
+room50 to room10, distance 40.0
+room50 to room11, distance 39.0
+room50 to room12, distance 38.0
+room50 to room13, distance 37.0
+room50 to room14, distance 36.0
+room50 to room15, distance 35.0
+room50 to room16, distance 34.0
+room50 to room17, distance 33.0
+room50 to room18, distance 32.0
+room50 to room19, distance 31.0
+room50 to room20, distance 30.0
+room50 to room21, distance 29.0
+room50 to room22, distance 28.0
+room50 to room23, distance 27.0
+room50 to room24, distance 26.0
+room50 to room25, distance 25.0
+room50 to room26, distance 24.0
+room50 to room27, distance 23.0
+room50 to room28, distance 22.0
+room50 to room29, distance 21.0
+room50 to room30, distance 20.0
+room50 to room31, distance 19.0
+room50 to room32, distance 18.0
+room50 to room33, distance 17.0
+room50 to room34, distance 16.0
+room50 to room35, distance 15.0
+room50 to room36, distance 14.0
+room50 to room37, distance 13.0
+room50 to room38, distance 12.0
+room50 to room39, distance 11.0
+room50 to room40, distance 10.0
+room50 to room41, distance 9.0
+room50 to room42, distance 8.0
+room50 to room43, distance 7.0
+room50 to room44, distance 6.0
+room50 to room45, distance 5.0
+room50 to room46, distance 4.0
+room50 to room47, distance 3.0
+room50 to room48, distance 2.0
+room50 to room49, distance 1.0
+	//paths
+	l1 to room1, distance 1.0
+	l1 to room2, distance 2.0
+	l1 to room3, distance 3.0
+	l1 to room4, distance 4.0
+	l1 to room5, distance 5.0
+	l1 to room6, distance 6.0
+	l1 to room7, distance 7.0
+	l1 to room8, distance 8.0
+	l1 to room9, distance 9.0
+	l1 to room10, distance 10.0
+	l1 to room11, distance 11.0
+	l1 to room12, distance 12.0
+	l1 to room13, distance 13.0
+	l1 to room14, distance 14.0
+	l1 to room15, distance 15.0
+	room1 to room2, distance 1.0
+	room1 to room3, distance 2.0
+	room1 to room4, distance 3.0
+	room1 to room5, distance 4.0
+	room1 to room6, distance 5.0
+	room1 to room7, distance 6.0
+	room1 to room8, distance 7.0
+	room1 to room9, distance 8.0
+	room1 to room10, distance 9.0
+	room1 to room11, distance 10.0
+	room1 to room12, distance 11.0
+	room1 to room13, distance 12.0
+	room1 to room14, distance 13.0
+	room1 to room15, distance 14.0
+	room2 to room1, distance 1.0
+	room2 to room3, distance 1.0
+	room2 to room4, distance 2.0
+	room2 to room5, distance 3.0
+	room2 to room6, distance 4.0
+	room2 to room7, distance 5.0
+	room2 to room8, distance 6.0
+	room2 to room9, distance 7.0
+	room2 to room10, distance 8.0
+	room2 to room11, distance 9.0
+	room2 to room12, distance 10.0
+	room2 to room13, distance 11.0
+	room2 to room14, distance 12.0
+	room2 to room15, distance 13.0
+	room3 to room1, distance 2.0
+	room3 to room2, distance 1.0
+	room3 to room4, distance 1.0
+	room3 to room5, distance 2.0
+	room3 to room6, distance 3.0
+	room3 to room7, distance 4.0
+	room3 to room8, distance 5.0
+	room3 to room9, distance 6.0
+	room3 to room10, distance 7.0
+	room3 to room11, distance 8.0
+	room3 to room12, distance 9.0
+	room3 to room13, distance 10.0
+	room3 to room14, distance 11.0
+	room3 to room15, distance 12.0
+	room4 to room1, distance 3.0
+	room4 to room2, distance 2.0
+	room4 to room3, distance 1.0
+	room4 to room5, distance 1.0
+	room4 to room6, distance 2.0
+	room4 to room7, distance 3.0
+	room4 to room8, distance 4.0
+	room4 to room9, distance 5.0
+	room4 to room10, distance 6.0
+	room4 to room11, distance 7.0
+	room4 to room12, distance 8.0
+	room4 to room13, distance 9.0
+	room4 to room14, distance 10.0
+	room4 to room15, distance 11.0
+	room5 to room1, distance 4.0
+	room5 to room2, distance 3.0
+	room5 to room3, distance 2.0
+	room5 to room4, distance 1.0
+	room5 to room6, distance 1.0
+	room5 to room7, distance 2.0
+	room5 to room8, distance 3.0
+	room5 to room9, distance 4.0
+	room5 to room10, distance 5.0
+	room5 to room11, distance 6.0
+	room5 to room12, distance 7.0
+	room5 to room13, distance 8.0
+	room5 to room14, distance 9.0
+	room5 to room15, distance 10.0
+	room6 to room1, distance 5.0
+	room6 to room2, distance 4.0
+	room6 to room3, distance 3.0
+	room6 to room4, distance 2.0
+	room6 to room5, distance 1.0
+	room6 to room7, distance 1.0
+	room6 to room8, distance 2.0
+	room6 to room9, distance 3.0
+	room6 to room10, distance 4.0
+	room6 to room11, distance 5.0
+	room6 to room12, distance 6.0
+	room6 to room13, distance 7.0
+	room6 to room14, distance 8.0
+	room6 to room15, distance 9.0
+	room7 to room1, distance 6.0
+	room7 to room2, distance 5.0
+	room7 to room3, distance 4.0
+	room7 to room4, distance 3.0
+	room7 to room5, distance 2.0
+	room7 to room6, distance 1.0
+	room7 to room8, distance 1.0
+	room7 to room9, distance 2.0
+	room7 to room10, distance 3.0
+	room7 to room11, distance 4.0
+	room7 to room12, distance 5.0
+	room7 to room13, distance 6.0
+	room7 to room14, distance 7.0
+	room7 to room15, distance 8.0
+	room8 to room1, distance 7.0
+	room8 to room2, distance 6.0
+	room8 to room3, distance 5.0
+	room8 to room4, distance 4.0
+	room8 to room5, distance 3.0
+	room8 to room6, distance 2.0
+	room8 to room7, distance 1.0
+	room8 to room9, distance 1.0
+	room8 to room10, distance 2.0
+	room8 to room11, distance 3.0
+	room8 to room12, distance 4.0
+	room8 to room13, distance 5.0
+	room8 to room14, distance 6.0
+	room8 to room15, distance 7.0
+	room9 to room1, distance 8.0
+	room9 to room2, distance 7.0
+	room9 to room3, distance 6.0
+	room9 to room4, distance 5.0
+	room9 to room5, distance 4.0
+	room9 to room6, distance 3.0
+	room9 to room7, distance 2.0
+	room9 to room8, distance 1.0
+	room9 to room10, distance 1.0
+	room9 to room11, distance 2.0
+	room9 to room12, distance 3.0
+	room9 to room13, distance 4.0
+	room9 to room14, distance 5.0
+	room9 to room15, distance 6.0
+	room10 to room1, distance 9.0
+	room10 to room2, distance 8.0
+	room10 to room3, distance 7.0
+	room10 to room4, distance 6.0
+	room10 to room5, distance 5.0
+	room10 to room6, distance 4.0
+	room10 to room7, distance 3.0
+	room10 to room8, distance 2.0
+	room10 to room9, distance 1.0
+	room10 to room11, distance 1.0
+	room10 to room12, distance 2.0
+	room10 to room13, distance 3.0
+	room10 to room14, distance 4.0
+	room10 to room15, distance 5.0
+	room11 to room1, distance 10.0
+	room11 to room2, distance 9.0
+	room11 to room3, distance 8.0
+	room11 to room4, distance 7.0
+	room11 to room5, distance 6.0
+	room11 to room6, distance 5.0
+	room11 to room7, distance 4.0
+	room11 to room8, distance 3.0
+	room11 to room9, distance 2.0
+	room11 to room10, distance 1.0
+	room11 to room12, distance 1.0
+	room11 to room13, distance 2.0
+	room11 to room14, distance 3.0
+	room11 to room15, distance 4.0
+	room12 to room1, distance 11.0
+	room12 to room2, distance 10.0
+	room12 to room3, distance 9.0
+	room12 to room4, distance 8.0
+	room12 to room5, distance 7.0
+	room12 to room6, distance 6.0
+	room12 to room7, distance 5.0
+	room12 to room8, distance 4.0
+	room12 to room9, distance 3.0
+	room12 to room10, distance 2.0
+	room12 to room11, distance 1.0
+	room12 to room13, distance 1.0
+	room12 to room14, distance 2.0
+	room12 to room15, distance 3.0
+	room13 to room1, distance 12.0
+	room13 to room2, distance 11.0
+	room13 to room3, distance 10.0
+	room13 to room4, distance 9.0
+	room13 to room5, distance 8.0
+	room13 to room6, distance 7.0
+	room13 to room7, distance 6.0
+	room13 to room8, distance 5.0
+	room13 to room9, distance 4.0
+	room13 to room10, distance 3.0
+	room13 to room11, distance 2.0
+	room13 to room12, distance 1.0
+	room13 to room14, distance 1.0
+	room13 to room15, distance 2.0
+	room14 to room1, distance 13.0
+	room14 to room2, distance 12.0
+	room14 to room3, distance 11.0
+	room14 to room4, distance 10.0
+	room14 to room5, distance 9.0
+	room14 to room6, distance 8.0
+	room14 to room7, distance 7.0
+	room14 to room8, distance 6.0
+	room14 to room9, distance 5.0
+	room14 to room10, distance 4.0
+	room14 to room11, distance 3.0
+	room14 to room12, distance 2.0
+	room14 to room13, distance 1.0
+	room14 to room15, distance 1.0
+	room15 to room1, distance 14.0
+	room15 to room2, distance 13.0
+	room15 to room3, distance 12.0
+	room15 to room4, distance 11.0
+	room15 to room5, distance 10.0
+	room15 to room6, distance 9.0
+	room15 to room7, distance 8.0
+	room15 to room8, distance 7.0
+	room15 to room9, distance 6.0
+	room15 to room10, distance 5.0
+	room15 to room11, distance 4.0
+	room15 to room12, distance 3.0
+	room15 to room13, distance 2.0
+	room15 to room14, distance 1.0
+
+		
+
+		
+TasksModel :
+	at3_sanit : 1 robots needed   //sanitising 
+		
+RobotsModel:
+  robots:
+	//cleaner robot
+	r1: at initial location l1 has velocity 1.0
+	can do 
+	(at3_sanit -time required: 4.0, success probability: 1.0)
+		
+Mission:
+m1: atomic task at3_sanit at room1 //clean room1
+m2: atomic task at3_sanit at room2 //clean room2
+m3: atomic task at3_sanit at room3 //clean room3
+m4: atomic task at3_sanit at room4 //clean room4
+m5: atomic task at3_sanit at room5 //clean room5
+m6: atomic task at3_sanit at room6 //clean room6
+m7: atomic task at3_sanit at room7 //clean room7
+m8: atomic task at3_sanit at room8 //clean room8
+m9: atomic task at3_sanit at room9 //clean room9
+m10: atomic task at3_sanit at room10 //clean room10
+m11: atomic task at3_sanit at room11 //clean room11
+m12: atomic task at3_sanit at room12 //clean room12
+m13: atomic task at3_sanit at room13 //clean room13
+m14: atomic task at3_sanit at room14 //clean room14
+m15: atomic task at3_sanit at room15 //clean room15
+m16: atomic task at3_sanit at room16 //clean room16
+m17: atomic task at3_sanit at room17 //clean room17
+m18: atomic task at3_sanit at room18 //clean room18
+m19: atomic task at3_sanit at room19 //clean room19
+m20: atomic task at3_sanit at room20 //clean room20
+m21: atomic task at3_sanit at room21 //clean room21
+m22: atomic task at3_sanit at room22 //clean room22
+m23: atomic task at3_sanit at room23 //clean room23
+m24: atomic task at3_sanit at room24 //clean room24
+m25: atomic task at3_sanit at room25 //clean room25
+m26: atomic task at3_sanit at room26 //clean room26
+m27: atomic task at3_sanit at room27 //clean room27
+m28: atomic task at3_sanit at room28 //clean room28
+m29: atomic task at3_sanit at room29 //clean room29
+m30: atomic task at3_sanit at room30 //clean room30
+m31: atomic task at3_sanit at room31 //clean room31
+m32: atomic task at3_sanit at room32 //clean room32
+m33: atomic task at3_sanit at room33 //clean room33
+m34: atomic task at3_sanit at room34 //clean room34
+m35: atomic task at3_sanit at room35 //clean room35
+m36: atomic task at3_sanit at room36 //clean room36
+m37: atomic task at3_sanit at room37 //clean room37
+m38: atomic task at3_sanit at room38 //clean room38
+m39: atomic task at3_sanit at room39 //clean room39
+m40: atomic task at3_sanit at room40 //clean room40
+m41: atomic task at3_sanit at room41 //clean room41
+m42: atomic task at3_sanit at room42 //clean room42
+m43: atomic task at3_sanit at room43 //clean room43
+m44: atomic task at3_sanit at room44 //clean room44
+m45: atomic task at3_sanit at room45 //clean room45
+m46: atomic task at3_sanit at room46 //clean room46
+m47: atomic task at3_sanit at room47 //clean room47
+m48: atomic task at3_sanit at room48 //clean room48
+m49: atomic task at3_sanit at room49 //clean room49
+m50: atomic task at3_sanit at room50 //clean room50
+
+time available: 1000
+}
+

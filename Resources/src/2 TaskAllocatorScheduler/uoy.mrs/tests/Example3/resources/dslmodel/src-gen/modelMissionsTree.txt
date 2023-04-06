@@ -1,0 +1,7 @@
+id,,parent,,ordered_children,,location,,runbyrobot,,joint,,ordered,,consecutive
+m3,,NaN,,['ct2_patient_0'],,NaN,,NaN,,NaN,,NaN,,NaN
+ct2_patient_0,,m3,,['at4_notify_0','ct1_clean_1'],,room2,,NaN,,NaN,,True,,False
+at4_notify_0,,ct2_patient_0,,NaN,,room2,,NaN,,False,,True,,False
+ct1_clean_1,,ct2_patient_0,,['at2_floor_1','at3_sanit_2'],,room2,,NaN,,NaN,,False,,True
+at2_floor_1,,ct1_clean_1,,NaN,,room2,,NaN,,False,,False,,True
+at3_sanit_2,,ct1_clean_1,,NaN,,room2,,NaN,,False,,False,,True

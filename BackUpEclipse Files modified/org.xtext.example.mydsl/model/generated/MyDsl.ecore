@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="myDsl" nsURI="http://www.xtext.org/example/mydsl/MyDsl" nsPrefix="myDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="ProblemSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="worldModel" upperBound="-1"
+        eType="#//WorldModel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasksModel" upperBound="-1"
+        eType="#//TasksModel" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="robotsModel" eType="#//RobotsModel"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mission" upperBound="-1"
+        eType="#//Mission" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qos" upperBound="-1" eType="#//QoS"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TasksModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criticality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicTask" eSuperTypes="#//TasksModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="robots" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loc" eType="#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundTask" eSuperTypes="#//TasksModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="canDoTask" unique="false"
+        upperBound="-1" eType="#//TasksModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ordered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="consecutive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorldModel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Location" eSuperTypes="#//WorldModel">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Paths" eSuperTypes="#//WorldModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loc1" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loc2" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RobotsModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="robots" upperBound="-1"
+        eType="#//Robot" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Capability">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="at" unique="false" upperBound="-1"
+        eType="#//AtomicTask"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Robot">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initLoc" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="velocity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="robots2tasksPerformance"
+        upperBound="-1" eType="#//Robots2tasksPerformance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Robots2tasksPerformance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="at" eType="#//AtomicTask"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prob" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mission">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicTaskNoLoc" eSuperTypes="#//Mission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="at" eType="#//AtomicTask"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AtomicTaskLoc" eSuperTypes="#//Mission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="at" eType="#//AtomicTask"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loc" eType="#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompTaskNoLoc" eSuperTypes="#//Mission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ct" eType="#//CompoundTask"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criticality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompTaskOneLoc" eSuperTypes="#//Mission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ct" eType="#//CompoundTask"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loc" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criticality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompTaskListLoc" eSuperTypes="#//Mission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ct" eType="#//CompoundTask"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locationList" unique="false"
+        upperBound="-1" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criticality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompTaskAtBut" eSuperTypes="#//Mission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ct" eType="#//CompoundTask"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loc" eType="#//Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locationList" upperBound="-1"
+        eType="#//LocationOrSpace" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criticality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompTaskStatedBut" eSuperTypes="#//Mission">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ct" eType="#//CompoundTask"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locationList" upperBound="-1"
+        eType="#//LocationOrSpace" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="criticality" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QoS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AllRobotsXX" eSuperTypes="#//QoS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coordinate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xy1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xy2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllRobotsX" eSuperTypes="#//QoS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coordinate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RobotsXX" eSuperTypes="#//QoS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="robot" eType="#//Robot"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coordinate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xy1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xy2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RobotsX" eSuperTypes="#//QoS">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="robot" eType="#//Robot"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="coordinate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AllRobotsDeploy" eSuperTypes="#//QoS"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeAvailable" eSuperTypes="#//QoS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumAllocations" eSuperTypes="#//QoS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumPopulation" eSuperTypes="#//QoS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumEvaluations" eSuperTypes="#//QoS">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LocationOrSpace">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="space" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loc" eType="#//Location"/>
+  </eClassifiers>
+</ecore:EPackage>

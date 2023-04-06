@@ -1,0 +1,8 @@
+,id,type,robots,tasks,ordered,consecutive,joint
+0,ct1_clean,compound,,,False,True,
+0,ct21_clean,compound,,,False,True,
+0,ct2_patient,compound,,,True,False,
+0,at1_move,atomic,2,,,,True
+0,at2_floor,atomic,1,,,,False
+0,at3_sanit,atomic,1,,,,False
+0,at4_notify,atomic,1,,,,False

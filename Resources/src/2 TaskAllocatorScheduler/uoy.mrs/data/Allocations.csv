@@ -1,0 +1,3 @@
+/Users/gris/eclipse-workspace/uoy.mrs/data//Alloy/Allocation1.xml|Allocation1|2|[['r5', 'r1']]|r5:['at4_notify_0', 'at4_notify_3']::r1:['at2_floor_1', 'at3_sanit_2', 'at2_floor_4', 'at3_sanit_5']:
+/Users/gris/eclipse-workspace/uoy.mrs/data//Alloy/Allocation2.xml|Allocation2|2|[['r5', 'r1']]|r5:['at4_notify_0']::r1:['at2_floor_1', 'at3_sanit_2', 'at4_notify_3', 'at2_floor_4', 'at3_sanit_5']:
+/Users/gris/eclipse-workspace/uoy.mrs/data//Alloy/Allocation3.xml|Allocation3|2|[['r1', 'r5']]|r5:['at4_notify_3']::r1:['at4_notify_0', 'at2_floor_1', 'at3_sanit_2', 'at2_floor_4', 'at3_sanit_5']:

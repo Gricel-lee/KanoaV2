@@ -1,0 +1,3 @@
+Path that exists:
+
+~/.swt/lib/macosx/aarch64/libswt-cocoa-4954r7.jnilib

@@ -1,0 +1,13 @@
+//const int C1;
+
+//multi(Pmax=? [ F workflowOK=true ], R{"time"}min=? [ C ])
+
+//multi(Pmax=? [ F workflowOK=true ], R{"cost"}min=? [ C ])
+
+
+
+multi(R{"travel"}min=?[ C], R{"idle"}min=?[ C], Pmin=? [ G (r1_fail=0 & r5_fail=0) ])
+//multi(R{"travel"}min=?[F done], R{"idle"}min=?[F done])
+
+
+//multi(R{"cost"}min=? [ C ], R{"time"}min=? [ C ], P>0.95 [ F workflowOK=true ])

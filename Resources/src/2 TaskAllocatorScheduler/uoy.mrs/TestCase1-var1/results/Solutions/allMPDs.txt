@@ -1,0 +1,3 @@
+file,solutionNum
+/Users/gris/eclipse-workspace/uoy.mrs/TestCase1-var1/results/PrismFiles/Allocation1_0_(5,)PM.mdp,1
+/Users/gris/eclipse-workspace/uoy.mrs/TestCase1-var1/results/PrismFiles/Allocation1_0_(2,)PM.mdp,2

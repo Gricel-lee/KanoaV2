@@ -1,0 +1,67 @@
+,allocid,num_cluster,uniqueAlloc,reference
+0,Allocation1,0,"{'r2_at1_move_1', 'r2_at1_move_0', 'r1_at1_move_1', 'r1_at1_move_0'}",
+0,Allocation1,1,"{'r4_at2_floor_9', 'r4_at4_notify_5', 'r4_at2_floor_3', 'r5_at3_sanit_7', 'r5_at3_sanit_13', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r3_at2_floor_12', 'r4_at4_notify_2', 'r5_at3_sanit_4', 'r5_at2_floor_6'}",
+0,Allocation10,1,"{'r3_at4_notify_8', 'r3_at2_floor_6', 'r5_at2_floor_3', 'r3_at2_floor_9', 'r3_at4_notify_11', 'r4_at3_sanit_7', 'r5_at3_sanit_10', 'r3_at3_sanit_4', 'r3_at4_notify_5', 'r3_at2_floor_12', 'r3_at4_notify_2', 'r5_at3_sanit_13'}",
+0,Allocation10,0,,Allocation1_0
+0,Allocation11,1,"{'r4_at4_notify_5', 'r3_at2_floor_6', 'r3_at2_floor_3', 'r4_at3_sanit_13', 'r3_at2_floor_9', 'r4_at3_sanit_7', 'r4_at4_notify_11', 'r4_at4_notify_8', 'r3_at3_sanit_4', 'r3_at2_floor_12', 'r3_at4_notify_2', 'r4_at3_sanit_10'}",
+0,Allocation11,0,,Allocation1_0
+0,Allocation12,2,"{'r5_at3_sanit_7', 'r5_at4_notify_5', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at2_floor_6', 'r5_at3_sanit_13', 'r5_at4_notify_8'}",
+0,Allocation12,1,"{'r4_at2_floor_3', 'r4_at4_notify_2', 'r4_at3_sanit_4'}",
+0,Allocation12,0,,Allocation1_0
+0,Allocation13,1,"{'r3_at2_floor_3', 'r3_at4_notify_2', 'r3_at3_sanit_4'}",
+0,Allocation13,0,,Allocation1_0
+0,Allocation13,2,"{'r4_at4_notify_5', 'r4_at3_sanit_7', 'r4_at4_notify_11', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation14,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r4_at2_floor_9', 'r4_at2_floor_12', 'r4_at3_sanit_13', 'r4_at3_sanit_4', 'r4_at3_sanit_7', 'r4_at4_notify_11', 'r4_at2_floor_6', 'r4_at4_notify_8', 'r4_at4_notify_2', 'r4_at3_sanit_10'}",
+0,Allocation14,0,,Allocation1_0
+0,Allocation15,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r4_at2_floor_9', 'r4_at2_floor_12', 'r4_at3_sanit_13', 'r4_at3_sanit_4', 'r4_at3_sanit_7', 'r4_at4_notify_11', 'r4_at2_floor_6', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r4_at4_notify_2'}",
+0,Allocation15,0,,Allocation1_0
+0,Allocation16,2,"{'r4_at2_floor_9', 'r4_at2_floor_12', 'r4_at3_sanit_13', 'r5_at3_sanit_7', 'r5_at4_notify_5', 'r4_at2_floor_6', 'r5_at4_notify_11', 'r5_at4_notify_8', 'r4_at3_sanit_10'}",
+0,Allocation16,1,,Allocation13_1
+0,Allocation16,0,,Allocation1_0
+0,Allocation17,0,,Allocation1_0
+0,Allocation17,2,"{'r5_at4_notify_11', 'r5_at3_sanit_10', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at3_sanit_13', 'r5_at4_notify_8'}",
+0,Allocation17,1,"{'r3_at2_floor_3', 'r4_at3_sanit_4', 'r4_at2_floor_6', 'r3_at3_sanit_7', 'r3_at4_notify_5', 'r4_at4_notify_2'}",
+0,Allocation18,2,,Allocation12_2
+0,Allocation18,1,,Allocation13_1
+0,Allocation18,0,,Allocation1_0
+0,Allocation19,0,,Allocation1_0
+0,Allocation19,1,"{'r3_at2_floor_3', 'r5_at3_sanit_7', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r3_at3_sanit_4', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r3_at4_notify_5', 'r5_at4_notify_8', 'r3_at4_notify_2', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation2,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r4_at2_floor_9', 'r4_at2_floor_12', 'r4_at3_sanit_13', 'r4_at3_sanit_7', 'r4_at4_notify_11', 'r4_at2_floor_6', 'r4_at4_notify_8', 'r3_at3_sanit_4', 'r4_at4_notify_2', 'r4_at3_sanit_10'}",
+0,Allocation2,0,,Allocation1_0
+0,Allocation20,2,"{'r4_at3_sanit_13', 'r5_at4_notify_5', 'r4_at3_sanit_7', 'r4_at4_notify_11', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at2_floor_6', 'r4_at3_sanit_10'}",
+0,Allocation20,1,,Allocation13_1
+0,Allocation20,0,,Allocation1_0
+0,Allocation21,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r4_at3_sanit_4', 'r5_at3_sanit_7', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at4_notify_8', 'r4_at4_notify_2', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation21,0,,Allocation1_0
+0,Allocation22,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r5_at3_sanit_7', 'r5_at4_notify_2', 'r4_at3_sanit_4', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at2_floor_6', 'r5_at3_sanit_13', 'r5_at4_notify_8'}",
+0,Allocation22,0,,Allocation1_0
+0,Allocation23,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r4_at3_sanit_4', 'r5_at3_sanit_7', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r4_at4_notify_2', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation23,0,,Allocation1_0
+0,Allocation24,1,"{'r4_at2_floor_3', 'r5_at3_sanit_7', 'r5_at4_notify_5', 'r5_at4_notify_2', 'r4_at3_sanit_4', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation24,0,,Allocation1_0
+0,Allocation25,1,"{'r4_at2_floor_3', 'r5_at4_notify_5', 'r4_at3_sanit_4', 'r5_at3_sanit_7', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r4_at4_notify_2', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation25,0,,Allocation1_0
+0,Allocation26,0,,Allocation1_0
+0,Allocation26,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r5_at3_sanit_7', 'r5_at4_notify_2', 'r4_at3_sanit_4', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation27,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r5_at3_sanit_7', 'r5_at4_notify_2', 'r4_at3_sanit_4', 'r4_at4_notify_11', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation27,0,,Allocation1_0
+0,Allocation28,0,,Allocation1_0
+0,Allocation28,1,"{'r4_at2_floor_3', 'r5_at3_sanit_7', 'r5_at4_notify_5', 'r5_at4_notify_2', 'r4_at3_sanit_4', 'r4_at4_notify_11', 'r5_at3_sanit_10', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at4_notify_8', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation29,0,,Allocation1_0
+0,Allocation29,1,"{'r4_at2_floor_3', 'r5_at4_notify_5', 'r4_at3_sanit_4', 'r5_at3_sanit_7', 'r4_at4_notify_11', 'r5_at3_sanit_10', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at4_notify_8', 'r4_at4_notify_2', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation3,0,,Allocation1_0
+0,Allocation3,1,"{'r5_at2_floor_3', 'r5_at4_notify_5', 'r5_at4_notify_2', 'r5_at3_sanit_7', 'r5_at3_sanit_13', 'r5_at4_notify_11', 'r5_at3_sanit_10', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at4_notify_8', 'r5_at3_sanit_4', 'r5_at2_floor_6'}",
+0,Allocation30,1,"{'r4_at4_notify_5', 'r4_at2_floor_3', 'r4_at3_sanit_4', 'r5_at3_sanit_7', 'r4_at4_notify_11', 'r5_at3_sanit_10', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r5_at4_notify_8', 'r4_at4_notify_2', 'r5_at3_sanit_13', 'r5_at2_floor_6'}",
+0,Allocation30,0,,Allocation1_0
+0,Allocation4,0,,Allocation1_0
+0,Allocation4,1,"{'r4_at4_notify_5', 'r5_at2_floor_3', 'r5_at3_sanit_7', 'r4_at4_notify_11', 'r4_at2_floor_6', 'r5_at3_sanit_13', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r4_at4_notify_2', 'r5_at3_sanit_4'}",
+0,Allocation5,0,,Allocation1_0
+0,Allocation5,1,"{'r4_at4_notify_5', 'r3_at2_floor_3', 'r3_at3_sanit_10', 'r3_at2_floor_9', 'r4_at3_sanit_7', 'r3_at4_notify_11', 'r4_at4_notify_8', 'r3_at2_floor_12', 'r3_at3_sanit_13', 'r4_at4_notify_2', 'r5_at3_sanit_4', 'r5_at2_floor_6'}",
+0,Allocation6,0,,Allocation1_0
+0,Allocation6,1,"{'r4_at4_notify_5', 'r5_at2_floor_3', 'r5_at3_sanit_7', 'r4_at4_notify_11', 'r5_at3_sanit_13', 'r5_at3_sanit_10', 'r4_at4_notify_8', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r4_at4_notify_2', 'r5_at3_sanit_4', 'r5_at2_floor_6'}",
+0,Allocation7,0,,Allocation1_0
+0,Allocation7,1,"{'r3_at4_notify_8', 'r3_at2_floor_3', 'r3_at3_sanit_10', 'r3_at4_notify_11', 'r3_at3_sanit_7', 'r4_at2_floor_6', 'r3_at3_sanit_4', 'r5_at2_floor_9', 'r5_at2_floor_12', 'r3_at4_notify_5', 'r3_at3_sanit_13', 'r3_at4_notify_2'}",
+0,Allocation8,0,,Allocation1_0
+0,Allocation8,1,"{'r3_at4_notify_8', 'r3_at2_floor_3', 'r5_at4_notify_2', 'r3_at2_floor_9', 'r3_at3_sanit_7', 'r5_at4_notify_11', 'r4_at2_floor_6', 'r5_at3_sanit_10', 'r3_at3_sanit_4', 'r5_at2_floor_12', 'r3_at4_notify_5', 'r5_at3_sanit_13'}",
+0,Allocation9,1,"{'r4_at4_notify_5', 'r3_at2_floor_3', 'r4_at2_floor_9', 'r4_at2_floor_12', 'r4_at3_sanit_13', 'r4_at4_notify_11', 'r3_at3_sanit_7', 'r4_at2_floor_6', 'r4_at4_notify_8', 'r3_at4_notify_2', 'r5_at3_sanit_4', 'r4_at3_sanit_10'}",
+0,Allocation9,0,,Allocation1_0

@@ -1,0 +1,7 @@
+,allocid,num_cluster,uniqueAlloc,reference
+0,1,0,"{'r1_at3_sanit_2', 'r1_at2_floor_1', 'r5_at4_notify_0', 'r1_at3_sanit_5', 'r1_at2_floor_4', 'r5_at4_notify_3'}",
+0,2,0,"{'r1_at3_sanit_2', 'r1_at2_floor_1', 'r5_at4_notify_0', 'r1_at3_sanit_5', 'r1_at2_floor_4', 'r1_at4_notify_3'}",
+0,3,0,"{'r1_at3_sanit_2', 'r1_at4_notify_0', 'r1_at2_floor_1', 'r1_at3_sanit_5', 'r1_at2_floor_4', 'r5_at4_notify_3'}",
+0,4,0,,1_0
+0,5,0,,3_0
+0,6,0,,2_0

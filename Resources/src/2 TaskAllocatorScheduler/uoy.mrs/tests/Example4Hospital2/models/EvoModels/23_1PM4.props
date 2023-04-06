@@ -1,0 +1,1 @@
+multi(R{"travel"}min=?[F done], R{"idle"}min=?[F done], Pmin=? [ G (r2_fail=0) ])

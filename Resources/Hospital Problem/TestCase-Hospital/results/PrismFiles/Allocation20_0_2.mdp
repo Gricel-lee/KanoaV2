@@ -1,0 +1,110 @@
+mdp
+
+formula done = (r5_order=5 & r4_order=6);
+
+// success
+formula success = (r5_fail=0 & r4_fail=0 );
+
+// total time available
+const int TT=100;
+
+// maximum time for a robot to idle
+const int maxIdle=30;
+
+// completion tasks time
+const int r5at4_notify_5Time=1;
+const int r5at2_floor_6Time=2;
+const int r5at2_floor_9Time=2;
+const int r5at2_floor_12Time=2;
+const int r4at3_sanit_7Time=4;
+const int r4at4_notify_8Time=1;
+const int r4at3_sanit_10Time=4;
+const int r4at4_notify_11Time=1;
+const int r4at3_sanit_13Time=4;
+
+// probabilities of succeeding with a task
+const double pr5_Succ_at4_notify = 0.95;
+const double pr5_Succ_at2_floor = 0.90;
+const double pr4_Succ_at3_sanit = 0.99;
+const double pr4_Succ_at4_notify = 0.99;
+
+// travelling costs of each robot
+const int r5_travDist = 34; //l11->room3->room3->room4->room5
+const int r4_travDist = 34; //l10->room3->room4->room4->room5->room5
+
+
+//---------- Robot r5 MODULE----------
+module r5
+  //r5_order=0: travel cost 
+  //r5_order=1: task at4_notify_5
+  //r5_order=2: task at2_floor_6
+  //r5_order=3: task at2_floor_9
+  //r5_order=4: task at2_floor_12
+  r5_order: [0..5] init 0; // execution order
+  r5_time:[0..TT] init 0; //time available
+  r5_travel: [0..1] init 0; // get travelling reward
+  r5_fail: [0..1] init 0; // failure detected
+ // limit idle per robot
+  i_r5 : [0..TT];
+
+  // tasks to track for ordering constraints
+  at4_notify_5:[0..1];
+
+  // travel captured as a reward
+  [r5travel] r5_order=0 -> (r5_order'=1);
+  // do sequence of tasks
+  [Tat4_notify_5r5] r5_order=1 & r5_fail=0 & (r5_time+ r5at4_notify_5Time + 17 <=TT) -> (pr5_Succ_at4_notify): (r5_order'=2) & (r5_time'= r5_time+ r5at4_notify_5Time + 17) & (at4_notify_5'=1)+ (1-pr5_Succ_at4_notify): (r5_fail'=1) & (r5_order'=2) & (r5_time'= r5_time+ r5at4_notify_5Time + 17) & (at4_notify_5'=1);
+  [Tr5at2_floor_6] r5_order=2 & r5_fail=0 & at4_notify_5=1 & (r5_time+ r5at2_floor_6Time + 0 <=TT) -> (pr5_Succ_at2_floor): (r5_order'=3) & (r5_time'= r5_time+ r5at2_floor_6Time + 0)+ (1-pr5_Succ_at2_floor): (r5_fail'=1) & (r5_order'=3) & (r5_time'= r5_time+ r5at2_floor_6Time + 0);
+  [Tr5at2_floor_9] r5_order=3 & r5_fail=0 & at4_notify_8=1 & r5_time>=r4_time & (r5_time+ r5at2_floor_9Time + 15 <=TT) -> (pr5_Succ_at2_floor): (r5_order'=4) & (r5_time'= r5_time+ r5at2_floor_9Time + 15)+ (1-pr5_Succ_at2_floor): (r5_fail'=1) & (r5_order'=4) & (r5_time'= r5_time+ r5at2_floor_9Time + 15);
+  [Tr5at2_floor_12] r5_order=4 & r5_fail=0 & at4_notify_11=1 & r5_time>=r4_time & (r5_time+ r5at2_floor_12Time + 2 <=TT) -> (pr5_Succ_at2_floor): (r5_order'=5) & (r5_time'= r5_time+ r5at2_floor_12Time + 2)+ (1-pr5_Succ_at2_floor): (r5_fail'=1) & (r5_order'=5) & (r5_time'= r5_time+ r5at2_floor_12Time + 2);
+
+  // failure and recovery, idle
+  [ ] r5_fail=1 -> (r5_fail'=0); // fail
+  [r5idle] r5_order!=5 & r5_fail=0 & (r5_time+1<=TT) & (i_r5<maxIdle) -> (i_r5'=i_r5+1) & (r5_time'=r5_time+1); // idle
+endmodule
+
+
+//---------- Robot r4 MODULE----------
+module r4
+  //r4_order=0: travel cost 
+  //r4_order=1: task at3_sanit_7
+  //r4_order=2: task at4_notify_8
+  //r4_order=3: task at3_sanit_10
+  //r4_order=4: task at4_notify_11
+  //r4_order=5: task at3_sanit_13
+  r4_order: [0..6] init 0; // execution order
+  r4_time:[0..TT] init 0; //time available
+  r4_travel: [0..1] init 0; // get travelling reward
+  r4_fail: [0..1] init 0; // failure detected
+ // limit idle per robot
+  i_r4 : [0..TT];
+
+  // tasks to track for ordering constraints
+  at4_notify_8:[0..1];
+  at4_notify_11:[0..1];
+
+  // travel captured as a reward
+  [r4travel] r4_order=0 -> (r4_order'=1);
+  // do sequence of tasks
+  [Tr4at3_sanit_7] r4_order=1 & r4_fail=0 & at4_notify_5=1 & r4_time>=r5_time & (r4_time+ r4at3_sanit_7Time + 17 <=TT) -> (pr4_Succ_at3_sanit): (r4_order'=2) & (r4_time'= r4_time+ r4at3_sanit_7Time + 17)+ (1-pr4_Succ_at3_sanit): (r4_fail'=1) & (r4_order'=2) & (r4_time'= r4_time+ r4at3_sanit_7Time + 17);
+  [Tat4_notify_8r4] r4_order=2 & r4_fail=0 & (r4_time+ r4at4_notify_8Time + 15 <=TT) -> (pr4_Succ_at4_notify): (r4_order'=3) & (r4_time'= r4_time+ r4at4_notify_8Time + 15) & (at4_notify_8'=1)+ (1-pr4_Succ_at4_notify): (r4_fail'=1) & (r4_order'=3) & (r4_time'= r4_time+ r4at4_notify_8Time + 15) & (at4_notify_8'=1);
+  [Tr4at3_sanit_10] r4_order=3 & r4_fail=0 & at4_notify_8=1 & (r4_time+ r4at3_sanit_10Time + 0 <=TT) -> (pr4_Succ_at3_sanit): (r4_order'=4) & (r4_time'= r4_time+ r4at3_sanit_10Time + 0)+ (1-pr4_Succ_at3_sanit): (r4_fail'=1) & (r4_order'=4) & (r4_time'= r4_time+ r4at3_sanit_10Time + 0);
+  [Tat4_notify_11r4] r4_order=4 & r4_fail=0 & (r4_time+ r4at4_notify_11Time + 2 <=TT) -> (pr4_Succ_at4_notify): (r4_order'=5) & (r4_time'= r4_time+ r4at4_notify_11Time + 2) & (at4_notify_11'=1)+ (1-pr4_Succ_at4_notify): (r4_fail'=1) & (r4_order'=5) & (r4_time'= r4_time+ r4at4_notify_11Time + 2) & (at4_notify_11'=1);
+  [Tr4at3_sanit_13] r4_order=5 & r4_fail=0 & at4_notify_11=1 & (r4_time+ r4at3_sanit_13Time + 0 <=TT) -> (pr4_Succ_at3_sanit): (r4_order'=6) & (r4_time'= r4_time+ r4at3_sanit_13Time + 0)+ (1-pr4_Succ_at3_sanit): (r4_fail'=1) & (r4_order'=6) & (r4_time'= r4_time+ r4at3_sanit_13Time + 0);
+
+  // failure and recovery, idle
+  [ ] r4_fail=1 -> (r4_fail'=0); // fail
+  [r4idle] r4_order!=6 & r4_fail=0 & (r4_time+1<=TT) & (i_r4<maxIdle) -> (i_r4'=i_r4+1) & (r4_time'=r4_time+1); // idle
+endmodule
+
+rewards "travel" 
+ [r5travel] true: r5_travDist;
+ [r4travel] true: r4_travDist;
+endrewards
+rewards "idle" 
+ [r5idle] true: 1;
+ [r4idle] true: 1;
+endrewards
+
+//total travel:
+//68//

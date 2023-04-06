@@ -1,0 +1,63 @@
+// MOVE OBJECTS 
+
+ProblemSpecification{
+	WorldModel:
+		room3 : ( x 4.0 y 1.0 ) //room3
+		room5 : ( x 10.0 y 5.0) //room5
+		l1 : ( x 1.0 y 1.0 ) //robot1
+		l2: ( x 8.0 y 7.0 ) //robot5
+		
+		//paths
+		l1 to room3, distance 3.0
+		l1 to room5, distance 9.0
+		l2 to room3, distance 9.0
+		l2 to room5, distance 2.0
+		room3 to room5, distance 7.0
+		room3 to room3, distance 0.0
+		room5 to room3, distance 7.0
+		room5 to room5, distance 0.0
+			
+	TasksModel :
+		ct1_clean : subtasks [at2_floor,at3_sanit]  consecutive:true//clean room
+		
+		ct2_patient : subtasks [at4_notify,ct1_clean] ordered:true consecutive:false  //clean patient room
+		at1_move : 2 robots needed   //move object jointly
+		at2_floor : 1 robots needed   //floor cleaning
+		at3_sanit : 1 robots needed   //sanitising 
+		at4_notify : 1 robots needed   //notify patients
+		//ct22_patient : subtasks [ct1_clean,ct1_clean]
+			
+	     RobotsModel:
+		  capabilities:
+			c1: can do atomic tasks at2_floor, at3_sanit //clean rooms
+			c2: can do atomic tasks at1_move //pick up objects
+			c3: can do atomic tasks at4_notify //use speaker
+		  robots:
+			//Pick and place robots
+			r1: at initial location l2 has velocity 1.0
+				with capabilities c2,c3 can do
+				(at1_move - time required: 2.0, success probability: 0.8,
+				at4_notify -time required: 4.0, success probability: 0.7)
+			r5: at initial location l2 has velocity 2.0
+				with capabilities c2,c3 can do
+				(at1_move - time required: 2.0, success probability: 0.8,
+				at4_notify -time required: 4.0, success probability: 0.7)
+			
+	Missions:
+		m3: atomic task at1_move at room3 //move room3
+		m5: atomic task at1_move at room5 //move room5
+		QoS:
+			//robot r1 work in y lower than 5.0
+			//robot r1 work between y [0.0,4.0]
+			//all robots work in x geq 5.0
+			//all robots work in y greater than 1.0
+			//all robots work in x leq 1.0
+			//all robots work in x lower than 1.0
+			//all robots work between x [1.0 , 2.0]
+			//all robot deployed
+			time available: 51
+			
+			system: get 100 number of allocations
+			system: evochecker population 5
+			system: evochecker evaluations 8
+}

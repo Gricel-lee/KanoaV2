@@ -1,0 +1,13 @@
+,id,parent,ordered_children,location,runbyrobot,joint,ordered,consecutive
+0,m3,,['ct2_patient_0'],,,,,
+1,ct2_patient_0,m3,"['at4_notify_0','ct1_clean_1']",room3,,,True,False
+2,at4_notify_0,ct2_patient_0,,room3,['r1'],False,True,False
+3,ct1_clean_1,ct2_patient_0,"['at2_floor_1','at3_sanit_2']",room3,,,False,True
+4,at2_floor_1,ct1_clean_1,,room3,['r1'],False,False,True
+5,at3_sanit_2,ct1_clean_1,,room3,['r1'],False,False,True
+6,m5,,['ct2_patient_2'],,,,,
+7,ct2_patient_2,m5,"['at4_notify_3','ct1_clean_3']",room5,,,True,False
+8,at4_notify_3,ct2_patient_2,,room5,['r5'],False,True,False
+9,ct1_clean_3,ct2_patient_2,"['at2_floor_4','at3_sanit_5']",room5,,,False,True
+10,at2_floor_4,ct1_clean_3,,room5,['r1'],False,False,True
+11,at3_sanit_5,ct1_clean_3,,room5,['r1'],False,False,True

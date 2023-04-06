@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/uoy.mrs.dsl/src" modelPluginID="uoy.mrs.dsl" modelName="Dsl"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>dsl.ecore</foreignModel>
+  <genPackages prefix="Dsl" disposableProviderFactory="true" ecorePackage="dsl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsl.ecore#//Objective">
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//Objective/minIdle"/>
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//Objective/minTravel"/>
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//Objective/maxSucc"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsl.ecore#//XY">
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//XY/x"/>
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//XY/y"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsl.ecore#//LowerGreater">
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//LowerGreater/lower"/>
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//LowerGreater/greater"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="dsl.ecore#//StartEnd">
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//StartEnd/end"/>
+      <genEnumLiterals ecoreEnumLiteral="dsl.ecore#//StartEnd/start"/>
+    </genEnums>
+    <genClasses ecoreClass="dsl.ecore#//ProblemSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsl.ecore#//ProblemSpecification/worldModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsl.ecore#//ProblemSpecification/robotsModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsl.ecore#//ProblemSpecification/tasksModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsl.ecore#//ProblemSpecification/mission"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//WorldModel"/>
+    <genClasses ecoreClass="dsl.ecore#//Location">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Location/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Location/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Location/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Location/description"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//Paths">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Paths/loc1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Paths/loc2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Paths/distance"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//Robot">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Robot/initLoc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Robot/velocity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dsl.ecore#//Robot/capabilities"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Robot/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//Capability">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Capability/at"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Capability/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Capability/success"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//TasksModel"/>
+    <genClasses ecoreClass="dsl.ecore#//AtomicTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//AtomicTask/loc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//AtomicTask/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//AtomicTask/robots"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//CompoundTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//CompoundTask/loc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//CompoundTask/ordered"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//CompoundTask/consecutive"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//CompoundTask/canDoTask"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//CompoundTask/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//Mission">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Mission/missionTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Mission/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Mission/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Mission/numAlloc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Mission/population"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Mission/evaluations"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Mission/obj"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//MissionTask">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//MissionTask/at"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//MissionTask/ct"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//MissionTask/loc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//MissionTask/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//Constraints"/>
+    <genClasses ecoreClass="dsl.ecore#//RateSucc">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//RateSucc/rateSucc"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//CompTaskAllLoc">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//CompTaskAllLoc/ct"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//CompTaskAllLoc/loc"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//SpaceXYRobot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//SpaceXYRobot/coordinate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//SpaceXYRobot/lowerGreater"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//SpaceXYRobot/val"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//SpaceXYRobot/robot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//SpaceXYRobot/allrobots"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//TaskTime">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//TaskTime/at"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//TaskTime/ct"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//TaskTime/mt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//TaskTime/startEnd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//TaskTime/time"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//AllocateT">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//AllocateT/at"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//AllocateT/ct"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//AllocateT/mt"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//AllocateT/robot"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//Closest">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Closest/at"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Closest/ct"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Closest/mt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Closest/all"/>
+    </genClasses>
+    <genClasses ecoreClass="dsl.ecore#//MaxTasks">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//MaxTasks/robot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//MaxTasks/all"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//MaxTasks/num"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,9 @@
+prob,idle,travel,feasible,allocation,clusters,permutation
+0.92274469442792,0.0,14.0,-1.0,Allocation1,[['r2'  'r1']],(2 2)
+0.92274469442792,0.0,12.0,-1.0,Allocation1,[['r2'  'r1']],(7 7)
+0.92274469442792,0.0,10.0,-1.0,Allocation1,[['r2'  'r1']],(0 0)
+0.92274469442792,0.0,16.0,-1.0,Allocation1,[['r2'  'r1']],(10 10)
+0.92274469442792,0.0,12.0,-1.0,Allocation1,[['r2'  'r1']],(9 9)
+0.92274469442792,0.0,16.0,-1.0,Allocation1,[['r2'  'r1']],(21 21)
+prob,idle,travel,feasible,allocation,clusters,permutation
+0.92274469442792,0.0,14.0,-1.0,Allocation1,[['r2'  'r1']],(12 12)

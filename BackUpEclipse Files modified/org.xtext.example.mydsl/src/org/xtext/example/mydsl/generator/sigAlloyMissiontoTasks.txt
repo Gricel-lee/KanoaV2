@@ -1,0 +1,21 @@
+
+ // ----------------Initialize contraint solver-------------//
+abstract sig Mission{
+	dotask: one (AtomicTask + CompoundTask)
+}
+fact { all m:Mission | disj[m.dotask, (Mission-m).dotask] } // each mission belongs to different task
+
+
+abstract sig AtomicTask {}
+
+abstract sig CompoundTask{
+	at: set AtomicTask,
+    	ct: set CompoundTask
+}
+fact { all c:CompoundTask | disj[c.at, (CompoundTask-c).at] and disj[c.ct, (CompoundTask-c).ct] } // each compound task has its own tasks
+
+fact{ all c:CompoundTask | #(ct.c)=1 or #(dotask.c)=1 } //compound task belong to another compound task or to a mission
+fact{ all a:AtomicTask | #(at.a)=1 or #(dotask.a)=1 } //atomic task belong to another (compound) task or to a mission
+fact{ all c:CompoundTask | #(c.at + c.ct)>1} //at+ct is not empty in a Compound task
+
+ // ----------------Problem V2-------------//
