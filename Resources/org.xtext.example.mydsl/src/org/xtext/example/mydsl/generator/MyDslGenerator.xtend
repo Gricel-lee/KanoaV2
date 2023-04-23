@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import java.nio.file.Path
+import java.nio.file.Files
+import java.io.IOException
 
 /**
  * Generates code from your model files on save.
@@ -14,12 +17,37 @@ import org.eclipse.xtext.generator.IGeneratorContext
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class MyDslGenerator extends AbstractGenerator {
-
+	
+	var s = ""
+	var path_sigAlloyDeclaration = "/Users/grisv/GitHub/KanoaV2/Resources/org.xtext.example.mydsl/src/org/xtext/example/mydsl/generator//";
+								 //"/Users/gris/eclipse-workspace/eclipse-emf-workspace/org.xtext.example.mydsl/src/org/xtext/example/mydsl/generator//";
+	
+	//main class to create files
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 //		fsa.generateFile('greetings.txt', 'People to greet: ' + 
 //			resource.allContents
 //				.filter(Greeting)
 //				.map[name]
 //				.join(', '))
+	//create missions to tasks (tree) file (to read by python code) 
+	
+	generateFile('modelMissionsTree.txt', 'hi', fsa)
+	
 	}
+	
+	def createAlloyfile(){
+		s += readFile(path_sigAlloyDeclaration+"sigAlloyDeclaration.txt")
+	}
+	
+	def generateFile(String fileName, String finalString, IFileSystemAccess2 fsa){
+		fsa.generateFile(fileName, finalString)
+	}
+	
+	def static String readFile(String filePath) throws IOException {
+		var Path path = java.nio.file.Paths.get(filePath);
+		System.out.println(path);
+		return Files.readString(path);
+		
+	}
+	
 }

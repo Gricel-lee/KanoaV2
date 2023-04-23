@@ -3,10 +3,15 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 
 /**
  * Generates code from your model files on save.
@@ -15,7 +20,32 @@ import org.eclipse.xtext.generator.IGeneratorContext;
  */
 @SuppressWarnings("all")
 public class MyDslGenerator extends AbstractGenerator {
+  private String s = "";
+
+  private String path_sigAlloyDeclaration = "/Users/grisv/GitHub/KanoaV2/Resources/org.xtext.example.mydsl/src/org/xtext/example/mydsl/generator//";
+
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    this.generateFile("modelMissionsTree.txt", "hi", fsa);
+  }
+
+  public String createAlloyfile() {
+    try {
+      String _s = this.s;
+      String _readFile = MyDslGenerator.readFile((this.path_sigAlloyDeclaration + "sigAlloyDeclaration.txt"));
+      return this.s = (_s + _readFile);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  public void generateFile(final String fileName, final String finalString, final IFileSystemAccess2 fsa) {
+    fsa.generateFile(fileName, finalString);
+  }
+
+  public static String readFile(final String filePath) throws IOException {
+    Path path = Paths.get(filePath);
+    System.out.println(path);
+    return Files.readString(path);
   }
 }
