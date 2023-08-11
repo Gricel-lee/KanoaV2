@@ -3,6 +3,14 @@
  */
 package org.xtext.example.mydsl.validation;
 
+import java.util.List;
+
+import org.eclipse.xtext.validation.Check;
+
+import dsl.Capability;
+import dsl.Constraints;
+import dsl.Robot;
+import dsl.TaskTime;
 
 /**
  * This class contains custom validation rules. 
@@ -21,5 +29,68 @@ public class MyDslValidator extends AbstractMyDslValidator {
 //					INVALID_NAME);
 //		}
 //	}
+	
+	
+	// NOTE -- functions have not been tested yet
+	
+	
+	/**Check that none of the tasks exceed the time limit.
+	 * as time is specified within the robots specifications
+	 * get each robot task and check that the time is smaller or equal to the time limit
+	 * (i.e., a robot cannot have a task that takes longer than the time limit).
+	 * ERROR code 1
+	 * */
+	@Check
+	public void checkTimeOfAnyTaskExceedsTimeLimit(List<Robot> robots, Integer timelimit) {
+		for (Robot r: robots) {
+			for (Capability c : r.getCapabilities()) {
+				if (c.getTime()> timelimit) {
+					error("ERROR: Time to complete task by robot " + r.getName() + " exceeds time limit set to " + timelimit + "."
+							, r
+							, null
+							, 1);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Check that any "start/end time" task constraint does not exceed the time bound.
+	 * ERROR code 2
+	 */
+	@Check
+	public void checkStartTimeofOfAnyTaskExceedsTimeLimit(List <TaskTime> tasktime, Integer timelimit) {
+		for (TaskTime tt: tasktime) {
+			if (tt.getTime()> timelimit) {
+				var tID = "";
+				//get task id
+				if (tt.getAt()!=null){tID = tt.getAt().getName();}
+				if (tt.getCt()!=null){tID = tt.getCt().getName();}
+				if (tt.getMt()!=null){tID = tt.getMt().getName();}
+				
+				error("ERROR: Time constraint (start time) for task" + tID + " exceeds time limit set to " + timelimit + "."
+						, tt
+						, null
+						, 2);
+			}
+		}
+	}
+	
+	
+	/**
+	 * Check Constraints:
+	 * - ratesucc declared at most once (ERROR code 3)
+	 * - constraint X or Y at most once for each robot (ERROR code 4) 
+	 * - conflicting allocations of missions, compound or atomic tasks directly to robots (ERROR code 5)
+	 * - maximum number of tasks in robot declared at most once per robot (ERROR code 6)
+	 * - maximum number of tasks in robot do not exceed the number of atomic tasks in mission (ERROR code 7)
+	 */
+	@Check
+	public void checkRateSuccDelcaredAtMostOnce(List <Constraints> constraints) {
+		
+	}
+	
+	
+	
 	
 }

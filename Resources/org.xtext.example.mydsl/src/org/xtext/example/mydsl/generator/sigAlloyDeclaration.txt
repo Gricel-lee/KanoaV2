@@ -14,7 +14,7 @@ abstract sig AtomicTask {
 	y: one Int
 }
 
-fact{all rt: Capability | #capability.rt=1} //all Capability appearing must be assigned to a robot
+fact{all c: Capability | #capability.c=1} //all Capability appearing must be assigned to a robot
 fact{all r: Robot | #r.capability.do>0} //all Robots appearing must have assigned tasks
-fact{all rt: Capability | #rt.do>0} // all capability appearing must have assigned tasks
+fact{all c: Capability | #c.do>0} // all capability appearing must have assigned tasks
 fact{all r:Robot | #r<=1} // all robots appears max. once
