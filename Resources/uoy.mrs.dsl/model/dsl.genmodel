@@ -58,11 +58,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//AtomicTask/robots"/>
     </genClasses>
     <genClasses ecoreClass="dsl.ecore#//CompoundTask">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//CompoundTask/loc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//CompoundTask/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//CompoundTask/ordered"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//CompoundTask/consecutive"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//CompoundTask/canDoTask"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//CompoundTask/name"/>
     </genClasses>
     <genClasses ecoreClass="dsl.ecore#//Mission">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Mission/missionTask"/>
@@ -82,10 +81,6 @@
     <genClasses ecoreClass="dsl.ecore#//Constraints"/>
     <genClasses ecoreClass="dsl.ecore#//RateSucc">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//RateSucc/rateSucc"/>
-    </genClasses>
-    <genClasses ecoreClass="dsl.ecore#//CompTaskAllLoc">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//CompTaskAllLoc/ct"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//CompTaskAllLoc/loc"/>
     </genClasses>
     <genClasses ecoreClass="dsl.ecore#//SpaceXYRobot">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//SpaceXYRobot/coordinate"/>

@@ -34,5 +34,12 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/grisv/.p2/pool/plugins/org.eclipse.emf.mwe.utils_1.8.0.v20221117-1134.jar" sourcepath="/Users/grisv/.p2/pool/plugins/org.eclipse.emf.mwe.utils_1.8.0.v20221117-1134.jar">
+		<accessrules>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/mwe/utils/*"/>
+			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="src" path="/org.xtext.example.mydsl"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

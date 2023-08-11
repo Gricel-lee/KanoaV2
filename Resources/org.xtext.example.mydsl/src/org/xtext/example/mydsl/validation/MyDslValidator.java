@@ -86,7 +86,7 @@ public class MyDslValidator extends AbstractMyDslValidator {
 	 * - maximum number of tasks in robot do not exceed the number of atomic tasks in mission (ERROR code 7)
 	 */
 	@Check
-	public void checkRateSuccDelcaredAtMostOnce(List <Constraints> constraints) {
+	public void checkRateSuccDeclaredAtMostOnce(List <Constraints> constraints) {
 		
 	}
 	
