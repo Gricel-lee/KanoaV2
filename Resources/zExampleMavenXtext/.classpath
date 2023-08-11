@@ -41,7 +41,6 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="src" path="/org.xtext.example.mydsl"/>
 	<classpathentry kind="lib" path="lib/XtextDSL.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
