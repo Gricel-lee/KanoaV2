@@ -22,8 +22,10 @@ public class RunAlloy {
 			// -n specify the number of instances in the next arg value
 			// all the rest are considered commands (in Alloy, name of "run" commands)
 			String[] alloyFiles = new String[] {"-f" , model , "-n" , num_instances , "TaskAllocation"};
-			alloyFilesOutput = Alloy.main(alloyFiles);
 			
+			//System.out.println("1");
+			alloyFilesOutput = Alloy.main(alloyFiles);
+			//System.out.println("2");
 			
 	    	
 	    	System.out.println("- allocations returned: " + alloyFilesOutput.size());

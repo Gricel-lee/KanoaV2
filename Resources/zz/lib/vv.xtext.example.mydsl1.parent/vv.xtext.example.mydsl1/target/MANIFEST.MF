@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: vv.xtext.example.mydsl1
+Bundle-ManifestVersion: 2
+Bundle-Name: vv.xtext.example.mydsl1
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.202308151308
+Bundle-SymbolicName: vv.xtext.example.mydsl1; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,org.eclipse.xtext.xbase,org.eclipse.eq
+ uinox.common;bundle-version="3.16.0",org.eclipse.emf.ecore,org.eclipse.
+ xtext.xbase.lib;bundle-version="2.14.0",org.eclipse.xtext.util,org.ecli
+ pse.emf.common,org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: vv.xtext.example.mydsl1,vv.xtext.example.mydsl1.validati
+ on,vv.xtext.example.mydsl1.myDsl.impl,vv.xtext.example.mydsl1.generator
+ ,vv.xtext.example.mydsl1.services,vv.xtext.example.mydsl1.serializer,vv
+ .xtext.example.mydsl1.myDsl.util,vv.xtext.example.mydsl1.parser.antlr.i
+ nternal,vv.xtext.example.mydsl1.scoping,vv.xtext.example.mydsl1.parser.
+ antlr,vv.xtext.example.mydsl1.myDsl
+Import-Package: org.apache.log4j
+

@@ -12,27 +12,27 @@ const int TT=100;
 const int maxIdle=30;
 
 // completion tasks time
-const int r5at1_move_0Time=5;
 const int r5at1_move_1Time=5;
-const int r4at1_move_0Time=4;
+const int r5at1_move_0Time=5;
 const int r4at1_move_1Time=4;
+const int r4at1_move_0Time=4;
 
 // probabilities of succeeding with a task
 const double pr5_Succ_at1_move = 0.8;
 const double pr4_Succ_at1_move = 0.9;
 
 // travelling costs of each robot
-const int r5_travDist = 11; //l11->room1->room6
-const int r4_travDist = 10; //l10->room1->room6
+const int r5_travDist = 3; //l11->room6->room1
+const int r4_travDist = 4; //l10->room6->room1
 
 
 //---------- Robot r5 MODULE----------
 module r5
   //r5_order=0: travel cost 
-  //r5_order=1: time travel to join task at1_move_0
-  //r5_order=2: join task at1_move_0
-  //r5_order=3: time travel to join task at1_move_1
-  //r5_order=4: join task at1_move_1
+  //r5_order=1: time travel to join task at1_move_1
+  //r5_order=2: join task at1_move_1
+  //r5_order=3: time travel to join task at1_move_0
+  //r5_order=4: join task at1_move_0
   r5_order: [0..5] init 0; // execution order
   r5_time:[0..TT] init 0; //time available
   r5_travel: [0..1] init 0; // get travelling reward
@@ -43,10 +43,10 @@ module r5
   // travel captured as a reward
   [r5travel] r5_order=0 -> (r5_order'=1);
   // do sequence of tasks
-  [ ] r5_order=1 & r5_fail=0 & (r5_time+9<=TT) -> (pr5_Succ_at1_move): (r5_order'=2) & (r5_time'= r5_time+9)+ (1-pr5_Succ_at1_move): (r5_fail'=1) & (r5_order'=2) & (r5_time'= r5_time+9); // travel to join task at1_move_0
-  [at1_move_0] r5_order=2 & r5_fail=0 & (r5_time+r5at1_move_0Time<=TT) & r5_time=r4_time -> (r5_order'=3) & (r5_time'= r5_time + r5at1_move_0Time);
-  [ ] r5_order=3 & r5_fail=0 & (r5_time+2<=TT) -> (pr5_Succ_at1_move): (r5_order'=4) & (r5_time'= r5_time+2)+ (1-pr5_Succ_at1_move): (r5_fail'=1) & (r5_order'=4) & (r5_time'= r5_time+2); // travel to join task at1_move_1
-  [at1_move_1] r5_order=4 & r5_fail=0 & (r5_time+r5at1_move_1Time<=TT) & r5_time=r4_time -> (r5_order'=5) & (r5_time'= r5_time + r5at1_move_1Time);
+  [ ] r5_order=1 & r5_fail=0 & (r5_time+1<=TT) -> (pr5_Succ_at1_move): (r5_order'=2) & (r5_time'= r5_time+1)+ (1-pr5_Succ_at1_move): (r5_fail'=1) & (r5_order'=2) & (r5_time'= r5_time+1); // travel to join task at1_move_1
+  [at1_move_1] r5_order=2 & r5_fail=0 & (r5_time+r5at1_move_1Time<=TT) & r5_time=r4_time -> (r5_order'=3) & (r5_time'= r5_time + r5at1_move_1Time);
+  [ ] r5_order=3 & r5_fail=0 & (r5_time+2<=TT) -> (pr5_Succ_at1_move): (r5_order'=4) & (r5_time'= r5_time+2)+ (1-pr5_Succ_at1_move): (r5_fail'=1) & (r5_order'=4) & (r5_time'= r5_time+2); // travel to join task at1_move_0
+  [at1_move_0] r5_order=4 & r5_fail=0 & (r5_time+r5at1_move_0Time<=TT) & r5_time=r4_time -> (r5_order'=5) & (r5_time'= r5_time + r5at1_move_0Time);
 
   // failure and recovery, idle
   [ ] r5_fail=1 -> (r5_fail'=0); // fail
@@ -57,10 +57,10 @@ endmodule
 //---------- Robot r4 MODULE----------
 module r4
   //r4_order=0: travel cost 
-  //r4_order=1: time travel to join task at1_move_0
-  //r4_order=2: join task at1_move_0
-  //r4_order=3: time travel to join task at1_move_1
-  //r4_order=4: join task at1_move_1
+  //r4_order=1: time travel to join task at1_move_1
+  //r4_order=2: join task at1_move_1
+  //r4_order=3: time travel to join task at1_move_0
+  //r4_order=4: join task at1_move_0
   r4_order: [0..5] init 0; // execution order
   r4_time:[0..TT] init 0; //time available
   r4_travel: [0..1] init 0; // get travelling reward
@@ -71,10 +71,10 @@ module r4
   // travel captured as a reward
   [r4travel] r4_order=0 -> (r4_order'=1);
   // do sequence of tasks
-  [ ] r4_order=1 & r4_fail=0 & (r4_time+8<=TT) -> (pr4_Succ_at1_move): (r4_order'=2) & (r4_time'= r4_time+8)+ (1-pr4_Succ_at1_move): (r4_fail'=1) & (r4_order'=2) & (r4_time'= r4_time+8); // travel to join task at1_move_0
-  [at1_move_0] r4_order=2 & r4_fail=0 & (r4_time+r4at1_move_0Time<=TT) & r4_time=r5_time -> (r4_order'=3) & (r4_time'= r4_time + r4at1_move_0Time);
-  [ ] r4_order=3 & r4_fail=0 & (r4_time+2<=TT) -> (pr4_Succ_at1_move): (r4_order'=4) & (r4_time'= r4_time+2)+ (1-pr4_Succ_at1_move): (r4_fail'=1) & (r4_order'=4) & (r4_time'= r4_time+2); // travel to join task at1_move_1
-  [at1_move_1] r4_order=4 & r4_fail=0 & (r4_time+r4at1_move_1Time<=TT) & r4_time=r5_time -> (r4_order'=5) & (r4_time'= r4_time + r4at1_move_1Time);
+  [ ] r4_order=1 & r4_fail=0 & (r4_time+2<=TT) -> (pr4_Succ_at1_move): (r4_order'=2) & (r4_time'= r4_time+2)+ (1-pr4_Succ_at1_move): (r4_fail'=1) & (r4_order'=2) & (r4_time'= r4_time+2); // travel to join task at1_move_1
+  [at1_move_1] r4_order=2 & r4_fail=0 & (r4_time+r4at1_move_1Time<=TT) & r4_time=r5_time -> (r4_order'=3) & (r4_time'= r4_time + r4at1_move_1Time);
+  [ ] r4_order=3 & r4_fail=0 & (r4_time+2<=TT) -> (pr4_Succ_at1_move): (r4_order'=4) & (r4_time'= r4_time+2)+ (1-pr4_Succ_at1_move): (r4_fail'=1) & (r4_order'=4) & (r4_time'= r4_time+2); // travel to join task at1_move_0
+  [at1_move_0] r4_order=4 & r4_fail=0 & (r4_time+r4at1_move_0Time<=TT) & r4_time=r5_time -> (r4_order'=5) & (r4_time'= r4_time + r4at1_move_0Time);
 
   // failure and recovery, idle
   [ ] r4_fail=1 -> (r4_fail'=0); // fail
@@ -91,4 +91,4 @@ rewards "idle"
 endrewards
 
 //total travel:
-//21//
+//7//

@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: vv.xtext.example.mydsl1.ide
+Bundle-ManifestVersion: 2
+Bundle-Name: vv.xtext.example.mydsl1.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.202308151308
+Bundle-SymbolicName: vv.xtext.example.mydsl1.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: vv.xtext.example.mydsl1,org.eclipse.xtext.ide,org.eclips
+ e.xtext.xbase.ide,org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: vv.xtext.example.mydsl1.ide.contentassist.antlr,vv.xtext
+ .example.mydsl1.ide.contentassist.antlr.internal
+

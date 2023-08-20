@@ -45,10 +45,11 @@ public class MyDslValidator extends AbstractMyDslValidator {
 		for (Robot r: robots) {
 			for (Capability c : r.getCapabilities()) {
 				if (c.getTime()> timelimit) {
-					error("ERROR: Time to complete task by robot " + r.getName() + " exceeds time limit set to " + timelimit + "."
-							, r
-							, null
-							, 1);
+					System.out.println("ERROR 1");
+//					error("ERROR: Time to complete task by robot " + r.getName() + " exceeds time limit set to " + timelimit + "."
+//							, r
+//							, null
+//							, 1);
 				}
 			}
 		}
@@ -68,10 +69,11 @@ public class MyDslValidator extends AbstractMyDslValidator {
 				if (tt.getCt()!=null){tID = tt.getCt().getName();}
 				if (tt.getMt()!=null){tID = tt.getMt().getName();}
 				
-				error("ERROR: Time constraint (start time) for task" + tID + " exceeds time limit set to " + timelimit + "."
-						, tt
-						, null
-						, 2);
+				System.out.println("ERROR 2");
+//				error("ERROR: Time constraint (start time) for task" + tID + " exceeds time limit set to " + timelimit + "."
+//						, tt
+//						, null
+//						, 2);
 			}
 		}
 	}
@@ -87,6 +89,7 @@ public class MyDslValidator extends AbstractMyDslValidator {
 	 */
 	@Check
 	public void checkRateSuccDeclaredAtMostOnce(List <Constraints> constraints) {
+		System.out.println("ERROR 3");
 		
 	}
 	

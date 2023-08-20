@@ -1,0 +1,231 @@
+<alloy builddate="2012-09-25 15:54 EDT">
+
+<instance bitwidth="7" maxseq="4" command="Run TaskAllocation for 7 int, 1 Capability, exactly 25 AtomicTask, 1 Robot" filename="">
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="String" ID="3" parentID="2" builtin="yes">
+</sig>
+
+<sig label="this/r6" ID="4" parentID="5" lone="yes">
+   <atom label="r6$0"/>
+</sig>
+
+<sig label="this/Robot" ID="5" parentID="2" abstract="yes">
+</sig>
+
+<field label="capability" ID="6" parentID="5">
+   <tuple> <atom label="r6$0"/> <atom label="r6at6$0"/> </tuple>
+   <types> <type ID="5"/> <type ID="7"/> </types>
+</field>
+
+<sig label="this/r6at6" ID="8" parentID="7" lone="yes">
+   <atom label="r6at6$0"/>
+</sig>
+
+<sig label="this/Capability" ID="7" parentID="2" abstract="yes">
+</sig>
+
+<field label="do" ID="9" parentID="7">
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_9$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_8$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_7$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_6$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_5$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_4$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_3$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_2$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_1$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_19$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_18$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_17$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_16$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_15$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_14$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_13$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_12$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_11$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_10$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_25$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_24$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_23$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_22$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_21$0"/> </tuple>
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_20$0"/> </tuple>
+   <types> <type ID="7"/> <type ID="10"/> </types>
+</field>
+
+<sig label="this/at6_9" ID="11" parentID="12" one="yes">
+   <atom label="at6_9$0"/>
+</sig>
+
+<sig label="this/at6_8" ID="13" parentID="12" one="yes">
+   <atom label="at6_8$0"/>
+</sig>
+
+<sig label="this/at6_7" ID="14" parentID="12" one="yes">
+   <atom label="at6_7$0"/>
+</sig>
+
+<sig label="this/at6_6" ID="15" parentID="12" one="yes">
+   <atom label="at6_6$0"/>
+</sig>
+
+<sig label="this/at6_5" ID="16" parentID="12" one="yes">
+   <atom label="at6_5$0"/>
+</sig>
+
+<sig label="this/at6_4" ID="17" parentID="12" one="yes">
+   <atom label="at6_4$0"/>
+</sig>
+
+<sig label="this/at6_3" ID="18" parentID="12" one="yes">
+   <atom label="at6_3$0"/>
+</sig>
+
+<sig label="this/at6_2" ID="19" parentID="12" one="yes">
+   <atom label="at6_2$0"/>
+</sig>
+
+<sig label="this/at6_1" ID="20" parentID="12" one="yes">
+   <atom label="at6_1$0"/>
+</sig>
+
+<sig label="this/at6_19" ID="21" parentID="12" one="yes">
+   <atom label="at6_19$0"/>
+</sig>
+
+<sig label="this/at6_18" ID="22" parentID="12" one="yes">
+   <atom label="at6_18$0"/>
+</sig>
+
+<sig label="this/at6_17" ID="23" parentID="12" one="yes">
+   <atom label="at6_17$0"/>
+</sig>
+
+<sig label="this/at6_16" ID="24" parentID="12" one="yes">
+   <atom label="at6_16$0"/>
+</sig>
+
+<sig label="this/at6_15" ID="25" parentID="12" one="yes">
+   <atom label="at6_15$0"/>
+</sig>
+
+<sig label="this/at6_14" ID="26" parentID="12" one="yes">
+   <atom label="at6_14$0"/>
+</sig>
+
+<sig label="this/at6_13" ID="27" parentID="12" one="yes">
+   <atom label="at6_13$0"/>
+</sig>
+
+<sig label="this/at6_12" ID="28" parentID="12" one="yes">
+   <atom label="at6_12$0"/>
+</sig>
+
+<sig label="this/at6_11" ID="29" parentID="12" one="yes">
+   <atom label="at6_11$0"/>
+</sig>
+
+<sig label="this/at6_10" ID="30" parentID="12" one="yes">
+   <atom label="at6_10$0"/>
+</sig>
+
+<sig label="this/at6_25" ID="31" parentID="12" one="yes">
+   <atom label="at6_25$0"/>
+</sig>
+
+<sig label="this/at6_24" ID="32" parentID="12" one="yes">
+   <atom label="at6_24$0"/>
+</sig>
+
+<sig label="this/at6_23" ID="33" parentID="12" one="yes">
+   <atom label="at6_23$0"/>
+</sig>
+
+<sig label="this/at6_22" ID="34" parentID="12" one="yes">
+   <atom label="at6_22$0"/>
+</sig>
+
+<sig label="this/at6_21" ID="35" parentID="12" one="yes">
+   <atom label="at6_21$0"/>
+</sig>
+
+<sig label="this/at6_20" ID="36" parentID="12" one="yes">
+   <atom label="at6_20$0"/>
+</sig>
+
+<sig label="this/at6" ID="12" parentID="10" abstract="yes">
+</sig>
+
+<sig label="this/AtomicTask" ID="10" parentID="2" abstract="yes">
+</sig>
+
+<field label="x" ID="37" parentID="10">
+   <tuple> <atom label="at6_9$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_8$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_7$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_6$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_5$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_4$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_3$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_2$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_1$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_19$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_18$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_17$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_16$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_15$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_14$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_13$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_12$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_11$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_10$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_25$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_24$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_23$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_22$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_21$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at6_20$0"/> <atom label="2"/> </tuple>
+   <types> <type ID="10"/> <type ID="1"/> </types>
+</field>
+
+<field label="y" ID="38" parentID="10">
+   <tuple> <atom label="at6_9$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_8$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_7$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_6$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_5$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_4$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_3$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_2$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_1$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_19$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_18$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_17$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_16$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_15$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_14$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_13$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_12$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_11$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_10$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_25$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_24$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_23$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_22$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_21$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at6_20$0"/> <atom label="3"/> </tuple>
+   <types> <type ID="10"/> <type ID="1"/> </types>
+</field>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+</instance>
+
+</alloy>

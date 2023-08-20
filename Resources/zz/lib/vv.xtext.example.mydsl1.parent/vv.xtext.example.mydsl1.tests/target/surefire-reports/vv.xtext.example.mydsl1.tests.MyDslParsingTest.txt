@@ -1,0 +1,5 @@
+-------------------------------------------------------------------------------
+Test set: vv.xtext.example.mydsl1.tests.MyDslParsingTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.335 s - in null
+vv.xtext.example.mydsl1.tests.MyDslParsingTest.loadModel  Time elapsed: 0.05 s
