@@ -1,0 +1,63 @@
+<alloy builddate="2012-09-25 15:54 EDT">
+
+<instance bitwidth="7" maxseq="4" command="Run TaskAllocation for 7 int, 1 Capability, exactly 1 AtomicTask, 1 Robot" filename="">
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="String" ID="3" parentID="2" builtin="yes">
+</sig>
+
+<sig label="this/r6" ID="4" parentID="5" lone="yes">
+   <atom label="r6$0"/>
+</sig>
+
+<sig label="this/Robot" ID="5" parentID="2" abstract="yes">
+</sig>
+
+<field label="capability" ID="6" parentID="5">
+   <tuple> <atom label="r6$0"/> <atom label="r6at6$0"/> </tuple>
+   <types> <type ID="5"/> <type ID="7"/> </types>
+</field>
+
+<sig label="this/r6at6" ID="8" parentID="7" lone="yes">
+   <atom label="r6at6$0"/>
+</sig>
+
+<sig label="this/Capability" ID="7" parentID="2" abstract="yes">
+</sig>
+
+<field label="do" ID="9" parentID="7">
+   <tuple> <atom label="r6at6$0"/> <atom label="at6_1$0"/> </tuple>
+   <types> <type ID="7"/> <type ID="10"/> </types>
+</field>
+
+<sig label="this/at6_1" ID="11" parentID="12" one="yes">
+   <atom label="at6_1$0"/>
+</sig>
+
+<sig label="this/at6" ID="12" parentID="10" abstract="yes">
+</sig>
+
+<sig label="this/AtomicTask" ID="10" parentID="2" abstract="yes">
+</sig>
+
+<field label="x" ID="13" parentID="10">
+   <tuple> <atom label="at6_1$0"/> <atom label="2"/> </tuple>
+   <types> <type ID="10"/> <type ID="1"/> </types>
+</field>
+
+<field label="y" ID="14" parentID="10">
+   <tuple> <atom label="at6_1$0"/> <atom label="3"/> </tuple>
+   <types> <type ID="10"/> <type ID="1"/> </types>
+</field>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+</instance>
+
+</alloy>
