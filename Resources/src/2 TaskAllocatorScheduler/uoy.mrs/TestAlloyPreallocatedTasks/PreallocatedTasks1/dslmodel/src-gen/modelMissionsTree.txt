@@ -1,0 +1,4 @@
+id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end
+m11,,NaN,,['ct6_1'],,NaN,,NaN,,NaN,,NaN,,NaN,,null,,null
+ct6_1,,m11,,['at6_1'],,NaN,,NaN,,NaN,,true,,false,,null,,null
+at6_1,,ct6_1,,NaN,,room6,,1,,false,,NaN,,NaN,,null,,null
