@@ -1,45 +1,38 @@
 package org.xtext.example.mydsl.generator
 
-import org.eclipse.emf.ecore.resource.Resource
-import java.nio.file.Path
-import java.nio.file.Files
-import java.io.IOException
-import dsl.ProblemSpecification
 import dsl.AtomicTask
-import dsl.CompoundTask
-import java.util.List
-import java.util.ArrayList
-import dsl.Robot
-import dsl.TasksModel
-import dsl.TaskTime
-import java.util.Hashtable
-import dsl.Capability
-import java.util.HashSet
-import java.util.Set
-import java.util.Enumeration
-import dsl.SpaceXYRobot
-import dsl.AllocateT
-import dsl.Closest
 import dsl.MaxTasks
-import dsl.MissionTask
+import dsl.ProblemSpecification
+import dsl.Robot
+import dsl.SpaceXYRobot
+
+import java.util.HashSet
+import java.util.List
+import java.util.Set
+import org.eclipse.emf.ecore.resource.Resource
 
 //***
 class AlloyFile{
 	
 	
-	def static createAlloyFile(Tree tree, Resource resource) {
+	def static createAlloyFile(Preallocation tree, Resource resource, String path) {
 		// variables
-		var path_sigAlloyDeclaration = "/Users/grisv/GitHub/KanoaV2/Resources/org.xtext.example.mydsl/src/org/xtext/example/mydsl/generator//";
-		// read header .als file
-		var s = readFile(path_sigAlloyDeclaration+"sigAlloyDeclaration.txt")
+		val GlobalVar gv = tree.gv;
+		var path_sigAlloyDeclaration = path;
 		
+		// read header .als file
+		var s = Aux.readFile(path_sigAlloyDeclaration+"sigAlloyDeclaration.txt")
 		
 		// -- Robots
 		val rList = resource.allContents.filter(Robot).toList();
-		var List<AtomicTask> at_missions = tree.gv.at_in_mission
+		
+		
+		var List<AtomicTask> at_missions = Aux.at_in_mission(gv)
 		var Set<AtomicTask> at_unique = new HashSet<AtomicTask>(at_missions); // save unique at
-		var s_r =""; var s_cap = "";  //var s_fact =""
+		var s_cap = "";  //var s_fact =""
 		var count_capabilities = 0
+		
+		
 		s += "\n\n// ----------------ROBOTS:\n"
 		//robots
 		for (r : rList){
@@ -79,35 +72,21 @@ class AlloyFile{
 			var at = at_unique.get(i)
 			//var atName = at.name
 			s_t += at.name +","
-			s_f += "\nfact{all a:"+ at.name +" | #do.a="+ getRobots_atName(at.name,root) +"}	// number of robots needed"
+			s_f += "\nfact{all a:"+ at.name +" | #do.a="+ Aux.getRobots_atName(at.name,root) +"}	// number of robots needed"
 		}
 		s += s_t.substring(0,s_t.length-1) + " extends AtomicTask {}"
 		s += s_f
 		// add individual (may be repeated) atomic tasks needed
-		var taskInstancesLoc = tree.gv.atLoc
-		var Enumeration<String> atInstances = tree.gv.atLoc.keys()
-		while (atInstances.hasMoreElements()){
-			
-			var atInstance = atInstances.nextElement()
-			var atLoc = taskInstancesLoc.get ( atInstance )
-			var at = atInstance.split("_").get(0);
-			
-			//var at = at_missions.get(i);
+		//var taskInstancesLoc = gv.atLoc
+		
+		for (atInstance: gv.atomicList.keySet()){
+			var x = Aux.cast2Int(gv.atomicList.get(atInstance).loc.x)
+			var y = Aux.cast2Int(gv.atomicList.get(atInstance).loc.y)
+			var at = gv.atomicList.get(atInstance).at.name
 			s+="\none sig " + atInstance + " extends "+ at +"{}"
-			var x = org.xtext.example.mydsl.generator.AlloyFile.cast2Int(atLoc.x)
-			var y = org.xtext.example.mydsl.generator.AlloyFile.cast2Int(atLoc.y)
-			s+=" {x="+ x +" y="+ y +"}"
-			
-		}
-		
-		// at instances -- //this is removed as "one" was added to the signature - it also avoids (for some hidden reason in Alloy) repetition of outputs
-		//atInstances = tree.gv.atLoc.keys()
-		//s+="\nfact{"
-		//while (atInstances.hasMoreElements()){ // add each needed AT once
-		//	s+="#" + atInstances.nextElement() + "=1\n"
-		//}
-		//s +="}"
-		
+			s+=" {x="+ x +" y="+ y +"} //do at location " + gv.atomicList.get(atInstance).loc.name
+		} // NOTE: "one" was added to the signature - it avoids (for some hidden reasons in Alloy) repetition of outputs
+
 		// -- predicate
 		s += "\n\n// ----------------PREDICATE:\n"
 		// add atomic tasks
@@ -123,98 +102,29 @@ class AlloyFile{
 		s += "\n\n// ----------------CONSTRAINTS:\n"
 		
 		// 1 SpaceXYRobot
-		val constrantListXY = resource.allContents.filter(SpaceXYRobot);
-		while(constrantListXY.hasNext()) {
-			var lg = "";  val c = constrantListXY.next(); // constraint xy i
+		
+		val constrantListXY = gv.resource.allContents.filter(SpaceXYRobot).toList();
+		for(c: constrantListXY) {  // constraint xy i
+			var lg = "";  
 			if (c.lowerGreater.toString()=="lower"){ lg="<" }
 			else if (c.lowerGreater.toString()=="greater"){ lg=">" }
 			else(throw new UnsupportedOperationException("ERROR retrieving constraint SpaceXY for robot"+ c.robot)	)
 			val v = c.getVal() //access with get as val is not allowed
-			s += "\n fact{ all r:" + c.robot.name + "| all c:r.capability | all do:c.do | do." + c.coordinate + lg + cast2Int(v) + "}"
+			s += "\n fact{ all r:" + c.robot.name + "| all c:r.capability | all do:c.do | do." + c.coordinate + lg + Aux.cast2Int(v) + "}"
 		}
 		//-example assertation
 		//assert oneR { no r:r3  | r.capability.do.x<=7 }
 		//check oneR for 7 Int, 11 Capability, exactly 17 AtomicTask, 5 Robot
 		
 		
-		//2 AllocateT
-		val constrantListAlloc = resource.allContents.filter(AllocateT);
-		while(constrantListAlloc.hasNext()) {
-			val c = constrantListAlloc.next(); //
-			
-			if(c.at!==null){
-				s+="\n fact {all at: " + c.at.name + "| one d: do.at | d in " + c.robot.name + ".capability}"
-				
-				
+		//2,3 AllocateT and Closest - create facts for atomic tasks that have a robot assigned
+		for(atID: gv.atomicList.keySet()){
+			var atInstance = gv.atomicList.get(atID) 
+			if (atInstance.robot!==null){
+				s+="\n fact {all at: " + atID + "| one d: do.at | d in " + atInstance.robot.name + ".capability}"
 			}
-			
-			if(c.ct!==null){
-				
-				var List<AtomicTask> atsub = tree.gv.getatomictasksinCT(c.ct)
-				for (at:atsub){
-					s+="\n fact {all at: " + at.name + "| one d: do.at | d in " + c.robot.name + ".capability}"
-				}
-			}
-			
-			if(c.mt!==null){
-				var tintances = tree.gv.missionTask2atomicTasksInstances.get(c.mt)
-				for (String i : tintances){
-					//s+="\n fact { do." + i +" in " + c.robot.name + ".capability}"
-					s+="\n fact { one d: do." + i +" | d in " + c.robot.name + ".capability}"
-				}
-			}//tree.gv.missionTask2atomicTasksInstances}
-			
 		}
 		
-		//3 Closest
-		val constrantListClosest = resource.allContents.filter(Closest);
-		while(constrantListClosest.hasNext()) {
-			val c = constrantListClosest.next(); //
-			//contraints all tasks
-			if(c.all!==null){ 
-			
-				atInstances = tree.gv.atLoc.keys()
-				while (atInstances.hasMoreElements()){
-					var i = atInstances.nextElement()
-					var r = tree.gv.getClosestRobot(i) //closestRobot
-					s+="\n fact { one d: do." + i +" | d in " + r.name + ".capability}"	
-				}
-			}
-			//atomic task
-			else if(c.at!==null){
-				var all_atInstances = tree.gv.atLoc.keys()
-				while (all_atInstances.hasMoreElements()){
-					var i = all_atInstances.nextElement()
-					
-					//if instance is instance of the atomic task
-					if ( tree.gv.at_from_atInstance(i) == c.at){
-						var r = tree.gv.getClosestRobot(i) //closestRobot
-						s+="\n fact { one d: do." + i +" | d in " + r.name + ".capability}"	
-					}
-				}
-			}
-			//compound task
-			else if(c.ct!==null){
-				//get atomic tasks instances in generic compound task
-				var ctType_all_at_children_instances = tree.gv.getInstanceChildrenFromCTintance(c.ct)
-				
-				for (i: ctType_all_at_children_instances){
-					var r = tree.gv.getClosestRobot(i) //closestRobot
-					s+="\n fact { one d: do." + i +" | d in " + r.name + ".capability}"	
-				}
-			}
-			
-			//mission task
-			else if(c.mt!==null){
-				
-				var mission_atList = tree.gv.missionTask2atomicTasksInstances
-				for (i: mission_atList.get(c.mt)){
-					var iAT = tree.gv.at_from_atInstance(i)
-					var r = tree.gv.getClosestRobot(iAT) //closestRobot
-					s+="\n fact { one d: do." + i +" | d in " + r.name + ".capability}"	
-				}
-			}
-		}
 		
 		//4 MaxTasks
 		val constrantListMaxTasks = resource.allContents.filter(MaxTasks);
@@ -224,64 +134,21 @@ class AlloyFile{
 				s+= "\n fact { all r:"+ c.robot.name +" | #(r.capability.do ) <= "+c.num +"}"
 			}
 			else if(c.all!==null){ //constraint all robots
-				
-				println(" READ HERE WAHT IS IT: " + c.all)
-			
 				for (r : rList){
 					s+= "\n fact { all r:"+ r.name +" | #(r.capability.do ) <= "+c.num +"}"
-				} } 
-			
+				} }
 		}
 		
 		
 		// -- run command
 		s += "\n\n// ----------------RUN COMMAND:\n"
 		s+= "\nrun TaskAllocation for"
-		s+= "\n"+ tree.gv.alloyIntScope+" Int,"
+		s+= "\n"+ Aux.getAlloyIntScope(gv)+" Int,"
 		s+= " " + count_capabilities + " Capability," 
 		s+= " " + "exactly " + at_missions.length +" AtomicTask," 
-		//if (checkAllRobotDeployed==1){ // add robots (exactly if all deployed)
-		//	s+= "\nexactly " + root.robotsModel.robots.toList.length + " Robot,"  + "// deploy all robots"
-		//}
-		//else{ // not all robots deployed
-			s+= " " + root.robotsModel.toList.length + " Robot"
-		//}
+		s+= " " + root.robotsModel.toList.length + " Robot"
 		
-		
-		
-		
-		tree.generateFile('modelAllocation.als', s) // -- generate file
+		Aux.generateFile('modelAllocation.als', s, gv) // -- generate file
 		
 	}
-	
-	
-	
-	/** Cast object -> int -> string */
-	def static cast2Int(Double xy) { 
-			var String s = xy.toString();
-			var int dot = s.indexOf("."); //this finds the first occurrence of "." //in string thus giving you the index of where it is in the string
-			var String integerPart;
-			if (dot!= -1) {integerPart= s.substring(0 ,dot);}
-			else {integerPart = "0"}
-			return integerPart
-	}
-	
-	/**number of robots */
-	def static getRobots_atName(String at, ProblemSpecification root) {
-		for (t: root.tasksModel){
-			switch t{
-				AtomicTask:{
-					if (t.name==at){return t.robots}
-		}}}
-	// ERROR
-	throw new UnsupportedOperationException("ERROR: num of robots don't found for task "+at)
-	}
-	
-	//--  
-	def static String readFile(String filePath) throws IOException {
-		var Path path = java.nio.file.Paths.get(filePath);
-		System.out.println(path);
-		return Files.readString(path);	
-	}
-	
 }

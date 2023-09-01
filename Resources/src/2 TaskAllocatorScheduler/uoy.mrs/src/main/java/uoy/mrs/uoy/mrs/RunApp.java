@@ -36,13 +36,13 @@ public class RunApp {
 	
 	public static void main( String[] args )  throws Exception{
 		
-		
-		RunApp mrs = new RunApp(); // create instance 	
+		// create instance
+		RunApp mrs = new RunApp(); 	
 		// set config.properties
 		//mrs.setPropertiesFile(args);
-		Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
-		//Constants.setProperties("TestAlloyPreallocatedTasks/PreallocatedTasks1/config.properties");
-		//Constants.setProperties("TestCase3-var4/config.properties");
+		Constants.setProperties("TestCase3-var4/config.properties");
+		//Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
+		
 		
 		//run
     	mrs.runMRS();}
@@ -54,20 +54,17 @@ public class RunApp {
 		Timer.startTimer();// start Timer;
 		//------- Allocator 
     	runAllocator();
-    	System.out.println("Time: "+Timer.getTimeSoFar()+"ms");
+    	//------- Pre-scheduler
+    	runPreTaskScheduler();
+    	//------ Scheduler
+    	runScheduler();
+    	//-------Read Data
+    	//readSchedules();
     	
-//    	//------- Pre-scheduler
-//    	
-//    	runPreTaskScheduler();
-//    	//------ Scheduler
-//    	runScheduler();
-//    	//-------Read Data
-//    	//readSchedules();
-//    	
-//    	//------ Get Plans Info
-//    	//PlotFactory.plotParetoFront(3);
-//    	
-//    	System.out.println("Time: "+Timer.getTimeSoFar()+"ms");
+    	//------ Get Plans Info
+    	//PlotFactory.plotParetoFront(3);
+    	
+    	System.out.println("Time: "+Timer.getTimeSoFar()+"ms");
     }
 	
 	

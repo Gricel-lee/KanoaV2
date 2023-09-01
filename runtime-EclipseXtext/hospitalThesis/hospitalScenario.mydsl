@@ -58,7 +58,20 @@ ProblemSpecification{
 			rate of success greater than 90.0,
 			robot r4 work in x greater than 9.0, 
 			robot r3 work in y lower than 7.0,
-			  
+			
+			//tests
+			allocate atomic task at1 to robot r4,
+			allocate compound task ct2 to robot r2,
+			allocate mission task m1 to robot r5,
+			
+			allocate atomic task at1 to closest robot,
+			allocate compound task ct1 to closest robot,
+			allocate mission task m1 to closest robot,
+			
+			allocate all tasks to closest robot,
+			 
+			 
+			 
 			//compound task ctt1 with end time 111.0,
 			//atomic task at1 with start time 444.0,
 			//mission task m1 with start time 222.0,
@@ -75,7 +88,7 @@ ProblemSpecification{
 			
 			
 			//limit max number of tasks per robot to 3
-			limit max number of tasks in robot r3 to 4,
+			limit max number of tasks in robot r3 to 4
 			
 		parameters: 
 			time: 120
