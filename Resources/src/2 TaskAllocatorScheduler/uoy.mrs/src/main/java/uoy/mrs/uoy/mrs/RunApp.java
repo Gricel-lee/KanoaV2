@@ -21,7 +21,9 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.File;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -40,7 +42,7 @@ public class RunApp {
 		RunApp mrs = new RunApp(); 	
 		// set config.properties
 		//mrs.setPropertiesFile(args);
-		Constants.setProperties("TestCase3-var4/config.properties");
+		Constants.setProperties("TestDummyRefactor/config.properties");//"TestCase3-var4/config.properties");
 		//Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
 		
 		
@@ -50,6 +52,7 @@ public class RunApp {
 	
 	/*Run All*/
 	public void runMRS() throws Exception {
+		System.out.println(System.getProperty("user.dir"));
 		//------- Timer
 		Timer.startTimer();// start Timer;
 		//------- Allocator 
@@ -91,7 +94,50 @@ public class RunApp {
 	
 	/*Run Transitive closure*/
 	private void runPreTaskScheduler() {
+		///////////////////////**********************************
+		//READ modelMissionTree.txt
+		 try {
+		        BufferedReader in = new BufferedReader(new FileReader(Constants.genMissionTree));
+		        System.out.println("Reading: "+ in.readLine()); // remove first line
+		        String str;
+		        while ((str = in.readLine())!= null) {
+		            String[] attrib=str.split(",,");
+		            
+		            String type = attrib[0];
+		            String id = attrib[1];
+		            String parent = attrib[2];
+		            String ordered_children = attrib[3];
+		            String location = attrib[4];
+		            String numrobots = attrib[5];
+		            String joint = attrib[6];
+		            String ordered = attrib[7];
+		            String consecutive = attrib[8];
+		            String start = attrib[9];
+		            String end = attrib[10];
+		            
+		            System.out.println(type +"--"+ id +"--"+ parent +"--"+ ordered_children +"--"+ location +"--"+ numrobots +"--"+ joint +"--"+ ordered +"--"+ consecutive +"--"+ start +"--"+ end);
+		            System.out.println(type);
+		            if (type.equals("mt")) {
+		            	System.out.println("Mission task");
+		            }
+		            else if (type.equals("at")) {
+		            	System.out.println("A task");
+		            }
+		            else if (type.equals("ct")) {
+		            	System.out.println("C task");
+		            }
+		            
+		        }
+		        in.close();
+		    } catch (IOException e) {
+		        System.out.println("File Read Error");
+		    }
+		
+		
+		
+		
 		System.out.println("\n---- Pre-scheduler, getting clusters");
+		
 		PreTaskScheduler.transClosure_Python();
 		allocationInstances();
 	}

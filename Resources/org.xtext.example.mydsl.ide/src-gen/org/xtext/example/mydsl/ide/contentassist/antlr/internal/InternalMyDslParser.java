@@ -16057,7 +16057,7 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
             // InternalMyDsl.g:5214:1: ( rule__TaskTime__Group__0__Impl rule__TaskTime__Group__1 )
             // InternalMyDsl.g:5215:2: rule__TaskTime__Group__0__Impl rule__TaskTime__Group__1
             {
-            pushFollow(FOLLOW_38);
+            pushFollow(FOLLOW_36);
             rule__TaskTime__Group__0__Impl();
 
             state._fsp--;
@@ -16171,21 +16171,21 @@ public class InternalMyDslParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TaskTime__Group__1__Impl"
-    // InternalMyDsl.g:5249:1: rule__TaskTime__Group__1__Impl : ( 'with' ) ;
+    // InternalMyDsl.g:5249:1: rule__TaskTime__Group__1__Impl : ( 'has' ) ;
     public final void rule__TaskTime__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalMyDsl.g:5253:1: ( ( 'with' ) )
-            // InternalMyDsl.g:5254:1: ( 'with' )
+            // InternalMyDsl.g:5253:1: ( ( 'has' ) )
+            // InternalMyDsl.g:5254:1: ( 'has' )
             {
-            // InternalMyDsl.g:5254:1: ( 'with' )
-            // InternalMyDsl.g:5255:2: 'with'
+            // InternalMyDsl.g:5254:1: ( 'has' )
+            // InternalMyDsl.g:5255:2: 'has'
             {
-             before(grammarAccess.getTaskTimeAccess().getWithKeyword_1()); 
-            match(input,50,FOLLOW_2); 
-             after(grammarAccess.getTaskTimeAccess().getWithKeyword_1()); 
+             before(grammarAccess.getTaskTimeAccess().getHasKeyword_1()); 
+            match(input,48,FOLLOW_2); 
+             after(grammarAccess.getTaskTimeAccess().getHasKeyword_1()); 
 
             }
 

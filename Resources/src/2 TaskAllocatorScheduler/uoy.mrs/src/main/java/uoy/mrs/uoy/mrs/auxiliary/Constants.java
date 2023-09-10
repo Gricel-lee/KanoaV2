@@ -72,7 +72,7 @@ public class Constants {
 	// GA Results for each allocation
 	public static ArrayList<SolutionData> allocationSchedules;
 	
-	
+	public static String filespath; 
 	
 	/**
 	 * Uploads variables from config.properties and dsl file
@@ -93,9 +93,12 @@ public class Constants {
 		
 		// From Config.properties
 		
-		dslFile = getProperty("DSL_FILE");
+		filespath = getProperty("FILESPATH");
 		
-		outputDir = getProperty("OUTPUT_DIR");
+		dslFile = filespath + '/' + getProperty("DSL_FILE");
+		
+		//@depricated: outputDir = getProperty("OUTPUT_DIR");
+		outputDir = System.getProperty("user.dir")+ '/' + filespath + "/results";
 		
 		allAllocations = outputDir + "./AllAllocations.csv";
 		
@@ -117,11 +120,14 @@ public class Constants {
 		
 		countallsolutions = 0; //counter of all possible schedules
 		
-		genWM = getProperty("GENERATED_FILES") + "/worldmodel.txt";
+		//@depricated GENERATED_FILES, now PREALLOC_FILES_DIR
+		String genFiles = filespath + '/' + getProperty("PREALLOC_FILES_DIR");
 		
-		genMissionTree = getProperty("GENERATED_FILES") + "/modelMissionsTree.txt";
+		genWM = genFiles + "/worldmodel.txt";
 		
-		genAlloyModel = getProperty("GENERATED_FILES") + "/modelAllocation.als";
+		genMissionTree = genFiles + "/modelMissionsTree.txt";
+		
+		genAlloyModel = genFiles + "/modelAllocation.als";
 		
 		pythonDir = getProperty("PYTHON3_DIRECTORY");
 		

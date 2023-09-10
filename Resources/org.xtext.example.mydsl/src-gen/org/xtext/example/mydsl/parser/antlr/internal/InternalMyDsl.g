@@ -1831,9 +1831,9 @@ ruleTaskTime returns [EObject current=null]
 				)
 			)
 		)
-		otherlv_9='with'
+		otherlv_9='has'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getTaskTimeAccess().getWithKeyword_1());
+			newLeafNode(otherlv_9, grammarAccess.getTaskTimeAccess().getHasKeyword_1());
 		}
 		(
 			(

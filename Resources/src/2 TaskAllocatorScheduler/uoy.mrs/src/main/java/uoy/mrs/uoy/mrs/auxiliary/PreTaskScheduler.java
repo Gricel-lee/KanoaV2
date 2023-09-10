@@ -10,7 +10,7 @@ public class PreTaskScheduler {
 	 * Get transitive closure and Probabilistic models for each cluster of robots
 	 * Python code called from: "resources/pythonScripts/start.py"
 	 */
-	public static void transClosure_Python() {		
+	public static void transClosure_Python() {
 		try {			
 			//System.out.println("Time available to complete plan: "+RunApp.time_available);
 			
@@ -50,8 +50,5 @@ public class PreTaskScheduler {
 		}
 		
 	}
-	
-	
-	
 		
 }

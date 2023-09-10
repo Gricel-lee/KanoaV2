@@ -128,7 +128,7 @@ TaskTime returns TaskTime:
 	('atomic''task' at=[AtomicTask|EString] |
 	'compound''task' ct=[CompoundTask|EString] |
 	'mission''task' mt=[MissionTask|EString])
-	'with'startEnd=StartEnd
+	'has'startEnd=StartEnd
 	'time' time=EDouble	
 	;
 

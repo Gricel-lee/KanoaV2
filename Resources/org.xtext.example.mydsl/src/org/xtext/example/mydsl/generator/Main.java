@@ -22,10 +22,10 @@ import org.xtext.example.mydsl.MyDslStandaloneSetup;
 public class Main {
 
 	public static void main(String[] args) {
-		if (args.length == 0) {
-			System.err.println("Aborting: no path to EMF resource provided!");
-			return;
-		}
+//		if (args.length == 0) {
+//			System.err.println("Aborting: no path to EMF resource provided!");
+//			return;
+//		}
 		Injector injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main main = injector.getInstance(Main.class);
 		main.runGenerator(args[0]);

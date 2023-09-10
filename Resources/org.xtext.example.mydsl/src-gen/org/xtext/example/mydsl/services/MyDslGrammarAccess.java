@@ -1275,7 +1275,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cMtAssignment_0_2_2 = (Assignment)cGroup_0_2.eContents().get(2);
 		private final CrossReference cMtMissionTaskCrossReference_0_2_2_0 = (CrossReference)cMtAssignment_0_2_2.eContents().get(0);
 		private final RuleCall cMtMissionTaskEStringParserRuleCall_0_2_2_0_1 = (RuleCall)cMtMissionTaskCrossReference_0_2_2_0.eContents().get(1);
-		private final Keyword cWithKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cHasKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cStartEndAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cStartEndStartEndEnumRuleCall_2_0 = (RuleCall)cStartEndAssignment_2.eContents().get(0);
 		private final Keyword cTimeKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -1286,7 +1286,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    ('atomic''task' at=[AtomicTask|EString] |
 		//    'compound''task' ct=[CompoundTask|EString] |
 		//    'mission''task' mt=[MissionTask|EString])
-		//    'with'startEnd=StartEnd
+		//    'has'startEnd=StartEnd
 		//    'time' time=EDouble
 		//    ;
 		@Override public ParserRule getRule() { return rule; }
@@ -1294,7 +1294,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//('atomic''task' at=[AtomicTask|EString] |
 		//'compound''task' ct=[CompoundTask|EString] |
 		//'mission''task' mt=[MissionTask|EString])
-		//'with'startEnd=StartEnd
+		//'has'startEnd=StartEnd
 		//'time' time=EDouble
 		public Group getGroup() { return cGroup; }
 		
@@ -1357,8 +1357,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//EString
 		public RuleCall getMtMissionTaskEStringParserRuleCall_0_2_2_0_1() { return cMtMissionTaskEStringParserRuleCall_0_2_2_0_1; }
 		
-		//'with'
-		public Keyword getWithKeyword_1() { return cWithKeyword_1; }
+		//'has'
+		public Keyword getHasKeyword_1() { return cHasKeyword_1; }
 		
 		//startEnd=StartEnd
 		public Assignment getStartEndAssignment_2() { return cStartEndAssignment_2; }
@@ -2260,7 +2260,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    ('atomic''task' at=[AtomicTask|EString] |
 	//    'compound''task' ct=[CompoundTask|EString] |
 	//    'mission''task' mt=[MissionTask|EString])
-	//    'with'startEnd=StartEnd
+	//    'has'startEnd=StartEnd
 	//    'time' time=EDouble
 	//    ;
 	public TaskTimeElements getTaskTimeAccess() {

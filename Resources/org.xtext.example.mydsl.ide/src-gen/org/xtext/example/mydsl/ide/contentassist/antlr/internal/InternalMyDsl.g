@@ -5252,9 +5252,9 @@ rule__TaskTime__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getTaskTimeAccess().getWithKeyword_1()); }
-	'with'
-	{ after(grammarAccess.getTaskTimeAccess().getWithKeyword_1()); }
+	{ before(grammarAccess.getTaskTimeAccess().getHasKeyword_1()); }
+	'has'
+	{ after(grammarAccess.getTaskTimeAccess().getHasKeyword_1()); }
 )
 ;
 finally {

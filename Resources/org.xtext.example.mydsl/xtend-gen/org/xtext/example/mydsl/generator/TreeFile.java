@@ -7,6 +7,7 @@ public class TreeFile {
   public static void createTreeFile(final Preallocation tree, final Resource resource, final String path) {
     GlobalVar gv = tree.gv;
     String s = "";
+    String type = "";
     String id = "";
     String parent = "";
     String ordered_children = "";
@@ -22,6 +23,7 @@ public class TreeFile {
     for (final String tID : gv.tasksList) {
       boolean _contains = gv.missionList.keySet().contains(tID);
       if (_contains) {
+        type = "mt";
         id = tID;
         parent = "NaN";
         ordered_children = (("[\'" + gv.missionList.get(tID).child) + "\']");
@@ -34,10 +36,11 @@ public class TreeFile {
         end = "NaN";
         String _s_1 = s;
         s = (_s_1 + 
-          ((((((((((((((((((("\n" + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
+          ((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
       } else {
         boolean _contains_1 = gv.compoundList.keySet().contains(tID);
         if (_contains_1) {
+          type = "ct";
           id = tID;
           parent = gv.compoundList.get(tID).parent;
           String _join = String.join(",", gv.compoundList.get(tID).children);
@@ -53,10 +56,11 @@ public class TreeFile {
           end = "NaN";
           String _s_2 = s;
           s = (_s_2 + 
-            ((((((((((((((((((("\n" + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
+            ((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
         } else {
           boolean _contains_2 = gv.atomicList.keySet().contains(tID);
           if (_contains_2) {
+            type = "at";
             id = tID;
             parent = gv.atomicList.get(tID).parent;
             ordered_children = "NaN";
@@ -83,7 +87,7 @@ public class TreeFile {
             }
             String _s_3 = s;
             s = (_s_3 + 
-              ((((((((((((((((((("\n" + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
+              ((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
           }
         }
       }

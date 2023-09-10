@@ -4073,7 +4073,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTaskTime"
-    // InternalMyDsl.g:1744:1: ruleTaskTime returns [EObject current=null] : ( ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'with' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) ) ) ;
+    // InternalMyDsl.g:1744:1: ruleTaskTime returns [EObject current=null] : ( ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'has' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) ) ) ;
     public final EObject ruleTaskTime() throws RecognitionException {
         EObject current = null;
 
@@ -4094,11 +4094,11 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalMyDsl.g:1750:2: ( ( ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'with' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) ) ) )
-            // InternalMyDsl.g:1751:2: ( ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'with' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) ) )
+            // InternalMyDsl.g:1750:2: ( ( ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'has' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) ) ) )
+            // InternalMyDsl.g:1751:2: ( ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'has' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) ) )
             {
-            // InternalMyDsl.g:1751:2: ( ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'with' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) ) )
-            // InternalMyDsl.g:1752:3: ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'with' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) )
+            // InternalMyDsl.g:1751:2: ( ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'has' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) ) )
+            // InternalMyDsl.g:1752:3: ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) ) otherlv_9= 'has' ( (lv_startEnd_10_0= ruleStartEnd ) ) otherlv_11= 'time' ( (lv_time_12_0= ruleEDouble ) )
             {
             // InternalMyDsl.g:1752:3: ( (otherlv_0= 'atomic' otherlv_1= 'task' ( ( ruleEString ) ) ) | (otherlv_3= 'compound' otherlv_4= 'task' ( ( ruleEString ) ) ) | (otherlv_6= 'mission' otherlv_7= 'task' ( ( ruleEString ) ) ) )
             int alt27=3;
@@ -4154,7 +4154,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
                     							newCompositeNode(grammarAccess.getTaskTimeAccess().getAtAtomicTaskCrossReference_0_0_2_0());
                     						
-                    pushFollow(FOLLOW_37);
+                    pushFollow(FOLLOW_35);
                     ruleEString();
 
                     state._fsp--;
@@ -4202,7 +4202,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
                     							newCompositeNode(grammarAccess.getTaskTimeAccess().getCtCompoundTaskCrossReference_0_1_2_0());
                     						
-                    pushFollow(FOLLOW_37);
+                    pushFollow(FOLLOW_35);
                     ruleEString();
 
                     state._fsp--;
@@ -4250,7 +4250,7 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
                     							newCompositeNode(grammarAccess.getTaskTimeAccess().getMtMissionTaskCrossReference_0_2_2_0());
                     						
-                    pushFollow(FOLLOW_37);
+                    pushFollow(FOLLOW_35);
                     ruleEString();
 
                     state._fsp--;
@@ -4273,9 +4273,9 @@ public class InternalMyDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,43,FOLLOW_65); 
+            otherlv_9=(Token)match(input,41,FOLLOW_65); 
 
-            			newLeafNode(otherlv_9, grammarAccess.getTaskTimeAccess().getWithKeyword_1());
+            			newLeafNode(otherlv_9, grammarAccess.getTaskTimeAccess().getHasKeyword_1());
             		
             // InternalMyDsl.g:1838:3: ( (lv_startEnd_10_0= ruleStartEnd ) )
             // InternalMyDsl.g:1839:4: (lv_startEnd_10_0= ruleStartEnd )

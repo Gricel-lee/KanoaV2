@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 import get_prism_files
 
 import auxiliary 
-from pymoo.core import solution
+'from pymoo.core import solution'
 
 import csv
 

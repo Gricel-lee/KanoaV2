@@ -7,6 +7,7 @@ class TreeFile {
 	def static createTreeFile(Preallocation tree, Resource resource, String path) {
 		var gv = tree.gv
 		var String s="";
+		var type ="";
 		var id=""; var parent=""; var ordered_children="";
 		var location=""; var numrobots="";
 		var joint="" var ordered=""; var consecutive="";
@@ -17,6 +18,7 @@ class TreeFile {
 		for (tID: gv.tasksList){
 			//mission task
 			if(gv.missionList.keySet().contains(tID)){
+				type="mt"
 				id=tID;
 				parent="NaN"
 				ordered_children= "[\'" + gv.missionList.get(tID).child + "\']"
@@ -28,11 +30,12 @@ class TreeFile {
 				start = "NaN"
 				end = "NaN"
 				
-				s+="\n"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
+				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
 				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end
 			}
 			//compound task
 			else if(gv.compoundList.keySet().contains(tID)){
+				type="ct"
 				id=tID;
 				parent= gv.compoundList.get(tID).parent
 				ordered_children= "[\'" + String.join(",", gv.compoundList.get(tID).children) + "\']"
@@ -44,11 +47,12 @@ class TreeFile {
 				start = "NaN"
 				end = "NaN"
 				
-				s+="\n"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
+				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
 				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end
 			}
 			//atomic task
 			else if(gv.atomicList.keySet().contains(tID)){
+				type="at"
 				id=tID;
 				parent= gv.atomicList.get(tID).parent
 				ordered_children= "NaN"
@@ -62,7 +66,7 @@ class TreeFile {
 				else{start = "None"}
 				if(gv.atomicList.get(tID).end!==null){end = String.valueOf(gv.atomicList.get(tID).end)}
 				else{end = "None"}
-				s+="\n"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
+				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
 				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end
 			}
 		}
