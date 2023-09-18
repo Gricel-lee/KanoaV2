@@ -1,0 +1,58 @@
+mdp
+
+formula done = (r1_order=4);
+
+// failure
+formula fail = (r1_fail=0 );
+
+// total time available
+const int TT=20;
+
+// completion tasks time
+const int r1at3_sanit_2Time=4;
+const int r1at3_sanit_1Time=4;
+const int r1at3_sanit_0Time=4;
+
+// probabilities of succeeding with a task
+const double pr1_Succ_at3_sanit = 0.9;
+
+// travelling costs of each robot
+const int r1_travDist = 5; //l1->room3->room2->room1
+
+// tasks to track for ordering constraints
+
+
+//---------- Robot r1 MODULE----------
+module r1
+  //r1_order=0: travel cost 
+  //r1_order=1: task at3_sanit_2
+  //r1_order=2: task at3_sanit_1
+  //r1_order=3: task at3_sanit_0
+  r1_order: [0..4] init 0; // execution order
+  r1_time:[0..TT] init 0; //time available
+  r1_travel: [0..1] init 0; // get travelling reward
+  r1_fail: [0..1] init 0; // failure detected
+ // limit idle per robot
+  i_r1 : [0..10];
+
+  // travel captured as a reward
+  [r1travel] r1_order=0 -> (r1_order'=1);
+  // do sequence of tasks
+  [ ] r1_order=1 & r1_fail=0 & (r1_time+ r1at3_sanit_2Time + 3 <=TT) -> (pr1_Succ_at3_sanit): (r1_order'=2) & (r1_time'= r1_time+ r1at3_sanit_2Time + 3)+ (1-pr1_Succ_at3_sanit): (r1_fail'=1) & (r1_order'=2) & (r1_time'= r1_time+ r1at3_sanit_2Time + 3);
+  [ ] r1_order=2 & r1_fail=0 & (r1_time+ r1at3_sanit_1Time + 1 <=TT) -> (pr1_Succ_at3_sanit): (r1_order'=3) & (r1_time'= r1_time+ r1at3_sanit_1Time + 1)+ (1-pr1_Succ_at3_sanit): (r1_fail'=1) & (r1_order'=3) & (r1_time'= r1_time+ r1at3_sanit_1Time + 1);
+  [ ] r1_order=3 & r1_fail=0 & (r1_time+ r1at3_sanit_0Time + 1 <=TT) -> (pr1_Succ_at3_sanit): (r1_order'=4) & (r1_time'= r1_time+ r1at3_sanit_0Time + 1)+ (1-pr1_Succ_at3_sanit): (r1_fail'=1) & (r1_order'=4) & (r1_time'= r1_time+ r1at3_sanit_0Time + 1);
+
+  // failure and recovery, idle
+  [ ] r1_fail=1 -> (r1_fail'=0); // fail
+  [r1idle] r1_order!=4 & r1_fail=0 & (r1_time+1<=TT) & (i_r1<10) -> (i_r1'=i_r1+1) & (r1_time'=r1_time+1); // idle
+endmodule
+
+rewards "travel" 
+ [r1travel] true: r1_travDist;
+endrewards
+rewards "idle" 
+ [r1idle] true: 1;
+endrewards
+
+//total time and prob:
+//5//0.7290000000000001

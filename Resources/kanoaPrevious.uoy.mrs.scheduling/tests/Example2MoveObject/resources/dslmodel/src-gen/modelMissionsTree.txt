@@ -1,0 +1,5 @@
+id,,parent,,ordered_children,,location,,runbyrobot,,joint,,ordered,,consecutive
+m3,,NaN,,['at1_move_0'],,NaN,,NaN,,NaN,,NaN,,NaN
+at1_move_0,,m3,,NaN,,room3,,NaN,,True,,NaN,,NaN
+m5,,NaN,,['at1_move_1'],,NaN,,NaN,,NaN,,NaN,,NaN
+at1_move_1,,m5,,NaN,,room5,,NaN,,True,,NaN,,NaN

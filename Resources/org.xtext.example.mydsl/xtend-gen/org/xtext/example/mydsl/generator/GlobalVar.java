@@ -4,10 +4,8 @@
  */
 package org.xtext.example.mydsl.generator;
 
-import dsl.Location;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
@@ -47,9 +45,4 @@ public class GlobalVar {
    * All instantiated tasks list (in order)
    */
   public List<String> tasksList = new ArrayList<String>();
-
-  /**
-   * List atomic tasks locations
-   */
-  public Hashtable<String, Location> atLoc = new Hashtable<String, Location>();
 }

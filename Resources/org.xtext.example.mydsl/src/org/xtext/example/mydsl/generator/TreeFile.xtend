@@ -11,9 +11,10 @@ class TreeFile {
 		var id=""; var parent=""; var ordered_children="";
 		var location=""; var numrobots="";
 		var joint="" var ordered=""; var consecutive="";
-		var start = ""; var end=""
+		var start = ""; var end=""; var inst=""
+		var reachableAtomicTasks = "";
 		
-		s += "id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end";
+		s += "type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks";
 		
 		for (tID: gv.tasksList){
 			//mission task
@@ -29,9 +30,12 @@ class TreeFile {
 				consecutive = "NaN"
 				start = "NaN"
 				end = "NaN"
+				inst = tID
+				reachableAtomicTasks = "NaN"
 				
 				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
-				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end
+				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end+",,"+inst
+				+",,"+reachableAtomicTasks
 			}
 			//compound task
 			else if(gv.compoundList.keySet().contains(tID)){
@@ -46,9 +50,13 @@ class TreeFile {
 				consecutive = gv.compoundList.get(tID).ordered
 				start = "NaN"
 				end = "NaN"
+				inst = gv.compoundList.get(tID).ct.name
+				reachableAtomicTasks = "[\'" + String.join(",", gv.compoundList.get(tID).getatSubtasks(gv)) + "\']"
+				
 				
 				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
-				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end
+				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end+",,"+inst
+				+",,"+reachableAtomicTasks
 			}
 			//atomic task
 			else if(gv.atomicList.keySet().contains(tID)){
@@ -61,13 +69,16 @@ class TreeFile {
 				if(gv.atomicList.get(tID).at.robots>1){joint = "True"}else{joint = "False"}
 				ordered = "NaN"
 				consecutive = "NaN"
+				inst = gv.atomicList.get(tID).at.name
+				reachableAtomicTasks = "NaN"
 				
 				if(gv.atomicList.get(tID).start!==null){start = String.valueOf(gv.atomicList.get(tID).start)}
 				else{start = "None"}
 				if(gv.atomicList.get(tID).end!==null){end = String.valueOf(gv.atomicList.get(tID).end)}
 				else{end = "None"}
 				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
-				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end
+				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end+",,"+inst
+				+",,"+reachableAtomicTasks
 			}
 		}
 		

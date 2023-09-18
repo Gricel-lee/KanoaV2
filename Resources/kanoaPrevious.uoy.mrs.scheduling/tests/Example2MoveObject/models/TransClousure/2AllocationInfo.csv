@@ -1,0 +1,5 @@
+,id,parent,ordered_children,location,runbyrobot,joint,ordered,consecutive
+0,m3,,['at1_move_0'],,,,,
+1,at1_move_0,m3,,room3,"['r5','r1']",True,,
+2,m5,,['at1_move_1'],,,,,
+3,at1_move_1,m5,,room5,"['r5','r1']",True,,

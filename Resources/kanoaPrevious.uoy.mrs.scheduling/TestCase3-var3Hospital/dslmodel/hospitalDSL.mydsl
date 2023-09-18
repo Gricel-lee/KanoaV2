@@ -1,0 +1,133 @@
+ProblemSpecification{
+WorldModel:
+    room1 : ( x 2.0 y 3.0 ) //room1
+    room2 : ( x 1.0 y 7.0 ) //room2
+    room3 : ( x 4.0 y 1.0 ) //room3
+    room4 : ( x 10.0 y 1.0) //room4
+    room5 : ( x 10.0 y 5.0) //room5
+    room6 : ( x 9.0 y 7.0 ) //room6
+    l7 : ( x 1.0 y 1.0 ) //robot1
+    l8 : ( x 2.0 y 1.0 ) //robot2
+    l9 : ( x 6.0 y 7.0 ) //robot3
+    l10: ( x 7.0 y 7.0 ) //robot4
+    l11: ( x 8.0 y 7.0 ) //robot5
+    //paths r1
+    l7 to room1, distance 2.0
+    l7 to room2, distance 6.0
+    l7 to room3, distance 3.0
+    l7 to room4, distance 9.0
+    l7 to room5, distance 12.0
+    l7 to room6, distance 14.0
+    //paths r2
+    l8 to room1, distance 2.0
+    l8 to room2, distance 6.0
+    l8 to room3, distance 2.0
+    l8 to room4, distance 8.0
+    l8 to room5, distance 11.0
+    l8 to room6, distance 13.0
+    //paths r3
+    l9 to room1, distance 7.0
+    l9 to room2, distance 5.0
+    l9 to room3, distance 7.0
+    l9 to room4, distance 8.0
+    l9 to room5, distance 5.0
+    l9 to room6, distance 3.0
+    //paths r4
+    l10 to room1, distance 8.0
+    l10 to room2, distance 6.0
+    l10 to room3, distance 8.0
+    l10 to room4, distance 7.0
+    l10 to room5, distance 4.0
+    l10 to room6, distance 2.0
+    //paths r5
+    l11 to room1, distance 9.0
+    l11 to room2, distance 6.0
+    l11 to room3, distance 9.0
+    l11 to room4, distance 6.0
+    l11 to room5, distance 3.0
+    l11 to room6, distance 1.0
+    
+     
+    
+    room1 to room2, distance 2.0
+    room1 to room3, distance 2.0
+    room1 to room4, distance 2.0 // ...
+    room1 to room5, distance 2.0
+    room1 to room6, distance 2.0
+    
+    room2 to room1, distance 2.0
+    room2 to room3, distance 2.0
+    room2 to room4, distance 2.0 // ...
+    room2 to room5, distance 2.0
+    room2 to room6, distance 2.0
+    
+    room3 to room2, distance 2.0
+    room3 to room1, distance 2.0
+    room3 to room4, distance 2.0 // ...
+    room3 to room5, distance 2.0
+    room3 to room6, distance 2.0
+    
+    room4 to room2, distance 2.0
+    room4 to room3, distance 2.0
+    room4 to room1, distance 2.0 // ...
+    room4 to room5, distance 2.0
+    room4 to room6, distance 2.0
+    
+    room5 to room2, distance 2.0
+    room5 to room3, distance 2.0
+    room5 to room4, distance 2.0 // ...
+    room5 to room1, distance 2.0
+    room5 to room6, distance 2.0
+    
+    room6 to room2, distance 2.0
+    room6 to room3, distance 2.0
+    room6 to room4, distance 2.0 // ...
+    room6 to room5, distance 2.0
+    room6 to room1, distance 2.0
+    
+    
+    
+TasksModel :
+    ct1_clean : subtasks [at2_floor,at3_sanit]  consecutive:true//clean room
+    //clean patient room
+    ct2_patient : subtasks [at4_notify,ct1_clean] ordered:true consecutive:false
+    at1_move : 2 robots needed   //move object jointly
+    at2_floor : 1 robots needed   //floor cleaning
+    at3_sanit : 1 robots needed   //sanitising
+    at4_notify : 1 robots needed   //notify patients
+ RobotsModel:
+  robots:
+    //cleaner robots
+    r1: at initial location l7 has velocity 2.0
+    can do
+        (at2_floor - time required: 5.0, success probability: 0.9,
+        at3_sanit -time required: 4.0, success probability: 0.9,
+        at4_notify -time required: 4.0, success probability: 0.9)
+    r2: at initial location l8 has velocity 2.0
+    can do
+        (at2_floor -time required: 7.0, success probability: 0.85,
+        at3_sanit -time required: 5.0, success probability: 0.9,
+        at4_notify -time required: 5.0, success probability: 0.85)
+    // pick and place robots
+    r3: at initial location l9 has velocity 3.0
+    can do
+        (at1_move - time required: 4.0, success probability: 0.9,
+        at4_notify -time required: 1.0, success probability: 0.9)
+    r4: at initial location l10  has velocity 3.0
+    can do
+        (at1_move - time required: 4.0, success probability: 0.9,
+        at4_notify -time required: 1.0, success probability: 0.9)
+    r5: at initial location l11 has velocity 3.0
+    can do
+        (at1_move - time required: 5.0, success probability: 0.8,
+        at4_notify -time required: 1.0, success probability: 0.7)
+Mission:
+    m1: atomic task at1_move at  room1 //move object jointly in room1
+    m2: atomic task at1_move at room6 //move object jointly in room6
+    m3: compound task ct2_patient at room2 //clean room2
+    m4: compound task ct2_patient at room3 //clean room3
+    m5: compound task ct2_patient at room4 //clean room4
+    m6: compound task ct2_patient at room5 //clean room5
+		//robot r5 work in x greater than 8.0
+		//robot r5 work in y greater than 5.0
+		time available: 100}

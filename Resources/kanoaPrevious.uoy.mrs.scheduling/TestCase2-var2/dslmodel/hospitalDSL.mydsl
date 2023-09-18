@@ -1,0 +1,56 @@
+ProblemSpecification{
+WorldModel:
+	l1 : ( x 1.0 y 0.0 ) //robot1
+	room1 : ( x 1.0 y 1.0) //room1
+	room2 : ( x 2.0 y 1.0) //room2
+	room3 : ( x 3.0 y 1.0) //room3
+	room4 : ( x 4.0 y 1.0) //room4
+	room5 : ( x 5.0 y 1.0) //room5
+	//paths
+	l1 to room1, distance 2.0
+	l1 to room2, distance 1.0
+	l1 to room3, distance 2.0
+	l1 to room4, distance 3.0
+	l1 to room5, distance 4.0
+	room1 to room2, distance 1.0
+	room1 to room3, distance 2.0
+	room1 to room4, distance 3.0
+	room1 to room5, distance 4.0
+	room2 to room1, distance 1.0
+	room2 to room3, distance 1.0
+	room2 to room4, distance 2.0
+	room2 to room5, distance 3.0
+	room3 to room1, distance 2.0
+	room3 to room2, distance 1.0
+	room3 to room4, distance 1.0
+	room3 to room5, distance 2.0
+	room4 to room1, distance 3.0
+	room4 to room2, distance 2.0
+	room4 to room3, distance 1.0
+	room4 to room5, distance 1.0
+	room5 to room1, distance 4.0
+	room5 to room2, distance 3.0
+	room5 to room3, distance 2.0
+	room5 to room4, distance 1.0
+	
+    
+    
+    
+TasksModel :
+    at1_move : 2 robots needed   //move object jointly
+ RobotsModel:
+  robots:
+    // pick and place robots
+    r1: at initial location l1 has velocity 1.0
+    can do
+        (at1_move - time required: 1.0, success probability: 0.99)
+    r2: at initial location l1  has velocity 1.0
+    can do
+        (at1_move - time required: 1.0, success probability: 0.99)
+Mission:
+    m1: atomic task at1_move at room1 //move object jointly in room1
+	m2: atomic task at1_move at room2 //move object jointly in room2
+	m3: atomic task at1_move at room3 //move object jointly in room3
+	m4: atomic task at1_move at room4 //move object jointly in room4
+
+    time available: 50}

@@ -18,7 +18,7 @@ class LocFile {
 		for (Robot r : robs){
 			s += r.name + "," + r.getInitLoc().name + "\n"
 		}
-		s.substring(0, s.length()-2);
+		s=s.substring(0, s.length()-1);
 		
 		Aux.generateFile('worldmodel.txt', s, tree.gv) // -- generate file
 	}

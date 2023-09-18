@@ -1,0 +1,28 @@
+prob,idle,travel,feasible,allocation,clusters,permutation
+Variables: 65 Objectives: 1.0 0.0 0.0 Constraints: 1.0 	AlgorithmAttributes: {}
+
+prob,idle,travel,feasible,allocation,clusters,permutation
+Variables: 20 Objectives: 1.0 0.0 0.0 Constraints: 1.0 	AlgorithmAttributes: {}
+
+prob,idle,travel,feasible,allocation,clusters,permutation
+Variables: 45 Objectives: 1.0 0.0 0.0 Constraints: 1.0 	AlgorithmAttributes: {}
+
+prob,idle,travel,feasible,allocation,clusters,permutation
+Variables: 6 Objectives: 1.0 0.0 0.0 Constraints: 1.0 	AlgorithmAttributes: {}
+
+prob,idle,travel,feasible,allocation,clusters,permutation
+Variables: 64 Objectives: 0.09268008775506198 0.6971810334781289 192.0 Constraints: 1.0 	AlgorithmAttributes: {}
+
+prob,idle,travel,feasible,allocation,clusters,permutation
+Variables: 74 Objectives: 0.09268008775506204 0.697181033478129 38.0 Constraints: 1.0 	AlgorithmAttributes: {alloc_perm=Allocation2_9}
+
+Variables: 72 Objectives: 0.18530201888518422 0.9385295364810002 31.0 Constraints: 1.0 	AlgorithmAttributes: {alloc_perm=Allocation4_8}
+
+prob,idle,travel,feasible,allocation,clusters,permutation
+Variables: 64 Objectives: 0.09268008775506204 3.0 29.0 Constraints: 1.0 	AlgorithmAttributes: {alloc_perm=Allocation2_5}
+
+prob,idle,travel,feasible,allocation,clusters,permutation
+Variables: 62 Objectives: 0.18530201888518422 1.0 38.0 Constraints: 1.0 	AlgorithmAttributes: {alloc_perm=Allocation4_3}
+
+Variables: 65 Objectives: 0.09268008775506204 3.0 31.0 Constraints: 1.0 	AlgorithmAttributes: {alloc_perm=Allocation2_8}
+

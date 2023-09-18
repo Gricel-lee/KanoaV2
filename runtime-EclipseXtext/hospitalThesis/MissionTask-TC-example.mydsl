@@ -1,0 +1,72 @@
+ ProblemSpecification{
+	WorldModel:
+	room1 : ( x 2.0 y 3.0 ) //room1
+    room2 : ( x 1.0 y 7.0 ) //room2
+    room3 : ( x 4.0 y 1.0 ) //room3
+    room4 : ( x 10.0 y 1.0) //room4
+    room5 : ( x 10.0 y 5.0) //room5
+    room6 : ( x 9.0 y 7.0 ) //room6 
+    l1 : ( x 1.0  y 1.0 ) //robot1
+    l2 : ( x 2.0 y 1.0 ) //robot2
+    l3 : ( x 6.0 y 7.0 ) //robot3
+    l4: ( x 7.0 y  7.0 ) //robot4
+    l5: ( x 8.0 y  7.0 ) //robot5 
+	 
+	//distance omitted to test task allocation  
+	distance l1 to l2 is 3.0
+	distance l1 to l3 is 3.0
+	distance l1 to room1 is 31.0
+	distance l1 to room4 is 31.0
+	
+	TasksModel:
+	 
+	 
+	 ct1: subtasks [ct2,ct3], 
+	 ct2: subtasks [ct4,ct5] constraint:ordered,
+	 ct4: subtasks [at1,at2], 
+	 ct5: subtasks [ct7,at1], 
+	 ct7: subtasks [at3,at4] constraint:ordered, 
+	 
+	 ct3: subtasks [ct6,ct5],
+	 ct6: subtasks [at1,at4] constraint:ordered, 
+	 
+	 
+	 at1 : 2 robots needed at location l1, 
+	 at2 : 1 robot needed at location l1,  
+	 at3:  1 robot needed at location l1, 
+	 at4:  1 robot needed at location l1 
+	 
+	 
+	RobotsModel:  
+	//cleaner  
+	r1 : at initial position l1 has velocity 2.0 with capabilities
+	 	(at2 -required time: 5.0, success rate: 99.0%,
+	 	 at3 -required time: 4.0, success rate: 99.0%, 
+	 	 at4 -required time: 2.0, success rate: 99.0% ),
+	r2 : at initial position l2 has velocity 2.0 with capabilities
+	 	(at2 -required time: 7.0, success rate: 85.0%,
+	 	 at3 -required time: 5.0, success rate: 99.0%,
+	 	 at4 -required time: 3.0, success rate: 85.0% ),
+	r3 : at initial position l3 has velocity 3.0 with capabilities
+	 	(at2 -required time: 6.0, success rate: 99.0%,
+	 	 at3 -required time: 6.0, success rate: 99.0%,
+	 	 at4 -required time: 3.0, success rate: 85.0% ), 
+	//pick and place   
+	r4  : at initial position l4 has velocity 3.0 with capabilities
+	 	(at1 -required time: 4.0, success rate: 99.0%),
+	r5 : at initial position l5 has velocity 3.0 with capabilities
+	 	(at1 -required time: 4.0, success rate: 99.0%)
+	
+	
+	Mission :
+		m1 : compound task ct1
+		 
+		//m11 : compound task ct6 //allocate tasks
+        
+		objectives:
+			minimiseIdle, minimiseTravel, maximiseSuccess
+		  
+		constraints: 
+		parameters: 
+}
+

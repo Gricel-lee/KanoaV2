@@ -1,0 +1,29 @@
+PRISM
+=====
+
+Version: 4.5.dev
+Date: Sun Jun 05 19:29:38 BST 2022
+Hostname: Griss-MacBook-Air.local
+Memory limits: cudd=1g, java(heap)=2g
+
+Type:        MDP
+Modules:     selector r5 r1 
+Variables:   R5 R1 r5_order r5_time r5_fail r1_order r1_time r1_fail 
+
+---------------------------------------------------------------------
+
+Building model...
+
+Computing reachable states... 2880 states
+Reachable states exploration and model construction done in 0.103 secs.
+Sorting reachable states list...
+
+Time for model construction: 0.128 seconds.
+
+Warning: Deadlocks detected and fixed in 546 states
+
+Type:        MDP
+States:      2880 (1 initial)
+Transitions: 9576
+Choices:     7728
+Max/avg:     6/2.68

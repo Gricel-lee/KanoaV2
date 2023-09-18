@@ -67,7 +67,7 @@ public class CompoundTaskInstance {
   }
 
   /**
-   * Get atomic subtasks
+   * Get atomic reachable subtasks
    */
   public ArrayList<String> getatSubtasks(final GlobalVar gv) {
     boolean _isEmpty = this.atReachable.isEmpty();

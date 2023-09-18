@@ -18,8 +18,10 @@ public class TreeFile {
     String consecutive = "";
     String start = "";
     String end = "";
+    String inst = "";
+    String reachableAtomicTasks = "";
     String _s = s;
-    s = (_s + "id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end");
+    s = (_s + "type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks");
     for (final String tID : gv.tasksList) {
       boolean _contains = gv.missionList.keySet().contains(tID);
       if (_contains) {
@@ -34,9 +36,11 @@ public class TreeFile {
         consecutive = "NaN";
         start = "NaN";
         end = "NaN";
+        inst = tID;
+        reachableAtomicTasks = "NaN";
         String _s_1 = s;
         s = (_s_1 + 
-          ((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
+          ((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks));
       } else {
         boolean _contains_1 = gv.compoundList.keySet().contains(tID);
         if (_contains_1) {
@@ -54,9 +58,14 @@ public class TreeFile {
           consecutive = gv.compoundList.get(tID).ordered;
           start = "NaN";
           end = "NaN";
+          inst = gv.compoundList.get(tID).ct.getName();
+          String _join_1 = String.join(",", gv.compoundList.get(tID).getatSubtasks(gv));
+          String _plus_2 = ("[\'" + _join_1);
+          String _plus_3 = (_plus_2 + "\']");
+          reachableAtomicTasks = _plus_3;
           String _s_2 = s;
           s = (_s_2 + 
-            ((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
+            ((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks));
         } else {
           boolean _contains_2 = gv.atomicList.keySet().contains(tID);
           if (_contains_2) {
@@ -75,6 +84,8 @@ public class TreeFile {
             }
             ordered = "NaN";
             consecutive = "NaN";
+            inst = gv.atomicList.get(tID).at.getName();
+            reachableAtomicTasks = "NaN";
             if ((gv.atomicList.get(tID).start != null)) {
               start = String.valueOf(gv.atomicList.get(tID).start);
             } else {
@@ -87,7 +98,7 @@ public class TreeFile {
             }
             String _s_3 = s;
             s = (_s_3 + 
-              ((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end));
+              ((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks));
           }
         }
       }

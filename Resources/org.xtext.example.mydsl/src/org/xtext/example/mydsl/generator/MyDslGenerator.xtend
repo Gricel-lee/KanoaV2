@@ -1,4 +1,4 @@
-/* Github version v1: https://github.com/Gricel-lee/Kanoa/blob/main/Resources/src/1%20DSL%20Generation/code/org.xtext.example.mydsl/bin/org/xtext/example/mydsl/generator/MyDslGenerator.xtend
+/* Github version v2: https://github.com/Gricel-lee/Kanoa/blob/main/Resources/src/1%20DSL%20Generation/code/org.xtext.example.mydsl/bin/org/xtext/example/mydsl/generator/MyDslGenerator.xtend
  * Author: Gricel Vazquez
  * 2023
  */
@@ -29,6 +29,9 @@ class MyDslGenerator extends AbstractGenerator {
 		
 		// -Locations-paths file
 		LocFile.createLocFile(kanoa,resource,path)
+		
+		// -Other DSL info file
+		InfoDSLFile.createFile(kanoa,resource,path)
 		
 		println("\n=== Done. ===");
 	}

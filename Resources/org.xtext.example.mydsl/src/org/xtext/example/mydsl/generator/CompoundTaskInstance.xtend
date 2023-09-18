@@ -40,7 +40,7 @@ class CompoundTaskInstance{
 	}
 	
 	
-	/*Get atomic subtasks */
+	/*Get atomic reachable subtasks */
 	def getatSubtasks(GlobalVar gv){
 		if (this.atReachable.isEmpty()){this.getatomicInstancesReachable(gv)}
 		return this.atReachable

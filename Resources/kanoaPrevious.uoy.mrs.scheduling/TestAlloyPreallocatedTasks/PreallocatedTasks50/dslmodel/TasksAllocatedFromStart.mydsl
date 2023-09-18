@@ -1,0 +1,23 @@
+ProblemSpecification{
+	WorldModel:
+	room6 : ( x 2.0 y 3.0 ) //room1
+	
+	TasksModel:
+	 at6 : 1 robot needed at location room6, // moving medical equipment
+	 ct6: subtasks [at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,
+	 	at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6,at6
+	 ] constraint: ordered //clean patient room
+	 
+	RobotsModel:  
+	//cleaner
+	r6 : at initial position room6 has velocity 2.0 with capabilities
+	 	(at6 -required time: 5.0, success rate: 99.0%)
+	Mission :
+		m11 : compound task ct6
+		objectives: 
+			minimiseIdle
+		constraints: 
+			allocate atomic task at6 to robot r6,
+		parameters: 
+			time: 120
+}

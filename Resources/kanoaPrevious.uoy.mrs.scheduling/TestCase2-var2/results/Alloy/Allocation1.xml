@@ -1,0 +1,97 @@
+<alloy builddate="2012-09-25 15:54 EDT">
+
+<instance bitwidth="7" maxseq="4" command="Run TaskAllocation for 7 int, 14 Capability, exactly 4 AtomicTask, 2 Robot, exactly 1 at1_move_0, exactly 1 at1_move_1, exactly 1 at1_move_2, exactly 1 at1_move_3" filename="">
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="String" ID="3" parentID="2" builtin="yes">
+</sig>
+
+<sig label="this/r1" ID="4" parentID="5">
+   <atom label="r1$0"/>
+</sig>
+
+<sig label="this/r2" ID="6" parentID="5">
+   <atom label="r2$0"/>
+</sig>
+
+<sig label="this/Robot" ID="5" parentID="2" abstract="yes">
+</sig>
+
+<field label="capability" ID="7" parentID="5">
+   <tuple> <atom label="r2$0"/> <atom label="r2at1_move$0"/> </tuple>
+   <tuple> <atom label="r1$0"/> <atom label="r1at1_move$0"/> </tuple>
+   <types> <type ID="5"/> <type ID="8"/> </types>
+</field>
+
+<sig label="this/r1at1_move" ID="9" parentID="8">
+   <atom label="r1at1_move$0"/>
+</sig>
+
+<sig label="this/r2at1_move" ID="10" parentID="8">
+   <atom label="r2at1_move$0"/>
+</sig>
+
+<sig label="this/Capability" ID="8" parentID="2" abstract="yes">
+</sig>
+
+<field label="do" ID="11" parentID="8">
+   <tuple> <atom label="r2at1_move$0"/> <atom label="at1_move_0$0"/> </tuple>
+   <tuple> <atom label="r2at1_move$0"/> <atom label="at1_move_1$0"/> </tuple>
+   <tuple> <atom label="r2at1_move$0"/> <atom label="at1_move_2$0"/> </tuple>
+   <tuple> <atom label="r2at1_move$0"/> <atom label="at1_move_3$0"/> </tuple>
+   <tuple> <atom label="r1at1_move$0"/> <atom label="at1_move_0$0"/> </tuple>
+   <tuple> <atom label="r1at1_move$0"/> <atom label="at1_move_1$0"/> </tuple>
+   <tuple> <atom label="r1at1_move$0"/> <atom label="at1_move_2$0"/> </tuple>
+   <tuple> <atom label="r1at1_move$0"/> <atom label="at1_move_3$0"/> </tuple>
+   <types> <type ID="8"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/at1_move_0" ID="13" parentID="14">
+   <atom label="at1_move_0$0"/>
+</sig>
+
+<sig label="this/at1_move_1" ID="15" parentID="14">
+   <atom label="at1_move_1$0"/>
+</sig>
+
+<sig label="this/at1_move_2" ID="16" parentID="14">
+   <atom label="at1_move_2$0"/>
+</sig>
+
+<sig label="this/at1_move_3" ID="17" parentID="14">
+   <atom label="at1_move_3$0"/>
+</sig>
+
+<sig label="this/at1_move" ID="14" parentID="12" abstract="yes">
+</sig>
+
+<sig label="this/AtomicTask" ID="12" parentID="2" abstract="yes">
+</sig>
+
+<field label="x" ID="18" parentID="12">
+   <tuple> <atom label="at1_move_0$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="at1_move_1$0"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="at1_move_2$0"/> <atom label="3"/> </tuple>
+   <tuple> <atom label="at1_move_3$0"/> <atom label="4"/> </tuple>
+   <types> <type ID="12"/> <type ID="1"/> </types>
+</field>
+
+<field label="y" ID="19" parentID="12">
+   <tuple> <atom label="at1_move_0$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="at1_move_1$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="at1_move_2$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="at1_move_3$0"/> <atom label="1"/> </tuple>
+   <types> <type ID="12"/> <type ID="1"/> </types>
+</field>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+</instance>
+
+</alloy>

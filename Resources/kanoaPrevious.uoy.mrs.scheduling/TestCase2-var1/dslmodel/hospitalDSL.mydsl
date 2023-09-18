@@ -1,0 +1,36 @@
+ProblemSpecification{
+WorldModel:
+	l1 : ( x 1.0 y 0.0 ) //robot1
+	room1 : ( x 1.0 y 1.0) //room1
+	room2 : ( x 2.0 y 1.0) //room2
+	room3 : ( x 3.0 y 1.0) //room3
+	//paths
+	l1 to room1, distance 2.0
+	l1 to room2, distance 1.0
+	l1 to room3, distance 2.0
+	room1 to room2, distance 1.0
+	room1 to room3, distance 2.0
+	room2 to room1, distance 1.0
+	room2 to room3, distance 1.0
+	room3 to room1, distance 2.0
+	room3 to room2, distance 1.0
+
+    
+    
+    
+TasksModel :
+    at1_move : 2 robots needed   //move object jointly
+ RobotsModel:
+  robots:
+    // pick and place robots
+    r1: at initial location l1 has velocity 1.0
+    can do
+        (at1_move - time required: 4.0, success probability: 0.9)
+    r2: at initial location l1  has velocity 1.0
+    can do
+        (at1_move - time required: 4.0, success probability: 0.9)
+Mission:
+    m1: atomic task at1_move at room1 //move object jointly in room1
+    m2: atomic task at1_move at room2 //move object jointly in room2
+    m3: atomic task at1_move at room3 //move object jointly in room2
+    time available: 200}

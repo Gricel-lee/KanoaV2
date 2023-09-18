@@ -53,7 +53,7 @@ ProblemSpecification{
 	
 	//r6 : at initial position room6 has velocity 2.0 with capabilities
 	// 	(at1 -required time: 5.0, success rate: 99.0%)
-	  
+	
 	Mission :
 		m1 : atomic task at1 at location room1, //move equipment
 		m2 : atomic task at1 at location  room6, //move equipment
@@ -61,12 +61,12 @@ ProblemSpecification{
 		m4 : compound task ct2 at location room3, //clean
 		m5 : compound task ct2 at location room4, //clean  
 		m6 : compound task ct2 at location room5//, //clean 
-		
+		 
 		//m11 : compound task ct6 //allocate tasks
-  
+        
 		objectives:
 			minimiseIdle, minimiseTravel, maximiseSuccess
-		 
+		  
 		constraints: 
 			robot r3 work in x greater than 9.0, 
 			robot r3 work in y lower than 7.0,//,
@@ -75,7 +75,8 @@ ProblemSpecification{
 			mission task m1 has end time 114.0, 
 			mission task m1 has start time 80.0, 
 			compound task ct1 has end time 4.0,
-			allocate compound task ct1 to robot r1
+			allocate compound task ct1 to robot r1,
+			rate of success greater than 95.0,
 			 
 			//allocate atomic task at2 to robot r2,
 			//allocate mission task m4 to robot r3,
@@ -96,4 +97,7 @@ ProblemSpecification{
 			
 		parameters: 
 			time: 120
+			numAllocation: 10
+			population: 100
+			evaluation:20
 }

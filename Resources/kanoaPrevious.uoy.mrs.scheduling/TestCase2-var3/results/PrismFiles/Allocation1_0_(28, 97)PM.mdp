@@ -1,0 +1,119 @@
+mdp
+
+formula done = (r2_order=11 & r1_order=11);
+
+// failure
+formula fail = (r2_fail=0 & r1_fail=0 );
+
+// total time available
+const int TT=100;
+
+// completion tasks time
+const int r2at1_move_4Time=1;
+const int r2at1_move_0Time=1;
+const int r2at1_move_1Time=1;
+const int r2at1_move_3Time=1;
+const int r2at1_move_2Time=1;
+const int r1at1_move_1Time=1;
+const int r1at1_move_0Time=1;
+const int r1at1_move_4Time=1;
+const int r1at1_move_2Time=1;
+const int r1at1_move_3Time=1;
+
+// probabilities of succeeding with a task
+const double pr2_Succ_at1_move = 0.99;
+const double pr1_Succ_at1_move = 0.99;
+
+// travelling costs of each robot
+const int r2_travDist = 12; //l1->room5->room1->room2->room4->room3
+const int r1_travDist = 9; //l1->room2->room1->room5->room3->room4
+
+// tasks to track for ordering constraints
+
+
+//---------- Robot r2 MODULE----------
+module r2
+  //r2_order=0: travel cost 
+  //r2_order=1: time travel to join task at1_move_4
+  //r2_order=2: join task at1_move_4
+  //r2_order=3: time travel to join task at1_move_0
+  //r2_order=4: join task at1_move_0
+  //r2_order=5: time travel to join task at1_move_1
+  //r2_order=6: join task at1_move_1
+  //r2_order=7: time travel to join task at1_move_3
+  //r2_order=8: join task at1_move_3
+  //r2_order=9: time travel to join task at1_move_2
+  //r2_order=10: join task at1_move_2
+  r2_order: [0..11] init 0; // execution order
+  r2_time:[0..TT] init 0; //time available
+  r2_travel: [0..1] init 0; // get travelling reward
+  r2_fail: [0..1] init 0; // failure detected
+
+  // travel captured as a reward
+  [r2travel] r2_order=0 -> (r2_order'=1);
+  // do sequence of tasks
+  [ ] r2_order=1 & r2_fail=0 & (r2_time+4<=TT) -> (pr2_Succ_at1_move): (r2_order'=2) & (r2_time'= r2_time+4)+ (1-pr2_Succ_at1_move): (r2_fail'=1) & (r2_order'=2) & (r2_time'= r2_time+4); // travel to join task at1_move_4
+  [at1_move_4] r2_order=2 & r2_fail=0 & (r2_time+r2at1_move_4Time<=TT) & r2_time=r1_time -> (r2_order'=3) & (r2_time'= r2_time + r2at1_move_4Time);
+  [ ] r2_order=3 & r2_fail=0 & (r2_time+4<=TT) -> (pr2_Succ_at1_move): (r2_order'=4) & (r2_time'= r2_time+4)+ (1-pr2_Succ_at1_move): (r2_fail'=1) & (r2_order'=4) & (r2_time'= r2_time+4); // travel to join task at1_move_0
+  [at1_move_0] r2_order=4 & r2_fail=0 & (r2_time+r2at1_move_0Time<=TT) & r2_time=r1_time -> (r2_order'=5) & (r2_time'= r2_time + r2at1_move_0Time);
+  [ ] r2_order=5 & r2_fail=0 & (r2_time+1<=TT) -> (pr2_Succ_at1_move): (r2_order'=6) & (r2_time'= r2_time+1)+ (1-pr2_Succ_at1_move): (r2_fail'=1) & (r2_order'=6) & (r2_time'= r2_time+1); // travel to join task at1_move_1
+  [at1_move_1] r2_order=6 & r2_fail=0 & (r2_time+r2at1_move_1Time<=TT) & r2_time=r1_time -> (r2_order'=7) & (r2_time'= r2_time + r2at1_move_1Time);
+  [ ] r2_order=7 & r2_fail=0 & (r2_time+2<=TT) -> (pr2_Succ_at1_move): (r2_order'=8) & (r2_time'= r2_time+2)+ (1-pr2_Succ_at1_move): (r2_fail'=1) & (r2_order'=8) & (r2_time'= r2_time+2); // travel to join task at1_move_3
+  [at1_move_3] r2_order=8 & r2_fail=0 & (r2_time+r2at1_move_3Time<=TT) & r2_time=r1_time -> (r2_order'=9) & (r2_time'= r2_time + r2at1_move_3Time);
+  [ ] r2_order=9 & r2_fail=0 & (r2_time+1<=TT) -> (pr2_Succ_at1_move): (r2_order'=10) & (r2_time'= r2_time+1)+ (1-pr2_Succ_at1_move): (r2_fail'=1) & (r2_order'=10) & (r2_time'= r2_time+1); // travel to join task at1_move_2
+  [at1_move_2] r2_order=10 & r2_fail=0 & (r2_time+r2at1_move_2Time<=TT) & r2_time=r1_time -> (r2_order'=11) & (r2_time'= r2_time + r2at1_move_2Time);
+
+  // failure and recovery
+  [ ] r2_fail=1 -> (r2_fail'=0); // fail
+  [r2idle] r2_order!=11 & r2_fail=0 & (r2_time+1<=TT) -> (r2_time'=r2_time+1); // idle
+endmodule
+
+
+//---------- Robot r1 MODULE----------
+module r1
+  //r1_order=0: travel cost 
+  //r1_order=1: time travel to join task at1_move_1
+  //r1_order=2: join task at1_move_1
+  //r1_order=3: time travel to join task at1_move_0
+  //r1_order=4: join task at1_move_0
+  //r1_order=5: time travel to join task at1_move_4
+  //r1_order=6: join task at1_move_4
+  //r1_order=7: time travel to join task at1_move_2
+  //r1_order=8: join task at1_move_2
+  //r1_order=9: time travel to join task at1_move_3
+  //r1_order=10: join task at1_move_3
+  r1_order: [0..11] init 0; // execution order
+  r1_time:[0..TT] init 0; //time available
+  r1_travel: [0..1] init 0; // get travelling reward
+  r1_fail: [0..1] init 0; // failure detected
+
+  // travel captured as a reward
+  [r1travel] r1_order=0 -> (r1_order'=1);
+  // do sequence of tasks
+  [ ] r1_order=1 & r1_fail=0 & (r1_time+1<=TT) -> (pr1_Succ_at1_move): (r1_order'=2) & (r1_time'= r1_time+1)+ (1-pr1_Succ_at1_move): (r1_fail'=1) & (r1_order'=2) & (r1_time'= r1_time+1); // travel to join task at1_move_1
+  [at1_move_1] r1_order=2 & r1_fail=0 & (r1_time+r1at1_move_1Time<=TT) & r1_time=r2_time -> (r1_order'=3) & (r1_time'= r1_time + r1at1_move_1Time);
+  [ ] r1_order=3 & r1_fail=0 & (r1_time+1<=TT) -> (pr1_Succ_at1_move): (r1_order'=4) & (r1_time'= r1_time+1)+ (1-pr1_Succ_at1_move): (r1_fail'=1) & (r1_order'=4) & (r1_time'= r1_time+1); // travel to join task at1_move_0
+  [at1_move_0] r1_order=4 & r1_fail=0 & (r1_time+r1at1_move_0Time<=TT) & r1_time=r2_time -> (r1_order'=5) & (r1_time'= r1_time + r1at1_move_0Time);
+  [ ] r1_order=5 & r1_fail=0 & (r1_time+4<=TT) -> (pr1_Succ_at1_move): (r1_order'=6) & (r1_time'= r1_time+4)+ (1-pr1_Succ_at1_move): (r1_fail'=1) & (r1_order'=6) & (r1_time'= r1_time+4); // travel to join task at1_move_4
+  [at1_move_4] r1_order=6 & r1_fail=0 & (r1_time+r1at1_move_4Time<=TT) & r1_time=r2_time -> (r1_order'=7) & (r1_time'= r1_time + r1at1_move_4Time);
+  [ ] r1_order=7 & r1_fail=0 & (r1_time+2<=TT) -> (pr1_Succ_at1_move): (r1_order'=8) & (r1_time'= r1_time+2)+ (1-pr1_Succ_at1_move): (r1_fail'=1) & (r1_order'=8) & (r1_time'= r1_time+2); // travel to join task at1_move_2
+  [at1_move_2] r1_order=8 & r1_fail=0 & (r1_time+r1at1_move_2Time<=TT) & r1_time=r2_time -> (r1_order'=9) & (r1_time'= r1_time + r1at1_move_2Time);
+  [ ] r1_order=9 & r1_fail=0 & (r1_time+1<=TT) -> (pr1_Succ_at1_move): (r1_order'=10) & (r1_time'= r1_time+1)+ (1-pr1_Succ_at1_move): (r1_fail'=1) & (r1_order'=10) & (r1_time'= r1_time+1); // travel to join task at1_move_3
+  [at1_move_3] r1_order=10 & r1_fail=0 & (r1_time+r1at1_move_3Time<=TT) & r1_time=r2_time -> (r1_order'=11) & (r1_time'= r1_time + r1at1_move_3Time);
+
+  // failure and recovery
+  [ ] r1_fail=1 -> (r1_fail'=0); // fail
+  [r1idle] r1_order!=11 & r1_fail=0 & (r1_time+1<=TT) -> (r1_time'=r1_time+1); // idle
+endmodule
+
+rewards "travel" 
+ [r2travel] true: r2_travDist;
+ [r1travel] true: r1_travDist;
+endrewards
+rewards "idle" 
+ [r2idle] true: 1;
+ [r1idle] true: 1;
+endrewards
+
+//total time and prob:
+//21//0.9043820750088043

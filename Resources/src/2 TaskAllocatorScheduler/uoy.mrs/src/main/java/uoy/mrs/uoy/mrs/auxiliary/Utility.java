@@ -1,29 +1,19 @@
 package uoy.mrs.uoy.mrs.auxiliary;
 
 import java.io.BufferedReader;
+import java.io.File;  // Import the File class
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
-import java.io.File;  // Import the File class
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigInteger;
-import java.util.Properties;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FilenameUtils;
 
-
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import uoy.mrs.uoy.mrs.auxiliary.Constants;
+import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
 
 public class Utility {
 	
@@ -67,7 +57,12 @@ public class Utility {
         return factorial;
 	}
 	
-
+	
+	/**e.g. of string: "['at4_12,ct1_8']" */
+	public static String[] stringToList(String s) {
+		String[] result = s.replace("[", "").replace("]", "").replaceAll("'", "").split(",");
+		return result;
+	}
 	
 	
 	public void makeParentFile(String file) {
@@ -138,6 +133,14 @@ public class Utility {
 		}
 	}
 	
+	
+	public static String getNumOfAllocation(String fileName) {
+		String s ="";
+		String[] f =fileName.split("//");
+		s = f[f.length-1].replace(".xml", "").replace("Allocation", "");;
+		
+		return s;
+	}
 	
 	public static String fileToString(File pmfile){
 		/**Convert path of a File type to string*/
@@ -303,18 +306,14 @@ public class Utility {
 					if (s.contains(lookForString)) {
 						num=s.replaceAll("\\D+",""); // get only number in String
 						return num;					 // return when find declaration in DSL
-					}
-				}
+				}}
 				br.close();
-
-			} catch (IOException e) {
-				System.err.println("ERROR 01: Path to Alloy Input file not found \n"
-						+ "\nCheck uoy.mrs.uoy.mrs.scheduling.auxiliary Constants.*DSLFILE");
-				System.exit(1);
-				//e.printStackTrace();
 			}
+			catch (IOException e) {KanoaErrorHandler.NotAlloyFilePath();}
 			return num;
 		}
+	  
+	  
 	  
 	  
 	  

@@ -36,8 +36,8 @@ public class LocFile {
       s = (_s_1 + _plus_7);
     }
     int _length = s.length();
-    int _minus = (_length - 2);
-    s.substring(0, _minus);
+    int _minus = (_length - 1);
+    s = s.substring(0, _minus);
     Aux.generateFile("worldmodel.txt", s, tree.gv);
   }
 }

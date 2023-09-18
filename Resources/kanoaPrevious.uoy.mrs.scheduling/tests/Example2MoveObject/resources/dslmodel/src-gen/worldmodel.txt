@@ -1,0 +1,10 @@
+l1,room3,3.0
+l1,room5,9.0
+l2,room3,9.0
+l2,room5,2.0
+room3,room5,7.0
+room3,room3,0.0
+room5,room3,7.0
+room5,room5,0.0
+r1,l2
+r5,l2
