@@ -1,6 +1,12 @@
 package uoy.mrs.uoy.mrs.types.impl;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
+import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 
 public class CompoundTaskInstance{
 	
@@ -10,10 +16,9 @@ public class CompoundTaskInstance{
 	private String ordered;
 	private String consecutive;
 	private String inst;
-	
 	private String ordered_children_str;
 	
-
+	private ArrayList<String> reachable_atomictasks = new ArrayList<String>();
 
 	public CompoundTaskInstance(String id, String parent, String ordered_children, String ordered,
 			String consecutive, String inst) {
@@ -83,5 +88,30 @@ public class CompoundTaskInstance{
 	
 	public String getInst() {
 		return inst;
+	}
+	
+	
+	
+	public ArrayList<String> getAtomicTasksReachable(ProblemSpecification p){
+		// - if computed before - saved in AtomicTaskIdToRobots
+		if(!reachable_atomictasks.isEmpty()) {
+			return reachable_atomictasks;
+		}
+		
+		// - if not computed before
+		ArrayList<String> atList = new ArrayList<String>();
+		
+		Queue<String> queue = new LinkedList<>();
+		for (String subTask : this.ordered_children) {queue.add(subTask);}
+		while (!queue.isEmpty()) {
+			String poll = queue.poll();
+			if(p.isAtomic(poll)) {atList.add(poll);}
+			else {
+				CompoundTaskInstance ct = p.getTasks().ctList.get(poll);//compound subtask
+				for (String subTask : ct.ordered_children) {queue.add(subTask);}//add subtask subtasks to queue
+			}
+		}
+		reachable_atomictasks = atList;
+		return reachable_atomictasks;
 	}
 }

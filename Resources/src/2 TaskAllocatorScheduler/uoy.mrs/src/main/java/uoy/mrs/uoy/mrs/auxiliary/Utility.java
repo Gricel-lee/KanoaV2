@@ -9,7 +9,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -24,6 +28,13 @@ public class Utility {
 	        } catch (InterruptedException e) {
 	            e.printStackTrace();
 	        }
+	}
+	
+	
+	public static ArrayList<String> setToList(Set<String> set){
+		//e.g., when using hashmap.keySet()
+		ArrayList<String> list = new ArrayList<String>(set);
+		return list;
 	}
 	
 	public static int getFactorial(Integer num) {
@@ -417,5 +428,41 @@ public class Utility {
 
     return feasible;
 	}
+	
+	
+	
+	
+	
+	public static int[][] removeDuplicateRows(int[][] matrix) {
+        List<int[]> uniqueRows = new ArrayList<>();
+        HashSet<String> rowStrings = new HashSet<>();
+
+        for (int[] row : matrix) {
+            // Convert the row to a string to check for duplicates
+            String rowString = arrayToString(row);
+
+            // If the rowString is not already in the set, add it to uniqueRows and rowStrings
+            if (!rowStrings.contains(rowString)) {
+                uniqueRows.add(row);
+                rowStrings.add(rowString);
+            }
+        }
+
+        // Convert the list of unique rows back to a 2D array
+        int[][] uniqueMatrix = new int[uniqueRows.size()][matrix[0].length];
+        for (int i = 0; i < uniqueRows.size(); i++) {
+            uniqueMatrix[i] = uniqueRows.get(i);
+        }
+
+        return uniqueMatrix;
+    }
+
+    public static String arrayToString(int[] arr) {
+        StringBuilder sb = new StringBuilder();
+        for (int num : arr) {
+            sb.append(num).append(',');
+        }
+        return sb.toString();
+    }
 	
 }

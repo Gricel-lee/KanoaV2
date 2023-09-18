@@ -29,7 +29,7 @@ public class BreadthFirst {
     		}
     		//else (compound task)
     		if(p.isCompound(poll)) {
-    			if(!p.isCompoundConstrained(poll)){
+    			if(p.isCompoundConstrained(poll)){
     				constrainedTasks.add(poll);
     			}
     			else {

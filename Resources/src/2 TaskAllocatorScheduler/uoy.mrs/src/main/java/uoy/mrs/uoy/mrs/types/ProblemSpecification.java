@@ -61,7 +61,29 @@ public class ProblemSpecification{
 	public Parameters getParameters() {
 		return parameters;
 	}
+	
+	
+	/**Check if an identifier is from an atomic task*/
+	public boolean isAtomic(String id) {
+		if(this.tasksModelI.atList.keySet().contains(id)) {
+			return true;
+		}
+		return false;
+	}
 
+	/**Check if an identifier is from a compound task*/
+	public boolean isCompound(String id) {
+		if(this.tasksModelI.ctList.keySet().contains(id)) {
+			return true;
+		}
+		return false;
+	}
+
+	/**Check if compound task identifier is contrained*/
+	public boolean isCompoundConstrained(String id) {
+		if( this.getTasks().ctList.get(id).isordered() || this.getTasks().ctList.get(id).isconsecutive()){return true;}
+		return false;
+	}
 
 	/**
 	 * Read allocation files - i.e., Alloy output.
@@ -189,25 +211,5 @@ public class ProblemSpecification{
 	}
 
 	
-	/**Check if an identifier is from an atomic task*/
-	public boolean isAtomic(String id) {
-		if(this.tasksModelI.atList.keySet().contains(id)) {
-			return true;
-		}
-		return false;
-	}
 
-	/**Check if an identifier is from a compound task*/
-	public boolean isCompound(String id) {
-		if(this.tasksModelI.ctList.keySet().contains(id)) {
-			return true;
-		}
-		return false;
-	}
-
-	/**Check if compound task identifier is contrained*/
-	public boolean isCompoundConstrained(String id) {
-		if( this.getTasks().ctList.get(id).isordered() || this.getTasks().ctList.get(id).isconsecutive()){return true;}
-		return false;
-	}
 } 

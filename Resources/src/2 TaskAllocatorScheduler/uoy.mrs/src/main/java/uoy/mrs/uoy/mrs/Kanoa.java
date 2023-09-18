@@ -90,12 +90,15 @@ public class Kanoa {
 		System.out.println("\n---- Pre-scheduler, getting clusters");
 			
 		// -- Clusters output file
+		PreTaskScheduler.getRobotsGroupsForAllocations(problemSpec);
+		
+		
 		System.out.println(Constants.outputDir+"/try/");
 		Utility.checkPath(Constants.transClosureOutputDir);
 		
 		
 		
-		PreTaskScheduler.transClosure(problemSpec);
+		
 	}	
     
 }

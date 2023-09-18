@@ -34,7 +34,7 @@ public class TypesTest {
 		System.out.println(Constants.filespath+"jj");
 		
 		loc = new Location(locID,"4.0","5.0");
-		Robot robot = new Robot("r1",loc,"{}");  
+		//Robot robot = new Robot("r1",loc,"{}");  
 	}
 	
 	
