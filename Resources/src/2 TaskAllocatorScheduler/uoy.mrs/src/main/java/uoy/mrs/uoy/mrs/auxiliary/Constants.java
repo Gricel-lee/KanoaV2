@@ -51,12 +51,13 @@ public class Constants {
 	
 	public static int maxPermutations;
 	
-	// Objectives to consider
-	public static String objectiveProb;
-	public static String objectiveIdle;
-	public static String objectiveTravel;
-	public static Integer num_objectives;
-	public static List<Integer> bool_objectives;
+	//@depricated: Objectives to consider.
+	//Moved to be part of the problem specifications.
+	//public static String objectiveProb;
+	//public static String objectiveIdle;
+	//public static String objectiveTravel;
+	//public static Integer num_objectives;
+	//public static List<Integer> bool_objectives;
 	
 	// Alloy output related VARIABLES:
 	public static int num_instances_found;  // number of Alloy instances found
@@ -129,13 +130,11 @@ public class Constants {
 		
 		pythonDir = getProperty("PYTHON3_DIRECTORY");
 		
-		// Objectives
-		
-		objectiveProb = getProperty("OBJECTIVE_PROB");
-		
-		objectiveIdle = getProperty("OBJECTIVE_IDLE");
-		
-		objectiveTravel = getProperty("OBJECTIVE_TRAVEL");
+		//@depricated Objectives
+		//Moved to be part of the problem specifications.
+		//objectiveProb = getProperty("OBJECTIVE_PROB");
+		//objectiveIdle = getProperty("OBJECTIVE_IDLE");
+		//objectiveTravel = getProperty("OBJECTIVE_TRAVEL");
 		
 		
 		// From DSL file
@@ -206,6 +205,21 @@ public class Constants {
 			throw new IllegalArgumentException(key.toUpperCase() + " name not found!");}
 		return result;		
 	}
+	
+	/**
+	 * Get variable from infoDSL.txt
+	 * @param key Name of the property to get
+	 * @return
+	 */
+	public static String getDSLInfo (String key){
+		String result = properties.getProperty(key).strip(); 
+		if (result == null) {
+			System.err.println("ERROR: NO "+key+" found in config.prop " );
+			throw new IllegalArgumentException(key.toUpperCase() + " name not found!");}
+		return result;		
+	}
+	
+	
 	
 
 }

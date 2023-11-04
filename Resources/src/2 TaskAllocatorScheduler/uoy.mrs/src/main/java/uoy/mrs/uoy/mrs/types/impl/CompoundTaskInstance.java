@@ -78,13 +78,37 @@ public class CompoundTaskInstance{
 	}
 	
 	public Boolean isordered() {
-		return Boolean.parseBoolean(ordered);
+		if(this.ordered.equals("True") || this.ordered.equals("true")) {return true;}
+		
+		return false;
 	}
 	
 	public Boolean isconsecutive() {
-		return Boolean.parseBoolean(consecutive);
+		if(this.consecutive.equals("True") || this.consecutive.equals("true")) {return true;}
+		
+		return false;
 	}
-
+	
+	
+	/**Check if atomic task exists in subtasks*/
+	public Boolean isatomicTaskInSubtasks(String atID) {
+		for (String str : getorderedChildren()) {
+            if (str.equals(atID)) {
+                return true;
+            }
+        }
+		return false;
+	}
+	
+	/**Get first n subtasks*/
+	public String[] getfirstNsubtasks(int n) {
+		String[] result = new String[n];
+		for (int i = 0; i < n; i++) { result[i] = ordered_children[i]; }
+		return result;
+	}
+	 
+	
+	
 	
 	public String getInst() {
 		return inst;

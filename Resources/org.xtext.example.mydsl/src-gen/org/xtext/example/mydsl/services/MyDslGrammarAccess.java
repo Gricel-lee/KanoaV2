@@ -1276,26 +1276,27 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final CrossReference cMtMissionTaskCrossReference_0_2_2_0 = (CrossReference)cMtAssignment_0_2_2.eContents().get(0);
 		private final RuleCall cMtMissionTaskEStringParserRuleCall_0_2_2_0_1 = (RuleCall)cMtMissionTaskCrossReference_0_2_2_0.eContents().get(1);
 		private final Keyword cHasKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cStartEndAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cStartEndStartEndEnumRuleCall_2_0 = (RuleCall)cStartEndAssignment_2.eContents().get(0);
-		private final Keyword cTimeKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cTimeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cTimeEDoubleParserRuleCall_4_0 = (RuleCall)cTimeAssignment_4.eContents().get(0);
+		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cStartEndAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cStartEndStartEndEnumRuleCall_3_0 = (RuleCall)cStartEndAssignment_3.eContents().get(0);
+		private final Keyword cTimeKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cTimeAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cTimeEDoubleParserRuleCall_5_0 = (RuleCall)cTimeAssignment_5.eContents().get(0);
 		
 		//TaskTime returns TaskTime:
 		//    ('atomic''task' at=[AtomicTask|EString] |
 		//    'compound''task' ct=[CompoundTask|EString] |
 		//    'mission''task' mt=[MissionTask|EString])
-		//    'has'startEnd=StartEnd
-		//    'time' time=EDouble
+		//    'has''to' startEnd=StartEnd
+		//    'time:' time=EDouble
 		//    ;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//('atomic''task' at=[AtomicTask|EString] |
 		//'compound''task' ct=[CompoundTask|EString] |
 		//'mission''task' mt=[MissionTask|EString])
-		//'has'startEnd=StartEnd
-		//'time' time=EDouble
+		//'has''to' startEnd=StartEnd
+		//'time:' time=EDouble
 		public Group getGroup() { return cGroup; }
 		
 		//('atomic''task' at=[AtomicTask|EString] |
@@ -1360,20 +1361,23 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'has'
 		public Keyword getHasKeyword_1() { return cHasKeyword_1; }
 		
+		//'to'
+		public Keyword getToKeyword_2() { return cToKeyword_2; }
+		
 		//startEnd=StartEnd
-		public Assignment getStartEndAssignment_2() { return cStartEndAssignment_2; }
+		public Assignment getStartEndAssignment_3() { return cStartEndAssignment_3; }
 		
 		//StartEnd
-		public RuleCall getStartEndStartEndEnumRuleCall_2_0() { return cStartEndStartEndEnumRuleCall_2_0; }
+		public RuleCall getStartEndStartEndEnumRuleCall_3_0() { return cStartEndStartEndEnumRuleCall_3_0; }
 		
-		//'time'
-		public Keyword getTimeKeyword_3() { return cTimeKeyword_3; }
+		//'time:'
+		public Keyword getTimeKeyword_4() { return cTimeKeyword_4; }
 		
 		//time=EDouble
-		public Assignment getTimeAssignment_4() { return cTimeAssignment_4; }
+		public Assignment getTimeAssignment_5() { return cTimeAssignment_5; }
 		
 		//EDouble
-		public RuleCall getTimeEDoubleParserRuleCall_4_0() { return cTimeEDoubleParserRuleCall_4_0; }
+		public RuleCall getTimeEDoubleParserRuleCall_5_0() { return cTimeEDoubleParserRuleCall_5_0; }
 	}
 	public class AllocateTElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.AllocateT");
@@ -1734,6 +1738,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cHyphenMinusKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
+		//                //end = 'end' | start = 'start';
 		////types
 		//EInt returns ecore::EInt:
 		//    '-'? INT;
@@ -1933,28 +1938,28 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.StartEnd");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cEndEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cEndEndKeyword_0_0 = (Keyword)cEndEnumLiteralDeclaration_0.eContents().get(0);
+		private final Keyword cEndEndBeforeKeyword_0_0 = (Keyword)cEndEnumLiteralDeclaration_0.eContents().get(0);
 		private final EnumLiteralDeclaration cStartEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cStartStartKeyword_1_0 = (Keyword)cStartEnumLiteralDeclaration_1.eContents().get(0);
+		private final Keyword cStartStartAfterKeyword_1_0 = (Keyword)cStartEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum StartEnd returns StartEnd:
-		//                end = 'end' | start = 'start';
+		//                end = 'end before' | start = 'start after';
 		public EnumRule getRule() { return rule; }
 		
-		//end = 'end' | start = 'start'
+		//end = 'end before' | start = 'start after'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//end = 'end'
+		//end = 'end before'
 		public EnumLiteralDeclaration getEndEnumLiteralDeclaration_0() { return cEndEnumLiteralDeclaration_0; }
 		
-		//'end'
-		public Keyword getEndEndKeyword_0_0() { return cEndEndKeyword_0_0; }
+		//'end before'
+		public Keyword getEndEndBeforeKeyword_0_0() { return cEndEndBeforeKeyword_0_0; }
 		
-		//start = 'start'
+		//start = 'start after'
 		public EnumLiteralDeclaration getStartEnumLiteralDeclaration_1() { return cStartEnumLiteralDeclaration_1; }
 		
-		//'start'
-		public Keyword getStartStartKeyword_1_0() { return cStartStartKeyword_1_0; }
+		//'start after'
+		public Keyword getStartStartAfterKeyword_1_0() { return cStartStartAfterKeyword_1_0; }
 	}
 	
 	private final ProblemSpecificationElements pProblemSpecification;
@@ -2260,8 +2265,8 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    ('atomic''task' at=[AtomicTask|EString] |
 	//    'compound''task' ct=[CompoundTask|EString] |
 	//    'mission''task' mt=[MissionTask|EString])
-	//    'has'startEnd=StartEnd
-	//    'time' time=EDouble
+	//    'has''to' startEnd=StartEnd
+	//    'time:' time=EDouble
 	//    ;
 	public TaskTimeElements getTaskTimeAccess() {
 		return pTaskTime;
@@ -2349,7 +2354,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	}
 	
 	//enum StartEnd returns StartEnd:
-	//                end = 'end' | start = 'start';
+	//                end = 'end before' | start = 'start after';
 	public StartEndElements getStartEndAccess() {
 		return eStartEnd;
 	}
@@ -2358,6 +2363,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		return getStartEndAccess().getRule();
 	}
 	
+	//                //end = 'end' | start = 'start';
 	////types
 	//EInt returns ecore::EInt:
 	//    '-'? INT;

@@ -1,5 +1,8 @@
 package uoy.mrs.uoy.mrs.error;
 
+import prism.PrismException;
+import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
+
 public class KanoaErrorHandler {
 	
 	public static void NotAlloyFilePath() {
@@ -31,5 +34,31 @@ public class KanoaErrorHandler {
 		System.err.println("Error finding robot for task: "+taskID + " allocation:"+fileName);
 		System.exit(1);
 	}
+
+	public static void NoObjectivesDeclared() {
+		System.err.println("No objectives found in DSL mission specification. At least one most be declared: idle time, probability of sucess and/or travelling cost.");
+		System.exit(1);
+	}
+	
+
+	public static void ErrorSetUpPrism(PrismException e2) {
+		System.err.println("Error configuring Prism.");
+		System.exit(0);
+		e2.printStackTrace();
+		
+	}
+	
+	public static void PrismNotInitialising(PrismException e1, String string) {
+		e1.printStackTrace();
+		System.err.println("Error initialising Prism. "+string);
+		System.exit(0); //Retry
+	}
+
+	public static void ErrorGettingParent(String tID) {
+		System.err.println("Error getting parent of atomic task "+tID);
+		System.exit(1);
+		
+	}
+
 	
 }

@@ -153,26 +153,30 @@ public class RunApp {
 		System.out.println("\n\n---- Running Scheduler");
 		
 		// get feasible permutation of tasks
-		Scheduler.getPermutations();
+		Scheduler.getPermutations();  //this uses python to create N permutations ('a bit' clever as it checks only for permutations that does not violate ordering constraints)
 		// get MDP files
-		Scheduler.getMDPs();
+		Scheduler.getMDPs(); //this uses python to create MDPs of the permutations found
 		
 		// a) get pareto solutions
-		PlanScheduler.run();
+		PlanScheduler.run(); //!This is the one that creates the PlanProblem(Jmetal problem) and runs NSGAII
 		
-		System.out.println(Constants.num_population);
+		System.out.println(Constants.num_population); //Found population for all allocations.
 		
 		System.err.println("DONE --");
 		
 		System.exit(0);
 		
 		
+		//--------------------------------
+		//-- I am not sure what is this,
+		//I think before PlanScheduler.run();  I was making tests
 		// @depricated
     	// a) get pareto for each allocations
     	AllocationScheduler.setAllocations(Constants.allocationsList);
     	AllocationScheduler.run();
+    	//--------------------------------
     	
-		// 3) run pareto among all allocations
+		// 3) run pareto among all allocations //This runs GA again among all permutations to get a single Pareto front.
     	if (Constants.allocationSchedules.size()==0)
     		System.err.println("NO solutions found");
     	else

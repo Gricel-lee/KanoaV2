@@ -128,8 +128,8 @@ TaskTime returns TaskTime:
 	('atomic''task' at=[AtomicTask|EString] |
 	'compound''task' ct=[CompoundTask|EString] |
 	'mission''task' mt=[MissionTask|EString])
-	'has'startEnd=StartEnd
-	'time' time=EDouble	
+	'has''to' startEnd=StartEnd
+	'time:' time=EDouble	
 	;
 
 AllocateT returns AllocateT:
@@ -171,7 +171,8 @@ enum LowerGreater returns LowerGreater:
 				lower = 'lower' | greater = 'greater';
 
 enum StartEnd returns StartEnd:
-				end = 'end' | start = 'start';
+				end = 'end before' | start = 'start after';
+				//end = 'end' | start = 'start';
 
 //types
 EInt returns ecore::EInt:

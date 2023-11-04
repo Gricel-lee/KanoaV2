@@ -30,7 +30,7 @@
 	<dependency>
 	    <groupId>org.uma.jmetal</groupId>
 	    <artifactId>jmetal-core</artifactId>
-	    <version>5.11</version>
+	    <version>5.11</version><!-- 5.11-->
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.uma.jmetal/jmetal-problem -->
 	<dependency>
@@ -109,7 +109,12 @@
 	    <artifactId>commons-csv</artifactId>
 	    <version>1.5</version>
 	</dependency>
-	
+
+	<dependency>
+		<groupId>org</groupId>
+		<artifactId>uma</artifactId>
+		<version>jmetal</version>
+	</dependency>
   </dependencies>
 
 

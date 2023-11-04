@@ -1835,12 +1835,16 @@ ruleTaskTime returns [EObject current=null]
 		{
 			newLeafNode(otherlv_9, grammarAccess.getTaskTimeAccess().getHasKeyword_1());
 		}
+		otherlv_10='to'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getTaskTimeAccess().getToKeyword_2());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTaskTimeAccess().getStartEndStartEndEnumRuleCall_2_0());
+					newCompositeNode(grammarAccess.getTaskTimeAccess().getStartEndStartEndEnumRuleCall_3_0());
 				}
-				lv_startEnd_10_0=ruleStartEnd
+				lv_startEnd_11_0=ruleStartEnd
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTaskTimeRule());
@@ -1848,22 +1852,22 @@ ruleTaskTime returns [EObject current=null]
 					set(
 						$current,
 						"startEnd",
-						lv_startEnd_10_0,
+						lv_startEnd_11_0,
 						"org.xtext.example.mydsl.MyDsl.StartEnd");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_11='time'
+		otherlv_12='time:'
 		{
-			newLeafNode(otherlv_11, grammarAccess.getTaskTimeAccess().getTimeKeyword_3());
+			newLeafNode(otherlv_12, grammarAccess.getTaskTimeAccess().getTimeKeyword_4());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getTaskTimeAccess().getTimeEDoubleParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getTaskTimeAccess().getTimeEDoubleParserRuleCall_5_0());
 				}
-				lv_time_12_0=ruleEDouble
+				lv_time_13_0=ruleEDouble
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getTaskTimeRule());
@@ -1871,7 +1875,7 @@ ruleTaskTime returns [EObject current=null]
 					set(
 						$current,
 						"time",
-						lv_time_12_0,
+						lv_time_13_0,
 						"org.xtext.example.mydsl.MyDsl.EDouble");
 					afterParserOrEnumRuleCall();
 				}
@@ -2507,7 +2511,7 @@ ruleStartEnd returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='end'
+			enumLiteral_0='end before'
 			{
 				$current = grammarAccess.getStartEndAccess().getEndEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_0, grammarAccess.getStartEndAccess().getEndEnumLiteralDeclaration_0());
@@ -2515,7 +2519,7 @@ ruleStartEnd returns [Enumerator current=null]
 		)
 		    |
 		(
-			enumLiteral_1='start'
+			enumLiteral_1='start after'
 			{
 				$current = grammarAccess.getStartEndAccess().getStartEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_1, grammarAccess.getStartEndAccess().getStartEnumLiteralDeclaration_1());

@@ -38,34 +38,12 @@ public class Utility {
 	}
 	
 	public static int getFactorial(Integer num) {
-		
-		System.out.println("Fact of:");
-		System.out.println(num);
-		
-		// max. number possible for which perm. is possible to calculate by the tool (not sure if by Python or Java)
-		if (num>10) {
-			num = 10; // 20 is the max. int in Java for which its factorial can be saved in an int: https://www.geeksforgeeks.org/factorial-large-number/
-		}
-		
-		System.out.println(num);
-		
 		// get factorial
-        int i = 1;
-        int factorial = 1;
-        while(i <= num)
-        {
-            factorial *= i;
-            System.out.println(factorial);
-            i++;
-        }
-        
-        System.out.println(factorial);
-        
-        // set max. number of permutations
-        if (factorial>Constants.maxPermutations)
-        	factorial = Constants.maxPermutations;
-        
-        return factorial;
+        int fact = 1;
+        for(int i=1;i<=num;i++){    
+            fact=fact*i;    
+        }  
+        return fact;
 	}
 	
 	

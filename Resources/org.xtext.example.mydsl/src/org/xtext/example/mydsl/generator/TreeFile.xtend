@@ -47,7 +47,7 @@ class TreeFile {
 				numrobots = "NaN"
 				joint = "NaN"
 				ordered = gv.compoundList.get(tID).ordered
-				consecutive = gv.compoundList.get(tID).ordered
+				consecutive = gv.compoundList.get(tID).consecutive
 				start = "NaN"
 				end = "NaN"
 				inst = gv.compoundList.get(tID).ct.name

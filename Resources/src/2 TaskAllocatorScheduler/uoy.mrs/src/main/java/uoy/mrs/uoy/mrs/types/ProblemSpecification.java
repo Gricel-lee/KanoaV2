@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.apache.commons.collections4.map.MultiKeyMap;
 
@@ -41,7 +42,7 @@ public class ProblemSpecification{
 	RobotsModel robotsModel = new RobotsModel();
 	//Allocations
 	ArrayList<Allocation> allocationList = new ArrayList<Allocation>();
-	//Clusters
+	//Clusters - inside each allocation, getGroupsOfRobot()
 	
 	
 	//Tasks (not instantiated) (not used but JIC)
@@ -89,6 +90,7 @@ public class ProblemSpecification{
 	 * Read allocation files - i.e., Alloy output.
 	 * @return 
 	 * @implNote Method this.initialise() must have been run first.
+	 * Note: Robots in allocations are added in the pre-scheduling stage.
 	 * */
 	public ArrayList<Allocation> getAllocationsInfo() {
 		//allocations added
@@ -103,6 +105,45 @@ public class ProblemSpecification{
 	}
 	
 	
+	
+	
+	/**
+	 * Get list of all compound tasks before atomic or compound task  tID, until (not including) mission task.
+	 * Special case: Returns "null" if an atomic task has a mission task as parent.
+	 * @example atomic task at2_8 has parent ct1_4. Task ct1_4 has parent ct2_3,
+	 * hence, for at2_8 this function returns [ct2_3 , ct1_4].
+	 * The last task is the immediately above (parent) task.
+	 */
+	public ArrayList<CompoundTaskInstance> computeCompoundTasksAboveTask(String tID){
+		//list of compound tasks above task
+		ArrayList<CompoundTaskInstance> parentsList = new ArrayList<CompoundTaskInstance>();
+		
+		String parentID = null;
+		// a) get parent
+		//if is atomic task
+		if(isAtomic(tID)) {
+			parentID = getTasks().atList.get(tID).getparent();}
+		//if is compound task
+		if(isCompound(tID)) {
+			parentID = getTasks().ctList.get(tID).getparent();}
+		// - if parent is a mission tasks - return null (no parent)
+		if(tasksModelI.mtList.containsKey(parentID)){return null;}
+		
+		//ERROR --no parent found
+		if(parentID==null) {KanoaErrorHandler.ErrorGettingParent(tID);}
+		
+		
+		// - if parent is constraint task (not mission task)
+		// recursively get compound tasks through parent relations
+		if (getTasks().getctIDs().contains(parentID)) {
+			//add parent
+			parentsList.add(getTasks().ctList.get(parentID));
+			//add parents of parent
+			ArrayList<CompoundTaskInstance> l = computeCompoundTasksAboveTask(parentID);
+			if(l!=null){parentsList.addAll(0, l);}
+		}
+		return parentsList;
+	}
 	
 	
 	
@@ -157,9 +198,9 @@ public class ProblemSpecification{
 	        				);}//Note: locations are saved first, needed here, so order of infoDSL.txt file matter.
 	        	// e.g.: objectives,,[minIdle, minTravel, maxSucc]
 	        	else if("objectives".equals(type)) {
-	        		if(attrib[1].contains("minIdle")){parameters.minIdle=true;}
-	        		if(attrib[1].contains("minTravel")){parameters.minTravel=true;}
-	        		if(attrib[1].contains("maxSucc")){parameters.maxSucc=true;}}
+	        		if(attrib[1].contains("minIdle")){parameters.setObjective_minIdle(true);}
+	        		if(attrib[1].contains("minTravel")){parameters.setObjective_minTravel(true);}
+	        		if(attrib[1].contains("maxSucc")){parameters.setObjective_maxSucc(true);}}	        	
 	        	// e.g.: time,,120
 	        	else if("time".equals(type)) {parameters.timeAvailable=attrib[1];} //only if added in DSL
 	        	// e.g.: numAlloc,,10
@@ -210,6 +251,9 @@ public class ProblemSpecification{
 		if(Constants.verbose) { tasksModelI.print(); robotsModel.print();}
 	}
 
+	
+	
+	
 	
 
 } 

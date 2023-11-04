@@ -1,0 +1,33 @@
+mdp
+
+const int TT=12;
+
+const int r1t1Time=3;
+const int r1t2Time=3;
+const int r2t3Time=3;
+const int r2t4Time=3;
+const int travelr1l0t1=3;
+const int travelr1t1t2=3;
+const int travelr2l0t3=3;
+const int travelr2t3t4=3;
+
+formula done=(r2order=2&r1order=2);
+
+module r2
+ r2order:[0..2];
+ r2time:[0..12];
+ [r2t3] r2order=0 & (r2time+r2t3Time+travelr2l0t3<=TT) -> (r2order'=1) & (r2time'=r2time+r2t3Time+travelr2l0t3);
+ [r2t4] r2order=1 & (r2time+r2t4Time+travelr2t3t4<=TT) -> (r2order'=2) & (r2time'=r2time+r2t4Time+travelr2t3t4);
+endmodule
+
+module r1
+ r1order:[0..2];
+ r1time:[0..12];
+ [r1t1] r1order=0 & (r1time+r1t1Time+travelr1l0t1<=TT) -> (r1order'=1) & (r1time'=r1time+r1t1Time+travelr1l0t1);
+ [r1t2] r1order=1 & (r1time+r1t2Time+travelr1t1t2<=TT) -> (r1order'=2) & (r1time'=r1time+r1t2Time+travelr1t1t2);
+endmodule
+
+rewards "idle"
+ //Note- there is no idle option for robot ri if maxIdleri==0 (computed beforehand)
+
+endrewards

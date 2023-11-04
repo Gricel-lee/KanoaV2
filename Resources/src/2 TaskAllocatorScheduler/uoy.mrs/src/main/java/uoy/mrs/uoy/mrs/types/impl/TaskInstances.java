@@ -7,6 +7,7 @@ package uoy.mrs.uoy.mrs.types.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -77,6 +78,25 @@ public class TaskInstances{
 		}
 		
 		return;
+	}
+	
+	
+	
+	/**Check compound tasks constraints*/
+	public void checkprintingCTconstraints() {
+
+    	for (Iterator iterator = ctList.values().iterator(); iterator.hasNext();) {
+    		CompoundTaskInstance ct = (CompoundTaskInstance) iterator.next();
+    		
+    		if(ct.isordered()) {
+    			System.out.println("ordered");
+    			System.out.println(ct.getID() +" is " +  ct.getordered());
+        	}
+    		if(ct.isconsecutive()) {
+    			System.out.println("consec");
+    			System.out.println(ct.getID() +" is " +  ct.getconsecutive());
+        	}
+    	}
 	}
 	
 	

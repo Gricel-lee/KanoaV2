@@ -157,8 +157,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getTaskTimeAccess().getAtAssignment_0_0_2(), "rule__TaskTime__AtAssignment_0_0_2");
 			builder.put(grammarAccess.getTaskTimeAccess().getCtAssignment_0_1_2(), "rule__TaskTime__CtAssignment_0_1_2");
 			builder.put(grammarAccess.getTaskTimeAccess().getMtAssignment_0_2_2(), "rule__TaskTime__MtAssignment_0_2_2");
-			builder.put(grammarAccess.getTaskTimeAccess().getStartEndAssignment_2(), "rule__TaskTime__StartEndAssignment_2");
-			builder.put(grammarAccess.getTaskTimeAccess().getTimeAssignment_4(), "rule__TaskTime__TimeAssignment_4");
+			builder.put(grammarAccess.getTaskTimeAccess().getStartEndAssignment_3(), "rule__TaskTime__StartEndAssignment_3");
+			builder.put(grammarAccess.getTaskTimeAccess().getTimeAssignment_5(), "rule__TaskTime__TimeAssignment_5");
 			builder.put(grammarAccess.getAllocateTAccess().getAtAssignment_1_0_2(), "rule__AllocateT__AtAssignment_1_0_2");
 			builder.put(grammarAccess.getAllocateTAccess().getCtAssignment_1_1_2(), "rule__AllocateT__CtAssignment_1_1_2");
 			builder.put(grammarAccess.getAllocateTAccess().getMtAssignment_1_2_2(), "rule__AllocateT__MtAssignment_1_2_2");

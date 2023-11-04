@@ -59,11 +59,11 @@ lone sig r5at1 extends Capability{}
 
 // ----------------ATOMIC TASKS:
 
-abstract sig at2,at3,at1,at4 extends AtomicTask {}
-fact{all a:at2 | #do.a=1}	// number of robots needed
-fact{all a:at3 | #do.a=1}	// number of robots needed
+abstract sig at1,at4,at2,at3 extends AtomicTask {}
 fact{all a:at1 | #do.a=2}	// number of robots needed
 fact{all a:at4 | #do.a=1}	// number of robots needed
+fact{all a:at2 | #do.a=1}	// number of robots needed
+fact{all a:at3 | #do.a=1}	// number of robots needed
 one sig at2_11 extends at2{} {x=10 y=1} //do at location room4
 one sig at3_13 extends at3{} {x=10 y=5} //do at location room5
 one sig at2_14 extends at2{} {x=10 y=5} //do at location room5
@@ -86,16 +86,9 @@ pred TaskAllocation{
 
 // ----------------CONSTRAINTS:
 
- fact{ all r:r3| all c:r.capability | all do:c.do | do.x>9}
+ fact{ all r:r4| all c:r.capability | all do:c.do | do.x>9}
  fact{ all r:r3| all c:r.capability | all do:c.do | do.y<7}
- fact {all at: at2_11| one d: do.at | d in r1.capability}
- fact {all at: at3_13| one d: do.at | d in r1.capability}
- fact {all at: at2_14| one d: do.at | d in r1.capability}
- fact {all at: at3_7| one d: do.at | d in r1.capability}
- fact {all at: at2_8| one d: do.at | d in r1.capability}
- fact {all at: at3_4| one d: do.at | d in r1.capability}
- fact {all at: at2_5| one d: do.at | d in r1.capability}
- fact {all at: at3_10| one d: do.at | d in r1.capability}
+ fact { all r:r3 | #(r.capability.do ) <= 4}
 
 // ----------------RUN COMMAND:
 

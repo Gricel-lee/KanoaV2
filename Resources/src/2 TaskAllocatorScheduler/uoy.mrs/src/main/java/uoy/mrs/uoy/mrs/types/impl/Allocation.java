@@ -3,7 +3,6 @@ package uoy.mrs.uoy.mrs.types.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
@@ -12,10 +11,9 @@ import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
 
 public class Allocation {
 	/**Map relation between robot and its assigned tasks*/
-	HashMap<String, ArrayList<String>> robotToAtomicTasksIds = new HashMap<String, ArrayList<String>>();
+	public HashMap<String, ArrayList<String>> robotToAtomicTasksIds = new HashMap<String, ArrayList<String>>();
 	
-	/**Map relation between atomic task and robot(s) that have to perform it. Use method '<em>whichRobots</em>' to access info.
-	 * */
+	/**Map relation between atomic task and robot(s) that have to perform it. Use method '<em>whichRobots</em>' to access info.**/
 	HashMap<String, ArrayList<String>> atomicTaskIdToRobots = new HashMap<String, ArrayList<String>>();
 	
 	String num= "";
@@ -30,14 +28,29 @@ public class Allocation {
 		this.robotToAtomicTasksIds = robotToAtomicTasksIds;
 	}
 	
+	/**Get tasks allocated to robot**/
+	public ArrayList<String> getTasks(String robot){
+		return robotToAtomicTasksIds.get(robot);
+	}
+	
 	/**Number of allocation*/
 	public String getNum() {
 		return num;
 	}
 	
+	public String getFile() {
+		return fileName;
+	}
+	
+	
 	public Set<String> getRobots() {
 		return this.robotToAtomicTasksIds.keySet();
 	}
+	
+	public Integer getNumRobots() {
+		return this.robotToAtomicTasksIds.keySet().size();
+	}
+	
 	
 	/**Returns the list of robots in charge of completing a atomic task instance in the current allocation.*/
 	public ArrayList<String> whichRobots(String taskID) {

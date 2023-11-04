@@ -20,6 +20,7 @@ public class Robot{
 			this.id = id;
 			this.loc = loc;
 			this.capabilities = capabilities;
+			
 		}
 		
 	
