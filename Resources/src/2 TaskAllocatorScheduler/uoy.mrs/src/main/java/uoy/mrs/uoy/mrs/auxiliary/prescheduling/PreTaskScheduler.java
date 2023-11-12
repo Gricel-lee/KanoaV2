@@ -3,19 +3,17 @@ package uoy.mrs.uoy.mrs.auxiliary.prescheduling;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
-import uoy.mrs.uoy.mrs.auxiliary.scheduler.Auxx;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
 import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
 import uoy.mrs.uoy.mrs.types.impl.CompoundTaskInstance;
-import uoy.mrs.uoy.mrs.types.impl.TaskInstances;
 
 /*
  * Pre-scheduler stage
@@ -95,6 +93,8 @@ public class PreTaskScheduler {
 	public static void tranfer(String atID,ArrayList<CompoundTaskInstance> listCTsAbove, ProblemSpecification p) {
 		while (listCTsAbove!=null){
 			
+			///System.out.println("in "+atID);
+			
 			CompoundTaskInstance ct0 = listCTsAbove.get(0);  //at .get(0) is higher node
 			
 			if(listCTsAbove.size()==1) {listCTsAbove=null;} else {listCTsAbove.remove(ct0);} //remove from list to check
@@ -104,12 +104,20 @@ public class PreTaskScheduler {
 			if (ct0.isconsecutive()) {
 				
 						
-				System.out.println(ct0.getID() + " is consecutive");
+				///System.out.println(ct0.getID() + " is consecutive");
 				ArrayList<String> listAT = ct0.getAtomicTasksReachable(p);
+				
+				///System.out.println("reachable ats="+listAT);
+				
 				int atIndex = listAT.indexOf(atID);
+				
+				///System.out.println("index="+atIndex);
+				
 				if (atIndex!=0) {
+					String last = listAT.get(atIndex-1);
+					///System.out.println("last="+last);
 					//-- add task to be done JUST before atID //---- add constraint to atomic task
-					p.getTasks().atList.get(atID).setJustDone( listAT.get(atIndex-1) );
+					p.getTasks().atList.get(atID).setJustDone( last );
 					return; //break; END
 				}
 			}
@@ -119,7 +127,7 @@ public class PreTaskScheduler {
 				System.out.println(ct0.getID() + " is ordered");
 				if(ct0.isatomicTaskInSubtasks(atID)) {
 					
-					//System.out.println(ct0.getID() + " has atomic");
+					///System.out.println(ct0.getID() + " has atomic");
 					
 					ArrayList<String> arrayListsubtasks = new ArrayList<>(Arrays.asList(ct0.getorderedChildren()));
 					int atIndex = arrayListsubtasks.indexOf(atID);
@@ -152,16 +160,17 @@ public class PreTaskScheduler {
 					String ct1ID = ct1.getID();
 					String[] ct0children = ct0.getorderedChildren();
 					
-					//System.out.println("Next="+ct1ID);
+					///System.out.println("Next="+ct1ID);
 					
 					//get next compound task index - where is subCT in ct0.getorderedChildren()
 					ArrayList<String> arrayListsubtasks = new ArrayList<>(Arrays.asList(ct0.getorderedChildren()));
 					
-					//System.out.println(arrayListsubtasks);
+					///System.out.println(arrayListsubtasks);
 					
 					int ct1Index = arrayListsubtasks.indexOf(ct1ID);
 					
-					//System.out.println("index here: "+ct1Index);
+					///System.out.println("index here: "+ct1Index);
+					
 					if (ct1Index!=0) {
 						for (int i = 0; i == ct1Index-1; i++) {
 							
@@ -188,7 +197,7 @@ public class PreTaskScheduler {
 		System.out.println("b) Grouping robots");
 		
 		// for each allocation
-		for(Allocation a : p.getAllocationsInfo()) {
+		for(Allocation a : p.getAllocations()) {
 			//------------------
 			// ----- Stage (b) - get robots for each cluster of atomic tasks sharing a constraint
 			ArrayList<ArrayList<String>> robotListOfLists = new ArrayList<ArrayList<String>>();
@@ -224,9 +233,9 @@ public class PreTaskScheduler {
 			
 			//------------------
 			// ----- Stage (c) - transitive closure over lists of robots
-			ArrayList<String> robotsInAlloc = Utility.setToList(a.getRobots());
+			ArrayList<String> robotsInAlloc = a.getRobotsList();
 			//**create adjacency matrix
-			int size = a.getRobots().size();
+			int size = a.getRobotsList().size();
 						
 			int[][] adjacencyMatrix = TransitiveClosure.createAdjacencyMatrix(size,robotListOfLists,robotsInAlloc);
 			
@@ -235,7 +244,7 @@ public class PreTaskScheduler {
 			int[][] tcMatrix = TransitiveClosure.findTransitiveClosure(adjacencyMatrix);
 			
 			//**get grouped robots : get rows that are not repeated, each group is a row of this matrix
-			int[][] uniqueMatrix = Utility.removeDuplicateRows(tcMatrix);
+			int[][] uniqueMatrix = removeDuplicateRows(tcMatrix);
 			
 			//System.out.println();
 			//TransitiveClosure.printMatrix(uniqueMatrix);
@@ -273,7 +282,29 @@ public class PreTaskScheduler {
 	}
 	
 	
-		
+	
+	/**Remove repeated rows - Each row represents a group of robots, repeated rows not needed.*/
+	private static int[][] removeDuplicateRows(int[][] matrix) {
+        List<int[]> uniqueRows = new ArrayList<>();
+        HashSet<String> rowStrings = new HashSet<>();
+
+        for (int[] row : matrix) {
+            // Convert the row to a string to check for duplicates
+            String rowString = Utility.arrayIntToString(row);
+
+            // If the rowString is not already in the set, add it to uniqueRows and rowStrings
+            if (!rowStrings.contains(rowString)) {
+                uniqueRows.add(row);
+                rowStrings.add(rowString);
+            }
+        }
+        // Convert the list of unique rows back to a 2D array
+        int[][] uniqueMatrix = new int[uniqueRows.size()][matrix[0].length];
+        for (int i = 0; i < uniqueRows.size(); i++) {
+            uniqueMatrix[i] = uniqueRows.get(i);
+        }
+        return uniqueMatrix;
+    }	
 
 	
 	

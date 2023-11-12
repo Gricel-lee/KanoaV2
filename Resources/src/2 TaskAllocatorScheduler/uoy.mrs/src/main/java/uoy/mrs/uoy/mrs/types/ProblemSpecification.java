@@ -46,8 +46,8 @@ public class ProblemSpecification{
 	
 	
 	//Tasks (not instantiated) (not used but JIC)
-	MultiKeyMap<String, Object> at = new MultiKeyMap<>(); //ats.get(at1) = 2,l1  - numrobots, location
-	MultiKeyMap<String, Object> ct = new MultiKeyMap<>(); //cts.get(ct1) = [at3,at2],"true,false" - subtasks,ordered,consecutive
+	MultiKeyMap<String, Object> atFromDSL = new MultiKeyMap<>(); //ats.get(at1) = 2,l1  - numrobots, location
+	MultiKeyMap<String, Object> ctFromDSL = new MultiKeyMap<>(); //cts.get(ct1) = [at3,at2],"true,false" - subtasks,ordered,consecutive
 	
 	
 	
@@ -63,6 +63,13 @@ public class ProblemSpecification{
 		return parameters;
 	}
 	
+	public RobotsModel getRobotsModel() {
+		return robotsModel;
+	}
+	
+	public WorldModel getWorldModel() {
+		return worldModel;
+	}
 	
 	/**Check if an identifier is from an atomic task*/
 	public boolean isAtomic(String id) {
@@ -79,6 +86,29 @@ public class ProblemSpecification{
 		}
 		return false;
 	}
+	
+	
+	/**Get location to perform an atomic task instance*/
+	public Location getATLocation(String atID) {
+		Location loc = null;
+		//get task
+		AtomicTaskInstance at = tasksModelI.atList.get(atID);
+		//get location
+		loc = getWorldModel().getLoc( at.getloc() );
+		//System.out.println("ID: "+ atID);
+		//System.out.println(worldModel.locations );
+	
+		if(!this.tasksModelI.atList.keySet().contains(atID)) {
+			//ERROR
+			KanoaErrorHandler.ErrorRetrievingATLocation(atID);
+		}
+		if(loc==null) {
+			//ERROR
+			KanoaErrorHandler.ErrorRetrievingATLocation(atID);
+		}
+		return loc;
+	}
+	
 
 	/**Check if compound task identifier is contrained*/
 	public boolean isCompoundConstrained(String id) {
@@ -92,7 +122,7 @@ public class ProblemSpecification{
 	 * @implNote Method this.initialise() must have been run first.
 	 * Note: Robots in allocations are added in the pre-scheduling stage.
 	 * */
-	public ArrayList<Allocation> getAllocationsInfo() {
+	public ArrayList<Allocation> getAllocations() {
 		//allocations added
 		if (!allocationList.isEmpty()) {return allocationList;}
 		
@@ -168,9 +198,9 @@ public class ProblemSpecification{
 	        	// e.g.: path,,l1,,l2,,3.0
 	        	else if("path".equals(type)) {worldModel.addPath(attrib[1], attrib[2], attrib[3]);}
 	        	//e.g.: at,,at1,,2,,l1
-	        	else if(type=="ct") {at.put(attrib[1], attrib[2], attrib[3]);}
+	        	else if(type=="ct") {atFromDSL.put(attrib[1], attrib[2], attrib[3]);}
 	        	//e.g.: ct,,ct1,,[at3,at2],,false,,false
-	        	else if(type=="at") {ct.put(attrib[1], attrib[2], attrib[3]+","+attrib[4]);}
+	        	else if(type=="at") {ctFromDSL.put(attrib[1], attrib[2], attrib[3]+","+attrib[4]);}
 	        	
 	        	//e.g.: robot,,r1,,l1,,{[at2,5.0,99.0][at3,4.0,99.0][at4,2.0,99.0]}
 	        	else if("robot".equals(type)) {
@@ -190,11 +220,18 @@ public class ProblemSpecification{
 	                    //System.out.println("3: "+cAttrib[2]);
 	                    
 	                    //e.g.: cAttrib[0] = at2 -atID //cAttrib[1] = 5.0 -time //cAttrib[2] = 99.0-probability*100
-	        			capabilities.put(cAttrib[0], new Capability(cAttrib[1],cAttrib[0],cAttrib[0]));
+	        			capabilities.put(cAttrib[0], new Capability(cAttrib[0],cAttrib[1],cAttrib[2]));
 	        		}
-	        		robotsModel.addRobot(attrib[1],					//id
-	        				new Robot(attrib[1], 					//create robot
-	        						worldModel.getLoc(attrib[2]), capabilities)
+	        		
+	        		
+	        		String velocity = attrib[4]; 
+	        		
+	        		
+	        		getRobotsModel().addRobot(attrib[1],			//id
+	        				new Robot(attrib[1], 					//create robot with id
+	        						worldModel.getLoc(attrib[2]),   //location
+	        						velocity,                         //velocity
+	        						capabilities)                   //capabilities
 	        				);}//Note: locations are saved first, needed here, so order of infoDSL.txt file matter.
 	        	// e.g.: objectives,,[minIdle, minTravel, maxSucc]
 	        	else if("objectives".equals(type)) {
@@ -248,9 +285,12 @@ public class ProblemSpecification{
 		
 		//------------------------------------------
 		// ------ 3)Print
-		if(Constants.verbose) { tasksModelI.print(); robotsModel.print();}
+		if(Constants.verbose) {
+			tasksModelI.print(); getRobotsModel().print();
+		}
 	}
 
+	
 	
 	
 	

@@ -60,8 +60,8 @@ public class Auxx {
     			Constants.genMissionTree,
     			Constants.dslFile,
     			Constants.transClosureOutputDir, 
-    			Constants.time_available,
-    			Constants.verbose,
+    			//Constants.time_available,
+    			Constants.verbose.toString(),
     			Constants.genWM,
     			Constants.outputDir,
 				// NEW INPUTS (compared to prescheduler)

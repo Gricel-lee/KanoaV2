@@ -89,7 +89,7 @@ public class runPrismModel{
 	
 	
 	/*Array: robot id, task, duration: {"r1","t1","3"}*/
-	public static ArrayList<String[]> tTask = new ArrayList<String[]>();
+	public static ArrayList<String[]> timeTask = new ArrayList<String[]>();
 	/*Array permutation of tasks: "r1", new String[]{"t1", "t2"}*/
 	public static Map<String, String[]> permutation = new HashMap<>();
 	/*Idle time limits*/
@@ -115,10 +115,10 @@ public class runPrismModel{
 		
 		
 		// b) time completion tasks
-		String[] r1t1 = {"r1","t1","3"}; tTask.add(r1t1);
-		String[] r1t2 = {"r1","t2","3"}; tTask.add(r1t2);
-		String[] r2t3 = {"r2","t3","3"}; tTask.add(r2t3);
-		String[] r2t4 = {"r2","t4","3"}; tTask.add(r2t4);
+		String[] r1t1 = {"r1","t1","3"}; timeTask.add(r1t1);
+		String[] r1t2 = {"r1","t2","3"}; timeTask.add(r1t2);
+		String[] r2t3 = {"r2","t3","3"}; timeTask.add(r2t3);
+		String[] r2t4 = {"r2","t4","3"}; timeTask.add(r2t4);
 		
 		// c) task permutations
 		permutation.put("r1", new String[]{"t1", "t2"});
@@ -135,19 +135,19 @@ public class runPrismModel{
 		//=========================================================
 		//BUILD PRISM MODEL:
 		//get list robot IDs
-		String[] robIDset = robIDList(tTask);
+		String[] robIDset = robIDList(timeTask);
 		
 		//compute idle time
 		for (int i = 0; i < robIDset.length; i++) {
 			String r = robIDset[i];
-			idleTime.put(r, checkRobotTimeToIdle(r, TT, tTask, tTravel));
+			idleTime.put(r, checkRobotTimeToIdle(r, TT, timeTask, tTravel));
 		}
 		//Prism model:
 		StringBuilder model = new StringBuilder();
 		model.append("mdp\n\n");
 		model.append("const int TT=").append(TT).append(";\n\n");
 		//
-		for (Iterator<String[]> iterator = tTask.iterator(); iterator.hasNext();) {
+		for (Iterator<String[]> iterator = timeTask.iterator(); iterator.hasNext();) {
 			String[] strings = (String[]) iterator.next();
 			model.append("const int "+strings[0]+strings[1]+"Time="+ strings[2]+";\n");
 		}
@@ -166,7 +166,7 @@ public class runPrismModel{
 		model.append("\nformula done=(");
 		for (int i = 0; i < robIDset.length; i++) {
 			String r = robIDset[i];
-			int n = numTasks(tTask,r);
+			int n = numTasks(timeTask,r);
 			model.append(r+"order="+n +"&");
 		}
 		model.deleteCharAt(model.length() - 1);
@@ -175,7 +175,7 @@ public class runPrismModel{
 		for (int i = 0; i < robIDset.length; i++) {
 			String r = robIDset[i];
 			model.append("module "+r+"\n");
-			model.append(" "+ r +"order:[0.."+ numTasks(tTask,r) +"];\n");
+			model.append(" "+ r +"order:[0.."+ numTasks(timeTask,r) +"];\n");
 			model.append(" "+ r +"time:[0.."+ TT +"];\n");
 			//if idle
 			if(idleTime.get(robIDset[i]) != 0) {model.append(" "+r+"idleTime:[0..maxIdle"+r+"];\n");}
@@ -192,7 +192,7 @@ public class runPrismModel{
 				+" -> ("+r+"order'="+(j+1)+") & ("+r+"time'="+r+"time+"+r+t+"Time+travel"+r+rloc+t+");\n");	
 			}
 			//if idle
-			if(idleTime.get(robIDset[i]) != 0) {model.append(" ["+r+"idle] "+r+"order!="+numTasks(tTask,r)+" & ("+r+"time+1<=TT) & ("+r+"idleTime+1<=maxIdle"+r+") -> ("+r+"time'="+r+"time+1) & ("+r+"idleTime'="+r+"idleTime+1);\n");}
+			if(idleTime.get(robIDset[i]) != 0) {model.append(" ["+r+"idle] "+r+"order!="+numTasks(timeTask,r)+" & ("+r+"time+1<=TT) & ("+r+"idleTime+1<=maxIdle"+r+") -> ("+r+"time'="+r+"time+1) & ("+r+"idleTime'="+r+"idleTime+1);\n");}
 			
 			model.append("endmodule\n\n");
 		}

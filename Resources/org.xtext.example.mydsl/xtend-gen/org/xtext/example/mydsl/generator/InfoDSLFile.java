@@ -152,7 +152,10 @@ public class InfoDSLFile {
           s = (_s_4 + _plus_28);
         }
         String _s_5 = s;
-        s = (_s_5 + "}\n");
+        double _velocity = r.getVelocity();
+        String _plus_29 = (("}" + ",,") + Double.valueOf(_velocity));
+        String _plus_30 = (_plus_29 + "\n");
+        s = (_s_5 + _plus_30);
       }
     }
     final List<Mission> ms = IteratorExtensions.<Mission>toList(Iterators.<Mission>filter(gv.resource.getAllContents(), Mission.class));

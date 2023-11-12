@@ -20,9 +20,8 @@ public class AtomicTaskInstance{
 	private ArrayList<CompoundTaskInstance> compoundTasksAboveTask = new ArrayList<CompoundTaskInstance>();
 	
 	public AtomicTaskInstance(String id, String parent, String location, String numrobots, String joint, String start, String end, String inst) {
-		//id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end
-		// e.g.at,,at1_1,,m1,,NaN,,room1,,2,,True,,NaN,,NaN,,80.0,,114.0
-		
+		//type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks
+		// e.g.at,,at1_1,,m1,,NaN,,room1,,2,,True,,NaN,,NaN,,None,,None,,at1,,NaN
 		this.id = id;
 		this.parent = parent;
 		this.location = location;
@@ -125,14 +124,14 @@ public class AtomicTaskInstance{
 
 	/**Transfered constraints from constrained compound tasks above this atomic task.
 	 * Computed in the pre-scheduling stage.*/
-	public void setJustDone(String ctId_OfInstantiatedTaskToBeCompletedJustBeforeThisAT) {
-		this.justDone = ctId_OfInstantiatedTaskToBeCompletedJustBeforeThisAT;
+	public void setJustDone(String ctId_OfInstantiatedTaskToBeCompletedJustBefore) {
+		this.justDone = ctId_OfInstantiatedTaskToBeCompletedJustBefore;
 	}
 	
 	/**Transfered constraints from constrained compound tasks above this atomic task.
 	 * Computed in the pre-scheduling stage.*/
-	public void setDoneBefore(ArrayList<String> ctId_List_OfInstantiatedTaskToBeDoneBeforeThisAT) {
-		this.doneBefore.addAll(ctId_List_OfInstantiatedTaskToBeDoneBeforeThisAT);
+	public void setDoneBefore(ArrayList<String> ctId_List_OfInstantiatedTaskToBeDoneBefore) {
+		this.doneBefore.addAll(ctId_List_OfInstantiatedTaskToBeDoneBefore);
 	}
 	/**Transfered constraints from constrained compound tasks above this atomic task.
 	 * Computed in the pre-scheduling stage.*/

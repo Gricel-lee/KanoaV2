@@ -25,7 +25,9 @@ public class Kanoa {
 		
 		/**Set config.properties**/
 		//TestDummyRefactorORDERED
-		String fileTest = "TestDummyRefactorCONSEC/config.properties"; //"TestCase3-var4/config.properties"); //Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
+		//TestDummyRefactorCONSEC
+		//TestDummyRefactor4ORD_CON
+		String fileTest = "TestDummyRefactor/config.properties"; //"TestCase3-var4/config.properties"); //Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
 		kanoaMRS.setPropertiesFile(args,fileTest);
 		
 		/**Run**/ 
@@ -40,8 +42,7 @@ public class Kanoa {
 		if (args.length > 0)
 			Constants.setProperties(args[0]);
 		else 
-			Constants.setProperties(fileString);
-		System.out.println(Constants.dslFile);		
+			Constants.setProperties(fileString);	
 	}
 	
 	
@@ -80,7 +81,7 @@ public class Kanoa {
 	public void runAllocator(){
     	System.out.println("\n---- Running Task Allocator");
     	Constants.setalloyFilesOutput(RunAlloy.runAlloy(Constants.genAlloyModel,Constants.num_instances));
-    	problemSpec.getAllocationsInfo();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    	problemSpec.getAllocations();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
    	}
 	
 	/*Run Transitive closure*/
@@ -111,7 +112,9 @@ public class Kanoa {
 		//Scheduler.getMDPs();
 		
 		// a) get Pareto solutions
-		Scheduler.run(problemSpec);
+		Scheduler.runTest(problemSpec);
+		
+		//Scheduler.run(problemSpec);
 //		
 //		System.out.println(Constants.num_population);
 //		

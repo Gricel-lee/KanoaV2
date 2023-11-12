@@ -84,8 +84,8 @@ public class AllocationProblem extends AbstractIntegerProblem {
 	 * . */
 	public  List<Integer> getUpperBounds(Allocation a) {
 		ArrayList<Integer> bounds = new ArrayList<Integer>();
-		for(String r:a.getRobots()) {
-			int nTasks = Utility.getFactorial(a.getTasks(r).size());
+		for(String r:a.getRobotsList()) {
+			int nTasks = a.getNumTaskPermutations(r);
 			bounds.add(nTasks);
 		}
 		return (List<Integer>) bounds;

@@ -1,5 +1,7 @@
 package uoy.mrs.uoy.mrs.error;
 
+import java.io.IOError;
+
 import prism.PrismException;
 import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
 
@@ -32,7 +34,7 @@ public class KanoaErrorHandler {
 
 	public static void RobotNotFoundForTaskInAllocation(String taskID,String fileName) {
 		System.err.println("Error finding robot for task: "+taskID + " allocation:"+fileName);
-		System.exit(1);
+		throw new IOError(null); //stop and print trace
 	}
 
 	public static void NoObjectivesDeclared() {
@@ -51,13 +53,33 @@ public class KanoaErrorHandler {
 	public static void PrismNotInitialising(PrismException e1, String string) {
 		e1.printStackTrace();
 		System.err.println("Error initialising Prism. "+string);
-		System.exit(0); //Retry
+		System.exit(0); //retry
 	}
 
 	public static void ErrorGettingParent(String tID) {
 		System.err.println("Error getting parent of atomic task "+tID);
-		System.exit(1);
+		throw new IOError(null); //stop and print trace
 		
+	}
+
+	public static void ErrorNoPropertyInConfigPropFile(String key) {
+		System.err.println("ERROR: NO "+key+" found in config.prop " );
+		throw new IllegalArgumentException(key.toUpperCase() + " name not found!");		
+	}
+
+	public static void ErrorRobotCannotDoTask(String id, String tID) {
+		System.err.println("Robot "+id+" does not have capability to do "+tID);
+		throw new IOError(null); //stop and print trace
+	}
+
+	public static void ErrorRetrievingATLocation(String id) {
+		System.err.println("ERROR: Trying to retrieve location of: "+id+". Expecting an atomic task.");
+		throw new IOError(null); //stop and print trace
+	}
+
+	public static void RobotVelocityError(String id) {
+		System.err.println("ERROR: Velocity of robot "+id+" has to be greater than 0.");
+		throw new IOError(null); //stop and print trace
 	}
 
 	

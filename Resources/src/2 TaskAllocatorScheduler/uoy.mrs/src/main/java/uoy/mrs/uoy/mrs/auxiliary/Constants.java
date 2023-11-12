@@ -10,13 +10,15 @@ import prism.Prism;
 import prism.PrismDevNullLog;
 import prism.PrismException;
 import prism.PrismLog;
+import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
 import uoy.mrs.uoy.mrs.types.DepricatedAllocation;
 import uoy.mrs.uoy.mrs.types.DepricatedSolutionData;
 
 
 public class Constants {
 	public static Properties properties = new Properties();
-	public static String dslFile;
+	//@Deprecated: DSL info is extracted in Xtend saved in the infoDSL.text file
+	//public static String dslFile;
 	public static String infoDSLFile;
 	public static String genFile;
 	public static String genWM;
@@ -51,7 +53,7 @@ public class Constants {
 	
 	public static int maxPermutations;
 	
-	//@depricated: Objectives to consider.
+	//@Depricated: Objectives to consider.
 	//Moved to be part of the problem specifications.
 	//public static String objectiveProb;
 	//public static String objectiveIdle;
@@ -93,7 +95,8 @@ public class Constants {
 		
 		verbose = Boolean.parseBoolean(getProperty("VERBOSE"));
 		
-		dslFile = filespath + '/' + getProperty("DSL_FILE");
+		//@Deprecated: DSL info is extracted in Xtend saved in the infoDSL.text file
+		//dslFile = filespath + '/' + getProperty("DSL_FILE");
 		
 		infoDSLFile = filespath + '/' + getProperty("PREALLOC_FILES_DIR") + "/infoDSL.txt";
 		
@@ -119,7 +122,7 @@ public class Constants {
 		
 		countallsolutions = 0; //counter of all possible schedules
 		
-		//@depricated GENERATED_FILES, now PREALLOC_FILES_DIR
+		//@Depricated GENERATED_FILES, now PREALLOC_FILES_DIR
 		String genFiles = filespath + '/' + getProperty("PREALLOC_FILES_DIR");
 		
 		genWM = genFiles + "/worldmodel.txt";
@@ -130,7 +133,7 @@ public class Constants {
 		
 		pythonDir = getProperty("PYTHON3_DIRECTORY");
 		
-		//@depricated Objectives
+		//@Depricated Objectives
 		//Moved to be part of the problem specifications.
 		//objectiveProb = getProperty("OBJECTIVE_PROB");
 		//objectiveIdle = getProperty("OBJECTIVE_IDLE");
@@ -154,7 +157,7 @@ public class Constants {
 		python_script_tasks = System.getProperty("user.dir")+"/pythonScripts/PYTHONSCRIPT/startTasks.py";
 		 
 		
-		// Initialize others
+		// Initialise others
 		
 		allocationsList = new ArrayList<>();
 		
@@ -200,9 +203,10 @@ public class Constants {
 	 */
 	public static String getProperty (String key){
 		String result = properties.getProperty(key).strip(); 
+		//ERROR
 		if (result == null) {
-			System.err.println("ERROR: NO "+key+" found in config.prop " );
-			throw new IllegalArgumentException(key.toUpperCase() + " name not found!");}
+			KanoaErrorHandler.ErrorNoPropertyInConfigPropFile(key);
+		}
 		return result;		
 	}
 	

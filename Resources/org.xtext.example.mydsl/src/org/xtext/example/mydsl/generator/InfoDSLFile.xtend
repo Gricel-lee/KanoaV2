@@ -71,7 +71,7 @@ class InfoDSLFile {
 			for (Capability c: r.getCapabilities){
 				s += "["+c.at.name + "," + c.time + "," + c.success+"]"
 			}
-			s += "}\n"
+			s += "}"+ ",," + r.velocity +"\n"
 		}
 		
 		// - objectives and parameters

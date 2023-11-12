@@ -3,7 +3,6 @@ package uoy.mrs.uoy.mrs.types.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
@@ -20,18 +19,36 @@ public class Allocation {
 	String fileName="";
 
 	ArrayList<ArrayList<String>> groupsOfRobot;
+
+	/**Ordered list of robots in allocation (order matter for genes in GA)*/
+	private ArrayList<String> robotsList;
 	
 	//constructor
 	public Allocation(HashMap<String, ArrayList<String>> robotToAtomicTasksIds, String fileName) {
 		this.fileName = fileName;
-		this.num = Utility.getNumOfAllocation(fileName);
+		this.num = getNumOfAllocation(fileName);
 		this.robotToAtomicTasksIds = robotToAtomicTasksIds;
+		this.robotsList  = new ArrayList<String>(robotToAtomicTasksIds.keySet());
 	}
 	
+	/**Get number of allocation from .xml name*/
+	public static String getNumOfAllocation(String fileName) {
+		String s ="";
+		String[] f =fileName.split("//");
+		s = f[f.length-1].replace(".xml", "").replace("Allocation", "");;
+		return s;
+	}
+
 	/**Get tasks allocated to robot**/
 	public ArrayList<String> getTasks(String robot){
 		return robotToAtomicTasksIds.get(robot);
 	}
+	
+	/**Num of tasks allocated to a robot*/
+	public int numTasks(ArrayList<String[]> tTask,String robID) {
+		return robotToAtomicTasksIds.get(robID).size();
+	}
+	
 	
 	/**Number of allocation*/
 	public String getNum() {
@@ -42,10 +59,10 @@ public class Allocation {
 		return fileName;
 	}
 	
-	
-	public Set<String> getRobots() {
-		return this.robotToAtomicTasksIds.keySet();
-	}
+//	
+//	public Set<String> getRobots() {
+//		return this.robotToAtomicTasksIds.keySet();
+//	}
 	
 	public Integer getNumRobots() {
 		return this.robotToAtomicTasksIds.keySet().size();
@@ -91,4 +108,14 @@ public class Allocation {
 	public ArrayList<ArrayList<String>> getGroupsOfRobot() {
 		return groupsOfRobot;
 	}
+	
+	/*Get number of permutations of the tasks assigned to robot*/
+	public int getNumTaskPermutations(String robotID) {
+		return Utility.getFactorial(getTasks(robotID).size());
+	}
+	
+	/**Ordered list of robots in allocation - order matterns for GA*/
+	public ArrayList<String> getRobotsList() {
+		return robotsList;
+	}	
 }

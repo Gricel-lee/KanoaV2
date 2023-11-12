@@ -21,7 +21,11 @@ public class RobotsModel {
 		System.out.println("Robots in model: "+robots.keySet());
 		for(Robot r:robots.values()) {
 			System.out.println("--- Robot:");
-			System.out.println(r.getID()+" location:" + r.getLoc().getID()+ " cando:"+ r.getCandoAtomicTasks());
+			System.out.println(r.getID()+
+					" location:" + r.getLoc().getID()+
+					" cando:"+ r.getCandoAtomicTasks()+
+					" velocity:"+ r.getVelocity()
+					);
 		}
 	}
 }

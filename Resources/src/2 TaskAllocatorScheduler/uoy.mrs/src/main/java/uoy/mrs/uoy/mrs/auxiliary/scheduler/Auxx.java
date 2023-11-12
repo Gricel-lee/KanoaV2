@@ -1,34 +1,16 @@
 package uoy.mrs.uoy.mrs.auxiliary.scheduler;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.regex.Pattern;
-
-import org.netlib.util.doubleW;
+import java.util.Random;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
-
-import parser.ast.ModulesFile;
-import parser.ast.PropertiesFile;
 import prism.Prism;
-import prism.PrismException;
-import prism.PrismLangException;
-import prism.Result;
-import uoy.mrs.uoy.mrs.auxiliary.Constants;
-import uoy.mrs.uoy.mrs.auxiliary.Timer;
-import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
-import uoy.mrs.uoy.mrs.types.impl.CompoundTaskInstance;
-
-import java.util.Random;
 
 /**
- * @author gris
+ * These methods are needed in creating the MDP models 
+ * @author Gricel Vazquez
  *
  */
 public class Auxx {
@@ -158,30 +140,5 @@ public class Auxx {
 		return arr;
 	}
 	
-	
-	public static Iterator<Object> collectionToIterator(Collection<Object> collection){
-		//how to iterate: 
-		//while (iter.hasNext()){ iter.next() }
-		return collection.iterator();
-	}
-	
-	public static Iterator<Object> arraylistToIterator(ArrayList<Object> arrayList){
-		//how to iterate: 
-		//while (iter.hasNext()){ iter.next() }
-		return arrayList.iterator();
-	}
-	
-	
-	
 
-	public static ArrayList<Object> iteratorToList(Iterator<Object> myIterator) {
-		ArrayList<Object> arrayList = new ArrayList<>();
-        // Convert Iterator to ArrayList
-        while (myIterator.hasNext()) {
-            Object item = myIterator.next();
-            arrayList.add(item);
-        }
-		return arrayList;
-	}
-	
 }
