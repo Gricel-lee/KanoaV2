@@ -13,11 +13,11 @@ public class Permutation {
 	
 	public String robID;
 	public Robot robot;
-	public Integer numPerm; //number of permutation
+	public List<String> tasksInPerm; //atomic tasks in order
+	public Integer numPerm; 		 //number of permutation
 	public Allocation a;
 	public ProblemSpecification p;
 	public Integer idleTime;
-	public List<String> tasksInPerm;
 	
 	
 	public Permutation(String robID, ProblemSpecification p, Allocation a,
@@ -45,9 +45,10 @@ public class Permutation {
 	}
 	
 	
-	/**Get tasks duration */
+	/**Get tasks duration. 
+	 * @input atID, example: at1_2*/
 	public int getTasksDuration(String atID) {
-		return this.robot.getTaskDurationInt(atID);
+		return this.robot.getTaskDurationInt(atID,p);
 	}
 	
 	
@@ -61,8 +62,11 @@ public class Permutation {
 		int TTasks = getTotalTasksTime(p,a);
 		// - time travelling
 		int TTravel = getTotalTravelTime(p,a);
-		
-		return TT-TTasks-TTravel;
+		// - idle
+		int T_available_for_idling = TT-TTasks-TTravel;
+		if( Constants.maxIdle < T_available_for_idling) //check if the idle limit in condif.properties file. Take the smaller to reduce MDP state space.
+			return Constants.maxIdle;
+		return T_available_for_idling;
 	}
 	
 	/**Get duration of tasks assigned to robot r in allocation a*/
@@ -74,8 +78,7 @@ public class Permutation {
 		//Get duration of tasks assigned to robot r in allocation a
 		for (int i = 0; i < a.robotToAtomicTasksIds.get(this.robID).size(); i++) {
 			String at_instantiated_i = a.robotToAtomicTasksIds.get(this.robID).get(i); //e.g. at4_6
-			String at_i = p.getTasks().atList.get(at_instantiated_i).getInst(); //e.g. at4
-			int at_i_duration = robot.getTaskDurationInt(at_i);
+			int at_i_duration = robot.getTaskDurationInt(at_instantiated_i,p);
 			TTasks+=at_i_duration;
 			//System.out.println(at_i+","+at_instantiated_i+","+at_i_duration); //e.g. at4,at4_6,2
 			

@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 import parser.ast.ModulesFile;
 import parser.ast.PropertiesFile;
@@ -15,18 +14,14 @@ import prism.PrismException;
 import prism.PrismLog;
 import prism.Result;
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
-import uoy.mrs.uoy.mrs.auxiliary.PermutationGenerator;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
-import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
-import uoy.mrs.uoy.mrs.types.impl.Location;
 import uoy.mrs.uoy.mrs.types.impl.Permutation;
 import uoy.mrs.uoy.mrs.types.impl.Robot;
 
 public class MDPModelA {
 	
-	///****** HERE missing when idle <0 *******
 	
 	public static String createModelA(HashMap<String, Integer> robots2PermNum, ProblemSpecification p, Allocation a) {
 		// a) get info
@@ -59,43 +54,35 @@ public class MDPModelA {
 		for(String rID:robIDset) {
 			Permutation r_permutation = r_permutationTasks.get(rID);
 			
-			
 			String t1ID= r_permutation.tasksInPerm.get(0);
 			int time = r_permutation.getTravelTime(rID, t1ID);
 			
-			
 			// - travel const
-			model.append("const int travel"+rID+"l0"+r_permutation.tasksInPerm.get(0)+"="+time +" ;\n");
+//			model.append("const int travel"+rID+"l0"+r_permutation.tasksInPerm.get(0)+"="+time +" ;\n");
+//			for (int i = 0; i < r_permutation.tasksInPerm.size()-1; i++) {
+//				t1ID= r_permutation.tasksInPerm.get(i);
+//				String t2ID= r_permutation.tasksInPerm.get(i+1);
+//				time = r_permutation.getTravelTime(t1ID, t2ID);
+//				model.append("const int travel"+rID+t1ID+t2ID+"="+time +" ;\n");
+//			}
+			
+			model.append("const int travel"+rID+t1ID+"="+time +" ;//l0-"+t1ID+"\n");
 			for (int i = 0; i < r_permutation.tasksInPerm.size()-1; i++) {
 				t1ID= r_permutation.tasksInPerm.get(i);
 				String t2ID= r_permutation.tasksInPerm.get(i+1);
 				time = r_permutation.getTravelTime(t1ID, t2ID);
-				model.append("const int travel"+rID+t1ID+t2ID+"="+time +" ;\n");
-				
+				model.append("const int travel"+rID+t2ID+"="+time +" ;//"+t1ID+"-"+t2ID+"\n");
 			}
-			
 		}
 		
 		
-		// -- tasks time const --*** WORKING BUT RE-DO WITH INFO FROM Permutation array  r_permutationTasks *****
-		for (Iterator<String[]> iterator = timeTask.iterator(); iterator.hasNext();) {
-			String[] strings = (String[]) iterator.next();
-			
-			String time = strings[2];
-	        String[] splitParts = time.split("\\.");
-
-	        // Ensure that there's at least one part after the split
-	        if (splitParts.length > 0) {
-	            int integerPart = Integer.parseInt(splitParts[0]);
-	            model.append("const int "+strings[0]+strings[1]+"Time="+ integerPart+";\n");
-	            
-	        } else {
-	        	model.append("const int "+strings[0]+strings[1]+"Time="+ strings[2]+";\n");
-	        }
-	        
-	        
-			
+		// -- tasks time const
+		for(Permutation r_perm: r_permutationTasks.values()) {
+			for(String at:r_perm.tasksInPerm) {
+				model.append("const int "+r_perm.robID+at+"Time="+ r_perm.getTasksDuration(at) +";\n");
+			}
 		}
+		
 		//
 		for (Iterator<String[]> iterator = tTravel.iterator(); iterator.hasNext();) {
 			String[] strings = (String[]) iterator.next();
@@ -128,20 +115,26 @@ public class MDPModelA {
 			if(r_permutationTasks.get(r).idleTime > 0) {model.append(" "+r+"idleTime:[0..maxIdle"+r+"];\n");}
 			
 			for (int j = 0; j < r_permutationTasks.get(r).tasksInPerm.size(); j++) {//for each task
-				//location
-				String loc_t1="";String loc_t2="";
+				// tasks' locations for travel
+				String t1="";String t2="";
 				if (j==0) {
-					loc_t1="l0"; //first location
-					loc_t2=r_permutationTasks.get(r).tasksInPerm.get(j);; //second location (this is the task's name in the MDP model)
+					t1="l0"; //first starts at robot's location
+					t2=r_permutationTasks.get(r).tasksInPerm.get(j); //second task (task instance id)
 				}
 				else {
-					loc_t1= r_permutationTasks.get(r).tasksInPerm.get(j-1);
-					loc_t2= r_permutationTasks.get(r).tasksInPerm.get(j);
+					t1= r_permutationTasks.get(r).tasksInPerm.get(j-1);
+					t2= r_permutationTasks.get(r).tasksInPerm.get(j);
 				}
-				//next task
-				
-				model.append(" ["+r+loc_t2+"] "+r+"order="+j+" & ("+r+"time+"+r+loc_t2+"Time+travel"+r+loc_t1+loc_t2+"<=TT)"
-				+" -> ("+r+"order'="+(j+1)+") & ("+r+"time'="+r+"time+"+r+loc_t2+"Time+travel"+r+loc_t1+loc_t2+");\n");	
+				//next task ------ transitions
+				//label
+				if(p.isJoint(t2)) {model.append(" ["+t2+"] ");}
+				else {model.append(" ["+r+t2+"] ");}
+				//guard - order and time
+				model.append(r+"order="+j+" & ("+r+"time+"+r+t2+"Time+travel"+r+t2+"<=TT)");
+				//guard - if joint task
+				model.append( getGuardJoinTask(r,t2, r_permutationTasks, a, p) );
+				//update
+				model.append(" -> ("+r+"order'="+(j+1)+") & ("+r+"time'="+r+"time+"+r+t2+"Time+travel"+r+t2+");\n");	
 				
 			}
 			//if idle
@@ -150,14 +143,14 @@ public class MDPModelA {
 			model.append("endmodule\n\n");
 		}
 		//
-		model.append("rewards \"idle\"\n //Note- there is no idle option for robot ri if maxIdleri==0 (computed beforehand)\n"
-				+ "\n");
+		model.append("rewards \"idle\"\n //Note- there is no idle option for robot ri if maxIdleri==0 (computed beforehand)\n");
 		for (int i = 0; i < robIDset.size(); i++) {
 			String r = robIDset.get(i);
 			//if idle
 			if(r_permutationTasks.get(r).idleTime > 0) { model.append(" ["+r+"idle] true: 1;\n"); }
 		}
 		model.append("endrewards");
+		
 		//=========================================================
 		//=========================================================
 		//Save model
@@ -172,16 +165,34 @@ public class MDPModelA {
 		
 		//-Save to file
 		createMDPFile(outputFolder,mdpFileName,model);
+
+		//=========================================================
 		//=========================================================
 		//Run prism: adversary
 		File file = new File(mdpFilePath);
 		String property = "R{\"idle\"}min=?[F done]";
 		RunPrism(file,property);
 		
+		//Run prism: 
+		property = "Pmin=?[F done]";
+		RunPrism(file,property);
+		
 		return mdpFilePath;
 	}
 	
 	
+	/**E.g.:" & (r1time+travelTi = r2time+travelTj)"*/
+	private static String getGuardJoinTask(String r1, String atID, HashMap<String, Permutation> r_permutationTasks, Allocation a, ProblemSpecification p) {
+		String s = "";
+		//robots sharing task
+		for (String r2: a.whichRobots(atID)) {
+			if(!r1.equals(r2))
+				s+=" & ("+r1+"time+travel"+r1+atID+" = "+r2+"time+travel"+r2+atID+")";
+		}
+		return s;
+	}
+
+
 	/*Array permutation of tasks*/
 	private static HashMap<String, Permutation> getPerm(ProblemSpecification p, Allocation a,
 			HashMap<String, Integer> robots2PermNum) {
@@ -202,7 +213,6 @@ public class MDPModelA {
 			Permutation perm = new Permutation(rID, p, a, numPerm);
 			permutation.put(rID, perm);
 		}
-		
 		return permutation;
 	}
 
@@ -247,10 +257,9 @@ public class MDPModelA {
 			for (int j = 0; j < a.robotToAtomicTasksIds.get(rID).size(); j++) {
 				//get duration
 				String tID = a.robotToAtomicTasksIds.get(rID).get(j);
-				String taskNotInstantiatedID = p.getTasks().atList.get(tID).getInst();
 				
 				Robot r = p.getRobotsModel().getRob(rID);
-				String duration = r.getTaskDuration(taskNotInstantiatedID);
+				String duration = r.getTaskDuration(tID,p);
 				String[] ritj = {rID,tID,duration};
 				timeTask.add(ritj);
 				
@@ -275,10 +284,8 @@ public class MDPModelA {
 		
 		//Get duration of tasks assigned to robot r in allocation a
 		for (int i = 0; i < a.robotToAtomicTasksIds.get(robID).size(); i++) {
-			String at_instantiated_i = a.robotToAtomicTasksIds.get(robID).get(i); //e.g. at4_6
-			String at_i = p.getTasks().atList.get(at_instantiated_i).getInst(); //e.g. at4
-			
-			int at_i_duration = r.getTaskDurationInt(at_i);
+			String at = a.robotToAtomicTasksIds.get(robID).get(i); //e.g. at4_6
+			int at_i_duration = r.getTaskDurationInt(at,p);
 			n-=at_i_duration;
 			
 			//System.out.println(at_i+","+at_instantiated_i+","+at_i_duration); //e.g. at4,at4_6,2

@@ -82,5 +82,10 @@ public class KanoaErrorHandler {
 		throw new IOError(null); //stop and print trace
 	}
 
+	public static void ErrorNotAnAtomicTask(String id) {
+		System.err.println("ERROR: Expecting an atomic task: "+id+".");
+		throw new IOError(null); //stop and print trace
+	}
+
 	
 }

@@ -104,6 +104,10 @@ public class Utility {
     }
 	
 	
+	public static boolean string2boolean(String s) {
+		// .trim remove spaces 
+        return Boolean.valueOf(s.trim());
+	}
 	
 	
 	

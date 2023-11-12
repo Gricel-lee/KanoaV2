@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import org.apache.commons.collections4.map.MultiKeyMap;
 
@@ -71,20 +70,25 @@ public class ProblemSpecification{
 		return worldModel;
 	}
 	
-	/**Check if an identifier is from an atomic task*/
+	/**Check if a task identifier is from an atomic task*/
 	public boolean isAtomic(String id) {
-		if(this.tasksModelI.atList.keySet().contains(id)) {
+		if(this.tasksModelI.atList.keySet().contains(id))
 			return true;
-		}
 		return false;
 	}
 
-	/**Check if an identifier is from a compound task*/
+	/**Check if a task identifier is from a compound task*/
 	public boolean isCompound(String id) {
-		if(this.tasksModelI.ctList.keySet().contains(id)) {
+		if(this.tasksModelI.ctList.keySet().contains(id))
 			return true;
-		}
 		return false;
+	}
+	
+	/**Check if an atomic task identifier is joint */
+	public boolean isJoint(String atID) {
+		if(!this.tasksModelI.atList.keySet().contains(atID)) 
+			KanoaErrorHandler.ErrorNotAnAtomicTask(atID);
+		return this.tasksModelI.atList.get(atID).getjoint();
 	}
 	
 	

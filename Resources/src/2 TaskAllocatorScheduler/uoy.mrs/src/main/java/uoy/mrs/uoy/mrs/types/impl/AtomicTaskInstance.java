@@ -2,6 +2,7 @@ package uoy.mrs.uoy.mrs.types.impl;
 
 import java.util.ArrayList;
 
+import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 
 public class AtomicTaskInstance{
@@ -66,10 +67,10 @@ public class AtomicTaskInstance{
 	}
 
 	
-	public String getjoint() {
-		return joint;
+	public boolean getjoint() {
+		return Utility.string2boolean(joint);
 	}
-
+	
 	
 	public String getstart() {
 		return start;

@@ -7,6 +7,7 @@ import org.apache.commons.collections4.map.MultiKeyMap;
 
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
+import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 
 
 
@@ -69,19 +70,28 @@ public class Robot{
 	}
 	
 	
-	/**Get time required by robot to complete a task*/
-	public String getTaskDuration(String tID) {
-		if(!capabilities.containsKey(tID)) {
-			KanoaErrorHandler.ErrorRobotCannotDoTask(id,tID); }
-		return getCapabilities(tID).completionTime;
+	
+
+	/**Get time required by robot to complete a task
+	 * input example: at4_1 */
+	public String getTaskDuration(String tID,ProblemSpecification p) {
+		String taskNotInstantiatedID = p.getTasks().atList.get(tID).getInst();
+		if(!capabilities.containsKey(taskNotInstantiatedID)) {
+			KanoaErrorHandler.ErrorRobotCannotDoTask(id,taskNotInstantiatedID); }
+		return getCapabilities(taskNotInstantiatedID).completionTime;
 	}
 	
-	/**Get time required by robot to complete a task as Int*/
-	public int getTaskDurationInt(String tID) {
-		if(!capabilities.containsKey(tID)) {
-			KanoaErrorHandler.ErrorRobotCannotDoTask(id,tID); }
-		return Utility.string2int(getCapabilities(tID).completionTime);
+	/**Get time required by robot to complete a task as Int
+	 * input example: at4_1 */
+	public int getTaskDurationInt(String tID,ProblemSpecification p) {
+		String taskNotInstantiatedID = p.getTasks().atList.get(tID).getInst();
+		if(!capabilities.containsKey(taskNotInstantiatedID)) {
+			KanoaErrorHandler.ErrorRobotCannotDoTask(id,taskNotInstantiatedID); }
+		return Utility.string2int(getCapabilities(taskNotInstantiatedID).completionTime);
 	}
+	
+	
+	
 	
 	
 	public void print() {

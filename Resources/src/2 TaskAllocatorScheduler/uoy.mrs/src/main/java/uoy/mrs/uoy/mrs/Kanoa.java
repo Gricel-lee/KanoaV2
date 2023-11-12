@@ -114,6 +114,9 @@ public class Kanoa {
 		// a) get Pareto solutions
 		Scheduler.runTest(problemSpec);
 		
+		///****** HERE missing when idle <0 computed when doing model A *******
+		
+		
 		//Scheduler.run(problemSpec);
 //		
 //		System.out.println(Constants.num_population);

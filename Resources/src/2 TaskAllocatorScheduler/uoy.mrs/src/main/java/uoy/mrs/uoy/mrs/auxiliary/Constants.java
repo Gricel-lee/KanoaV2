@@ -24,7 +24,9 @@ public class Constants {
 	public static String genWM;
 	public static String genMissionTree;
 	public static String genAlloyModel;
-
+	
+	public static int maxIdle;
+	
 	public static String num_instances; 
 	public static String num_evaluations;
 	public static String num_population;
@@ -132,6 +134,8 @@ public class Constants {
 		genAlloyModel = genFiles + "/modelAllocation.als";
 		
 		pythonDir = getProperty("PYTHON3_DIRECTORY");
+		
+		maxIdle = Utility.string2int( getProperty("MAX_IDLE") );
 		
 		//@Depricated Objectives
 		//Moved to be part of the problem specifications.
