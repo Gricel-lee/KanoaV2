@@ -91,6 +91,22 @@ public class ProblemSpecification{
 		return this.tasksModelI.atList.get(atID).getjoint();
 	}
 	
+	/**Check if an atomic task identifier is ordered.
+	 * Requires pre-scheduling stage to be run before. */
+	public boolean isATOrdered(String atID) {
+		if(!this.tasksModelI.atList.keySet().contains(atID)) 
+			KanoaErrorHandler.ErrorNotAnAtomicTask(atID);
+		return this.tasksModelI.atList.get(atID).isOrdered_by_CTs_above();
+	}
+	
+	/**Check if an atomic task identifier is ordered.
+	 * Requires pre-scheduling stage to be run before. */
+	public boolean isATConsec(String atID) {
+		if(!this.tasksModelI.atList.keySet().contains(atID)) 
+			KanoaErrorHandler.ErrorNotAnAtomicTask(atID);
+		return this.tasksModelI.atList.get(atID).isConsec_by_CTs_above();
+	}
+	
 	
 	/**Get location to perform an atomic task instance*/
 	public Location getATLocation(String atID) {

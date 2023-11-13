@@ -40,11 +40,18 @@ const int maxIdler1=10;
 
 formula done=(r4order=2&r5order=2&r1order=12);
 
-//for ordered tasks
-formula r1at4_6Done = r1order>=1 ;
-formula r1at4_9Done = r1order>=2 ;
-formula r1at4_3Done = r1order>=3 ;
-formula r1at4_12Done = r1order>=4 ;
+//formulae for ordered tasks
+
+
+//formulae for consecutive tasks
+formula r1at3_13Just = r1order>=5 ;
+formula r1at4_6Just = r1order>=1 ;
+formula r1at3_7Just = r1order>=6 ;
+formula r1at4_9Just = r1order>=2 ;
+formula r1at4_3Just = r1order>=3 ;
+formula r1at3_4Just = r1order>=7 ;
+formula r1at4_12Just = r1order>=4 ;
+formula r1at3_10Just = r1order>=8 ;
 
 
 
@@ -75,14 +82,14 @@ module r1
  [r1at4_9] r1order=1 & (r1time+r1at4_9Time+travelr1at4_9<=TT) -> (r1order'=2) & (r1time'=r1time+r1at4_9Time+travelr1at4_9);
  [r1at4_3] r1order=2 & (r1time+r1at4_3Time+travelr1at4_3<=TT) -> (r1order'=3) & (r1time'=r1time+r1at4_3Time+travelr1at4_3);
  [r1at4_12] r1order=3 & (r1time+r1at4_12Time+travelr1at4_12<=TT) -> (r1order'=4) & (r1time'=r1time+r1at4_12Time+travelr1at4_12);
- [r1at3_13] r1order=4 & (r1time+r1at3_13Time+travelr1at3_13<=TT) & (r1time+travelr1at3_13 >= r1time) & (r1at4_12Done) -> (r1order'=5) & (r1time'=r1time+r1at3_13Time+travelr1at3_13);
- [r1at3_7] r1order=5 & (r1time+r1at3_7Time+travelr1at3_7<=TT) & (r1time+travelr1at3_7 >= r1time) & (r1at4_6Done) -> (r1order'=6) & (r1time'=r1time+r1at3_7Time+travelr1at3_7);
- [r1at3_4] r1order=6 & (r1time+r1at3_4Time+travelr1at3_4<=TT) & (r1time+travelr1at3_4 >= r1time) & (r1at4_3Done) -> (r1order'=7) & (r1time'=r1time+r1at3_4Time+travelr1at3_4);
- [r1at3_10] r1order=7 & (r1time+r1at3_10Time+travelr1at3_10<=TT) & (r1time+travelr1at3_10 >= r1time) & (r1at4_9Done) -> (r1order'=8) & (r1time'=r1time+r1at3_10Time+travelr1at3_10);
- [r1at2_11] r1order=8 & (r1time+r1at2_11Time+travelr1at2_11<=TT) & (r1time+travelr1at2_11 >= r1time) & (r1at4_9Done) -> (r1order'=9) & (r1time'=r1time+r1at2_11Time+travelr1at2_11);
- [r1at2_14] r1order=9 & (r1time+r1at2_14Time+travelr1at2_14<=TT) & (r1time+travelr1at2_14 >= r1time) & (r1at4_12Done) -> (r1order'=10) & (r1time'=r1time+r1at2_14Time+travelr1at2_14);
- [r1at2_8] r1order=10 & (r1time+r1at2_8Time+travelr1at2_8<=TT) & (r1time+travelr1at2_8 >= r1time) & (r1at4_6Done) -> (r1order'=11) & (r1time'=r1time+r1at2_8Time+travelr1at2_8);
- [r1at2_5] r1order=11 & (r1time+r1at2_5Time+travelr1at2_5<=TT) & (r1time+travelr1at2_5 >= r1time) & (r1at4_3Done) -> (r1order'=12) & (r1time'=r1time+r1at2_5Time+travelr1at2_5);
+ [r1at3_13] r1order=4 & (r1time+r1at3_13Time+travelr1at3_13<=TT)& (r1at4_12Just) & (r1time+travelr1at4_12 = r1time) -> (r1order'=5) & (r1time'=r1time+r1at3_13Time+travelr1at3_13);
+ [r1at3_7] r1order=5 & (r1time+r1at3_7Time+travelr1at3_7<=TT)& (r1at4_6Just) & (r1time+travelr1at4_6 = r1time) -> (r1order'=6) & (r1time'=r1time+r1at3_7Time+travelr1at3_7);
+ [r1at3_4] r1order=6 & (r1time+r1at3_4Time+travelr1at3_4<=TT)& (r1at4_3Just) & (r1time+travelr1at4_3 = r1time) -> (r1order'=7) & (r1time'=r1time+r1at3_4Time+travelr1at3_4);
+ [r1at3_10] r1order=7 & (r1time+r1at3_10Time+travelr1at3_10<=TT)& (r1at4_9Just) & (r1time+travelr1at4_9 = r1time) -> (r1order'=8) & (r1time'=r1time+r1at3_10Time+travelr1at3_10);
+ [r1at2_11] r1order=8 & (r1time+r1at2_11Time+travelr1at2_11<=TT)& (r1at3_10Just) & (r1time+travelr1at3_10 = r1time) -> (r1order'=9) & (r1time'=r1time+r1at2_11Time+travelr1at2_11);
+ [r1at2_14] r1order=9 & (r1time+r1at2_14Time+travelr1at2_14<=TT)& (r1at3_13Just) & (r1time+travelr1at3_13 = r1time) -> (r1order'=10) & (r1time'=r1time+r1at2_14Time+travelr1at2_14);
+ [r1at2_8] r1order=10 & (r1time+r1at2_8Time+travelr1at2_8<=TT)& (r1at3_7Just) & (r1time+travelr1at3_7 = r1time) -> (r1order'=11) & (r1time'=r1time+r1at2_8Time+travelr1at2_8);
+ [r1at2_5] r1order=11 & (r1time+r1at2_5Time+travelr1at2_5<=TT)& (r1at3_4Just) & (r1time+travelr1at3_4 = r1time) -> (r1order'=12) & (r1time'=r1time+r1at2_5Time+travelr1at2_5);
  [r1idle] r1order!=12 & (r1time+1<=TT) & (r1idleTime+1<=maxIdler1) -> (r1time'=r1time+1) & (r1idleTime'=r1idleTime+1);
 endmodule
 

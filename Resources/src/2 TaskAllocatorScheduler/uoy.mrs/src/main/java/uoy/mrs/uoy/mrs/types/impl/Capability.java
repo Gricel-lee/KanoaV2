@@ -1,9 +1,9 @@
 package uoy.mrs.uoy.mrs.types.impl;
 
 public class Capability {
-	String atomicTaskID;
-	String completionTime;
-	String probSucc;
+	public String atomicTaskID;
+	public String completionTime;
+	public String probSucc;
 	
 	public Capability(String atID, String time, String probSucc) {
 		this.atomicTaskID = atID;

@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+
+import org.python.modules.math;
 
 import parser.ast.ModulesFile;
 import parser.ast.PropertiesFile;
@@ -17,6 +20,7 @@ import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
+import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
 import uoy.mrs.uoy.mrs.types.impl.Permutation;
 import uoy.mrs.uoy.mrs.types.impl.Robot;
 
@@ -95,6 +99,7 @@ public class MDPModelA {
 			if(r_perm.idleTime > 0) {
 				model.append("const int maxIdle"+r+"="+ r_perm.idleTime +";\n");}			
 		}
+		//---------------------------------------
 		// -- formula done
 		model.append("\nformula done=(");
 		for (int i = 0; i < robIDset.size(); i++) {
@@ -104,35 +109,90 @@ public class MDPModelA {
 		}
 		model.deleteCharAt(model.length() - 1);
 		model.append(");\n\n");
-		// -- module
+		//---------------------------------------
+		// --formulae for "ordered" tasks				"formula r1t1Done = r1order>=k+1 ; //ordered task"
+		model.append("//formulae for ordered tasks\n");
+		for(String at : getListOfAtomicTasksThatGoBeforeOthers(p,a) ) {
+			//if joint task, assigned to multiple robots
+			for(String r: a.whichRobots(at)) {
+				int i = r_permutationTasks.get(r).tasksInPerm.indexOf(at); //index of task in robot tasks' permutation
+				model.append("formula "+ r +at+"Done = "+ r +"order>="+(i+1)+" ;\n");
+			}
+		}
+		model.append("\n\n");
+		//--------------------------------------- 
+		// --formulae for "consecutive" tasks				"formula r1t2Just = r1order=j+1; //consec. task"
+		model.append("//formulae for consecutive tasks\n");
+		for(String at : getListOfAtomicTasksThatGo_JUST_BeforeOthers(p,a) ) {
+			//if joint task, assigned to multiple robots
+			for(String r: a.whichRobots(at)) {
+				int i = r_permutationTasks.get(r).tasksInPerm.indexOf(at); //index of task in robot tasks' permutation
+				model.append("formula "+ r +at+"Just = "+ r +"order>="+(i+1)+" ;\n");
+			}
+		}
+		model.append("\n\n");
+		model.append("\n\n");
+		
+		
+		//---------------------------------------
+		// -- modules
 		for (int i = 0; i < robIDset.size(); i++) {
 			String r = robIDset.get(i);
+			Permutation r_perm = r_permutationTasks.get(r);
+			
 			model.append("module "+r+"\n");
 			// -- state variables
 			model.append(" "+ r +"order:[0.."+ a.numTasks(timeTask,r) +"];\n");
 			model.append(" "+ r +"time:[0.."+ TT +"];\n");
 			//if idle
-			if(r_permutationTasks.get(r).idleTime > 0) {model.append(" "+r+"idleTime:[0..maxIdle"+r+"];\n");}
+			if(r_perm.idleTime > 0) {model.append(" "+r+"idleTime:[0..maxIdle"+r+"];\n");}
 			
-			for (int j = 0; j < r_permutationTasks.get(r).tasksInPerm.size(); j++) {//for each task
+			for (int j = 0; j < r_perm.tasksInPerm.size(); j++) {//for each task
 				// tasks' locations for travel
 				String t1="";String t2="";
 				if (j==0) {
 					t1="l0"; //first starts at robot's location
-					t2=r_permutationTasks.get(r).tasksInPerm.get(j); //second task (task instance id)
+					t2=r_perm.tasksInPerm.get(j); //second task (task instance id)
 				}
 				else {
-					t1= r_permutationTasks.get(r).tasksInPerm.get(j-1);
-					t2= r_permutationTasks.get(r).tasksInPerm.get(j);
+					t1= r_perm.tasksInPerm.get(j-1);
+					t2= r_perm.tasksInPerm.get(j);
 				}
-				//next task ------ transitions
+				//---------------------------------------
+				// ------ transitions (next task)
 				//label
 				if(p.isJoint(t2)) {model.append(" ["+t2+"] ");}
 				else {model.append(" ["+r+t2+"] ");}
+				//---------------------------------------
 				//guard - order and time
 				model.append(r+"order="+j+" & ("+r+"time+"+r+t2+"Time+travel"+r+t2+"<=TT)");
+				//---------------------------------------
 				//guard - if joint task
 				model.append( getGuardJoinTask(r,t2, r_permutationTasks, a, p) );
+				
+				//---------------------------------------
+				// --guard - if ordered   	"& (r2time+travelT2 >= r1time) & (r1t1Done)"
+				String s =  " & ("+r+"time+travel"+r+t2+" >= ";
+				for(String atBefore : p.getTasks().atList.get(t2).getdoneBefore_ord()) {//for each task to be done before
+					//robot Assigned To Task Before
+					for(String rATBefore: a.whichRobots(atBefore)) { // if joint task before, then add guard for each robot
+						model.append(s);
+						model.append( rATBefore + "time) & ("+rATBefore + atBefore + "Done)" );
+					}
+				}
+				//---------------------------------------
+				// --guard - if consecutive   	"& (r1t2Just)  & (r2time+travelT2 = r1time)" 
+				  // --NOTE: when the task before is a joint task, not necessary to add the constraint to every robot, one is enough to check the task as done
+				  // --However, we must check which robot takes longer to complete the task, so we start this task after the last robot performing the
+				  // --joint task before completes it.
+				String taskBefore = p.getTasks().atList.get(t2).getjustDone_con();
+				if(taskBefore!=null) {
+					String robotWithTaskBefore = getRobotLongestTimeToCompleteJointTask(taskBefore,r_permutationTasks,p,a);
+					model.append("& ("+robotWithTaskBefore+taskBefore+"Just) & ("+r+"time+travel"+r+taskBefore+" = "+r+"time)"); 
+					
+				}
+				
+				//---------------------------------------
 				//update
 				model.append(" -> ("+r+"order'="+(j+1)+") & ("+r+"time'="+r+"time+"+r+t2+"Time+travel"+r+t2+");\n");	
 				
@@ -142,7 +202,8 @@ public class MDPModelA {
 			
 			model.append("endmodule\n\n");
 		}
-		//
+		//---------------------------------------
+		// -- reward
 		model.append("rewards \"idle\"\n //Note- there is no idle option for robot ri if maxIdleri==0 (computed beforehand)\n");
 		for (int i = 0; i < robIDset.size(); i++) {
 			String r = robIDset.get(i);
@@ -180,6 +241,52 @@ public class MDPModelA {
 		return mdpFilePath;
 	}
 	
+	
+	/**
+	 * @return */
+	private static ArrayList<String> getListOfAtomicTasksThatGoBeforeOthers(ProblemSpecification p, Allocation a) {
+		ArrayList<String> all = new ArrayList<String>();
+		for(AtomicTaskInstance at: p.getTasks().atList.values()) {
+			all.addAll( p.getTasks().atList.get(at.getID()).getdoneBefore_ord() );
+		}
+		// hashSet from the ArrayList to remove duplicates
+        HashSet<String> uniqueSet = new HashSet<>(all);
+        // new ArrayList from the unique elements in the HashSet
+        return new ArrayList<>(uniqueSet);
+        
+	}
+	
+	
+	/**
+	 * get list of all tasks that have to be done before others
+	 */
+	private static ArrayList<String> getListOfAtomicTasksThatGo_JUST_BeforeOthers(ProblemSpecification p, Allocation a){
+		ArrayList<String> all = new ArrayList<String>();
+		for(AtomicTaskInstance at: p.getTasks().atList.values()) {
+			String t_before = p.getTasks().atList.get(at.getID()).getjustDone_con();
+			if(t_before!=null)
+				all.add( p.getTasks().atList.get(at.getID()).getjustDone_con() );
+		}
+		// hashSet from the ArrayList to remove duplicates
+        HashSet<String> uniqueSet = new HashSet<>(all);
+        // new ArrayList from the unique elements in the HashSet
+        return new ArrayList<>(uniqueSet);
+	}
+	
+	
+	private static String getRobotLongestTimeToCompleteJointTask(String taskBefore, HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a) {
+		String robotWithTaskBefore = "";
+		int dur=0;
+		for(String r: a.whichRobots(taskBefore)) {
+			Permutation r_perm = r_permutationTasks.get(r);
+			 int dur2 = r_perm.getTasksDuration(taskBefore);
+			 if(dur2>dur) {
+				 robotWithTaskBefore = r_perm.robID;
+				 dur = dur2;
+			 }
+		}
+		return robotWithTaskBefore;
+	}
 	
 	/**E.g.:" & (r1time+travelTi = r2time+travelTj)"*/
 	private static String getGuardJoinTask(String r1, String atID, HashMap<String, Permutation> r_permutationTasks, Allocation a, ProblemSpecification p) {

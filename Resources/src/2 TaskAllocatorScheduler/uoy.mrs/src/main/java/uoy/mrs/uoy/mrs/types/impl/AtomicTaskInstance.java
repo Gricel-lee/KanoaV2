@@ -16,8 +16,10 @@ public class AtomicTaskInstance{
 	private String start;
 	private String end;
 	private String inst;
-	private String justDone;
-	private ArrayList<String> doneBefore = new ArrayList<String>();
+	/**If not empty. this atomic task is CONSECUTIVE constrained to the tasks in this list. I.e., they must be done before doing this task*/
+	private String justDone_con;
+	/**If not empty. this atomic task is ORDERED constrained to the tasks in this list. I.e., they must be done before doing this task*/
+	private ArrayList<String> doneBefore_ord = new ArrayList<String>();
 	private ArrayList<CompoundTaskInstance> compoundTasksAboveTask = new ArrayList<CompoundTaskInstance>();
 	
 	public AtomicTaskInstance(String id, String parent, String location, String numrobots, String joint, String start, String end, String inst) {
@@ -82,12 +84,22 @@ public class AtomicTaskInstance{
 	}
 	
 	
-	public String getjustDone() {
-		return justDone;
+	public String getjustDone_con() {
+		return justDone_con;
 	}
 	
-	public ArrayList<String> getdoneBefore() {
-		return doneBefore;
+	//check if tasks added to be done before (ordered)
+	public boolean isOrdered_by_CTs_above() {
+		return doneBefore_ord.size()>0;  
+	}
+	//check if there is a task to be done Just before (consecutive)
+	public boolean isConsec_by_CTs_above() {
+		return justDone_con!=null;
+	}
+	
+	
+	public ArrayList<String> getdoneBefore_ord() {
+		return doneBefore_ord;
 	}
 	
 	/**
@@ -126,18 +138,18 @@ public class AtomicTaskInstance{
 	/**Transfered constraints from constrained compound tasks above this atomic task.
 	 * Computed in the pre-scheduling stage.*/
 	public void setJustDone(String ctId_OfInstantiatedTaskToBeCompletedJustBefore) {
-		this.justDone = ctId_OfInstantiatedTaskToBeCompletedJustBefore;
+		this.justDone_con = ctId_OfInstantiatedTaskToBeCompletedJustBefore;
 	}
 	
 	/**Transfered constraints from constrained compound tasks above this atomic task.
 	 * Computed in the pre-scheduling stage.*/
 	public void setDoneBefore(ArrayList<String> ctId_List_OfInstantiatedTaskToBeDoneBefore) {
-		this.doneBefore.addAll(ctId_List_OfInstantiatedTaskToBeDoneBefore);
+		this.doneBefore_ord.addAll(ctId_List_OfInstantiatedTaskToBeDoneBefore);
 	}
 	/**Transfered constraints from constrained compound tasks above this atomic task.
 	 * Computed in the pre-scheduling stage.*/
 	public void setDoneBefore(String ctId_OfInstantiatedTaskToBeDoneBeforeThisAT) {
-		this.doneBefore.add(ctId_OfInstantiatedTaskToBeDoneBeforeThisAT);
+		this.doneBefore_ord.add(ctId_OfInstantiatedTaskToBeDoneBeforeThisAT);
 	}
     
 	

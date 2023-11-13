@@ -27,7 +27,7 @@ public class Kanoa {
 		//TestDummyRefactorORDERED
 		//TestDummyRefactorCONSEC
 		//TestDummyRefactor4ORD_CON
-		String fileTest = "TestDummyRefactor/config.properties"; //"TestCase3-var4/config.properties"); //Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
+		String fileTest = "TestDummyRefactor_consec/config.properties"; //"TestCase3-var4/config.properties"); //Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
 		kanoaMRS.setPropertiesFile(args,fileTest);
 		
 		/**Run**/ 

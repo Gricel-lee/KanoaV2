@@ -92,8 +92,8 @@
    <tuple> <atom label="r4at1$0"/> <atom label="at1_2$0"/> </tuple>
    <tuple> <atom label="r2at4$0"/> <atom label="at4_9$0"/> </tuple>
    <tuple> <atom label="r2at4$0"/> <atom label="at4_3$0"/> </tuple>
-   <tuple> <atom label="r2at4$0"/> <atom label="at4_12$0"/> </tuple>
    <tuple> <atom label="r1at4$0"/> <atom label="at4_6$0"/> </tuple>
+   <tuple> <atom label="r1at4$0"/> <atom label="at4_12$0"/> </tuple>
    <tuple> <atom label="r1at3$0"/> <atom label="at3_13$0"/> </tuple>
    <tuple> <atom label="r1at3$0"/> <atom label="at3_7$0"/> </tuple>
    <tuple> <atom label="r1at3$0"/> <atom label="at3_4$0"/> </tuple>

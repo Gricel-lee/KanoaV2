@@ -61,8 +61,8 @@ public class PreTaskScheduler {
 		Collection<AtomicTaskInstance> ats = p.getTasks().atList.values();
 		for (Iterator<AtomicTaskInstance> iterator = ats.iterator(); iterator.hasNext();) {
 			AtomicTaskInstance at = (AtomicTaskInstance) iterator.next();
-			System.out.println(at.getID() +"just done: "+at.getjustDone());
-			System.out.println(at.getID() +"done before: "+at.getdoneBefore());
+			System.out.println(at.getID() +"just done: "+at.getjustDone_con());
+			System.out.println(at.getID() +"done before: "+at.getdoneBefore_ord());
 		}
 		
 	}
