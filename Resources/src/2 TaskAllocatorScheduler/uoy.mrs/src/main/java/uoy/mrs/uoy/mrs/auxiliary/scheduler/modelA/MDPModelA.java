@@ -46,6 +46,8 @@ public class MDPModelA {
 		//String[] trip1 = {"r1","l0","t1","3"}; tTravel.add(trip1);
 		ArrayList<String[]> tTravel = new ArrayList<String[]>();
 		
+		//extra info to add 
+		String info = "";
 		
 		//=========================================================
 		//BUILD PRISM MODEL:
@@ -149,7 +151,7 @@ public class MDPModelA {
 			
 			for (int j = 0; j < r_perm.tasksInPerm.size(); j++) {//for each task
 				// tasks' locations for travel
-				String t1="";String t2="";
+				String t1="";String t2=""; //t2 is the task to be completed when transition taken
 				if (j==0) {
 					t1="l0"; //first starts at robot's location
 					t2=r_perm.tasksInPerm.get(j); //second task (task instance id)
@@ -171,7 +173,7 @@ public class MDPModelA {
 				model.append( getGuardJoinTask(r,t2, r_permutationTasks, a, p) );
 				
 				//---------------------------------------
-				// --guard - if ordered   	"& (r2time+travelT2 >= r1time) & (r1t1Done)"
+				// --guard - if ordered   	"& (r2time+travelr2T2 >= r1time) & (r1t1Done)"
 				String s =  " & ("+r+"time+travel"+r+t2+" >= ";
 				for(String atBefore : p.getTasks().atList.get(t2).getdoneBefore_ord()) {//for each task to be done before
 					//robot Assigned To Task Before
@@ -181,7 +183,7 @@ public class MDPModelA {
 					}
 				}
 				//---------------------------------------
-				// --guard - if consecutive   	"& (r1t2Just)  & (r2time+travelT2 = r1time)" 
+				// --guard - if consecutive   	"& (r1t2Just)  & (r2time+travelr2T2 = r1time)" 
 				  // --NOTE: when the task before is a joint task, not necessary to add the constraint to every robot, one is enough to check the task as done
 				  // --However, we must check which robot takes longer to complete the task, so we start this task after the last robot performing the
 				  // --joint task before completes it.
@@ -190,6 +192,22 @@ public class MDPModelA {
 					String robotWithTaskBefore = getRobotLongestTimeToCompleteJointTask(taskBefore,r_permutationTasks,p,a);
 					model.append("& ("+robotWithTaskBefore+taskBefore+"Just) & ("+r+"time+travel"+r+taskBefore+" = "+r+"time)"); 
 					
+				}
+				
+				//---------------------------------------
+				// --guard - time constraint      "& (r1time+travelr1T4 >= 10)" or "& (r1time+travelr1T5+r1t5Time <= 15)"
+				 AtomicTaskInstance task_t2 = p.getTasks().atList.get(t2);
+				// start
+				String start = task_t2.getstart();
+				if(!start.equals("None")) {
+					info+="\n //"+ t2+" start time: " +start;
+					model.append("& ("+r+"time+travel"+r+t2+" >= "+Utility.string2int(start)+")");
+				}
+				// end
+				String end = task_t2.getend();
+				if(!end.equals("None")) {
+					info+="\n //"+ t2+" end time: " +end;
+					model.append("& ("+r+"time+travel"+r+t2+"+"+r+t2+"Time <= "+ Utility.string2int(end) +")");
 				}
 				
 				//---------------------------------------
@@ -212,6 +230,7 @@ public class MDPModelA {
 		}
 		model.append("endrewards");
 		
+		model.append("\n\n\n"+info);
 		//=========================================================
 		//=========================================================
 		//Save model

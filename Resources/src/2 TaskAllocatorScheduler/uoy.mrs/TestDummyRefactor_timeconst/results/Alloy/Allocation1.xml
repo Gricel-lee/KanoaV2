@@ -37,7 +37,6 @@
    <tuple> <atom label="r5$0"/> <atom label="r5at1$0"/> </tuple>
    <tuple> <atom label="r4$0"/> <atom label="r4at1$0"/> </tuple>
    <tuple> <atom label="r2$0"/> <atom label="r2at4$0"/> </tuple>
-   <tuple> <atom label="r1$0"/> <atom label="r1at4$0"/> </tuple>
    <tuple> <atom label="r1$0"/> <atom label="r1at3$0"/> </tuple>
    <tuple> <atom label="r1$0"/> <atom label="r1at2$0"/> </tuple>
    <types> <type ID="5"/> <type ID="11"/> </types>
@@ -52,7 +51,6 @@
 </sig>
 
 <sig label="this/r1at4" ID="14" parentID="11" lone="yes">
-   <atom label="r1at4$0"/>
 </sig>
 
 <sig label="this/r2at2" ID="15" parentID="11" lone="yes">
@@ -93,7 +91,7 @@
    <tuple> <atom label="r2at4$0"/> <atom label="at4_6$0"/> </tuple>
    <tuple> <atom label="r2at4$0"/> <atom label="at4_9$0"/> </tuple>
    <tuple> <atom label="r2at4$0"/> <atom label="at4_3$0"/> </tuple>
-   <tuple> <atom label="r1at4$0"/> <atom label="at4_12$0"/> </tuple>
+   <tuple> <atom label="r2at4$0"/> <atom label="at4_12$0"/> </tuple>
    <tuple> <atom label="r1at3$0"/> <atom label="at3_13$0"/> </tuple>
    <tuple> <atom label="r1at3$0"/> <atom label="at3_7$0"/> </tuple>
    <tuple> <atom label="r1at3$0"/> <atom label="at3_4$0"/> </tuple>
