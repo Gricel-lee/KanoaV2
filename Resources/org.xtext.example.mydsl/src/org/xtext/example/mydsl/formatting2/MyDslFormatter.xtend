@@ -19,11 +19,11 @@ class MyDslFormatter extends AbstractFormatter2 {
 		for (worldModel : problemSpecification.worldModel) {
 			worldModel.format
 		}
-		for (robot : problemSpecification.robotsModel) {
-			robot.format
-		}
 		for (tasksModel : problemSpecification.tasksModel) {
 			tasksModel.format
+		}
+		for (robot : problemSpecification.robotsModel) {
+			robot.format
 		}
 		for (mission : problemSpecification.mission) {
 			mission.format
@@ -37,4 +37,5 @@ class MyDslFormatter extends AbstractFormatter2 {
 		}
 	}
 	
+	// TODO: implement for Mission
 }

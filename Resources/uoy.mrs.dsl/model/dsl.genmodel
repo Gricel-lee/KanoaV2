@@ -56,6 +56,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//AtomicTask/loc"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//AtomicTask/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//AtomicTask/robots"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//AtomicTask/retry"/>
     </genClasses>
     <genClasses ecoreClass="dsl.ecore#//CompoundTask">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//CompoundTask/name"/>

@@ -1,5 +1,7 @@
 package uoy.mrs.uoy.mrs.auxiliary.scheduler;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -23,8 +25,11 @@ import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.auxiliary.scheduler.modelA.MDPModelA;
+import uoy.mrs.uoy.mrs.auxiliary.scheduler.modelA.MDPModelB;
+import uoy.mrs.uoy.mrs.auxiliary.scheduler.modelA.MDPModelC;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
+import uoy.mrs.uoy.mrs.types.impl.Permutation;
 import uoy.mrs.uoy.mrs.types.impl.Robot;
 
 public class Scheduler extends AbstractAlgorithmRunner{
@@ -44,23 +49,76 @@ public class Scheduler extends AbstractAlgorithmRunner{
 	// --for tests
 	public static void runTest(ProblemSpecification p) {
 		// Test creating models A, B and C for a specific allocation & permutation
-		
-		//1 get info
+		//--------------------------------------- 
+		//1 get info - create allocation
 		Allocation a1 = p.getAllocations().get(0);
-		// permutation as String: JMetal output as a string: (1,1,1,1,443438)
+		//2 get JMetal permutation. String type, e.g.: "(1,1,1,1,443438)"
 		String geneString = getMadeUpPermuation_forTest(a1,p);
-		//permutation as hashmap<robotID,numOfPermutation>
-		HashMap<String,Integer> robots2PermNum = getrobots2PermuationNumberArray(a1,p,geneString);
+		// 3 array robot ID to permutation */		
+		HashMap<String, Permutation> r_permutationTasks = getPerm(p,a1, getrobots2PermuationNumberArray(a1,p,geneString) );
+		//--------------------------------------- 
+		// create string permutation for testing, in JMetal encoded 
+		
+		System.out.println("allocation num:" + a1.getNum());
+		System.out.println("robots:" +a1.getRobotsList());
+		System.out.println("permutation"+geneString);
+		//--------------------------------------- 
+		// Model A - idling
+		File file = MDPModelA.createModelA(r_permutationTasks,p,a1);
+		int idle = getIdle(file, "R{\"idle\"}min=?[F done]");
+		System.out.println("MODELA: "+idle);
+		//=========================================================
 		
 		
-		//2 create string permutation for testing, in JMetal encoded 
+		//--------------------------------------- 
+		// Model B - prob. of success
+		MDPModelB.createModelB(r_permutationTasks,p,a1);
+		//--------------------------------------- 
+		// Model C - travel cost
+		int travelCost = MDPModelC.createModelC(r_permutationTasks);
 		
-		System.out.println("alloc:" + a1.getNum());
-		System.out.println("rob:" +a1.getRobotsList());
-		System.out.println("test perm"+geneString);
-		MDPModelA.createModelA(robots2PermNum,p,a1);
 	}
 	
+	/**Run prism: idle and adversary
+	 * idle - return the minimum idle time
+	 * if > 0 -> permutation of tasks is possible
+	 * if < 0 -> permutation of tasks is NOT possible
+	 * @param file = modelA
+	 * @param property = "R{\"idle\"}min=?[F done]";
+	 * @return
+	 */ 
+	private static int getIdle(File file, String property) {
+		int idle = -1;
+		idle =  (int) MDPModelA.RunPrism(file,property);  //<-- return the idle time (computed using PRISM PMC)
+		return idle;
+	}
+	
+	
+	
+	/*Array permutation of tasks*/
+	private static HashMap<String, Permutation> getPerm(ProblemSpecification p, Allocation a,
+			HashMap<String, Integer> robots2PermNum) {
+		
+		HashMap<String, Permutation> permutation = new HashMap<>();
+		// robots
+		ArrayList<String> robIDset = a.getRobotsList();
+		// 
+		for (int i = 0; i < robIDset.size(); i++) {
+			String rID = robIDset.get(i);
+			
+			System.out.println("robots2PermNum"+robots2PermNum.keySet());
+			System.out.println("robots2PermNum"+robots2PermNum.values());
+			
+			Integer numPerm = robots2PermNum.get(rID);
+			
+			// permutation per robot
+			Permutation perm = new Permutation(rID, p, a, numPerm);
+			permutation.put(rID, perm);
+		}
+		return permutation;
+	}
+	
+	/** <allocation,permutation> as hashmap <robotID,numOfPermutation>*/
 	private static HashMap<String, Integer> getrobots2PermuationNumberArray(Allocation a1, ProblemSpecification p,String geneString) {
 		HashMap<String, Integer> robots2PermNum = new HashMap<String, Integer>();
 		

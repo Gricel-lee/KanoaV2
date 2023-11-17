@@ -24,13 +24,16 @@ public class AtomicTaskinstance {
 
   public Double end;
 
-  public Location set(final AtomicTask at, final Integer count, final String parent) {
-    Location _xblockexpression = null;
+  public int retry;
+
+  public int set(final AtomicTask at, final Integer count, final String parent) {
+    int _xblockexpression = (int) 0;
     {
       this.at = at;
       this.count = count;
       this.parent = parent;
-      _xblockexpression = this.loc = at.getLoc();
+      this.loc = at.getLoc();
+      _xblockexpression = this.retry = at.getRetry();
     }
     return _xblockexpression;
   }
@@ -63,9 +66,14 @@ public class AtomicTaskinstance {
       if ((this.start != null)) {
         InputOutput.<String>println(("startTime:" + this.start));
       }
-      String _xifexpression = null;
       if ((this.end != null)) {
-        _xifexpression = InputOutput.<String>println(("endTime:" + this.end));
+        InputOutput.<String>println(("endTime:" + this.end));
+      }
+      String _xifexpression = null;
+      boolean _equals = Integer.valueOf(this.retry).equals(Integer.valueOf(0));
+      boolean _not = (!_equals);
+      if (_not) {
+        _xifexpression = InputOutput.<String>println(("retry:" + Integer.valueOf(this.retry)));
       }
       _xblockexpression = _xifexpression;
     }

@@ -22,7 +22,7 @@ package dsl;
  * @model
  * @generated
  */
-public interface  AllocateT extends Constraints {
+public interface AllocateT extends Constraints {
 	/**
 	 * Returns the value of the '<em><b>At</b></em>' reference.
 	 * <!-- begin-user-doc -->

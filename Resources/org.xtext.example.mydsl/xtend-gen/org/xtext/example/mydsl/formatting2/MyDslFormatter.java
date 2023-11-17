@@ -30,13 +30,13 @@ public class MyDslFormatter extends AbstractFormatter2 {
     for (final WorldModel worldModel : _worldModel) {
       document.<WorldModel>format(worldModel);
     }
-    EList<Robot> _robotsModel = problemSpecification.getRobotsModel();
-    for (final Robot robot : _robotsModel) {
-      document.<Robot>format(robot);
-    }
     EList<TasksModel> _tasksModel = problemSpecification.getTasksModel();
     for (final TasksModel tasksModel : _tasksModel) {
       document.<TasksModel>format(tasksModel);
+    }
+    EList<Robot> _robotsModel = problemSpecification.getRobotsModel();
+    for (final Robot robot : _robotsModel) {
+      document.<Robot>format(robot);
     }
     EList<Mission> _mission = problemSpecification.getMission();
     for (final Mission mission : _mission) {

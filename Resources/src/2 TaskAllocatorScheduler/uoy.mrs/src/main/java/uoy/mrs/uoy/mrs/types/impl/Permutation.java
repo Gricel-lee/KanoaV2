@@ -19,6 +19,8 @@ public class Permutation {
 	public ProblemSpecification p;
 	public Integer idleTime;
 	
+	public int TTravel = 0;
+	
 	
 	public Permutation(String robID, ProblemSpecification p, Allocation a,
 			Integer numPerm) {
@@ -61,9 +63,9 @@ public class Permutation {
 		// - time doing tasks
 		int TTasks = getTotalTasksTime(p,a);
 		// - time travelling
-		int TTravel = getTotalTravelTime(p,a);
+		this.TTravel = getTotalTravelTime(p,a);
 		// - idle
-		int T_available_for_idling = TT-TTasks-TTravel;
+		int T_available_for_idling = TT-TTasks-this.TTravel;
 		if( Constants.maxIdle < T_available_for_idling) //check if the idle limit in condif.properties file. Take the smaller to reduce MDP state space.
 			return Constants.maxIdle;
 		return T_available_for_idling;

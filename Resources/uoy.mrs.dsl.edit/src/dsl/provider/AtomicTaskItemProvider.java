@@ -48,6 +48,7 @@ public class AtomicTaskItemProvider extends TasksModelItemProvider {
 			addLocPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addRobotsPropertyDescriptor(object);
+			addRetryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -119,6 +120,28 @@ public class AtomicTaskItemProvider extends TasksModelItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Retry feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRetryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AtomicTask_retry_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AtomicTask_retry_feature", "_UI_AtomicTask_type"),
+				 DslPackage.Literals.ATOMIC_TASK__RETRY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns AtomicTask.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,6 +181,7 @@ public class AtomicTaskItemProvider extends TasksModelItemProvider {
 		switch (notification.getFeatureID(AtomicTask.class)) {
 			case DslPackage.ATOMIC_TASK__NAME:
 			case DslPackage.ATOMIC_TASK__ROBOTS:
+			case DslPackage.ATOMIC_TASK__RETRY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

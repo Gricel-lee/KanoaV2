@@ -90,9 +90,9 @@
    <tuple> <atom label="r5at1$0"/> <atom label="at1_2$0"/> </tuple>
    <tuple> <atom label="r4at1$0"/> <atom label="at1_1$0"/> </tuple>
    <tuple> <atom label="r4at1$0"/> <atom label="at1_2$0"/> </tuple>
+   <tuple> <atom label="r2at4$0"/> <atom label="at4_6$0"/> </tuple>
    <tuple> <atom label="r2at4$0"/> <atom label="at4_9$0"/> </tuple>
-   <tuple> <atom label="r1at4$0"/> <atom label="at4_6$0"/> </tuple>
-   <tuple> <atom label="r1at4$0"/> <atom label="at4_3$0"/> </tuple>
+   <tuple> <atom label="r2at4$0"/> <atom label="at4_3$0"/> </tuple>
    <tuple> <atom label="r1at4$0"/> <atom label="at4_12$0"/> </tuple>
    <tuple> <atom label="r1at3$0"/> <atom label="at3_13$0"/> </tuple>
    <tuple> <atom label="r1at3$0"/> <atom label="at3_7$0"/> </tuple>
@@ -105,82 +105,78 @@
    <types> <type ID="11"/> <type ID="24"/> </types>
 </field>
 
-<sig label="this/at4_6" ID="25" parentID="26" one="yes">
-   <atom label="at4_6$0"/>
-</sig>
-
-<sig label="this/at4_9" ID="27" parentID="26" one="yes">
-   <atom label="at4_9$0"/>
-</sig>
-
-<sig label="this/at4_3" ID="28" parentID="26" one="yes">
-   <atom label="at4_3$0"/>
-</sig>
-
-<sig label="this/at4_12" ID="29" parentID="26" one="yes">
-   <atom label="at4_12$0"/>
-</sig>
-
-<sig label="this/at4" ID="26" parentID="24" abstract="yes">
-</sig>
-
-<sig label="this/at2_11" ID="30" parentID="31" one="yes">
+<sig label="this/at2_11" ID="25" parentID="26" one="yes">
    <atom label="at2_11$0"/>
 </sig>
 
-<sig label="this/at2_14" ID="32" parentID="31" one="yes">
+<sig label="this/at2_14" ID="27" parentID="26" one="yes">
    <atom label="at2_14$0"/>
 </sig>
 
-<sig label="this/at2_8" ID="33" parentID="31" one="yes">
+<sig label="this/at2_8" ID="28" parentID="26" one="yes">
    <atom label="at2_8$0"/>
 </sig>
 
-<sig label="this/at2_5" ID="34" parentID="31" one="yes">
+<sig label="this/at2_5" ID="29" parentID="26" one="yes">
    <atom label="at2_5$0"/>
 </sig>
 
-<sig label="this/at2" ID="31" parentID="24" abstract="yes">
+<sig label="this/at2" ID="26" parentID="24" abstract="yes">
 </sig>
 
-<sig label="this/at1_1" ID="35" parentID="36" one="yes">
+<sig label="this/at1_1" ID="30" parentID="31" one="yes">
    <atom label="at1_1$0"/>
 </sig>
 
-<sig label="this/at1_2" ID="37" parentID="36" one="yes">
+<sig label="this/at1_2" ID="32" parentID="31" one="yes">
    <atom label="at1_2$0"/>
 </sig>
 
-<sig label="this/at1" ID="36" parentID="24" abstract="yes">
+<sig label="this/at1" ID="31" parentID="24" abstract="yes">
 </sig>
 
-<sig label="this/at3_13" ID="38" parentID="39" one="yes">
+<sig label="this/at3_13" ID="33" parentID="34" one="yes">
    <atom label="at3_13$0"/>
 </sig>
 
-<sig label="this/at3_7" ID="40" parentID="39" one="yes">
+<sig label="this/at3_7" ID="35" parentID="34" one="yes">
    <atom label="at3_7$0"/>
 </sig>
 
-<sig label="this/at3_4" ID="41" parentID="39" one="yes">
+<sig label="this/at3_4" ID="36" parentID="34" one="yes">
    <atom label="at3_4$0"/>
 </sig>
 
-<sig label="this/at3_10" ID="42" parentID="39" one="yes">
+<sig label="this/at3_10" ID="37" parentID="34" one="yes">
    <atom label="at3_10$0"/>
 </sig>
 
-<sig label="this/at3" ID="39" parentID="24" abstract="yes">
+<sig label="this/at3" ID="34" parentID="24" abstract="yes">
+</sig>
+
+<sig label="this/at4_6" ID="38" parentID="39" one="yes">
+   <atom label="at4_6$0"/>
+</sig>
+
+<sig label="this/at4_9" ID="40" parentID="39" one="yes">
+   <atom label="at4_9$0"/>
+</sig>
+
+<sig label="this/at4_3" ID="41" parentID="39" one="yes">
+   <atom label="at4_3$0"/>
+</sig>
+
+<sig label="this/at4_12" ID="42" parentID="39" one="yes">
+   <atom label="at4_12$0"/>
+</sig>
+
+<sig label="this/at4" ID="39" parentID="24" abstract="yes">
 </sig>
 
 <sig label="this/AtomicTask" ID="24" parentID="2" abstract="yes">
 </sig>
 
 <field label="x" ID="43" parentID="24">
-   <tuple> <atom label="at4_6$0"/> <atom label="4"/> </tuple>
-   <tuple> <atom label="at4_9$0"/> <atom label="10"/> </tuple>
-   <tuple> <atom label="at4_3$0"/> <atom label="1"/> </tuple>
-   <tuple> <atom label="at4_12$0"/> <atom label="10"/> </tuple>
    <tuple> <atom label="at2_11$0"/> <atom label="10"/> </tuple>
    <tuple> <atom label="at2_14$0"/> <atom label="10"/> </tuple>
    <tuple> <atom label="at2_8$0"/> <atom label="4"/> </tuple>
@@ -191,14 +187,14 @@
    <tuple> <atom label="at3_7$0"/> <atom label="4"/> </tuple>
    <tuple> <atom label="at3_4$0"/> <atom label="1"/> </tuple>
    <tuple> <atom label="at3_10$0"/> <atom label="10"/> </tuple>
+   <tuple> <atom label="at4_6$0"/> <atom label="4"/> </tuple>
+   <tuple> <atom label="at4_9$0"/> <atom label="10"/> </tuple>
+   <tuple> <atom label="at4_3$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="at4_12$0"/> <atom label="10"/> </tuple>
    <types> <type ID="24"/> <type ID="1"/> </types>
 </field>
 
 <field label="y" ID="44" parentID="24">
-   <tuple> <atom label="at4_6$0"/> <atom label="1"/> </tuple>
-   <tuple> <atom label="at4_9$0"/> <atom label="1"/> </tuple>
-   <tuple> <atom label="at4_3$0"/> <atom label="7"/> </tuple>
-   <tuple> <atom label="at4_12$0"/> <atom label="5"/> </tuple>
    <tuple> <atom label="at2_11$0"/> <atom label="1"/> </tuple>
    <tuple> <atom label="at2_14$0"/> <atom label="5"/> </tuple>
    <tuple> <atom label="at2_8$0"/> <atom label="1"/> </tuple>
@@ -209,6 +205,10 @@
    <tuple> <atom label="at3_7$0"/> <atom label="1"/> </tuple>
    <tuple> <atom label="at3_4$0"/> <atom label="7"/> </tuple>
    <tuple> <atom label="at3_10$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="at4_6$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="at4_9$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="at4_3$0"/> <atom label="7"/> </tuple>
+   <tuple> <atom label="at4_12$0"/> <atom label="5"/> </tuple>
    <types> <type ID="24"/> <type ID="1"/> </types>
 </field>
 

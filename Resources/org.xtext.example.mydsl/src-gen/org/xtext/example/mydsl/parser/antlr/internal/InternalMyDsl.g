@@ -670,6 +670,39 @@ ruleAtomicTask returns [EObject current=null]
 				}
 			)
 		)
+		(
+			otherlv_9=','
+			{
+				newLeafNode(otherlv_9, grammarAccess.getAtomicTaskAccess().getCommaKeyword_8_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAtomicTaskAccess().getRetryEIntParserRuleCall_8_1_0());
+					}
+					lv_retry_10_0=ruleEInt
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAtomicTaskRule());
+						}
+						set(
+							$current,
+							"retry",
+							lv_retry_10_0,
+							"org.xtext.example.mydsl.MyDsl.EInt");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_11='retries'
+			{
+				newLeafNode(otherlv_11, grammarAccess.getAtomicTaskAccess().getRetriesKeyword_8_2());
+			}
+			otherlv_12='allowed'
+			{
+				newLeafNode(otherlv_12, grammarAccess.getAtomicTaskAccess().getAllowedKeyword_8_3());
+			}
+		)?
 	)
 ;
 

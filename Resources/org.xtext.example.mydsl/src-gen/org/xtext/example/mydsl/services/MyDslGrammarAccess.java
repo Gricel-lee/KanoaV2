@@ -391,6 +391,12 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Assignment cLocAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final CrossReference cLocLocationCrossReference_7_0 = (CrossReference)cLocAssignment_7.eContents().get(0);
 		private final RuleCall cLocLocationEStringParserRuleCall_7_0_1 = (RuleCall)cLocLocationCrossReference_7_0.eContents().get(1);
+		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
+		private final Keyword cCommaKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Assignment cRetryAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
+		private final RuleCall cRetryEIntParserRuleCall_8_1_0 = (RuleCall)cRetryAssignment_8_1.eContents().get(0);
+		private final Keyword cRetriesKeyword_8_2 = (Keyword)cGroup_8.eContents().get(2);
+		private final Keyword cAllowedKeyword_8_3 = (Keyword)cGroup_8.eContents().get(3);
 		
 		//AtomicTask returns AtomicTask:
 		//    //{AtomicTask}
@@ -398,6 +404,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    robots=EInt ('robots'|'robot') 'needed'
 		//    'at' 'location'
 		//    loc=[Location|EString]
+		//    (',' retry=EInt 'retries''allowed')?
 		//    ;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -406,6 +413,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//robots=EInt ('robots'|'robot') 'needed'
 		//'at' 'location'
 		//loc=[Location|EString]
+		//(',' retry=EInt 'retries''allowed')?
 		public Group getGroup() { return cGroup; }
 		
 		////{AtomicTask}
@@ -450,6 +458,24 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//EString
 		public RuleCall getLocLocationEStringParserRuleCall_7_0_1() { return cLocLocationEStringParserRuleCall_7_0_1; }
+		
+		//(',' retry=EInt 'retries''allowed')?
+		public Group getGroup_8() { return cGroup_8; }
+		
+		//','
+		public Keyword getCommaKeyword_8_0() { return cCommaKeyword_8_0; }
+		
+		//retry=EInt
+		public Assignment getRetryAssignment_8_1() { return cRetryAssignment_8_1; }
+		
+		//EInt
+		public RuleCall getRetryEIntParserRuleCall_8_1_0() { return cRetryEIntParserRuleCall_8_1_0; }
+		
+		//'retries'
+		public Keyword getRetriesKeyword_8_2() { return cRetriesKeyword_8_2; }
+		
+		//'allowed'
+		public Keyword getAllowedKeyword_8_3() { return cAllowedKeyword_8_3; }
 	}
 	public class CompoundTaskElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.CompoundTask");
@@ -2128,6 +2154,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    robots=EInt ('robots'|'robot') 'needed'
 	//    'at' 'location'
 	//    loc=[Location|EString]
+	//    (',' retry=EInt 'retries''allowed')?
 	//    ;
 	public AtomicTaskElements getAtomicTaskAccess() {
 		return pAtomicTask;

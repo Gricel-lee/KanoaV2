@@ -57,6 +57,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLocationAccess().getGroup_7(), "rule__Location__Group_7__0");
 			builder.put(grammarAccess.getPathsAccess().getGroup(), "rule__Paths__Group__0");
 			builder.put(grammarAccess.getAtomicTaskAccess().getGroup(), "rule__AtomicTask__Group__0");
+			builder.put(grammarAccess.getAtomicTaskAccess().getGroup_8(), "rule__AtomicTask__Group_8__0");
 			builder.put(grammarAccess.getCompoundTaskAccess().getGroup(), "rule__CompoundTask__Group__0");
 			builder.put(grammarAccess.getCompoundTaskAccess().getGroup_4(), "rule__CompoundTask__Group_4__0");
 			builder.put(grammarAccess.getCompoundTaskAccess().getGroup_4_1(), "rule__CompoundTask__Group_4_1__0");
@@ -121,6 +122,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAtomicTaskAccess().getNameAssignment_0(), "rule__AtomicTask__NameAssignment_0");
 			builder.put(grammarAccess.getAtomicTaskAccess().getRobotsAssignment_2(), "rule__AtomicTask__RobotsAssignment_2");
 			builder.put(grammarAccess.getAtomicTaskAccess().getLocAssignment_7(), "rule__AtomicTask__LocAssignment_7");
+			builder.put(grammarAccess.getAtomicTaskAccess().getRetryAssignment_8_1(), "rule__AtomicTask__RetryAssignment_8_1");
 			builder.put(grammarAccess.getCompoundTaskAccess().getNameAssignment_0(), "rule__CompoundTask__NameAssignment_0");
 			builder.put(grammarAccess.getCompoundTaskAccess().getCanDoTaskAssignment_4_0(), "rule__CompoundTask__CanDoTaskAssignment_4_0");
 			builder.put(grammarAccess.getCompoundTaskAccess().getCanDoTaskAssignment_4_1_1(), "rule__CompoundTask__CanDoTaskAssignment_4_1_1");

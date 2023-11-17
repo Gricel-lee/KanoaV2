@@ -277,7 +277,7 @@ public class ProblemSpecification{
 		System.out.println("Reading task's tree");
 		try {
 	        BufferedReader in = new BufferedReader(new FileReader(fileMissionTree));
-	        in.readLine();//System.out.println("Reading: "+ in.readLine()); // remove first line: "type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom"
+	        in.readLine();//System.out.println("Reading: "+ in.readLine()); // remove first line: "type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks,,retry"    //reachableAtomicTasks not used as computed in the pre-scheduling stage
 	        String str;
 	        while ((str = in.readLine())!= null) {
 	        	String[] attrib=str.split(",,"); 
@@ -286,6 +286,7 @@ public class ProblemSpecification{
 	            //other attributes
 	            String parent = attrib[2]; String ordered_children = attrib[3]; String location = attrib[4]; String numrobots = attrib[5];
 	            String joint = attrib[6]; String ordered = attrib[7]; String consecutive = attrib[8]; String start = attrib[9]; String end = attrib[10];String inst = attrib[11];
+	            String retry = attrib[13];
 	            
 	            // Add id
 	            tasksModelI.allTasksid.add(id); //id
@@ -294,7 +295,7 @@ public class ProblemSpecification{
 	            	MissionTaskInstance mt = new MissionTaskInstance(id,ordered_children);
 	            	tasksModelI.mtList.put(id,mt);}
 	            else if ("at".equals(type)) { //at
-	            	AtomicTaskInstance at = new AtomicTaskInstance(id, parent, location, numrobots, joint, start, end,inst);
+	            	AtomicTaskInstance at = new AtomicTaskInstance(id, parent, location, numrobots, joint, start, end,inst,retry);
 	            	tasksModelI.atList.put(id,at);}
 	            else if ("ct".equals(type)) { //ct
 	            	CompoundTaskInstance ct = new CompoundTaskInstance(id,parent,ordered_children,ordered,consecutive,inst);
@@ -306,7 +307,7 @@ public class ProblemSpecification{
 		//------------------------------------------
 		// ------ 3)Print
 		if(Constants.verbose) {
-			tasksModelI.print(); getRobotsModel().print();
+			tasksModelI.print(); getRobotsModel().print(this);
 		}
 	}
 

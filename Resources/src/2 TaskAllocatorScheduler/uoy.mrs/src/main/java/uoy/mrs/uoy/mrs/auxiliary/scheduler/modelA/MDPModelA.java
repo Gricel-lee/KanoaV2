@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import org.python.modules.math;
-
 import parser.ast.ModulesFile;
 import parser.ast.PropertiesFile;
 import prism.Prism;
@@ -27,16 +25,13 @@ import uoy.mrs.uoy.mrs.types.impl.Robot;
 public class MDPModelA {
 	
 	
-	public static String createModelA(HashMap<String, Integer> robots2PermNum, ProblemSpecification p, Allocation a) {
+	public static File createModelA(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a) {
 		// a) get info
 		// - total time available
 		int TT = Utility.string2int(p.getParameters().timeAvailable); 
 		
 		// -list robot IDs in allocation
 		ArrayList<String> robIDset = a.getRobotsList();
-		
-		/**Array permutation of tasks per robot*/		
-		HashMap<String, Permutation> r_permutationTasks = getPerm(p,a,robots2PermNum);
 		
 		/**Array: robot id, task, duration: {"r1","t1","3.0"}*/
 		ArrayList<String[]> timeTask = new ArrayList<String[]>();
@@ -62,15 +57,6 @@ public class MDPModelA {
 			
 			String t1ID= r_permutation.tasksInPerm.get(0);
 			int time = r_permutation.getTravelTime(rID, t1ID);
-			
-			// - travel const
-//			model.append("const int travel"+rID+"l0"+r_permutation.tasksInPerm.get(0)+"="+time +" ;\n");
-//			for (int i = 0; i < r_permutation.tasksInPerm.size()-1; i++) {
-//				t1ID= r_permutation.tasksInPerm.get(i);
-//				String t2ID= r_permutation.tasksInPerm.get(i+1);
-//				time = r_permutation.getTravelTime(t1ID, t2ID);
-//				model.append("const int travel"+rID+t1ID+t2ID+"="+time +" ;\n");
-//			}
 			
 			model.append("const int travel"+rID+t1ID+"="+time +" ;//l0-"+t1ID+"\n");
 			for (int i = 0; i < r_permutation.tasksInPerm.size()-1; i++) {
@@ -99,15 +85,15 @@ public class MDPModelA {
 			String r = robIDset.get(i);
 			Permutation r_perm = r_permutationTasks.get(r); 
 			if(r_perm.idleTime > 0) {
-				model.append("const int maxIdle"+r+"="+ r_perm.idleTime +";\n");}			
+				model.append("const int maxIdle"+r+"="+ r_perm.idleTime +";\n");}
 		}
 		//---------------------------------------
 		// -- formula done
 		model.append("\nformula done=(");
 		for (int i = 0; i < robIDset.size(); i++) {
-			String r = robIDset.get(i);
-			int n = a.numTasks(timeTask,r);
-			model.append(r+"order="+n +"&");
+			String rID = robIDset.get(i);
+			int n = a.numTasks(timeTask,rID);
+			model.append(rID+"order="+n +"&");
 		}
 		model.deleteCharAt(model.length() - 1);
 		model.append(");\n\n");
@@ -150,16 +136,7 @@ public class MDPModelA {
 			if(r_perm.idleTime > 0) {model.append(" "+r+"idleTime:[0..maxIdle"+r+"];\n");}
 			
 			for (int j = 0; j < r_perm.tasksInPerm.size(); j++) {//for each task
-				// tasks' locations for travel
-				String t1="";String t2=""; //t2 is the task to be completed when transition taken
-				if (j==0) {
-					t1="l0"; //first starts at robot's location
-					t2=r_perm.tasksInPerm.get(j); //second task (task instance id)
-				}
-				else {
-					t1= r_perm.tasksInPerm.get(j-1);
-					t2= r_perm.tasksInPerm.get(j);
-				}
+				 String t2=r_perm.tasksInPerm.get(j); //t2 is the task to be completed when transition taken
 				//---------------------------------------
 				// ------ transitions (next task)
 				//label
@@ -241,23 +218,14 @@ public class MDPModelA {
 		String mdpFileName = "modelA_"+"All"+allocNum+"_Perm"+0 +".mdp";
 		String mdpFilePath = outputFolder+mdpFileName;
 		
-		System.out.println(TT + " "+ outputFolder+mdpFilePath );
+		System.out.println("MDP: "+ outputFolder+mdpFilePath );
 		
 		//-Save to file
 		createMDPFile(outputFolder,mdpFileName,model);
-
-		//=========================================================
-		//=========================================================
-		//Run prism: adversary
+		
 		File file = new File(mdpFilePath);
-		String property = "R{\"idle\"}min=?[F done]";
-		RunPrism(file,property);
+		return file;
 		
-		//Run prism: 
-		property = "Pmin=?[F done]";
-		RunPrism(file,property);
-		
-		return mdpFilePath;
 	}
 	
 	
@@ -319,28 +287,6 @@ public class MDPModelA {
 	}
 
 
-	/*Array permutation of tasks*/
-	private static HashMap<String, Permutation> getPerm(ProblemSpecification p, Allocation a,
-			HashMap<String, Integer> robots2PermNum) {
-		
-		HashMap<String, Permutation> permutation = new HashMap<>();
-		// robots
-		ArrayList<String> robIDset = a.getRobotsList();
-		// 
-		for (int i = 0; i < robIDset.size(); i++) {
-			String rID = robIDset.get(i);
-			
-			System.out.println("robots2PermNum"+robots2PermNum.keySet());
-			System.out.println("robots2PermNum"+robots2PermNum.values());
-			
-			Integer numPerm = robots2PermNum.get(rID);
-			
-			// permutation per robot
-			Permutation perm = new Permutation(rID, p, a, numPerm);
-			permutation.put(rID, perm);
-		}
-		return permutation;
-	}
 
 	
 

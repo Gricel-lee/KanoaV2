@@ -2,6 +2,8 @@ package uoy.mrs.uoy.mrs.types.impl;
 
 import java.util.HashMap;
 
+import uoy.mrs.uoy.mrs.types.ProblemSpecification;
+
 public class RobotsModel {
 	
 	//Robots
@@ -16,16 +18,11 @@ public class RobotsModel {
 		return robots.get(id);
 	}
 	
-	public void print() {
+	public void print(ProblemSpecification p) {
 		System.out.println("\n----ROBOTS MODEL----");
 		System.out.println("Robots in model: "+robots.keySet());
 		for(Robot r:robots.values()) {
-			System.out.println("--- Robot:");
-			System.out.println(r.getID()+
-					" location:" + r.getLoc().getID()+
-					" cando:"+ r.getCandoAtomicTasks()+
-					" velocity:"+ r.getVelocity()
-					);
+			r.print(p);
 		}
 	}
 }

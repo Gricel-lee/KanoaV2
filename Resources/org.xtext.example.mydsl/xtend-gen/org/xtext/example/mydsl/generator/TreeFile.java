@@ -20,8 +20,9 @@ public class TreeFile {
     String end = "";
     String inst = "";
     String reachableAtomicTasks = "";
+    String retry = "";
     String _s = s;
-    s = (_s + "type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks");
+    s = (_s + "type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks,,retry");
     for (final String tID : gv.tasksList) {
       boolean _contains = gv.missionList.keySet().contains(tID);
       if (_contains) {
@@ -38,9 +39,10 @@ public class TreeFile {
         end = "NaN";
         inst = tID;
         reachableAtomicTasks = "NaN";
+        retry = "NaN";
         String _s_1 = s;
         s = (_s_1 + 
-          ((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks));
+          ((((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks) + ",,") + retry));
       } else {
         boolean _contains_1 = gv.compoundList.keySet().contains(tID);
         if (_contains_1) {
@@ -65,7 +67,7 @@ public class TreeFile {
           reachableAtomicTasks = _plus_3;
           String _s_2 = s;
           s = (_s_2 + 
-            ((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks));
+            ((((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks) + ",,") + retry));
         } else {
           boolean _contains_2 = gv.atomicList.keySet().contains(tID);
           if (_contains_2) {
@@ -98,7 +100,7 @@ public class TreeFile {
             }
             String _s_3 = s;
             s = (_s_3 + 
-              ((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks));
+              ((((((((((((((((((((((((((("\n" + type) + ",,") + id) + ",,") + parent) + ",,") + ordered_children) + ",,") + location) + ",,") + numrobots) + ",,") + joint) + ",,") + ordered) + ",,") + consecutive) + ",,") + start) + ",,") + end) + ",,") + inst) + ",,") + reachableAtomicTasks) + ",,") + Integer.valueOf(gv.atomicList.get(tID).retry)));
           }
         }
       }

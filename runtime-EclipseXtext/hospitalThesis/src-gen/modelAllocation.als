@@ -59,11 +59,11 @@ lone sig r5at1 extends Capability{}
 
 // ----------------ATOMIC TASKS:
 
-abstract sig at3,at4,at1,at2 extends AtomicTask {}
+abstract sig at2,at1,at3,at4 extends AtomicTask {}
+fact{all a:at2 | #do.a=1}	// number of robots needed
+fact{all a:at1 | #do.a=2}	// number of robots needed
 fact{all a:at3 | #do.a=1}	// number of robots needed
 fact{all a:at4 | #do.a=1}	// number of robots needed
-fact{all a:at1 | #do.a=2}	// number of robots needed
-fact{all a:at2 | #do.a=1}	// number of robots needed
 one sig at2_11 extends at2{} {x=10 y=1} //do at location room4
 one sig at3_13 extends at3{} {x=10 y=5} //do at location room5
 one sig at2_14 extends at2{} {x=10 y=5} //do at location room5

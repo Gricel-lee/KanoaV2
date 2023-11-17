@@ -149,13 +149,6 @@ public class DslSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DslPackage.COMP_TASK_ALL_LOC: {
-				CompTaskAllLoc compTaskAllLoc = (CompTaskAllLoc)theEObject;
-				T result = caseCompTaskAllLoc(compTaskAllLoc);
-				if (result == null) result = caseConstraints(compTaskAllLoc);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DslPackage.SPACE_XY_ROBOT: {
 				SpaceXYRobot spaceXYRobot = (SpaceXYRobot)theEObject;
 				T result = caseSpaceXYRobot(spaceXYRobot);
@@ -387,21 +380,6 @@ public class DslSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRateSucc(RateSucc object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Comp Task All Loc</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Comp Task All Loc</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompTaskAllLoc(CompTaskAllLoc object) {
 		return null;
 	}
 

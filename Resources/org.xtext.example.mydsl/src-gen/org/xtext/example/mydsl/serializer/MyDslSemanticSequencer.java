@@ -118,23 +118,11 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicTask returns AtomicTask
 	 *
 	 * Constraint:
-	 *     (name=EString robots=EInt loc=[Location|EString])
+	 *     (name=EString robots=EInt loc=[Location|EString] retry=EInt?)
 	 * </pre>
 	 */
 	protected void sequence_AtomicTask(ISerializationContext context, AtomicTask semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.ATOMIC_TASK__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ATOMIC_TASK__NAME));
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.ATOMIC_TASK__ROBOTS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ATOMIC_TASK__ROBOTS));
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.ATOMIC_TASK__LOC) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.ATOMIC_TASK__LOC));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtomicTaskAccess().getNameEStringParserRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getAtomicTaskAccess().getRobotsEIntParserRuleCall_2_0(), semanticObject.getRobots());
-		feeder.accept(grammarAccess.getAtomicTaskAccess().getLocLocationEStringParserRuleCall_7_0_1(), semanticObject.eGet(DslPackage.Literals.ATOMIC_TASK__LOC, false));
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

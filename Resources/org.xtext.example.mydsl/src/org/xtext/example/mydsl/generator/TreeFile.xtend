@@ -13,8 +13,9 @@ class TreeFile {
 		var joint="" var ordered=""; var consecutive="";
 		var start = ""; var end=""; var inst=""
 		var reachableAtomicTasks = "";
+		var retry = "";
 		
-		s += "type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks";
+		s += "type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks,,retry";
 		
 		for (tID: gv.tasksList){
 			//mission task
@@ -32,10 +33,12 @@ class TreeFile {
 				end = "NaN"
 				inst = tID
 				reachableAtomicTasks = "NaN"
+				retry = "NaN"
 				
 				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
 				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end+",,"+inst
 				+",,"+reachableAtomicTasks
+				+",,"+retry
 			}
 			//compound task
 			else if(gv.compoundList.keySet().contains(tID)){
@@ -57,6 +60,7 @@ class TreeFile {
 				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
 				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end+",,"+inst
 				+",,"+reachableAtomicTasks
+				+",,"+retry
 			}
 			//atomic task
 			else if(gv.atomicList.keySet().contains(tID)){
@@ -78,7 +82,8 @@ class TreeFile {
 				else{end = "None"}
 				s+="\n"+type+",,"+id+",,"+parent+",,"+ordered_children+",,"+location+",,"
 				+numrobots+",,"+joint+",,"+ordered+",,"+consecutive+",,"+start+",,"+end+",,"+inst
-				+",,"+reachableAtomicTasks
+				+",,"+reachableAtomicTasks 
+				+",,"+ gv.atomicList.get(tID).retry
 			}
 		}
 		

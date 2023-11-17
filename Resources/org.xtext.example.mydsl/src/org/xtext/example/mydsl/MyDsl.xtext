@@ -45,6 +45,7 @@ AtomicTask returns AtomicTask:
 	robots=EInt ('robots'|'robot') 'needed' 
 	'at' 'location'
 	loc=[Location|EString]
+	(',' retry=EInt 'retries''allowed')?
 	
 	;
 CompoundTask returns CompoundTask:

@@ -70,7 +70,6 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory {
 			case DslPackage.MISSION_TASK: return createMissionTask();
 			case DslPackage.CONSTRAINTS: return createConstraints();
 			case DslPackage.RATE_SUCC: return createRateSucc();
-			case DslPackage.COMP_TASK_ALL_LOC: return createCompTaskAllLoc();
 			case DslPackage.SPACE_XY_ROBOT: return createSpaceXYRobot();
 			case DslPackage.TASK_TIME: return createTaskTime();
 			case DslPackage.ALLOCATE_T: return createAllocateT();
@@ -251,16 +250,6 @@ public class DslFactoryImpl extends EFactoryImpl implements DslFactory {
 	public RateSucc createRateSucc() {
 		RateSuccImpl rateSucc = new RateSuccImpl();
 		return rateSucc;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompTaskAllLoc createCompTaskAllLoc() {
-		CompTaskAllLocImpl compTaskAllLoc = new CompTaskAllLocImpl();
-		return compTaskAllLoc;
 	}
 
 	/**

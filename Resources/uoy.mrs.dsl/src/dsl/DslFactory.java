@@ -139,15 +139,6 @@ public interface DslFactory extends EFactory {
 	RateSucc createRateSucc();
 
 	/**
-	 * Returns a new object of class '<em>Comp Task All Loc</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Comp Task All Loc</em>'.
-	 * @generated
-	 */
-	CompTaskAllLoc createCompTaskAllLoc();
-
-	/**
 	 * Returns a new object of class '<em>Space XY Robot</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

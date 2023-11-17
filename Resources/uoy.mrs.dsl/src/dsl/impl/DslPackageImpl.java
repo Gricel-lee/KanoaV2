@@ -6,7 +6,6 @@ import dsl.AllocateT;
 import dsl.AtomicTask;
 import dsl.Capability;
 import dsl.Closest;
-import dsl.CompTaskAllLoc;
 import dsl.CompoundTask;
 import dsl.Constraints;
 import dsl.DslFactory;
@@ -132,13 +131,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 	 * @generated
 	 */
 	private EClass rateSuccEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compTaskAllLocEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -529,6 +521,15 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAtomicTask_Retry() {
+		return (EAttribute)atomicTaskEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompoundTask() {
 		return compoundTaskEClass;
 	}
@@ -538,8 +539,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompoundTask_Loc() {
-		return (EReference)compoundTaskEClass.getEStructuralFeatures().get(0);
+	public EAttribute getCompoundTask_Name() {
+		return (EAttribute)compoundTaskEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -567,15 +568,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 	 */
 	public EReference getCompoundTask_CanDoTask() {
 		return (EReference)compoundTaskEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getCompoundTask_Name() {
-		return (EAttribute)compoundTaskEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -720,33 +712,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 	 */
 	public EAttribute getRateSucc_RateSucc() {
 		return (EAttribute)rateSuccEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompTaskAllLoc() {
-		return compTaskAllLocEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompTaskAllLoc_Ct() {
-		return (EReference)compTaskAllLocEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompTaskAllLoc_Loc() {
-		return (EReference)compTaskAllLocEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1083,13 +1048,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 		createEReference(atomicTaskEClass, ATOMIC_TASK__LOC);
 		createEAttribute(atomicTaskEClass, ATOMIC_TASK__NAME);
 		createEAttribute(atomicTaskEClass, ATOMIC_TASK__ROBOTS);
+		createEAttribute(atomicTaskEClass, ATOMIC_TASK__RETRY);
 
 		compoundTaskEClass = createEClass(COMPOUND_TASK);
-		createEReference(compoundTaskEClass, COMPOUND_TASK__LOC);
+		createEAttribute(compoundTaskEClass, COMPOUND_TASK__NAME);
 		createEAttribute(compoundTaskEClass, COMPOUND_TASK__ORDERED);
 		createEAttribute(compoundTaskEClass, COMPOUND_TASK__CONSECUTIVE);
 		createEReference(compoundTaskEClass, COMPOUND_TASK__CAN_DO_TASK);
-		createEAttribute(compoundTaskEClass, COMPOUND_TASK__NAME);
 
 		missionEClass = createEClass(MISSION);
 		createEReference(missionEClass, MISSION__MISSION_TASK);
@@ -1110,10 +1075,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 
 		rateSuccEClass = createEClass(RATE_SUCC);
 		createEAttribute(rateSuccEClass, RATE_SUCC__RATE_SUCC);
-
-		compTaskAllLocEClass = createEClass(COMP_TASK_ALL_LOC);
-		createEReference(compTaskAllLocEClass, COMP_TASK_ALL_LOC__CT);
-		createEReference(compTaskAllLocEClass, COMP_TASK_ALL_LOC__LOC);
 
 		spaceXYRobotEClass = createEClass(SPACE_XY_ROBOT);
 		createEAttribute(spaceXYRobotEClass, SPACE_XY_ROBOT__COORDINATE);
@@ -1186,7 +1147,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 		atomicTaskEClass.getESuperTypes().add(this.getTasksModel());
 		compoundTaskEClass.getESuperTypes().add(this.getTasksModel());
 		rateSuccEClass.getESuperTypes().add(this.getConstraints());
-		compTaskAllLocEClass.getESuperTypes().add(this.getConstraints());
 		spaceXYRobotEClass.getESuperTypes().add(this.getConstraints());
 		taskTimeEClass.getESuperTypes().add(this.getConstraints());
 		allocateTEClass.getESuperTypes().add(this.getConstraints());
@@ -1230,13 +1190,13 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 		initEReference(getAtomicTask_Loc(), this.getLocation(), null, "loc", null, 1, 1, AtomicTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAtomicTask_Name(), ecorePackage.getEString(), "name", null, 0, 1, AtomicTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAtomicTask_Robots(), ecorePackage.getEInt(), "robots", null, 0, 1, AtomicTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAtomicTask_Retry(), ecorePackage.getEInt(), "retry", null, 0, 1, AtomicTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundTaskEClass, CompoundTask.class, "CompoundTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompoundTask_Loc(), this.getLocation(), null, "loc", null, 0, 1, CompoundTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCompoundTask_Name(), ecorePackage.getEString(), "name", null, 0, 1, CompoundTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCompoundTask_Ordered(), ecorePackage.getEBoolean(), "ordered", null, 1, 1, CompoundTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCompoundTask_Consecutive(), ecorePackage.getEBoolean(), "consecutive", null, 1, 1, CompoundTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCompoundTask_CanDoTask(), this.getTasksModel(), null, "canDoTask", null, 0, -1, CompoundTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getCompoundTask_Name(), ecorePackage.getEString(), "name", null, 0, 1, CompoundTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(missionEClass, Mission.class, "Mission", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMission_MissionTask(), this.getMissionTask(), null, "missionTask", null, 1, -1, Mission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1257,10 +1217,6 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 
 		initEClass(rateSuccEClass, RateSucc.class, "RateSucc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRateSucc_RateSucc(), ecorePackage.getEDouble(), "rateSucc", null, 0, 1, RateSucc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compTaskAllLocEClass, CompTaskAllLoc.class, "CompTaskAllLoc", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompTaskAllLoc_Ct(), this.getCompoundTask(), null, "ct", null, 1, 1, CompTaskAllLoc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompTaskAllLoc_Loc(), this.getLocation(), null, "loc", null, 0, 1, CompTaskAllLoc.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(spaceXYRobotEClass, SpaceXYRobot.class, "SpaceXYRobot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSpaceXYRobot_Coordinate(), this.getXY(), "coordinate", null, 1, 1, SpaceXYRobot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

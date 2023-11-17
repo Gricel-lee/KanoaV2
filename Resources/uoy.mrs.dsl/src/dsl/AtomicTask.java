@@ -15,6 +15,7 @@ package dsl;
  *   <li>{@link dsl.AtomicTask#getLoc <em>Loc</em>}</li>
  *   <li>{@link dsl.AtomicTask#getName <em>Name</em>}</li>
  *   <li>{@link dsl.AtomicTask#getRobots <em>Robots</em>}</li>
+ *   <li>{@link dsl.AtomicTask#getRetry <em>Retry</em>}</li>
  * </ul>
  *
  * @see dsl.DslPackage#getAtomicTask()
@@ -87,5 +88,27 @@ public interface AtomicTask extends TasksModel {
 	 * @generated
 	 */
 	void setRobots(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Retry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Retry</em>' attribute.
+	 * @see #setRetry(int)
+	 * @see dsl.DslPackage#getAtomicTask_Retry()
+	 * @model
+	 * @generated
+	 */
+	int getRetry();
+
+	/**
+	 * Sets the value of the '{@link dsl.AtomicTask#getRetry <em>Retry</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Retry</em>' attribute.
+	 * @see #getRetry()
+	 * @generated
+	 */
+	void setRetry(int value);
 
 } // AtomicTask

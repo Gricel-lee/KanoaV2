@@ -14,12 +14,14 @@ class AtomicTaskinstance{
 	
 	public Double start
 	public Double end 
+	public int retry
 	
 	def set(AtomicTask at, Integer count, String parent){
 		this.at =  at
 		this.count = count
 		this.parent = parent
 		this.loc = at.loc
+		this.retry = at.retry
 	}
 	
 	/*Get instance id */
@@ -39,7 +41,11 @@ class AtomicTaskinstance{
 		}
 		if (this.end!==null){
 			println("endTime:" + this.end)
-		}	
+		}
+		if (!this.retry.equals(0)){
+			println("retry:" + this.retry)
+		}
+		
 	}
 	
 	def getRobotId(){

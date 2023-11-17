@@ -16,13 +16,14 @@ public class AtomicTaskInstance{
 	private String start;
 	private String end;
 	private String inst;
+	private String retry; //number of retries as a string
 	/**If not empty. this atomic task is CONSECUTIVE constrained to the tasks in this list. I.e., they must be done before doing this task*/
 	private String justDone_con;
 	/**If not empty. this atomic task is ORDERED constrained to the tasks in this list. I.e., they must be done before doing this task*/
 	private ArrayList<String> doneBefore_ord = new ArrayList<String>();
 	private ArrayList<CompoundTaskInstance> compoundTasksAboveTask = new ArrayList<CompoundTaskInstance>();
 	
-	public AtomicTaskInstance(String id, String parent, String location, String numrobots, String joint, String start, String end, String inst) {
+	public AtomicTaskInstance(String id, String parent, String location, String numrobots, String joint, String start, String end, String inst, String retry) {
 		//type,,id,,parent,,ordered_children,,location,,numrobots,,joint,,ordered,,consecutive,,start,,end,,instantiatedFrom,,reachableAtomicTasks
 		// e.g.at,,at1_1,,m1,,NaN,,room1,,2,,True,,NaN,,NaN,,None,,None,,at1,,NaN
 		this.id = id;
@@ -33,6 +34,7 @@ public class AtomicTaskInstance{
 		this.start=start;
 		this.end=end;
 		this.inst = inst;
+		this.retry = retry;
 	}
 	
 	
@@ -45,7 +47,12 @@ public class AtomicTaskInstance{
 		System.out.println("start: "+start);
 		System.out.println("end: "+end);
 		System.out.println("instance of: " + inst);
+		System.out.println("num of retry allowed: "+retry);
 		return;
+	}
+	
+	public int getRetry() {
+		return Utility.string2int(this.retry);
 	}
 
 	

@@ -453,13 +453,22 @@ public interface DslPackage extends EPackage {
 	int ATOMIC_TASK__ROBOTS = TASKS_MODEL_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Retry</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATOMIC_TASK__RETRY = TASKS_MODEL_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Atomic Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATOMIC_TASK_FEATURE_COUNT = TASKS_MODEL_FEATURE_COUNT + 3;
+	int ATOMIC_TASK_FEATURE_COUNT = TASKS_MODEL_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Atomic Task</em>' class.
@@ -481,13 +490,13 @@ public interface DslPackage extends EPackage {
 	int COMPOUND_TASK = 8;
 
 	/**
-	 * The feature id for the '<em><b>Loc</b></em>' reference.
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND_TASK__LOC = TASKS_MODEL_FEATURE_COUNT + 0;
+	int COMPOUND_TASK__NAME = TASKS_MODEL_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
@@ -517,22 +526,13 @@ public interface DslPackage extends EPackage {
 	int COMPOUND_TASK__CAN_DO_TASK = TASKS_MODEL_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOUND_TASK__NAME = TASKS_MODEL_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Compound Task</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND_TASK_FEATURE_COUNT = TASKS_MODEL_FEATURE_COUNT + 5;
+	int COMPOUND_TASK_FEATURE_COUNT = TASKS_MODEL_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Compound Task</em>' class.
@@ -764,52 +764,6 @@ public interface DslPackage extends EPackage {
 	int RATE_SUCC_OPERATION_COUNT = CONSTRAINTS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link dsl.impl.CompTaskAllLocImpl <em>Comp Task All Loc</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see dsl.impl.CompTaskAllLocImpl
-	 * @see dsl.impl.DslPackageImpl#getCompTaskAllLoc()
-	 * @generated
-	 */
-	int COMP_TASK_ALL_LOC = 13;
-
-	/**
-	 * The feature id for the '<em><b>Ct</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMP_TASK_ALL_LOC__CT = CONSTRAINTS_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Loc</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMP_TASK_ALL_LOC__LOC = CONSTRAINTS_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Comp Task All Loc</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMP_TASK_ALL_LOC_FEATURE_COUNT = CONSTRAINTS_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of operations of the '<em>Comp Task All Loc</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMP_TASK_ALL_LOC_OPERATION_COUNT = CONSTRAINTS_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link dsl.impl.SpaceXYRobotImpl <em>Space XY Robot</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -817,7 +771,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getSpaceXYRobot()
 	 * @generated
 	 */
-	int SPACE_XY_ROBOT = 14;
+	int SPACE_XY_ROBOT = 13;
 
 	/**
 	 * The feature id for the '<em><b>Coordinate</b></em>' attribute.
@@ -890,7 +844,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getTaskTime()
 	 * @generated
 	 */
-	int TASK_TIME = 15;
+	int TASK_TIME = 14;
 
 	/**
 	 * The feature id for the '<em><b>At</b></em>' reference.
@@ -963,7 +917,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getAllocateT()
 	 * @generated
 	 */
-	int ALLOCATE_T = 16;
+	int ALLOCATE_T = 15;
 
 	/**
 	 * The feature id for the '<em><b>At</b></em>' reference.
@@ -1027,7 +981,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getClosest()
 	 * @generated
 	 */
-	int CLOSEST = 17;
+	int CLOSEST = 16;
 
 	/**
 	 * The feature id for the '<em><b>At</b></em>' reference.
@@ -1091,7 +1045,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getMaxTasks()
 	 * @generated
 	 */
-	int MAX_TASKS = 18;
+	int MAX_TASKS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Robot</b></em>' reference.
@@ -1146,7 +1100,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getObjective()
 	 * @generated
 	 */
-	int OBJECTIVE = 19;
+	int OBJECTIVE = 18;
 
 	/**
 	 * The meta object id for the '{@link dsl.XY <em>XY</em>}' enum.
@@ -1156,7 +1110,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getXY()
 	 * @generated
 	 */
-	int XY = 20;
+	int XY = 19;
 
 	/**
 	 * The meta object id for the '{@link dsl.LowerGreater <em>Lower Greater</em>}' enum.
@@ -1166,7 +1120,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getLowerGreater()
 	 * @generated
 	 */
-	int LOWER_GREATER = 21;
+	int LOWER_GREATER = 20;
 
 	/**
 	 * The meta object id for the '{@link dsl.StartEnd <em>Start End</em>}' enum.
@@ -1176,7 +1130,7 @@ public interface DslPackage extends EPackage {
 	 * @see dsl.impl.DslPackageImpl#getStartEnd()
 	 * @generated
 	 */
-	int START_END = 22;
+	int START_END = 21;
 
 
 	/**
@@ -1491,6 +1445,17 @@ public interface DslPackage extends EPackage {
 	EAttribute getAtomicTask_Robots();
 
 	/**
+	 * Returns the meta object for the attribute '{@link dsl.AtomicTask#getRetry <em>Retry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Retry</em>'.
+	 * @see dsl.AtomicTask#getRetry()
+	 * @see #getAtomicTask()
+	 * @generated
+	 */
+	EAttribute getAtomicTask_Retry();
+
+	/**
 	 * Returns the meta object for class '{@link dsl.CompoundTask <em>Compound Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1501,15 +1466,15 @@ public interface DslPackage extends EPackage {
 	EClass getCompoundTask();
 
 	/**
-	 * Returns the meta object for the reference '{@link dsl.CompoundTask#getLoc <em>Loc</em>}'.
+	 * Returns the meta object for the attribute '{@link dsl.CompoundTask#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Loc</em>'.
-	 * @see dsl.CompoundTask#getLoc()
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see dsl.CompoundTask#getName()
 	 * @see #getCompoundTask()
 	 * @generated
 	 */
-	EReference getCompoundTask_Loc();
+	EAttribute getCompoundTask_Name();
 
 	/**
 	 * Returns the meta object for the attribute '{@link dsl.CompoundTask#isOrdered <em>Ordered</em>}'.
@@ -1543,17 +1508,6 @@ public interface DslPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCompoundTask_CanDoTask();
-
-	/**
-	 * Returns the meta object for the attribute '{@link dsl.CompoundTask#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see dsl.CompoundTask#getName()
-	 * @see #getCompoundTask()
-	 * @generated
-	 */
-	EAttribute getCompoundTask_Name();
 
 	/**
 	 * Returns the meta object for class '{@link dsl.Mission <em>Mission</em>}'.
@@ -1726,38 +1680,6 @@ public interface DslPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRateSucc_RateSucc();
-
-	/**
-	 * Returns the meta object for class '{@link dsl.CompTaskAllLoc <em>Comp Task All Loc</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Comp Task All Loc</em>'.
-	 * @see dsl.CompTaskAllLoc
-	 * @generated
-	 */
-	EClass getCompTaskAllLoc();
-
-	/**
-	 * Returns the meta object for the reference '{@link dsl.CompTaskAllLoc#getCt <em>Ct</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Ct</em>'.
-	 * @see dsl.CompTaskAllLoc#getCt()
-	 * @see #getCompTaskAllLoc()
-	 * @generated
-	 */
-	EReference getCompTaskAllLoc_Ct();
-
-	/**
-	 * Returns the meta object for the reference '{@link dsl.CompTaskAllLoc#getLoc <em>Loc</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Loc</em>'.
-	 * @see dsl.CompTaskAllLoc#getLoc()
-	 * @see #getCompTaskAllLoc()
-	 * @generated
-	 */
-	EReference getCompTaskAllLoc_Loc();
 
 	/**
 	 * Returns the meta object for class '{@link dsl.SpaceXYRobot <em>Space XY Robot</em>}'.
@@ -2352,6 +2274,14 @@ public interface DslPackage extends EPackage {
 		EAttribute ATOMIC_TASK__ROBOTS = eINSTANCE.getAtomicTask_Robots();
 
 		/**
+		 * The meta object literal for the '<em><b>Retry</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATOMIC_TASK__RETRY = eINSTANCE.getAtomicTask_Retry();
+
+		/**
 		 * The meta object literal for the '{@link dsl.impl.CompoundTaskImpl <em>Compound Task</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2362,12 +2292,12 @@ public interface DslPackage extends EPackage {
 		EClass COMPOUND_TASK = eINSTANCE.getCompoundTask();
 
 		/**
-		 * The meta object literal for the '<em><b>Loc</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference COMPOUND_TASK__LOC = eINSTANCE.getCompoundTask_Loc();
+		EAttribute COMPOUND_TASK__NAME = eINSTANCE.getCompoundTask_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Ordered</b></em>' attribute feature.
@@ -2392,14 +2322,6 @@ public interface DslPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPOUND_TASK__CAN_DO_TASK = eINSTANCE.getCompoundTask_CanDoTask();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute COMPOUND_TASK__NAME = eINSTANCE.getCompoundTask_Name();
 
 		/**
 		 * The meta object literal for the '{@link dsl.impl.MissionImpl <em>Mission</em>}' class.
@@ -2536,32 +2458,6 @@ public interface DslPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute RATE_SUCC__RATE_SUCC = eINSTANCE.getRateSucc_RateSucc();
-
-		/**
-		 * The meta object literal for the '{@link dsl.impl.CompTaskAllLocImpl <em>Comp Task All Loc</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see dsl.impl.CompTaskAllLocImpl
-		 * @see dsl.impl.DslPackageImpl#getCompTaskAllLoc()
-		 * @generated
-		 */
-		EClass COMP_TASK_ALL_LOC = eINSTANCE.getCompTaskAllLoc();
-
-		/**
-		 * The meta object literal for the '<em><b>Ct</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMP_TASK_ALL_LOC__CT = eINSTANCE.getCompTaskAllLoc_Ct();
-
-		/**
-		 * The meta object literal for the '<em><b>Loc</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMP_TASK_ALL_LOC__LOC = eINSTANCE.getCompTaskAllLoc_Loc();
 
 		/**
 		 * The meta object literal for the '{@link dsl.impl.SpaceXYRobotImpl <em>Space XY Robot</em>}' class.

@@ -10,23 +10,23 @@ ProblemSpecification{
     l2 : ( x 2.0 y 1.0 ) //robot2
     l3 : ( x 6.0 y 7.0 ) //robot3
     l4: ( x 7.0 y  7.0 ) //robot4
-    l5: ( x 8.0 y  7.0 ) //robot5 
+    l5: ( x 8.0 y  7.0 ) //robot5  
 	 
 	//distance omitted to test task allocation  
 	distance l1 to l2 is 3.0
 	distance l1 to l3 is 3.0
-	distance l1 to room1 is 31.0
+	distance l1 to room1 is 31.0 
 	distance l1 to room4 is 31.0
 	
 	TasksModel:
-	 at1 : 2 robots needed at location l1, // moving medical equipment
+	 at1 : 2 robots needed at location l1, 2 retries allowed,  // moving medical equipment
 	 at2 : 1 robot needed at location l1,  // cleaning the room
 	 at3:  1 robot needed at location l1,  // sanitising room
 	 at4:  1 robot needed at location l1,  //notify patient
 	 
 	 //at6 : 1 robot needed at location room6, //ALLOCATED to r6
 	 //ct0: subtasks [at3],
-	 ct1: subtasks [at3,at2], //cleaning room
+	 ct1: subtasks [at3,at2], //cleaning room  
 	 ct2: subtasks [at4,ct1] constraint: ordered //clean patient room
 	  
 	 //ct6: subtasks [at6 ] constraint: ordered //ALLOCATED to r6

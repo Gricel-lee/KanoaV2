@@ -13,11 +13,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link dsl.CompoundTask#getLoc <em>Loc</em>}</li>
+ *   <li>{@link dsl.CompoundTask#getName <em>Name</em>}</li>
  *   <li>{@link dsl.CompoundTask#isOrdered <em>Ordered</em>}</li>
  *   <li>{@link dsl.CompoundTask#isConsecutive <em>Consecutive</em>}</li>
  *   <li>{@link dsl.CompoundTask#getCanDoTask <em>Can Do Task</em>}</li>
- *   <li>{@link dsl.CompoundTask#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see dsl.DslPackage#getCompoundTask()
@@ -26,26 +25,26 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface CompoundTask extends TasksModel {
 	/**
-	 * Returns the value of the '<em><b>Loc</b></em>' reference.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Loc</em>' reference.
-	 * @see #setLoc(Location)
-	 * @see dsl.DslPackage#getCompoundTask_Loc()
-	 * @model
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see dsl.DslPackage#getCompoundTask_Name()
+	 * @model id="true"
 	 * @generated
 	 */
-	Location getLoc();
+	String getName();
 
 	/**
-	 * Sets the value of the '{@link dsl.CompoundTask#getLoc <em>Loc</em>}' reference.
+	 * Sets the value of the '{@link dsl.CompoundTask#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Loc</em>' reference.
-	 * @see #getLoc()
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
 	 * @generated
 	 */
-	void setLoc(Location value);
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Ordered</b></em>' attribute.
@@ -102,27 +101,5 @@ public interface CompoundTask extends TasksModel {
 	 * @generated
 	 */
 	EList<TasksModel> getCanDoTask();
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see dsl.DslPackage#getCompoundTask_Name()
-	 * @model id="true"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link dsl.CompoundTask#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
 
 } // CompoundTask

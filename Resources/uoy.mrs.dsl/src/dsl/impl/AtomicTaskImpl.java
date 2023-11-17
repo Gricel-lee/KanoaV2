@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link dsl.impl.AtomicTaskImpl#getLoc <em>Loc</em>}</li>
  *   <li>{@link dsl.impl.AtomicTaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link dsl.impl.AtomicTaskImpl#getRobots <em>Robots</em>}</li>
+ *   <li>{@link dsl.impl.AtomicTaskImpl#getRetry <em>Retry</em>}</li>
  * </ul>
  *
  * @generated
@@ -78,6 +79,26 @@ public class AtomicTaskImpl extends TasksModelImpl implements AtomicTask {
 	 * @ordered
 	 */
 	protected int robots = ROBOTS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRetry() <em>Retry</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRetry()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int RETRY_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getRetry() <em>Retry</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRetry()
+	 * @generated
+	 * @ordered
+	 */
+	protected int retry = RETRY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -183,6 +204,27 @@ public class AtomicTaskImpl extends TasksModelImpl implements AtomicTask {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getRetry() {
+		return retry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRetry(int newRetry) {
+		int oldRetry = retry;
+		retry = newRetry;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.ATOMIC_TASK__RETRY, oldRetry, retry));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -193,6 +235,8 @@ public class AtomicTaskImpl extends TasksModelImpl implements AtomicTask {
 				return getName();
 			case DslPackage.ATOMIC_TASK__ROBOTS:
 				return getRobots();
+			case DslPackage.ATOMIC_TASK__RETRY:
+				return getRetry();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -213,6 +257,9 @@ public class AtomicTaskImpl extends TasksModelImpl implements AtomicTask {
 				return;
 			case DslPackage.ATOMIC_TASK__ROBOTS:
 				setRobots((Integer)newValue);
+				return;
+			case DslPackage.ATOMIC_TASK__RETRY:
+				setRetry((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -235,6 +282,9 @@ public class AtomicTaskImpl extends TasksModelImpl implements AtomicTask {
 			case DslPackage.ATOMIC_TASK__ROBOTS:
 				setRobots(ROBOTS_EDEFAULT);
 				return;
+			case DslPackage.ATOMIC_TASK__RETRY:
+				setRetry(RETRY_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -253,6 +303,8 @@ public class AtomicTaskImpl extends TasksModelImpl implements AtomicTask {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case DslPackage.ATOMIC_TASK__ROBOTS:
 				return robots != ROBOTS_EDEFAULT;
+			case DslPackage.ATOMIC_TASK__RETRY:
+				return retry != RETRY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -271,6 +323,8 @@ public class AtomicTaskImpl extends TasksModelImpl implements AtomicTask {
 		result.append(name);
 		result.append(", robots: ");
 		result.append(robots);
+		result.append(", retry: ");
+		result.append(retry);
 		result.append(')');
 		return result.toString();
 	}

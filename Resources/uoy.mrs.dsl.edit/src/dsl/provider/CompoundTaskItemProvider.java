@@ -45,33 +45,32 @@ public class CompoundTaskItemProvider extends TasksModelItemProvider {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addLocPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 			addOrderedPropertyDescriptor(object);
 			addConsecutivePropertyDescriptor(object);
 			addCanDoTaskPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Loc feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLocPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CompoundTask_loc_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompoundTask_loc_feature", "_UI_CompoundTask_type"),
-				 DslPackage.Literals.COMPOUND_TASK__LOC,
+				 getString("_UI_CompoundTask_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_CompoundTask_name_feature", "_UI_CompoundTask_type"),
+				 DslPackage.Literals.COMPOUND_TASK__NAME,
 				 true,
 				 false,
-				 true,
-				 null,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -143,28 +142,6 @@ public class CompoundTaskItemProvider extends TasksModelItemProvider {
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CompoundTask_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CompoundTask_name_feature", "_UI_CompoundTask_type"),
-				 DslPackage.Literals.COMPOUND_TASK__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This returns CompoundTask.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -202,9 +179,9 @@ public class CompoundTaskItemProvider extends TasksModelItemProvider {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(CompoundTask.class)) {
+			case DslPackage.COMPOUND_TASK__NAME:
 			case DslPackage.COMPOUND_TASK__ORDERED:
 			case DslPackage.COMPOUND_TASK__CONSECUTIVE:
-			case DslPackage.COMPOUND_TASK__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

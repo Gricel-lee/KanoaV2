@@ -32,7 +32,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class  DslItemProviderAdapterFactory extends DslAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class DslItemProviderAdapterFactory extends DslAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -371,29 +371,6 @@ public class  DslItemProviderAdapterFactory extends DslAdapterFactory implements
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link dsl.CompTaskAllLoc} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CompTaskAllLocItemProvider compTaskAllLocItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link dsl.CompTaskAllLoc}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCompTaskAllLocAdapter() {
-		if (compTaskAllLocItemProvider == null) {
-			compTaskAllLocItemProvider = new CompTaskAllLocItemProvider(this);
-		}
-
-		return compTaskAllLocItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link dsl.SpaceXYRobot} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -620,7 +597,6 @@ public class  DslItemProviderAdapterFactory extends DslAdapterFactory implements
 		if (missionTaskItemProvider != null) missionTaskItemProvider.dispose();
 		if (constraintsItemProvider != null) constraintsItemProvider.dispose();
 		if (rateSuccItemProvider != null) rateSuccItemProvider.dispose();
-		if (compTaskAllLocItemProvider != null) compTaskAllLocItemProvider.dispose();
 		if (spaceXYRobotItemProvider != null) spaceXYRobotItemProvider.dispose();
 		if (taskTimeItemProvider != null) taskTimeItemProvider.dispose();
 		if (allocateTItemProvider != null) allocateTItemProvider.dispose();
