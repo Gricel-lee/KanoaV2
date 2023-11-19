@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link dsl.impl.PathsImpl#getLoc1 <em>Loc1</em>}</li>
  *   <li>{@link dsl.impl.PathsImpl#getLoc2 <em>Loc2</em>}</li>
  *   <li>{@link dsl.impl.PathsImpl#getDistance <em>Distance</em>}</li>
+ *   <li>{@link dsl.impl.PathsImpl#getSuccess <em>Success</em>}</li>
+ *   <li>{@link dsl.impl.PathsImpl#getTypeDistance <em>Type Distance</em>}</li>
  * </ul>
  *
  * @generated
@@ -68,6 +70,46 @@ public class PathsImpl extends WorldModelImpl implements Paths {
 	 * @ordered
 	 */
 	protected double distance = DISTANCE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getSuccess() <em>Success</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuccess()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double SUCCESS_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getSuccess() <em>Success</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSuccess()
+	 * @generated
+	 * @ordered
+	 */
+	protected double success = SUCCESS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getTypeDistance() <em>Type Distance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeDistance()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_DISTANCE_EDEFAULT = "Euclidean";
+
+	/**
+	 * The cached value of the '{@link #getTypeDistance() <em>Type Distance</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeDistance()
+	 * @generated
+	 * @ordered
+	 */
+	protected String typeDistance = TYPE_DISTANCE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -190,6 +232,36 @@ public class PathsImpl extends WorldModelImpl implements Paths {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getSuccess() {
+		return success;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSuccess(double newSuccess) {
+		double oldSuccess = success;
+		success = newSuccess;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DslPackage.PATHS__SUCCESS, oldSuccess, success));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTypeDistance() {
+		return typeDistance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -201,6 +273,10 @@ public class PathsImpl extends WorldModelImpl implements Paths {
 				return basicGetLoc2();
 			case DslPackage.PATHS__DISTANCE:
 				return getDistance();
+			case DslPackage.PATHS__SUCCESS:
+				return getSuccess();
+			case DslPackage.PATHS__TYPE_DISTANCE:
+				return getTypeDistance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,6 +297,9 @@ public class PathsImpl extends WorldModelImpl implements Paths {
 				return;
 			case DslPackage.PATHS__DISTANCE:
 				setDistance((Double)newValue);
+				return;
+			case DslPackage.PATHS__SUCCESS:
+				setSuccess((Double)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -243,6 +322,9 @@ public class PathsImpl extends WorldModelImpl implements Paths {
 			case DslPackage.PATHS__DISTANCE:
 				setDistance(DISTANCE_EDEFAULT);
 				return;
+			case DslPackage.PATHS__SUCCESS:
+				setSuccess(SUCCESS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -261,6 +343,10 @@ public class PathsImpl extends WorldModelImpl implements Paths {
 				return loc2 != null;
 			case DslPackage.PATHS__DISTANCE:
 				return distance != DISTANCE_EDEFAULT;
+			case DslPackage.PATHS__SUCCESS:
+				return success != SUCCESS_EDEFAULT;
+			case DslPackage.PATHS__TYPE_DISTANCE:
+				return TYPE_DISTANCE_EDEFAULT == null ? typeDistance != null : !TYPE_DISTANCE_EDEFAULT.equals(typeDistance);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -277,6 +363,10 @@ public class PathsImpl extends WorldModelImpl implements Paths {
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (distance: ");
 		result.append(distance);
+		result.append(", success: ");
+		result.append(success);
+		result.append(", typeDistance: ");
+		result.append(typeDistance);
 		result.append(')');
 		return result.toString();
 	}

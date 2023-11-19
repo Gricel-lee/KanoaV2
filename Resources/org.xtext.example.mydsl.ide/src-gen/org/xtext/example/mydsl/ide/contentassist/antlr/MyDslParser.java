@@ -56,6 +56,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLocationAccess().getGroup(), "rule__Location__Group__0");
 			builder.put(grammarAccess.getLocationAccess().getGroup_7(), "rule__Location__Group_7__0");
 			builder.put(grammarAccess.getPathsAccess().getGroup(), "rule__Paths__Group__0");
+			builder.put(grammarAccess.getPathsAccess().getGroup_6(), "rule__Paths__Group_6__0");
 			builder.put(grammarAccess.getAtomicTaskAccess().getGroup(), "rule__AtomicTask__Group__0");
 			builder.put(grammarAccess.getAtomicTaskAccess().getGroup_8(), "rule__AtomicTask__Group_8__0");
 			builder.put(grammarAccess.getCompoundTaskAccess().getGroup(), "rule__CompoundTask__Group__0");
@@ -119,6 +120,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPathsAccess().getLoc1Assignment_1(), "rule__Paths__Loc1Assignment_1");
 			builder.put(grammarAccess.getPathsAccess().getLoc2Assignment_3(), "rule__Paths__Loc2Assignment_3");
 			builder.put(grammarAccess.getPathsAccess().getDistanceAssignment_5(), "rule__Paths__DistanceAssignment_5");
+			builder.put(grammarAccess.getPathsAccess().getSuccessAssignment_6_3(), "rule__Paths__SuccessAssignment_6_3");
 			builder.put(grammarAccess.getAtomicTaskAccess().getNameAssignment_0(), "rule__AtomicTask__NameAssignment_0");
 			builder.put(grammarAccess.getAtomicTaskAccess().getRobotsAssignment_2(), "rule__AtomicTask__RobotsAssignment_2");
 			builder.put(grammarAccess.getAtomicTaskAccess().getLocAssignment_7(), "rule__AtomicTask__LocAssignment_7");

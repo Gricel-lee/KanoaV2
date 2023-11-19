@@ -17,12 +17,14 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -61,8 +63,31 @@ public class ProblemSpecificationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAddAutoDistancesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Add Auto Distances feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAddAutoDistancesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProblemSpecification_addAutoDistances_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProblemSpecification_addAutoDistances_feature", "_UI_ProblemSpecification_type"),
+				 DslPackage.Literals.PROBLEM_SPECIFICATION__ADD_AUTO_DISTANCES,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -117,7 +142,10 @@ public class ProblemSpecificationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ProblemSpecification_type");
+		String label = ((ProblemSpecification)object).getAddAutoDistances();
+		return label == null || label.length() == 0 ?
+			getString("_UI_ProblemSpecification_type") :
+			getString("_UI_ProblemSpecification_type") + " " + label;
 	}
 
 
@@ -133,6 +161,9 @@ public class ProblemSpecificationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProblemSpecification.class)) {
+			case DslPackage.PROBLEM_SPECIFICATION__ADD_AUTO_DISTANCES:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case DslPackage.PROBLEM_SPECIFICATION__WORLD_MODEL:
 			case DslPackage.PROBLEM_SPECIFICATION__ROBOTS_MODEL:
 			case DslPackage.PROBLEM_SPECIFICATION__TASKS_MODEL:

@@ -48,6 +48,8 @@ public class PathsItemProvider extends WorldModelItemProvider {
 			addLoc1PropertyDescriptor(object);
 			addLoc2PropertyDescriptor(object);
 			addDistancePropertyDescriptor(object);
+			addSuccessPropertyDescriptor(object);
+			addTypeDistancePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -119,6 +121,50 @@ public class PathsItemProvider extends WorldModelItemProvider {
 	}
 
 	/**
+	 * This adds a property descriptor for the Success feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addSuccessPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Paths_success_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Paths_success_feature", "_UI_Paths_type"),
+				 DslPackage.Literals.PATHS__SUCCESS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Type Distance feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTypeDistancePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Paths_typeDistance_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Paths_typeDistance_feature", "_UI_Paths_type"),
+				 DslPackage.Literals.PATHS__TYPE_DISTANCE,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Paths.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,6 +201,8 @@ public class PathsItemProvider extends WorldModelItemProvider {
 
 		switch (notification.getFeatureID(Paths.class)) {
 			case DslPackage.PATHS__DISTANCE:
+			case DslPackage.PATHS__SUCCESS:
+			case DslPackage.PATHS__TYPE_DISTANCE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

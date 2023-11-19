@@ -257,23 +257,11 @@ public class MyDslSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Paths returns Paths
 	 *
 	 * Constraint:
-	 *     (loc1=[Location|EString] loc2=[Location|EString] distance=EDouble)
+	 *     (loc1=[Location|EString] loc2=[Location|EString] distance=EDouble success=EDouble?)
 	 * </pre>
 	 */
 	protected void sequence_Paths(ISerializationContext context, Paths semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.PATHS__LOC1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.PATHS__LOC1));
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.PATHS__LOC2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.PATHS__LOC2));
-			if (transientValues.isValueTransient(semanticObject, DslPackage.Literals.PATHS__DISTANCE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, DslPackage.Literals.PATHS__DISTANCE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPathsAccess().getLoc1LocationEStringParserRuleCall_1_0_1(), semanticObject.eGet(DslPackage.Literals.PATHS__LOC1, false));
-		feeder.accept(grammarAccess.getPathsAccess().getLoc2LocationEStringParserRuleCall_3_0_1(), semanticObject.eGet(DslPackage.Literals.PATHS__LOC2, false));
-		feeder.accept(grammarAccess.getPathsAccess().getDistanceEDoubleParserRuleCall_5_0(), semanticObject.getDistance());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

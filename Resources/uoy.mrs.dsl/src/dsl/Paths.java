@@ -15,6 +15,8 @@ package dsl;
  *   <li>{@link dsl.Paths#getLoc1 <em>Loc1</em>}</li>
  *   <li>{@link dsl.Paths#getLoc2 <em>Loc2</em>}</li>
  *   <li>{@link dsl.Paths#getDistance <em>Distance</em>}</li>
+ *   <li>{@link dsl.Paths#getSuccess <em>Success</em>}</li>
+ *   <li>{@link dsl.Paths#getTypeDistance <em>Type Distance</em>}</li>
  * </ul>
  *
  * @see dsl.DslPackage#getPaths()
@@ -87,5 +89,39 @@ public interface Paths extends WorldModel {
 	 * @generated
 	 */
 	void setDistance(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Success</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Success</em>' attribute.
+	 * @see #setSuccess(double)
+	 * @see dsl.DslPackage#getPaths_Success()
+	 * @model required="true"
+	 * @generated
+	 */
+	double getSuccess();
+
+	/**
+	 * Sets the value of the '{@link dsl.Paths#getSuccess <em>Success</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Success</em>' attribute.
+	 * @see #getSuccess()
+	 * @generated
+	 */
+	void setSuccess(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Type Distance</b></em>' attribute.
+	 * The default value is <code>"Euclidean"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Distance</em>' attribute.
+	 * @see dsl.DslPackage#getPaths_TypeDistance()
+	 * @model default="Euclidean" changeable="false"
+	 * @generated
+	 */
+	String getTypeDistance();
 
 } // Paths

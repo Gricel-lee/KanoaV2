@@ -24,6 +24,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="loc2" lowerBound="1" eType="#//Location"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="success" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeDistance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        changeable="false" defaultValueLiteral="Euclidean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Robot">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initLoc" lowerBound="1"

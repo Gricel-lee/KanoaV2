@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link dsl.ProblemSpecification#getRobotsModel <em>Robots Model</em>}</li>
  *   <li>{@link dsl.ProblemSpecification#getTasksModel <em>Tasks Model</em>}</li>
  *   <li>{@link dsl.ProblemSpecification#getMission <em>Mission</em>}</li>
+ *   <li>{@link dsl.ProblemSpecification#getAddAutoDistances <em>Add Auto Distances</em>}</li>
  * </ul>
  *
  * @see dsl.DslPackage#getProblemSpecification()
@@ -73,5 +74,17 @@ public interface ProblemSpecification extends EObject {
 	 * @generated
 	 */
 	EList<Mission> getMission();
+
+	/**
+	 * Returns the value of the '<em><b>Add Auto Distances</b></em>' attribute.
+	 * The default value is <code>"Euclidean"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Add Auto Distances</em>' attribute.
+	 * @see dsl.DslPackage#getProblemSpecification_AddAutoDistances()
+	 * @model default="Euclidean" changeable="false"
+	 * @generated
+	 */
+	String getAddAutoDistances();
 
 } // ProblemSpecification

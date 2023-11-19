@@ -67,6 +67,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    'ProblemSpecification'
 		//    '{'
 		//        'WorldModel' ':' worldModel+=WorldModel ( worldModel+=WorldModel)*
+		//        //(addAutoDistances=EString )?
 		//        'TasksModel' ':' tasksModel+=TasksModel ( "," tasksModel+=TasksModel)*
 		//        'RobotsModel' ':' robotsModel+=Robot ( "," robotsModel+=Robot)*
 		//        'Mission' ':' mission+=Mission ( "," mission+=Mission)*
@@ -76,6 +77,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'ProblemSpecification'
 		//'{'
 		//    'WorldModel' ':' worldModel+=WorldModel ( worldModel+=WorldModel)*
+		//    //(addAutoDistances=EString )?
 		//    'TasksModel' ':' tasksModel+=TasksModel ( "," tasksModel+=TasksModel)*
 		//    'RobotsModel' ':' robotsModel+=Robot ( "," robotsModel+=Robot)*
 		//    'Mission' ':' mission+=Mission ( "," mission+=Mission)*
@@ -106,6 +108,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//WorldModel
 		public RuleCall getWorldModelWorldModelParserRuleCall_5_0() { return cWorldModelWorldModelParserRuleCall_5_0; }
 		
+		////(addAutoDistances=EString )?
 		//'TasksModel'
 		public Keyword getTasksModelKeyword_6() { return cTasksModelKeyword_6; }
 		
@@ -303,6 +306,13 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		private final Keyword cIsKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cDistanceAssignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cDistanceEDoubleParserRuleCall_5_0 = (RuleCall)cDistanceAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cHasKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cSuccessKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
+		private final Keyword cRateKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
+		private final Assignment cSuccessAssignment_6_3 = (Assignment)cGroup_6.eContents().get(3);
+		private final RuleCall cSuccessEDoubleParserRuleCall_6_3_0 = (RuleCall)cSuccessAssignment_6_3.eContents().get(0);
+		private final Keyword cPercentSignKeyword_6_4 = (Keyword)cGroup_6.eContents().get(4);
 		
 		//Paths returns Paths:
 		//    //{Paths}
@@ -310,6 +320,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//        loc1=[Location|EString] 'to'
 		//        loc2=[Location|EString]
 		//        'is' distance=EDouble
+		//        ('has''success''rate:' success=EDouble '%')?
 		//    ;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -318,6 +329,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    loc1=[Location|EString] 'to'
 		//    loc2=[Location|EString]
 		//    'is' distance=EDouble
+		//    ('has''success''rate:' success=EDouble '%')?
 		public Group getGroup() { return cGroup; }
 		
 		////{Paths}
@@ -353,6 +365,27 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		
 		//EDouble
 		public RuleCall getDistanceEDoubleParserRuleCall_5_0() { return cDistanceEDoubleParserRuleCall_5_0; }
+		
+		//('has''success''rate:' success=EDouble '%')?
+		public Group getGroup_6() { return cGroup_6; }
+		
+		//'has'
+		public Keyword getHasKeyword_6_0() { return cHasKeyword_6_0; }
+		
+		//'success'
+		public Keyword getSuccessKeyword_6_1() { return cSuccessKeyword_6_1; }
+		
+		//'rate:'
+		public Keyword getRateKeyword_6_2() { return cRateKeyword_6_2; }
+		
+		//success=EDouble
+		public Assignment getSuccessAssignment_6_3() { return cSuccessAssignment_6_3; }
+		
+		//EDouble
+		public RuleCall getSuccessEDoubleParserRuleCall_6_3_0() { return cSuccessEDoubleParserRuleCall_6_3_0; }
+		
+		//'%'
+		public Keyword getPercentSignKeyword_6_4() { return cPercentSignKeyword_6_4; }
 	}
 	public class TasksModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.mydsl.MyDsl.TasksModel");
@@ -2083,6 +2116,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    'ProblemSpecification'
 	//    '{'
 	//        'WorldModel' ':' worldModel+=WorldModel ( worldModel+=WorldModel)*
+	//        //(addAutoDistances=EString )?
 	//        'TasksModel' ':' tasksModel+=TasksModel ( "," tasksModel+=TasksModel)*
 	//        'RobotsModel' ':' robotsModel+=Robot ( "," robotsModel+=Robot)*
 	//        'Mission' ':' mission+=Mission ( "," mission+=Mission)*
@@ -2128,6 +2162,7 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//        loc1=[Location|EString] 'to'
 	//        loc2=[Location|EString]
 	//        'is' distance=EDouble
+	//        ('has''success''rate:' success=EDouble '%')?
 	//    ;
 	public PathsElements getPathsAccess() {
 		return pPaths;

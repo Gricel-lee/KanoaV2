@@ -39,6 +39,8 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Paths/loc1"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Paths/loc2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Paths/distance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Paths/success"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute dsl.ecore#//Paths/typeDistance"/>
     </genClasses>
     <genClasses ecoreClass="dsl.ecore#//Robot">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dsl.ecore#//Robot/initLoc"/>

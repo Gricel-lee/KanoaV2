@@ -305,6 +305,15 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProblemSpecification_AddAutoDistances() {
+		return (EAttribute)problemSpecificationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWorldModel() {
 		return worldModelEClass;
 	}
@@ -388,6 +397,24 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 	 */
 	public EAttribute getPaths_Distance() {
 		return (EAttribute)pathsEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPaths_Success() {
+		return (EAttribute)pathsEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPaths_TypeDistance() {
+		return (EAttribute)pathsEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1017,6 +1044,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 		createEReference(problemSpecificationEClass, PROBLEM_SPECIFICATION__ROBOTS_MODEL);
 		createEReference(problemSpecificationEClass, PROBLEM_SPECIFICATION__TASKS_MODEL);
 		createEReference(problemSpecificationEClass, PROBLEM_SPECIFICATION__MISSION);
+		createEAttribute(problemSpecificationEClass, PROBLEM_SPECIFICATION__ADD_AUTO_DISTANCES);
 
 		worldModelEClass = createEClass(WORLD_MODEL);
 
@@ -1030,6 +1058,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 		createEReference(pathsEClass, PATHS__LOC1);
 		createEReference(pathsEClass, PATHS__LOC2);
 		createEAttribute(pathsEClass, PATHS__DISTANCE);
+		createEAttribute(pathsEClass, PATHS__SUCCESS);
+		createEAttribute(pathsEClass, PATHS__TYPE_DISTANCE);
 
 		robotEClass = createEClass(ROBOT);
 		createEReference(robotEClass, ROBOT__INIT_LOC);
@@ -1159,6 +1189,7 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 		initEReference(getProblemSpecification_RobotsModel(), this.getRobot(), null, "robotsModel", null, 1, -1, ProblemSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProblemSpecification_TasksModel(), this.getTasksModel(), null, "tasksModel", null, 1, -1, ProblemSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProblemSpecification_Mission(), this.getMission(), null, "mission", null, 1, -1, ProblemSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProblemSpecification_AddAutoDistances(), ecorePackage.getEString(), "addAutoDistances", "Euclidean", 0, 1, ProblemSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(worldModelEClass, WorldModel.class, "WorldModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1172,6 +1203,8 @@ public class DslPackageImpl extends EPackageImpl implements DslPackage {
 		initEReference(getPaths_Loc1(), this.getLocation(), null, "loc1", null, 1, 1, Paths.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPaths_Loc2(), this.getLocation(), null, "loc2", null, 1, 1, Paths.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPaths_Distance(), ecorePackage.getEDouble(), "distance", null, 1, 1, Paths.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPaths_Success(), ecorePackage.getEDouble(), "success", null, 1, 1, Paths.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPaths_TypeDistance(), ecorePackage.getEString(), "typeDistance", "Euclidean", 0, 1, Paths.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(robotEClass, Robot.class, "Robot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRobot_InitLoc(), this.getLocation(), null, "initLoc", null, 1, 1, Robot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

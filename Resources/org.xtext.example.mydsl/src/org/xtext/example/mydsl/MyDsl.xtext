@@ -32,6 +32,7 @@ Paths returns Paths:
 		loc1=[Location|EString] 'to'
 		loc2=[Location|EString]
 		'is' distance=EDouble
+		('has''success''rate:' success=EDouble '%')?
 	;
 
 

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link dsl.impl.ProblemSpecificationImpl#getRobotsModel <em>Robots Model</em>}</li>
  *   <li>{@link dsl.impl.ProblemSpecificationImpl#getTasksModel <em>Tasks Model</em>}</li>
  *   <li>{@link dsl.impl.ProblemSpecificationImpl#getMission <em>Mission</em>}</li>
+ *   <li>{@link dsl.impl.ProblemSpecificationImpl#getAddAutoDistances <em>Add Auto Distances</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,6 +80,26 @@ public class ProblemSpecificationImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected EList<Mission> mission;
+
+	/**
+	 * The default value of the '{@link #getAddAutoDistances() <em>Add Auto Distances</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAddAutoDistances()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ADD_AUTO_DISTANCES_EDEFAULT = "Euclidean";
+
+	/**
+	 * The cached value of the '{@link #getAddAutoDistances() <em>Add Auto Distances</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAddAutoDistances()
+	 * @generated
+	 * @ordered
+	 */
+	protected String addAutoDistances = ADD_AUTO_DISTANCES_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,6 +173,15 @@ public class ProblemSpecificationImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getAddAutoDistances() {
+		return addAutoDistances;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -183,6 +213,8 @@ public class ProblemSpecificationImpl extends MinimalEObjectImpl.Container imple
 				return getTasksModel();
 			case DslPackage.PROBLEM_SPECIFICATION__MISSION:
 				return getMission();
+			case DslPackage.PROBLEM_SPECIFICATION__ADD_AUTO_DISTANCES:
+				return getAddAutoDistances();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -256,8 +288,26 @@ public class ProblemSpecificationImpl extends MinimalEObjectImpl.Container imple
 				return tasksModel != null && !tasksModel.isEmpty();
 			case DslPackage.PROBLEM_SPECIFICATION__MISSION:
 				return mission != null && !mission.isEmpty();
+			case DslPackage.PROBLEM_SPECIFICATION__ADD_AUTO_DISTANCES:
+				return ADD_AUTO_DISTANCES_EDEFAULT == null ? addAutoDistances != null : !ADD_AUTO_DISTANCES_EDEFAULT.equals(addAutoDistances);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuilder result = new StringBuilder(super.toString());
+		result.append(" (addAutoDistances: ");
+		result.append(addAutoDistances);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ProblemSpecificationImpl

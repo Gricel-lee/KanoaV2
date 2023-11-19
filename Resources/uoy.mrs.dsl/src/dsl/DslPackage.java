@@ -104,13 +104,22 @@ public interface DslPackage extends EPackage {
 	int PROBLEM_SPECIFICATION__MISSION = 3;
 
 	/**
+	 * The feature id for the '<em><b>Add Auto Distances</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROBLEM_SPECIFICATION__ADD_AUTO_DISTANCES = 4;
+
+	/**
 	 * The number of structural features of the '<em>Problem Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROBLEM_SPECIFICATION_FEATURE_COUNT = 4;
+	int PROBLEM_SPECIFICATION_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Problem Specification</em>' class.
@@ -251,13 +260,31 @@ public interface DslPackage extends EPackage {
 	int PATHS__DISTANCE = WORLD_MODEL_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Success</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATHS__SUCCESS = WORLD_MODEL_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Type Distance</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PATHS__TYPE_DISTANCE = WORLD_MODEL_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Paths</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PATHS_FEATURE_COUNT = WORLD_MODEL_FEATURE_COUNT + 3;
+	int PATHS_FEATURE_COUNT = WORLD_MODEL_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Paths</em>' class.
@@ -1188,6 +1215,17 @@ public interface DslPackage extends EPackage {
 	EReference getProblemSpecification_Mission();
 
 	/**
+	 * Returns the meta object for the attribute '{@link dsl.ProblemSpecification#getAddAutoDistances <em>Add Auto Distances</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Add Auto Distances</em>'.
+	 * @see dsl.ProblemSpecification#getAddAutoDistances()
+	 * @see #getProblemSpecification()
+	 * @generated
+	 */
+	EAttribute getProblemSpecification_AddAutoDistances();
+
+	/**
 	 * Returns the meta object for class '{@link dsl.WorldModel <em>World Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1293,6 +1331,28 @@ public interface DslPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getPaths_Distance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link dsl.Paths#getSuccess <em>Success</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Success</em>'.
+	 * @see dsl.Paths#getSuccess()
+	 * @see #getPaths()
+	 * @generated
+	 */
+	EAttribute getPaths_Success();
+
+	/**
+	 * Returns the meta object for the attribute '{@link dsl.Paths#getTypeDistance <em>Type Distance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type Distance</em>'.
+	 * @see dsl.Paths#getTypeDistance()
+	 * @see #getPaths()
+	 * @generated
+	 */
+	EAttribute getPaths_TypeDistance();
 
 	/**
 	 * Returns the meta object for class '{@link dsl.Robot <em>Robot</em>}'.
@@ -2068,6 +2128,14 @@ public interface DslPackage extends EPackage {
 		EReference PROBLEM_SPECIFICATION__MISSION = eINSTANCE.getProblemSpecification_Mission();
 
 		/**
+		 * The meta object literal for the '<em><b>Add Auto Distances</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROBLEM_SPECIFICATION__ADD_AUTO_DISTANCES = eINSTANCE.getProblemSpecification_AddAutoDistances();
+
+		/**
 		 * The meta object literal for the '{@link dsl.impl.WorldModelImpl <em>World Model</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2152,6 +2220,22 @@ public interface DslPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PATHS__DISTANCE = eINSTANCE.getPaths_Distance();
+
+		/**
+		 * The meta object literal for the '<em><b>Success</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATHS__SUCCESS = eINSTANCE.getPaths_Success();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Distance</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PATHS__TYPE_DISTANCE = eINSTANCE.getPaths_TypeDistance();
 
 		/**
 		 * The meta object literal for the '{@link dsl.impl.RobotImpl <em>Robot</em>}' class.

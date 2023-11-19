@@ -534,6 +534,43 @@ rulePaths returns [EObject current=null]
 				}
 			)
 		)
+		(
+			otherlv_6='has'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getPathsAccess().getHasKeyword_6_0());
+			}
+			otherlv_7='success'
+			{
+				newLeafNode(otherlv_7, grammarAccess.getPathsAccess().getSuccessKeyword_6_1());
+			}
+			otherlv_8='rate:'
+			{
+				newLeafNode(otherlv_8, grammarAccess.getPathsAccess().getRateKeyword_6_2());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getPathsAccess().getSuccessEDoubleParserRuleCall_6_3_0());
+					}
+					lv_success_9_0=ruleEDouble
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getPathsRule());
+						}
+						set(
+							$current,
+							"success",
+							lv_success_9_0,
+							"org.xtext.example.mydsl.MyDsl.EDouble");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			otherlv_10='%'
+			{
+				newLeafNode(otherlv_10, grammarAccess.getPathsAccess().getPercentSignKeyword_6_4());
+			}
+		)?
 	)
 ;
 
