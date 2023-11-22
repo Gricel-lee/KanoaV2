@@ -1,5 +1,6 @@
 package uoy.mrs.uoy.mrs.types.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,7 +63,10 @@ public class Robot{
 	}
 	
 	public List<String> getCandoAtomicTasks(){
-		return List.copyOf(capabilities.keySet());
+		//JAVA >8
+		//return List.copyOf(capabilities.keySet());
+		//JAVA8
+		return new ArrayList<>(capabilities.keySet());
 	}
 	
 	

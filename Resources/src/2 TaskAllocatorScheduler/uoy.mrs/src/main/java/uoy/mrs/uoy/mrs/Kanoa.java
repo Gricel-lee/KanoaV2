@@ -43,6 +43,7 @@ public class Kanoa {
 			Constants.setProperties(args[0]);
 		else 
 			Constants.setProperties(fileString);	
+		
 	}
 	
 	

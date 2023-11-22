@@ -2,24 +2,25 @@ ProblemSpecification{
 	WorldModel:
 	room1 : ( x 2.0 y 3.0 ) //room1
     room2 : ( x 1.0 y 7.0 ) //room2
+    
     room3 : ( x 4.0 y 1.0 ) //room3
-    room4 : ( x 10.0 y 1.0) //room4
-    room5 : ( x 10.0 y 5.0) //room5
+    room4 : ( x 10.0 y 1.0) //room4 
+    room5 : ( x 10.0 y 5.0) //room5 
     room6 : ( x 9.0 y 7.0 ) //room6 
     l1 : ( x 1.0  y 1.0 ) //robot1
-    l2 : ( x 2.0 y 1.0 ) //robot2
+    l2 : ( x 2.0 y 1.0 ) //robot2  
     l3 : ( x 6.0 y 7.0 ) //robot3
-    l4: ( x 7.0 y  7.0 ) //robot4
-    l5: ( x 8.0 y  7.0 ) //robot5   
+    l4: ( x 7.0 y  7.0 ) //robot4 
+    l5: ( x 8.0 y  7.0 ) //robot5 
 	
-	//distance omitted to test task allocation  
-	distance l1 to l2 is 3.0 has success rate: 90.0%
-	distance l1 to l3 is 3.0 
-	distance l1 to room1 is 31.0
-	distance l1 to room4 is 31.0
+	//distance omitted to test task allocation
+	distance l1 to l2 is 3.0 has success rate: 99.0%
+	distance l1 to l3 is 3.0 has success rate: 99.0%
+	distance l1 to room1 is 31.0 has success rate: 99.0%
+	distance l1 to room4 is 31.0 has success rate: 99.0%
+	 
 	
-	
-	
+	 
 	TasksModel:
 	 at1 : 2 robots needed at location l1, 2 retries allowed,  // moving medical equipment
 	 at2 : 1 robot needed at location l1,  // cleaning the room

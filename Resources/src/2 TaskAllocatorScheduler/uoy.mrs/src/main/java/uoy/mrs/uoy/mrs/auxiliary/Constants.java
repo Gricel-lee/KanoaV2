@@ -167,7 +167,7 @@ public class Constants {
 		
 		allocationSchedules = new ArrayList<>();
 		
-		PRISM =  initializePrism();
+		//PRISM =  initializePrism();
 		
 		maxPermutations = 3628800; //=10!, max. number possible for which perm. is possible to calculate by the tool (not sure if by Python or Java)
 		
@@ -206,7 +206,10 @@ public class Constants {
 	 * @return
 	 */
 	public static String getProperty (String key){
-		String result = properties.getProperty(key).strip(); 
+		//JAVA>8
+		//String result = properties.getProperty(key).strip(); 
+		//JAVA8
+		String result = properties.getProperty(key).trim().replaceAll("^\\s+|\\s+$", "");
 		//ERROR
 		if (result == null) {
 			KanoaErrorHandler.ErrorNoPropertyInConfigPropFile(key);
@@ -220,7 +223,12 @@ public class Constants {
 	 * @return
 	 */
 	public static String getDSLInfo (String key){
-		String result = properties.getProperty(key).strip(); 
+		//JAVA>8
+		//String result = properties.getProperty(key).strip(); 
+		//JAVA8
+		String result = properties.getProperty(key).trim().replaceAll("^\\s+|\\s+$", "");
+
+		
 		if (result == null) {
 			System.err.println("ERROR: NO "+key+" found in config.prop " );
 			throw new IllegalArgumentException(key.toUpperCase() + " name not found!");}

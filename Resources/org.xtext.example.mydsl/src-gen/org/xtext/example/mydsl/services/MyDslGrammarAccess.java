@@ -67,7 +67,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//    'ProblemSpecification'
 		//    '{'
 		//        'WorldModel' ':' worldModel+=WorldModel ( worldModel+=WorldModel)*
-		//        //(addAutoDistances=EString )?
 		//        'TasksModel' ':' tasksModel+=TasksModel ( "," tasksModel+=TasksModel)*
 		//        'RobotsModel' ':' robotsModel+=Robot ( "," robotsModel+=Robot)*
 		//        'Mission' ':' mission+=Mission ( "," mission+=Mission)*
@@ -77,7 +76,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//'ProblemSpecification'
 		//'{'
 		//    'WorldModel' ':' worldModel+=WorldModel ( worldModel+=WorldModel)*
-		//    //(addAutoDistances=EString )?
 		//    'TasksModel' ':' tasksModel+=TasksModel ( "," tasksModel+=TasksModel)*
 		//    'RobotsModel' ':' robotsModel+=Robot ( "," robotsModel+=Robot)*
 		//    'Mission' ':' mission+=Mission ( "," mission+=Mission)*
@@ -108,7 +106,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 		//WorldModel
 		public RuleCall getWorldModelWorldModelParserRuleCall_5_0() { return cWorldModelWorldModelParserRuleCall_5_0; }
 		
-		////(addAutoDistances=EString )?
 		//'TasksModel'
 		public Keyword getTasksModelKeyword_6() { return cTasksModelKeyword_6; }
 		
@@ -2116,7 +2113,6 @@ public class MyDslGrammarAccess extends AbstractElementFinder.AbstractGrammarEle
 	//    'ProblemSpecification'
 	//    '{'
 	//        'WorldModel' ':' worldModel+=WorldModel ( worldModel+=WorldModel)*
-	//        //(addAutoDistances=EString )?
 	//        'TasksModel' ':' tasksModel+=TasksModel ( "," tasksModel+=TasksModel)*
 	//        'RobotsModel' ':' robotsModel+=Robot ( "," robotsModel+=Robot)*
 	//        'Mission' ':' mission+=Mission ( "," mission+=Mission)*

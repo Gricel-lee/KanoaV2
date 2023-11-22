@@ -1,0 +1,20 @@
+// ----------------Initialise constraint solver-------------//
+open util/integer
+
+abstract sig Robot {
+	capability: set Capability,
+}
+
+abstract sig Capability {
+	do: set AtomicTask
+}
+
+abstract sig AtomicTask {
+	x: one Int,
+	y: one Int
+}
+
+fact{all c: Capability | #capability.c=1} //all Capability appearing must be assigned to a robot
+fact{all r: Robot | #r.capability.do>0} //all Robots appearing must have assigned tasks
+fact{all c: Capability | #c.do>0} // all capability appearing must have assigned tasks
+fact{all r:Robot | #r<=1} // all robots appears max. once
