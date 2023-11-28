@@ -49,10 +49,7 @@ public class ProblemSpecification{
 	MultiKeyMap<String, Object> ctFromDSL = new MultiKeyMap<>(); //cts.get(ct1) = [at3,at2],"true,false" - subtasks,ordered,consecutive
 	
 	
-	
-	int num_instances_found;
-	
-	
+
 	
 	public TaskInstances getTasks() {
 		return tasksModelI;
@@ -143,7 +140,7 @@ public class ProblemSpecification{
 	 * Note: Robots in allocations are added in the pre-scheduling stage.
 	 * */
 	public ArrayList<Allocation> getAllocations() {
-		//allocations added
+		//allocations added already
 		if (!allocationList.isEmpty()) {return allocationList;}
 		
 		//add allocations
@@ -153,6 +150,18 @@ public class ProblemSpecification{
 		}
 		return allocationList;
 	}
+	
+	public int	getNumAllocations() {
+		return allocationList.size();
+	}
+	
+	public Boolean isThereAllocationsFound() { //not tested
+		if (getNumAllocations()>=0) {
+			return true;
+		}
+		return false;
+	}
+	
 	
 	
 	
@@ -216,7 +225,7 @@ public class ProblemSpecification{
 	        	if("loc".equals(type)) {worldModel.addLoc(attrib[1], new Location(attrib[1], attrib[2], attrib[3]));}
 	        	
 	        	// e.g.: path,,l1,,l2,,3.0
-	        	else if("path".equals(type)) {worldModel.addPath(attrib[1], attrib[2], attrib[3]);}
+	        	else if("path".equals(type)) {worldModel.addPath(attrib[1], attrib[2], attrib[3], attrib[4]);}
 	        	//e.g.: at,,at1,,2,,l1
 	        	else if(type=="ct") {atFromDSL.put(attrib[1], attrib[2], attrib[3]);}
 	        	//e.g.: ct,,ct1,,[at3,at2],,false,,false
@@ -260,16 +269,20 @@ public class ProblemSpecification{
 	        		if(attrib[1].contains("maxSucc")){parameters.setObjective_maxSucc(true);}}	        	
 	        	// e.g.: time,,120
 	        	else if("time".equals(type)) {parameters.timeAvailable=attrib[1];} //only if added in DSL
+	        	
+	        	
+	        	//@Deprecated
 	        	// e.g.: numAlloc,,10
-	        	else if("numAlloc".equals(type)) {parameters.numAlloc=attrib[1];} //only if added in DSL
+	        	//else if("numAlloc".equals(type)) {parameters.numAlloc=attrib[1];} //only if added in DSL
 	        	// e.g.: population,,100
-	        	else if("population".equals(type)) {parameters.population=attrib[1];} //only if added in DSL
+	        	//else if("population".equals(type)) {parameters.population=attrib[1];} //only if added in DSL
 	        	// e.g.: evaluations,,20
-	        	else if("evaluations".equals(type)) {parameters.evaluations=attrib[1];} //only if added in DSL
+	        	//else if("evaluations".equals(type)) {parameters.evaluations=attrib[1];} //only if added in DSL
 	        	// e.g.: ratesucc,,95.0
-	        	else if("ratesucc".equals(type)) {parameters.ratesucc=attrib[1];} //only if added in DSL
+	        	//else if("ratesucc".equals(type)) {parameters.ratesucc=attrib[1];} //only if added in DSL
 	        	//error
 	        	//else {KanoaErrorHandler.DSLFileTypeUnkown(fileDSL,type);}
+	        	
 	        }}catch (IOException e) { KanoaErrorHandler.ErrorReadinginfoDSLFile(e);}
 		
 		//------------------------------------------
@@ -307,7 +320,9 @@ public class ProblemSpecification{
 		//------------------------------------------
 		// ------ 3)Print
 		if(Constants.verbose) {
-			tasksModelI.print(); getRobotsModel().print(this);
+			tasksModelI.print();
+			getRobotsModel().print(this);
+			getWorldModel().print();
 		}
 	}
 

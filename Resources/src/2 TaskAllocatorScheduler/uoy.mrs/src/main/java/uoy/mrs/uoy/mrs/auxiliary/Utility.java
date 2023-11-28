@@ -24,6 +24,7 @@ public class Utility {
 	//*********************************************************************//
 	//============== Casting type variables ====================//
 	
+
 	/**e.g. of string: "['at4_12,ct1_8']" */
 	public static String[] stringToList(String s) {
 		String[] result = s.replace("[", "").replace("]", "").replaceAll("'", "").split(",");
@@ -106,7 +107,8 @@ public class Utility {
 	
 	public static boolean string2boolean(String s) {
 		// .trim remove spaces 
-        return Boolean.valueOf(s.trim());
+        return Boolean.valueOf(s.trim());  //allows Boolean, which includes boolean
+        // Boolean.parseBoolean(s.trim();  //only boolean
 	}
 	
 	
@@ -320,6 +322,23 @@ public class Utility {
         return fact;
 	}
 	
+	
+	/**Get Euclidean distance between two locations as an integer*/
+	public static int getEuclidianDistance(double x1, double x2,double y1,double y2) {
+		 // Parse the coordinates as doubles
+		// Calculate the Euclidean distance
+        double distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+        // To integer
+        int intdistance = (int) Math.round(distance);  //rounding to closest:
+        //int intdistance = (int) distance;  //truncating
+        
+        if(intdistance<0) {intdistance=0;} //as a safe-guard
+        return intdistance;
+	}
+	
+	
+	/**'Infinite' for integer type*/
+	public static int infiniteInt = 2147483647;
 	
 	//*********************************************************************//
 	//============== Strings ====================//

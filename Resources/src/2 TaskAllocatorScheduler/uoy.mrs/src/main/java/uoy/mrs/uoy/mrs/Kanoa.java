@@ -8,9 +8,10 @@ package uoy.mrs.uoy.mrs;
 
 import uoy.mrs.uoy.mrs.alloy.RunAlloy;
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
-import uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler;
 import uoy.mrs.uoy.mrs.auxiliary.Timer;
 import uoy.mrs.uoy.mrs.auxiliary.prescheduling.PreTaskScheduler;
+import uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler;
+import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 
 public class Kanoa {
@@ -82,7 +83,9 @@ public class Kanoa {
 	public void runAllocator(){
     	System.out.println("\n---- Running Task Allocator");
     	Constants.setalloyFilesOutput(RunAlloy.runAlloy(Constants.genAlloyModel,Constants.num_instances));
-    	problemSpec.getAllocations();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+    	problemSpec.getAllocations();
+    	//if no allocations found
+    	if (!problemSpec.isThereAllocationsFound()) {KanoaErrorHandler.NoAllocationsFound();}	
    	}
 	
 	/*Run Transitive closure*/

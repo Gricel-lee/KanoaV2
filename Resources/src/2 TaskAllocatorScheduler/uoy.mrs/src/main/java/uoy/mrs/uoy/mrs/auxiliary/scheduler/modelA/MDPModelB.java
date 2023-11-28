@@ -1,39 +1,37 @@
 package uoy.mrs.uoy.mrs.auxiliary.scheduler.modelA;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 
-import parser.ast.ModulesFile;
-import parser.ast.PropertiesFile;
-import prism.Prism;
-import prism.PrismDevNullLog;
-import prism.PrismException;
-import prism.PrismLog;
-import prism.Result;
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
-import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
 import uoy.mrs.uoy.mrs.types.impl.Permutation;
-import uoy.mrs.uoy.mrs.types.impl.Robot;
 
 public class MDPModelB {
 	
+	
+	
+	
+	
+	//-- Note about paths:
+	// Paths are read from the DSL. However, if "Constants.euclidian_path_distances" is declared as string:"true",
+	// the paths between all locations not added explicitly are added with Euclidian distances and success rate =100
 	
 	public static double createModelB(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a) {
 		//probability of success - return the minimum probability of completion without failure
 		// prob > 0 
 		double prob = -1;
 		
+		
+		
 		// a) get info
 		// -list robot IDs in allocation
 		ArrayList<String> robIDset = a.getRobotsList();
-				
+		
+		//paths info -- returnrs a path object with the 
 		
 		//=========================================================
 		//BUILD PRISM MODEL:
@@ -43,31 +41,41 @@ public class MDPModelB {
 		model.append("dtmc\n\n");
 		
 		// - prob. of travelling
-//		const double p1=0.99;
-//		const double p2=p1;
-//		const double p3=p1;
-//		const double p4=p1;
 		for(String rID:robIDset) {
 			Permutation r_permutation = r_permutationTasks.get(rID);
-			
+			//tasks
 			String t1ID= r_permutation.tasksInPerm.get(0);
-			int time = r_permutation.getTravelTime(rID, t1ID);
+			//location
+			String robotLocation = r_permutation.robot.getLoc().getID(); //initial location of the robot
+			String t1IDLocation = p.getATLocation(t1ID).getID();		 //location of task 1
+			//--Get probability of travelling
+			double probTravel = p.getWorldModel().getProbabilityPathTravel(robotLocation , t1IDLocation, p);
+			// =================================---
+			// if prob. -1, path does not exist -> permutation not allowed 
+			if (probTravel==-1) {return Double.POSITIVE_INFINITY;} //infinite as JMetal has minimisation by default
+			// =================================---
+			model.append("const double p_travel_"+rID+t1ID+"="+probTravel +" ;// from location: "+robotLocation +" (robot initial loc) to location: "+ t1IDLocation+" ("+t1ID+")"+"\n");
 			
-			//--**** Missing
-			int p_travel = -1000;
-			
-			model.append("const int p_travel_"+rID+t1ID+"="+p_travel +" ;//l0-"+t1ID+", time:"+time+"\n");
 			for (int i = 0; i < r_permutation.tasksInPerm.size()-1; i++) {
+				//tasks
 				t1ID= r_permutation.tasksInPerm.get(i);
 				String t2ID= r_permutation.tasksInPerm.get(i+1);
-				time = r_permutation.getTravelTime(t1ID, t2ID);
-				model.append("const int travel"+rID+t2ID+"="+time +" ;//"+t1ID+"-"+t2ID+"\n");
+				//locations of tasks
+				t1IDLocation = p.getATLocation(t1ID).getID();		 //location of task 1
+				String t2IDLocation = p.getATLocation(t2ID).getID();		 //location of task 1
+				//--Get probability of travelling
+				probTravel = p.getWorldModel().getProbabilityPathTravel(t1IDLocation , t2IDLocation, p);
+				// =================================---
+				// if prob. -1, path does not exist -> permutation not allowed 
+				if (probTravel==-1) {return Double.POSITIVE_INFINITY;} //infinite as JMetal has minimisation by default
+				// =================================---
+				model.append("const double p_travel_"+rID+t2ID+"="+probTravel +" ;// from location: "+t1IDLocation +" ("+t1ID+") to location: "+ t2IDLocation+"("+t2ID+")"+"\n");
 			}
 		}
 		
 		
-		
 		// - prob. of succeeding with tasks
+		
 		for(String rID:robIDset) {
 			Permutation r_permutation = r_permutationTasks.get(rID);
 			for (int i = 0; i < r_permutation.tasksInPerm.size(); i++) {
@@ -88,10 +96,9 @@ public class MDPModelB {
 //		label "r1try_t2" = r1=8 & r1=3 & r1=4;
 
 		//---------------------------------------
-		// -- modules
+		// -- Compute range of variables for each module
 		// (computed before declaring states, e.g. "r1:[0..10];"
 		// to implicitly calculate the num. of states used by each robot)
-		
 		HashMap<String, Integer> r_numStates = new HashMap<String,Integer>(); //robotID to total num of states used
 		
 		for (int i = 0; i < robIDset.size(); i++) {
@@ -112,56 +119,59 @@ public class MDPModelB {
 			r_numStates.put(r, succState);
 			succState = 0;
 		}
-		
-		
-		
+		// -- Compute state where robot fails to travel or complete a task
 		HashMap<String, ArrayList<Integer>> r_failStates = new HashMap<String, ArrayList<Integer>>();
 				
 		String s = "";
 		
+		// -- 
 		for (int i = 0; i < robIDset.size(); i++) { //for each robot
-			String r = robIDset.get(i);
-			Permutation r_perm = r_permutationTasks.get(r);
+			String rID = robIDset.get(i);
+			Permutation r_perm = r_permutationTasks.get(rID);
 			int nState = 0; //this tracks the value of the state variable robot i, e.g. "r1:[0..10];"
 			int succState = 0;
-			s+=("module "+r+"\n");
+			s+=("module "+rID+"\n");
 			// -- state variables
-			s+=(" "+ r +":[0.."+ r_numStates.get(r) +"];\n");
+			s+=(" "+ rID +":[0.."+ r_numStates.get(rID) +"];\n");
 			
 			for (int j = 0; j < r_perm.tasksInPerm.size(); j++) {//for each task
-				String t2=r_perm.tasksInPerm.get(j); //t2 is the task to be completed when transition taken
+				String t2ID=r_perm.tasksInPerm.get(j); //t2 is the task to be completed when transition taken
 				//---------------------------------------
 				// ------ transitions (travel)
 				//label & guard travel
-				s+=" //travel to "+t2+"\n";
-				s+=(" ["+r+"travel_"+t2+"] "+r+"="+nState+"->" );
+				s+=" //travel to "+t2ID+"\n";
+				s+=(" ["+rID+"travel_"+t2ID+"] "+rID+"="+nState+"->" );
 				//---------------------------------------
 				//update 
 				
 				//------ //*****---MISSING
-				int t_prob = 1;
+				//--**** Missing
+				// --- I AM HERE
+				// ALSO - FOR MODEL A!! -> change travelling costs
 				
-				s+=(t_prob+":("+r+"'="+(nState+2)+") + 1-"+t_prob+":("+r+"'="+(nState+1)+");\n");
+				String t_prob = "p_travel_"+rID+t2ID;
+				
+				s+=(t_prob+":("+rID+"'="+(nState+2)+") + 1-"+t_prob+":("+rID+"'="+(nState+1)+");\n");
 				
 						//("+r+"time+"+r+t2+"Time+travel"+r+t2+"<=TT)");
 				nState += 2; //transition to state where succeeded to travel (nState+1= fail, nState+2=succeded)
 				//---------------------------------------
 				// ------ transitions (next task)
 				
-				Integer retry = p.getTasks().atList.get(t2).getRetry();
-				double p_t2 =  r_perm.robot.getCapability(t2,p).getprobSucc();
+				Integer retry = p.getTasks().atList.get(t2ID).getRetry();
+				double p_t2 =  r_perm.robot.getCapability(t2ID,p).getprobSucc();
 				succState = nState + retry + 2 ; //current state + n retries + 1 fail + 1 success  -  state where succeeded to do task
 				// - retry
 				if (retry.equals(0))
-					s+=(" //try "+t2+", no retry allowed\n");
+					s+=(" //try "+t2ID+", no retry allowed\n");
 				else
-					s+=(" //try "+t2+", retry allowed "+retry+" times\n");
+					s+=(" //try "+t2ID+", retry allowed "+retry+" times\n");
 				for (int k = 0; k < retry+1; k++) {
-					s+=(" []"+r+"="+nState+" -> "+p_t2+":("+r+"'="+succState+") + 1-"+p_t2+":("+r+"'="+(nState+1)+");\n"); //"succeeds" or "fails and retries" transitions
+					s+=(" []"+rID+"="+nState+" -> "+p_t2+":("+rID+"'="+succState+") + 1-"+p_t2+":("+rID+"'="+(nState+1)+");\n"); //"succeeds" or "fails and retries" transitions
 					nState+=1;
 				}
 				s = Utility.removeLastChars(s, 1);
-				s+=(" //fail task at "+r+"="+nState+"\n");
+				s+=(" //fail task at "+rID+"="+nState+"\n");
 				nState+=1; //success
 			}
 //			 //save final value of robot's state variable

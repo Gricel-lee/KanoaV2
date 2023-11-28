@@ -9,10 +9,10 @@ loc,,l2,,2.0,,1.0
 loc,,l3,,6.0,,7.0
 loc,,l4,,7.0,,7.0
 loc,,l5,,8.0,,7.0
-path,,l1,,l2,,3.0,,99.0
-path,,l1,,l3,,3.0,,99.0
-path,,l1,,room1,,31.0,,99.0
-path,,l1,,room4,,31.0,,99.0
+path,,l1,,l2,,3.0,,NAN
+path,,l1,,l3,,3.0,,98.0
+path,,l2,,room3,,31.0,,99.0
+path,,l1,,room5,,31.0,,99.0
 at,,at1,,2,,l1
 at,,at2,,1,,l1
 at,,at3,,1,,l1
@@ -26,7 +26,4 @@ robot,,r4,,l4,,{[at1,4.0,99.0]},,3.0
 robot,,r5,,l5,,{[at1,4.0,99.0]},,3.0
 objectives,,[minIdle, minTravel, maxSucc]
 time,,120
-numAlloc,,10
-population,,100
-evaluations,,20
 ratesucc,,95.0

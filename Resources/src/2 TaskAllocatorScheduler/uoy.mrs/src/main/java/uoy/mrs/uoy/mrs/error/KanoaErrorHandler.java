@@ -1,9 +1,10 @@
 package uoy.mrs.uoy.mrs.error;
 
 import java.io.IOError;
+import java.util.HashMap;
 
 import prism.PrismException;
-import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
+import uoy.mrs.uoy.mrs.types.impl.Permutation;
 
 public class KanoaErrorHandler {
 	
@@ -41,7 +42,12 @@ public class KanoaErrorHandler {
 		System.err.println("No objectives found in DSL mission specification. At least one most be declared: idle time, probability of sucess and/or travelling cost.");
 		System.exit(1);
 	}
-	
+
+	public static void ErrorTravelProbabilityOutsideBounds(String loc1, String loc2) {
+		System.err.println("Error. Probability not in [0,1] for travelling from location: "+loc1 + " to allocation:"+loc2);
+		throw new IOError(null); //stop and print trace
+		
+	}
 
 	public static void ErrorSetUpPrism(PrismException e2) {
 		System.err.println("Error configuring Prism.");
@@ -71,6 +77,11 @@ public class KanoaErrorHandler {
 		System.err.println("Robot "+id+" does not have capability to do "+tID);
 		throw new IOError(null); //stop and print trace
 	}
+	
+	public static void NoAllocationsFound() {
+		System.err.println("PROCESS FINISHED. No feasible allocations found by the task allocator.");
+		throw new IOError(null); //stop and print trace
+	}
 
 	public static void ErrorRetrievingATLocation(String id) {
 		System.err.println("ERROR: Trying to retrieve location of: "+id+". Expecting an atomic task.");
@@ -86,6 +97,22 @@ public class KanoaErrorHandler {
 		System.err.println("ERROR: Expecting an atomic task: "+id+".");
 		throw new IOError(null); //stop and print trace
 	}
+
+	public static void NoPathExistsToCompleteRunTestPermutation(HashMap<String, Integer> robots2PermNum, Permutation perm) {
+		System.err.println("ERROR: Not enough paths exists to complete run test permutation.");
+		System.out.println("a) robots to permutation Number"+robots2PermNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
+		System.out.println("b) robots to permutation Number"+robots2PermNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
+		System.out.println("Check paths of robot:"+perm.robID);
+		throw new IOError(null); //stop and print trace
+	}
+
+	public static void ErrorExpectingPathInDSL(String loc1, String loc2) {
+		System.err.println("ERROR In Code: Path expected to be in DSL: "+loc1+" to "+loc2);
+		throw new IOError(null); //stop and print trace
+	}
+
+
+	
 
 	
 }

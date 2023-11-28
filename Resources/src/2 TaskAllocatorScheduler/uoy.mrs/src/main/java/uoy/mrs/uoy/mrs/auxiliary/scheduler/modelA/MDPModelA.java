@@ -19,6 +19,7 @@ import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
 import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
+import uoy.mrs.uoy.mrs.types.impl.Location;
 import uoy.mrs.uoy.mrs.types.impl.Permutation;
 import uoy.mrs.uoy.mrs.types.impl.Robot;
 
@@ -54,16 +55,30 @@ public class MDPModelA {
 		//
 		for(String rID:robIDset) {
 			Permutation r_permutation = r_permutationTasks.get(rID);
-			
+			//task
 			String t1ID= r_permutation.tasksInPerm.get(0);
-			int time = r_permutation.getTravelTime(rID, t1ID);
+			//locations
+			Location robotLocation = r_permutation.robot.getLoc();
+			Location t1IDLocation = p.getATLocation(t1ID);
+			//time and distance
+			int time = p.getWorldModel().getTravelTime(robotLocation, t1IDLocation,r_permutation.robot);
+			int distance = p.getWorldModel().getPathDistance(robotLocation,t1IDLocation);
+			model.append("//"+rID+" velocity:"+r_permutation.robot.getVelocity()+"\n");
+			model.append("const int travel"+rID+t1ID+"="+time +" ;// from location: "+robotLocation.getID() +" (robot initial loc) to location: "+ t1IDLocation.getID()+" ("+t1ID+")"+ "    distance:"+distance+"\n");
 			
-			model.append("const int travel"+rID+t1ID+"="+time +" ;//l0-"+t1ID+"\n");
 			for (int i = 0; i < r_permutation.tasksInPerm.size()-1; i++) {
+				//tasks
 				t1ID= r_permutation.tasksInPerm.get(i);
 				String t2ID= r_permutation.tasksInPerm.get(i+1);
-				time = r_permutation.getTravelTime(t1ID, t2ID);
-				model.append("const int travel"+rID+t2ID+"="+time +" ;//"+t1ID+"-"+t2ID+"\n");
+				//locations of tasks
+				t1IDLocation = p.getATLocation(t1ID);
+				Location t2IDLocation = p.getATLocation(t2ID);
+				//time and distance
+				time = p.getWorldModel().getTravelTime(t1IDLocation, t2IDLocation, r_permutation.robot);
+				distance = p.getWorldModel().getPathDistance(t1IDLocation,t2IDLocation);
+				
+				model.append("const int travel"+rID+t2ID+"="+time +" ;// from location: "+t1IDLocation.getID() +" ("+t1ID+") to location: "+ t2IDLocation.getID()+"("+t2ID+")"+ "    distance:"+distance+"\n");
+
 			}
 		}
 		

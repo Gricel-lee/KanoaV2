@@ -2,30 +2,35 @@ mdp
 
 const int TT=120;//total time available 
 
-const int travelr2at4_3=3 ;//l0-at4_3
-const int travelr3at4_12=2 ;//l0-at4_12
-const int travelr4at1_1=2 ;//l0-at1_1
-const int travelr4at1_2=3 ;//at1_1-at1_2
-const int travelr5at1_1=3 ;//l0-at1_1
-const int travelr5at1_2=3 ;//at1_1-at1_2
-const int travelr1at4_6=2 ;//l0-at4_6
-const int travelr1at4_9=3 ;//at4_6-at4_9
-const int travelr1at3_13=2 ;//at4_9-at3_13
-const int travelr1at3_7=4 ;//at3_13-at3_7
-const int travelr1at3_4=4 ;//at3_7-at3_4
-const int travelr1at3_10=6 ;//at3_4-at3_10
-const int travelr1at2_11=0 ;//at3_10-at2_11
-const int travelr1at2_14=2 ;//at2_11-at2_14
-const int travelr1at2_8=4 ;//at2_14-at2_8
-const int travelr1at2_5=4 ;//at2_8-at2_5
+//r2 velocity:2.0
+const int travelr2at4_6=16 ;// from location: l2 (robot initial loc) to location: room3 (at4_6)    distance:31
+const int travelr2at4_3=4 ;// from location: room3 (at4_6) to location: room2(at4_3)    distance:7
+const int travelr2at4_12=5 ;// from location: room2 (at4_3) to location: room5(at4_12)    distance:9
+//r3 velocity:3.0
+const int travelr3at4_9=3 ;// from location: l3 (robot initial loc) to location: room4 (at4_9)    distance:7
+//r4 velocity:3.0
+const int travelr4at1_1=2 ;// from location: l4 (robot initial loc) to location: room1 (at1_1)    distance:6
+const int travelr4at1_2=3 ;// from location: room1 (at1_1) to location: room6(at1_2)    distance:8
+//r5 velocity:3.0
+const int travelr5at1_1=3 ;// from location: l5 (robot initial loc) to location: room1 (at1_1)    distance:7
+const int travelr5at1_2=3 ;// from location: room1 (at1_1) to location: room6(at1_2)    distance:8
+//r1 velocity:2.0
+const int travelr1at3_13=16 ;// from location: l1 (robot initial loc) to location: room5 (at3_13)    distance:31
+const int travelr1at3_7=4 ;// from location: room5 (at3_13) to location: room3(at3_7)    distance:7
+const int travelr1at3_4=4 ;// from location: room3 (at3_7) to location: room2(at3_4)    distance:7
+const int travelr1at3_10=6 ;// from location: room2 (at3_4) to location: room4(at3_10)    distance:11
+const int travelr1at2_11=0 ;// from location: room4 (at3_10) to location: room4(at2_11)    distance:0
+const int travelr1at2_14=2 ;// from location: room4 (at2_11) to location: room5(at2_14)    distance:4
+const int travelr1at2_8=4 ;// from location: room5 (at2_14) to location: room3(at2_8)    distance:7
+const int travelr1at2_5=4 ;// from location: room3 (at2_8) to location: room2(at2_5)    distance:7
+const int r2at4_6Time=3;
 const int r2at4_3Time=3;
-const int r3at4_12Time=3;
+const int r2at4_12Time=3;
+const int r3at4_9Time=3;
 const int r4at1_1Time=4;
 const int r4at1_2Time=4;
 const int r5at1_1Time=4;
 const int r5at1_2Time=4;
-const int r1at4_6Time=2;
-const int r1at4_9Time=2;
 const int r1at3_13Time=4;
 const int r1at3_7Time=4;
 const int r1at3_4Time=4;
@@ -40,13 +45,13 @@ const int maxIdler4=10;
 const int maxIdler5=10;
 const int maxIdler1=10;
 
-formula done=(r2order=1&r3order=1&r4order=2&r5order=2&r1order=10);
+formula done=(r2order=3&r3order=1&r4order=2&r5order=2&r1order=8);
 
 //formulae for ordered tasks
-formula r1at4_6Done = r1order>=1 ;
-formula r1at4_9Done = r1order>=2 ;
-formula r2at4_3Done = r2order>=1 ;
-formula r3at4_12Done = r3order>=1 ;
+formula r2at4_6Done = r2order>=1 ;
+formula r3at4_9Done = r3order>=1 ;
+formula r2at4_3Done = r2order>=2 ;
+formula r2at4_12Done = r2order>=3 ;
 
 
 //formulae for consecutive tasks
@@ -55,18 +60,20 @@ formula r3at4_12Done = r3order>=1 ;
 
 
 module r2
- r2order:[0..1];
+ r2order:[0..3];
  r2time:[0..120];
  r2idleTime:[0..maxIdler2];
- [r2at4_3] r2order=0 & (r2time+r2at4_3Time+travelr2at4_3<=TT) -> (r2order'=1) & (r2time'=r2time+r2at4_3Time+travelr2at4_3);
- [r2idle] r2order!=1 & (r2time+1<=TT) & (r2idleTime+1<=maxIdler2) -> (r2time'=r2time+1) & (r2idleTime'=r2idleTime+1);
+ [r2at4_6] r2order=0 & (r2time+r2at4_6Time+travelr2at4_6<=TT) -> (r2order'=1) & (r2time'=r2time+r2at4_6Time+travelr2at4_6);
+ [r2at4_3] r2order=1 & (r2time+r2at4_3Time+travelr2at4_3<=TT) -> (r2order'=2) & (r2time'=r2time+r2at4_3Time+travelr2at4_3);
+ [r2at4_12] r2order=2 & (r2time+r2at4_12Time+travelr2at4_12<=TT) -> (r2order'=3) & (r2time'=r2time+r2at4_12Time+travelr2at4_12);
+ [r2idle] r2order!=3 & (r2time+1<=TT) & (r2idleTime+1<=maxIdler2) -> (r2time'=r2time+1) & (r2idleTime'=r2idleTime+1);
 endmodule
 
 module r3
  r3order:[0..1];
  r3time:[0..120];
  r3idleTime:[0..maxIdler3];
- [r3at4_12] r3order=0 & (r3time+r3at4_12Time+travelr3at4_12<=TT) -> (r3order'=1) & (r3time'=r3time+r3at4_12Time+travelr3at4_12);
+ [r3at4_9] r3order=0 & (r3time+r3at4_9Time+travelr3at4_9<=TT) -> (r3order'=1) & (r3time'=r3time+r3at4_9Time+travelr3at4_9);
  [r3idle] r3order!=1 & (r3time+1<=TT) & (r3idleTime+1<=maxIdler3) -> (r3time'=r3time+1) & (r3idleTime'=r3idleTime+1);
 endmodule
 
@@ -89,20 +96,18 @@ module r5
 endmodule
 
 module r1
- r1order:[0..10];
+ r1order:[0..8];
  r1time:[0..120];
  r1idleTime:[0..maxIdler1];
- [r1at4_6] r1order=0 & (r1time+r1at4_6Time+travelr1at4_6<=TT) -> (r1order'=1) & (r1time'=r1time+r1at4_6Time+travelr1at4_6);
- [r1at4_9] r1order=1 & (r1time+r1at4_9Time+travelr1at4_9<=TT) -> (r1order'=2) & (r1time'=r1time+r1at4_9Time+travelr1at4_9);
- [r1at3_13] r1order=2 & (r1time+r1at3_13Time+travelr1at3_13<=TT) & (r1time+travelr1at3_13 >= r3time) & (r3at4_12Done)& (r1time+travelr1at3_13+r1at3_13Time <= 40) -> (r1order'=3) & (r1time'=r1time+r1at3_13Time+travelr1at3_13);
- [r1at3_7] r1order=3 & (r1time+r1at3_7Time+travelr1at3_7<=TT) & (r1time+travelr1at3_7 >= r1time) & (r1at4_6Done)& (r1time+travelr1at3_7+r1at3_7Time <= 40) -> (r1order'=4) & (r1time'=r1time+r1at3_7Time+travelr1at3_7);
- [r1at3_4] r1order=4 & (r1time+r1at3_4Time+travelr1at3_4<=TT) & (r1time+travelr1at3_4 >= r2time) & (r2at4_3Done)& (r1time+travelr1at3_4+r1at3_4Time <= 40) -> (r1order'=5) & (r1time'=r1time+r1at3_4Time+travelr1at3_4);
- [r1at3_10] r1order=5 & (r1time+r1at3_10Time+travelr1at3_10<=TT) & (r1time+travelr1at3_10 >= r1time) & (r1at4_9Done)& (r1time+travelr1at3_10+r1at3_10Time <= 40) -> (r1order'=6) & (r1time'=r1time+r1at3_10Time+travelr1at3_10);
- [r1at2_11] r1order=6 & (r1time+r1at2_11Time+travelr1at2_11<=TT) & (r1time+travelr1at2_11 >= r1time) & (r1at4_9Done)& (r1time+travelr1at2_11+r1at2_11Time <= 40) -> (r1order'=7) & (r1time'=r1time+r1at2_11Time+travelr1at2_11);
- [r1at2_14] r1order=7 & (r1time+r1at2_14Time+travelr1at2_14<=TT) & (r1time+travelr1at2_14 >= r3time) & (r3at4_12Done)& (r1time+travelr1at2_14+r1at2_14Time <= 40) -> (r1order'=8) & (r1time'=r1time+r1at2_14Time+travelr1at2_14);
- [r1at2_8] r1order=8 & (r1time+r1at2_8Time+travelr1at2_8<=TT) & (r1time+travelr1at2_8 >= r1time) & (r1at4_6Done)& (r1time+travelr1at2_8+r1at2_8Time <= 40) -> (r1order'=9) & (r1time'=r1time+r1at2_8Time+travelr1at2_8);
- [r1at2_5] r1order=9 & (r1time+r1at2_5Time+travelr1at2_5<=TT) & (r1time+travelr1at2_5 >= r2time) & (r2at4_3Done)& (r1time+travelr1at2_5+r1at2_5Time <= 40) -> (r1order'=10) & (r1time'=r1time+r1at2_5Time+travelr1at2_5);
- [r1idle] r1order!=10 & (r1time+1<=TT) & (r1idleTime+1<=maxIdler1) -> (r1time'=r1time+1) & (r1idleTime'=r1idleTime+1);
+ [r1at3_13] r1order=0 & (r1time+r1at3_13Time+travelr1at3_13<=TT) & (r1time+travelr1at3_13 >= r2time) & (r2at4_12Done)& (r1time+travelr1at3_13+r1at3_13Time <= 40) -> (r1order'=1) & (r1time'=r1time+r1at3_13Time+travelr1at3_13);
+ [r1at3_7] r1order=1 & (r1time+r1at3_7Time+travelr1at3_7<=TT) & (r1time+travelr1at3_7 >= r2time) & (r2at4_6Done)& (r1time+travelr1at3_7+r1at3_7Time <= 40) -> (r1order'=2) & (r1time'=r1time+r1at3_7Time+travelr1at3_7);
+ [r1at3_4] r1order=2 & (r1time+r1at3_4Time+travelr1at3_4<=TT) & (r1time+travelr1at3_4 >= r2time) & (r2at4_3Done)& (r1time+travelr1at3_4+r1at3_4Time <= 40) -> (r1order'=3) & (r1time'=r1time+r1at3_4Time+travelr1at3_4);
+ [r1at3_10] r1order=3 & (r1time+r1at3_10Time+travelr1at3_10<=TT) & (r1time+travelr1at3_10 >= r3time) & (r3at4_9Done)& (r1time+travelr1at3_10+r1at3_10Time <= 40) -> (r1order'=4) & (r1time'=r1time+r1at3_10Time+travelr1at3_10);
+ [r1at2_11] r1order=4 & (r1time+r1at2_11Time+travelr1at2_11<=TT) & (r1time+travelr1at2_11 >= r3time) & (r3at4_9Done)& (r1time+travelr1at2_11+r1at2_11Time <= 40) -> (r1order'=5) & (r1time'=r1time+r1at2_11Time+travelr1at2_11);
+ [r1at2_14] r1order=5 & (r1time+r1at2_14Time+travelr1at2_14<=TT) & (r1time+travelr1at2_14 >= r2time) & (r2at4_12Done)& (r1time+travelr1at2_14+r1at2_14Time <= 40) -> (r1order'=6) & (r1time'=r1time+r1at2_14Time+travelr1at2_14);
+ [r1at2_8] r1order=6 & (r1time+r1at2_8Time+travelr1at2_8<=TT) & (r1time+travelr1at2_8 >= r2time) & (r2at4_6Done)& (r1time+travelr1at2_8+r1at2_8Time <= 40) -> (r1order'=7) & (r1time'=r1time+r1at2_8Time+travelr1at2_8);
+ [r1at2_5] r1order=7 & (r1time+r1at2_5Time+travelr1at2_5<=TT) & (r1time+travelr1at2_5 >= r2time) & (r2at4_3Done)& (r1time+travelr1at2_5+r1at2_5Time <= 40) -> (r1order'=8) & (r1time'=r1time+r1at2_5Time+travelr1at2_5);
+ [r1idle] r1order!=8 & (r1time+1<=TT) & (r1idleTime+1<=maxIdler1) -> (r1time'=r1time+1) & (r1idleTime'=r1idleTime+1);
 endmodule
 
 rewards "idle"

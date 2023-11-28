@@ -14,8 +14,8 @@ ProblemSpecification{
     l5: ( x 8.0 y  7.0 ) //robot5 
 	
 	//distance omitted to test task allocation
-	distance l1 to l2 is 3.0 has success rate: 99.0%
-	distance l1 to l3 is 3.0 has success rate: 99.0%
+	distance l1 to l2 is 3.0
+	distance l1 to l3 is 3.0 has success rate: 98.0%
 	distance l1 to room1 is 31.0 has success rate: 99.0%
 	distance l1 to room4 is 31.0 has success rate: 99.0%
 	 
@@ -101,7 +101,4 @@ ProblemSpecification{
 			
 		parameters: 
 			time: 120
-			numAllocation: 10
-			population: 100
-			evaluation:20
 }

@@ -51,6 +51,7 @@ public class Constants {
 	public static String python_script_tasks;
 
 	public static String plot_pareto;
+	public static Boolean euclidian_path_distances;
 	public static Boolean verbose = true;
 	
 	public static int maxPermutations;
@@ -95,7 +96,7 @@ public class Constants {
 		
 		// From Config.properties
 		
-		verbose = Boolean.parseBoolean(getProperty("VERBOSE"));
+		verbose = Utility.string2boolean(getProperty("VERBOSE"));
 		
 		//@Deprecated: DSL info is extracted in Xtend saved in the infoDSL.text file
 		//dslFile = filespath + '/' + getProperty("DSL_FILE");
@@ -143,17 +144,17 @@ public class Constants {
 		//objectiveIdle = getProperty("OBJECTIVE_IDLE");
 		//objectiveTravel = getProperty("OBJECTIVE_TRAVEL");
 		
-		
-		// From DSL file
-		
 		num_instances = getProperty("ALLOCATIONS_SIZE");
 		
 		num_evaluations = getProperty("MAX_EVALUATIONS");
 		
 		num_population = getProperty("POPULATION_SIZE");
-		
+
 		plot_pareto = getProperty("PLOT_PARETO_FRONT");
 		
+		// iff true, calculates all Euclidian distances between locations in world model.
+		// If path not explicitly declared in world model, it is added with distance=Euclidian distance beween locations, successOfTravelling=100 %
+		euclidian_path_distances = Utility.string2boolean( getProperty("ALLOW_PATH_DISTANCE_EUCLIDIAN") );
 		// Others
 
 		python_script = System.getProperty("user.dir")+"/pythonScripts/start.py";//do not modifiable
@@ -194,12 +195,10 @@ public class Constants {
 		try {
 			prism.initialise();
 		} catch (PrismException e) {e.printStackTrace();}
-
 		return prism;
 	}
 	
 	
-
 	/**
 	 * Get variable from config.properties
 	 * @param key Name of the property to get
@@ -217,6 +216,7 @@ public class Constants {
 		return result;		
 	}
 	
+	
 	/**
 	 * Get variable from infoDSL.txt
 	 * @param key Name of the property to get
@@ -227,14 +227,12 @@ public class Constants {
 		//String result = properties.getProperty(key).strip(); 
 		//JAVA8
 		String result = properties.getProperty(key).trim().replaceAll("^\\s+|\\s+$", "");
-
 		
 		if (result == null) {
 			System.err.println("ERROR: NO "+key+" found in config.prop " );
 			throw new IllegalArgumentException(key.toUpperCase() + " name not found!");}
 		return result;		
 	}
-	
 	
 	
 
