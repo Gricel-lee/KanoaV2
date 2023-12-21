@@ -67,6 +67,16 @@ public class Utility {
 		return arrayList;
 	}
 
+	/** Integer to String **/
+	public static String int2string(Integer i) {
+		return String.valueOf(i);
+	}
+	
+	/** Double to String **/
+	public static String doub2string(Double i) {
+		return String.valueOf(i);
+	}
+	
 	/**String to int number*/
 	public static int string2int(String str) {
 		int n = -100;

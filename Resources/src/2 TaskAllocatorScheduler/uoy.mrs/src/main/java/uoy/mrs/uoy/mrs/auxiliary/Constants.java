@@ -40,7 +40,17 @@ public class Constants {
 	public static String permutationsFile;
 	public static String allsolutionsMDPFiles;
 	public static String allsolutionsData;
-	public static String optimisedSolutionsData;
+	
+	
+	//databases
+	public static String solutionsDatabasesDir;
+	//Database 1 = optimised solutions
+	public static String db1_optimisedSolutions; //optimalData.csv"
+	//Database 2 = sub-optimal but feasible solutions
+	public static String db2_feasibleSolutions;//suboptimalData.csv";
+	//Database 3 = infeasible solutions - possible values of not-feasible column: "somePathsDontExist", "idlingOrTaskConstraints", 
+	public static String db3_infeaibleSolutions;///infeasibleData.csv";
+	
 	
 	
 	
@@ -111,6 +121,8 @@ public class Constants {
 		
 		transClosureOutputDir = outputDir + "/Clusters/";
 		
+		solutionsDatabasesDir = outputDir + "/Solutions/";
+		
 		allocationsCSVFile = Constants.outputDir + "./Allocations.csv";
 		
 		prismFilesDir = outputDir + "/PrismFiles/";
@@ -121,7 +133,14 @@ public class Constants {
 
 		allsolutionsData = outputDir + "/Solutions/allData.csv";
 		
-		optimisedSolutionsData = outputDir + "/Solutions/optimalData.csv";
+		//Database 1 = optimised solutions
+		db1_optimisedSolutions = outputDir + "/Solutions/optimalData.csv";
+		//Database 2 = sub-optimal but feasible solutions
+		db2_feasibleSolutions = outputDir + "/Solutions/suboptimalData.csv";
+		//Database 3 = infeasible solutions
+		db3_infeaibleSolutions = outputDir + "/Solutions/infeasibleData.csv";
+		
+		
 		
 		countallsolutions = 0; //counter of all possible schedules
 		

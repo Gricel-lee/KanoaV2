@@ -11,7 +11,7 @@ public class Parameters {
 	private Boolean maxSucc=false;
 	//Parameters - Predefine values if not added into DSL
 	public String timeAvailable = "24";
-	public String ratesucc = "50";
+	public String ratesucc = "0"; //prob. >=0
 	
 	//@Depricated - pass to config.properties file
 	//public String numAlloc = "20";
@@ -28,6 +28,8 @@ public class Parameters {
 	public Boolean getObjective_minTravel() {return minTravel;}
 	/**Get objective*/
 	public Boolean getObjective_maxSucc() {return maxSucc;}
+	
+	
 	/**Get number of objectives*/
 	public Integer getNumObjectives() {
 		Integer n = 0;
@@ -36,6 +38,8 @@ public class Parameters {
 		if (n==0) {KanoaErrorHandler.NoObjectivesDeclared();}
 		return n;
 	}
+	
+	
 	/**Get list of objectives (order coincide with objectives in GA - Jmetal*/
 	public ArrayList<String> getListObjectiveStrings(){
 		ArrayList<String> objs = new ArrayList<String>();

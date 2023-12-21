@@ -20,7 +20,10 @@ public class MDPModelB {
 	// Paths are read from the DSL. However, if "Constants.euclidian_path_distances" is declared as string:"true",
 	// the paths between all locations not added explicitly are added with Euclidian distances and success rate =100
 	
-	public static double createModelB(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a) {
+	public static double createModelB(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString) {
+		
+		System.out.println("\n\n--Starting Model B");
+		
 		//probability of success - return the minimum probability of completion without failure
 		// prob > 0 
 		double prob = -1;
@@ -231,10 +234,12 @@ public class MDPModelB {
 		//b) allocation num
 		String allocNum = a.getNum();
 		String outputFolder = Constants.prismFilesDir;
-		String mdpFileName = "modelB_"+"All"+allocNum+"_Perm"+0 +".mdp";
+		String mdpFileName = "modelB_"+"Alloc"+allocNum+"_Perm"+ geneString +".dtmc";
 		String mdpFilePath = outputFolder+mdpFileName;
 		
-		System.out.println("MDP: "+ outputFolder+mdpFilePath );
+		// ==print--
+		if(Constants.verbose) 
+			System.out.println("DTMC: "+ outputFolder+mdpFilePath );
 		
 		//-Save to file
 		MDPModelA.createMDPFile(outputFolder,mdpFileName,model);

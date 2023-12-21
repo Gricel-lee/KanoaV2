@@ -1,0 +1,93 @@
+ProblemSpecification{
+	WorldModel:
+	room1 : ( x 2.0 y 3.0 ) //room1
+    room2 : ( x 1.0 y 7.0 ) //room2
+    room3 : ( x 4.0 y 1.0 ) //room3
+    room4 : ( x 10.0 y 1.0) //room4
+    room5 : ( x 10.0 y 5.0) //room5
+    room6 : ( x 9.0 y 7.0 ) //room6 
+    l1 : ( x 1.0  y 1.0 ) //robot1
+    l2 : ( x 2.0 y 1.0 ) //robot2
+    l3 : ( x 6.0 y 7.0 ) //robot3
+    l4: ( x 7.0 y  7.0 ) //robot4
+    l5: ( x 8.0 y 7.0 ) //robot5 
+	 //... 
+	 distance room1 to l1 is 20.0
+	 //...  
+	TasksModel:
+	 at1 : 2 robots needed at location l1, // moving medical equipment
+	 at2 : 1 robot needed at location l1,  // cleaning the room
+	 at3:  1 robot needed at location l1,  // sanitising room
+	 at4:  1 robot needed at location l1,  //notify patient
+	 ct1: subtasks [at3,at2], //cleaning room
+	 ct2:subtasks [at4,ct1]  //clean patient room
+	 
+	 //ctt1: subtasks [ct1,at1] constraint: ordered //clean patient room
+	 
+	RobotsModel:  
+	
+	//cleaner   
+	r1 : at initial position l1 has velocity 2.0 with capabilities
+	 	(at2 -required time: 5.0, success rate: 99.0%,
+	 	 at3 -required time: 4.0, success rate: 99.0%, 
+	 	 at4 -required time: 2.0, success rate: 99.0% ),
+	r2 : at initial position l2 has velocity 2.0 with capabilities
+	 	(at2 -required time: 7.0, success rate: 85.0%,
+	 	 at3 -required time: 5.0, success rate: 99.0%,
+	 	 at4 -required time: 3.0, success rate: 85.0% ),
+	r3 : at initial position l3 has velocity 3.0 with capabilities
+	 	(at2 -required time: 6.0, success rate: 99.0%,
+	 	 at3 -required time: 6.0, success rate: 99.0%,
+	 	 at4 -required time: 3.0, success rate: 85.0% ), 
+	//pick and place
+	r4 : at initial position l4 has velocity 3.0 with capabilities
+	 	(at1 -required time: 4.0, success rate: 99.0%),
+	r5 : at initial position l5 has velocity 3.0 with capabilities
+	 	(at1 -required time: 4.0, success rate: 99.0%)
+	Mission :
+		m1 : atomic task at1 at location room1, //move equipment
+		m2 : atomic task at1 at location  room6, //move equipment
+		m3 : compound task ct2 at location room2, //clean
+		m4 : compound task ct2 at location room3, //clean
+		m5 : compound task ct2 at location room4, //clean  
+		m6 : compound task ct2 at location room5 //clean 
+		 
+		//m7: compound task ctt1 //clean 
+		objectives: 
+			minimiseIdle, minimiseTravel, maximiseSuccess
+		constraints: 
+			
+//			//tests
+//			allocate atomic task at1 to robot r4,
+//			allocate compound task ct2 to robot r2,
+//			allocate mission task m1 to robot r5,
+//			
+//			allocate atomic task at1 to closest robot,
+//			allocate compound task ct1 to closest robot,
+//			allocate mission task m1 to closest robot,
+//			
+//			allocate all tasks to closest robot,
+			 
+			 
+			 
+			//compound task ctt1 with end time 111.0,
+			//atomic task at1 with start time 444.0,
+			//mission task m1 with start time 222.0,
+			 
+			//allocate mission task m3 to robot r2,an 
+			 
+			//allocate atomic task at1 to robot r4
+			//allocate atomic task at3 to robot r2,
+			
+			//allocate compound task ct2 to robot r2,
+			//allocate compound task ct2 to robot r2,
+			
+			//allocate all tasks to closest robot, 
+			
+			
+			//limit max number of tasks per robot to 3
+			limit max number of tasks in robot r3 to 4
+			
+		parameters: 
+			time: 120
+}

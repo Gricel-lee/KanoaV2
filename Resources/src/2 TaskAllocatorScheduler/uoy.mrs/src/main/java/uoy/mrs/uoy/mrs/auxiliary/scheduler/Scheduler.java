@@ -3,8 +3,10 @@ package uoy.mrs.uoy.mrs.auxiliary.scheduler;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
+import org.netlib.util.doubleW;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
@@ -21,7 +23,6 @@ import org.uma.jmetal.util.AbstractAlgorithmRunner;
 import org.uma.jmetal.util.JMetalLogger;
 import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
-import uoy.mrs.uoy.mrs.Kanoa;
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
 import uoy.mrs.uoy.mrs.auxiliary.scheduler.modelA.MDPModelA;
@@ -38,8 +39,11 @@ public class Scheduler extends AbstractAlgorithmRunner{
 
 	public static void run(ProblemSpecification p) {
 		System.out.println(""+ p.getParameters().getNumObjectives()+" objectives:"+p.getParameters().getListObjectiveStrings());
-	    
-		// -- run
+		
+		// -- new databases
+		startDatabases();
+		
+	    // -- run
 		for (Allocation a: p.getAllocations()) {
 			System.out.println("\n-Running scheduler for allocation: "+a.getNum());
 			System.out.println("-robot clusters: "+a.getGroupsOfRobot());
@@ -47,62 +51,299 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		}
 	}
 	
-	// --for tests
-	public static void runTest(ProblemSpecification p) {
-		// Test creating models A, B and C for a specific allocation & permutation
-		//--------------------------------------- 
-		//1 get info - create allocation
-		Allocation a1 = p.getAllocations().get(0);
-		//2 get JMetal permutation. String type, e.g.: "(1,1,1,1,443438)"
-		String geneString = getMadeUpPermuation_forTest(a1,p);
-		HashMap<String, Integer> robots2PermNum = getrobots2PermuationNumberArray(a1,p,geneString);
-		
-		// ==print==
-		if(Constants.verbose) {
-			System.out.println("a) robots to permutation Number"+robots2PermNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
-			System.out.println("b) robots to permutation Number"+robots2PermNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
-		}
-		
-		// 3 array robot ID to permutation */		
-		HashMap<String, Permutation> r_permutationTasks = getPerm(p,a1,robots2PermNum);
-		
-		// -check if permutation feasible due to feasible to travel paths between locations
-		for(Permutation perm:r_permutationTasks.values()) 
-			if(!perm.isFeasible_AllPathsExist)
-				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(robots2PermNum,perm);
-		
-		
-		// ==print--
-		if(Constants.verbose) 
-			for(Permutation perm:r_permutationTasks.values()) {perm.print();}
-		
-		//--------------------------------------- 
-		// create string permutation for testing, in JMetal encoded 
-		
-		System.out.println("allocation num:" + a1.getNum());
-		System.out.println("robots:" +a1.getRobotsList());
-		System.out.println("permutation"+geneString);
-		//--------------------------------------- 
-		// Model A - idling
-		File file = MDPModelA.createModelA(r_permutationTasks,p,a1);
-		int idle = getIdle(file, "R{\"idle\"}min=?[F done]");
-		
-		if(idle!=2147483647) //Infinite = 2147483647
-			System.out.println("MODEL A. Idle: "+idle);
-		else
-			System.out.println("MODEL A. Plan not feasible.");
-		//=========================================================
-		
-		
-		//--------------------------------------- 
-		// Model B - prob. of success
-		MDPModelB.createModelB(r_permutationTasks,p,a1);
-		//--------------------------------------- 
-		// Model C - travel cost
-		int travelCost = MDPModelC.createModelC(r_permutationTasks);
+	
+	
+	/*
+	 * Create new databases to save: 1) optimal, 2) feasible (optimal and suboptimal) and 3) unfeasible solutions
+	 */
+	public static void startDatabases() {
+		Utility.checkPath(Constants.solutionsDatabasesDir);//check if folder exists
+		Utility.createEmptyFile(Constants.db1_optimisedSolutions);
+		Utility.createEmptyFile(Constants.db2_feasibleSolutions);
+		Utility.createEmptyFile(Constants.db3_infeaibleSolutions);
+		// -- Header database 1 = Pareto-optimal solutions per allocation 
+		String header1 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost\n";
+		Utility.WriteToFile(header1 ,Constants.db1_optimisedSolutions);
+		// --Header database 2 = Feasible solutions (optimal and sub-optimal)
+		String header2 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost\n";
+		Utility.WriteToFile(header2 ,Constants.db2_feasibleSolutions);
+		// --Header database 3 = infeasible solutions
+		String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost,,violatedReq\n";
+		Utility.WriteToFile(header3 ,Constants.db3_infeaibleSolutions);
 		
 	}
 	
+	
+	// --for tests
+	public static ArrayList<Integer> runTest(ProblemSpecification p) {
+		
+		
+		//---------------------------------------
+		//Create new variables
+		// -- new databases
+		System.out.println("HI");
+		startDatabases();
+		// -- new array for optimisation objectives names to values
+		HashMap<String, Integer> objectiveValuesHashmap = new HashMap<String, Integer>(); // initialise array (this could be size 1 to 3 depending on number of optimisation objectives declared in DSL)
+		// -- check for feasibility (i.e., all travelling paths exists, no constraint (tasks, time, min. success rate) is violated)
+		Boolean feasible = true;
+		
+		//---------------------------------------
+		// 1 get info - create allocation (Test creating alloc./permutation)
+		int allocNum = 0;
+		Allocation a1 = p.getAllocations().get(allocNum); //get first allocation
+		//1.1 get JMetal permutation. String type, e.g.: "(1,1,1,1,443438)" where each number is the robot's task permutation
+		String geneString = getMadeUpPermuation_forTest(a1,p); // create string permutation for testing, in JMetal encoded
+		//1.2 array robot ID to permutation */		
+		HashMap<String, Integer> robots2PermNum = getrobots2PermuationNumberArray(a1,p,geneString);
+		HashMap<String, Permutation> r_permutationTasks = getPerm(p,a1,robots2PermNum);
+		//1.3 list of objectives declared in DSL
+		ArrayList<String> objectiveList = p.getParameters().getListObjectiveStrings();
+				
+		
+		//1.3 ==print==
+		if(Constants.verbose) {
+			System.out.println("allocation num:" + a1.getNum());
+			//same as:  System.out.println("robots:" +a1.getRobotsList());
+			System.out.println("a) 'robots' to permutation Number"+robots2PermNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
+			//same as: System.out.println("permutation"+geneString);
+			System.out.println("b) robots to 'permutation Number'"+robots2PermNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
+		}
+		
+		//---------------------------------------
+		//2 check if all paths are feasible
+		Boolean pathsTransitable = true;
+		for(Permutation perm:r_permutationTasks.values()) {
+			//2.1 not feasible : save in database 3 and return
+			if(!perm.isFeasible_AllPathsExist) {
+				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(robots2PermNum,perm,allocNum);
+				//String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost,,violatedReq\n";
+				String s = allocNum+",,"
+						+ robots2PermNum.keySet()+",,"
+						+ robots2PermNum.values() +",,"
+						+ a1.getGroupsOfRobot().toString() +",,"
+						+ "NA" +",,"
+						+ "NA" +",,"
+						+ "NA" +",,"
+						+ "somePathsDontExist" + "\n";
+				Utility.WriteToFile(s, Constants.db3_infeaibleSolutions); //database 3
+				feasible=false; //<----- infeasible
+				return createInViolationList(p);
+			}}
+		
+		//---------------------------------------
+		//3 check if task permutation is feasible due to idle and task constraints (model A must not return infinite=2147483647)
+		File file = MDPModelA.createModelA(r_permutationTasks,p,a1,geneString);
+		int idle = getIdle(file, "R{\"idle\"}min=?[F done]");
+		//3.1 not feasible : save in database 3 and return
+		if(idle==2147483647) { //Infinite = 2147483647
+			System.out.println("MODEL A. Plan not feasible."+idle);
+			//String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,probSucc,,travelCost,,violatedReq\n";
+			String s = allocNum+",,"
+					+ robots2PermNum.keySet()+",,"
+					+ robots2PermNum.values() +",,"
+					+ a1.getGroupsOfRobot().toString() +",,"
+					+ "NA" +",,"
+					+ "NA" +",,"
+					+ "NA" +",,"
+					+ "idlingTimeLimitOrTaskConstraintsOrTimeLimit" + "\n";
+			Utility.WriteToFile(s, Constants.db3_infeaibleSolutions); //database 3
+			feasible=false; //<----- infeasible
+			return createInViolationList(p);
+		}
+		
+		//---------------------------------------
+		//4) get optimisation values array (this could be 1, 2 or 3 depending on objectives declared in DSL)
+		for (int i = 0; i <objectiveList.size() ; i++) {
+			if(Constants.verbose) {System.out.println("Getting value of optimisation objective: "+ objectiveList.get(i));}
+			// 4.1 idle
+			if(objectiveList.get(i)=="minIdle") { //already computed, & feasible is this part of the code is reached
+				objectiveValuesHashmap.put(objectiveList.get(i), idle);}
+			// 4.2 probability of success
+			else if(objectiveList.get(i)=="maxSucc") {
+				double prob = MDPModelB.createModelB(r_permutationTasks,p,a1, geneString); //computed prob. of succ.
+				objectiveValuesHashmap.put(objectiveList.get(i), (int) (prob*100) );}
+			// 4.3 travelling cost
+			else if(objectiveList.get(i)=="minTravel") {
+				int travelCost = MDPModelC.createModelC(r_permutationTasks);
+				objectiveValuesHashmap.put(objectiveList.get(i), travelCost);}
+			// ERROR
+			else {KanoaErrorHandler.ErrorObjectiveNotRecognised(objectiveList.get(i));}
+		}
+		// print
+		if(Constants.verbose){System.out.println(objectiveValuesHashmap.toString());}
+		
+		
+		//---------------------------------------
+		//5) check violations of requirement (only rate of success missing to be checked)
+		//5.1 success rate constraint - if constraint declared in DSL then !=0
+		if(p.getParameters().ratesucc!="0") { 
+			//5.1.2 check if prob. NOT computed as part of the optimisation objectives (otherwise calculate it as needed for this requirement)
+			double succRate = 0;
+			if(!objectiveValuesHashmap.keySet().contains("maxSucc"))
+				succRate = MDPModelB.createModelB(r_permutationTasks,p,a1,geneString)*100;
+			else
+				succRate = objectiveValuesHashmap.get("maxSucc");
+			//5.1.3 check if requirement does not hold (succ.rate has to be greater that N in the DSL)
+			if( succRate <= Utility.string2double( p.getParameters().ratesucc )) {
+				System.out.println("Plan not feasible. Success rate expected >"+p.getParameters().ratesucc+" but computed: "+succRate);
+				//String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost,,violatedReq\n";
+				String s = allocNum+",,"
+						+ robots2PermNum.keySet()+",,"
+						+ robots2PermNum.values() +",,"
+						+ a1.getGroupsOfRobot().toString() +",,"
+						// ******* CHECK HERE: SOME may not have all 3 !! - only 1, or 2 
+						+ objectiveValuesHashmap.get("minIdle") +",,"
+						+ objectiveValuesHashmap.get("maxSucc") +",,"
+						+ objectiveValuesHashmap.get("minTravel") +",,"
+						+ "rateSuccessViolated" + "\n";
+				Utility.WriteToFile(s, Constants.db3_infeaibleSolutions); //database 3
+				feasible=false; //<----- infeasible
+				return createInViolationList(p);
+			}
+		}
+		
+		//---------------------------------------
+		//5) if nothing is violated, save in feasible solutions and return values
+		//5.1 save
+		System.out.println("Plan is feasible!");
+		//String header2 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost\n";
+		String s = allocNum+",,"
+				+ robots2PermNum.keySet()+",,"
+				+ robots2PermNum.values() +",,"
+				+ a1.getGroupsOfRobot().toString() +",,"
+				// ******* CHECK HERE: SOME may not have all 3 !! - only 1, or 2
+				+ objectiveValuesHashmap.get("minIdle") +",,"
+				+ objectiveValuesHashmap.get("maxSucc") +",,"
+				+ objectiveValuesHashmap.get("minTravel") + "\n";
+				
+		Utility.WriteToFile(s, Constants.db2_feasibleSolutions); //database 2 --all feasible (including sub-optimal solutions)
+		feasible=true; //<----- feasible
+		
+		//5.2 return
+		return createFeasibleValuesList(objectiveValuesHashmap, p);
+	}
+	
+	
+	private static ArrayList<Integer> createFeasibleValuesList(HashMap<String, Integer> objectiveValuesHashmap, ProblemSpecification p) {
+		ArrayList<Integer> optimisationValues = new ArrayList<Integer>();
+		for(int i=0; i<p.getParameters().getListObjectiveStrings().size();i++) {
+			Integer val = objectiveValuesHashmap.get(p.getParameters().getListObjectiveStrings().get(i));
+			optimisationValues.add(val); //values of idle, succRate and travelCost
+		}
+		return optimisationValues;
+	}
+
+
+
+	/** Return array with the size of optimisation objectives 
+	 * populated with 'infinite', i.e., infeasible  
+	 * **/
+	private static ArrayList<Integer> createInViolationList(ProblemSpecification p){
+		ArrayList<Integer> optimisationValues = new ArrayList<Integer>();
+		for(int i=0; i<p.getParameters().getListObjectiveStrings().size();i++) 
+			optimisationValues.add( Utility.infiniteInt ); //set to infinite as the optimisation problem in JMetal is a minimisation problem.
+		return optimisationValues;
+	}
+		
+	
+	
+	
+	
+//	private static void runModelA(ProblemSpecification p) {
+//		// Test creating models A, B and C for a specific allocation & permutation
+//		//--------------------------------------- 
+//		//1 get info - create allocation
+//		int allocNum = 0;
+//		Allocation a1 = p.getAllocations().get(allocNum); //get first allocation
+//		//2 get JMetal permutation. String type, e.g.: "(1,1,1,1,443438)" where each number is the robot's task permutation
+//		String geneString = getMadeUpPermuation_forTest(a1,p); // create string permutation for testing, in JMetal encoded
+//		HashMap<String, Integer> robots2PermNum = getrobots2PermuationNumberArray(a1,p,geneString);
+//		
+//		// ==print==
+//		if(Constants.verbose) {
+//			System.out.println("allocation num:" + a1.getNum());
+//			//same as:  System.out.println("robots:" +a1.getRobotsList());
+//			System.out.println("a) 'robots' to permutation Number"+robots2PermNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
+//			//same as: System.out.println("permutation"+geneString);
+//			System.out.println("b) robots to 'permutation Number'"+robots2PermNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
+//		}
+//		
+//		//3 array robot ID to permutation */		
+//		HashMap<String, Permutation> r_permutationTasks = getPerm(p,a1,robots2PermNum);
+//		
+//		// -check if permutation feasible due to feasible to travel paths between locations
+//		Boolean pathsTransitable = true;
+//		for(Permutation perm:r_permutationTasks.values())
+//			if(!perm.isFeasible_AllPathsExist) {
+//				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(robots2PermNum,perm,allocNum);
+//				pathsTransitable =false;
+//			}
+//		
+//		
+//		// ==print--
+//		if(Constants.verbose) 
+//			for(Permutation perm:r_permutationTasks.values()) {perm.print();}
+//		
+//		// 2) run specialised models
+//		//--------------------------------------- 
+//		// Model A - idling
+//		File file = MDPModelA.createModelA(r_permutationTasks,p,a1);
+//		int idle = getIdle(file, "R{\"idle\"}min=?[F done]");
+//		
+//		if(idle!=2147483647) //Infinite = 2147483647
+//			System.out.println("MODEL A. Idle: "+idle);
+//		else
+//			System.out.println("MODEL A. Plan not feasible."+idle);
+//		//=========================================================
+//		
+//		
+//		//--------------------------------------- 
+//		// Model B - prob. of success
+//		double prob = MDPModelB.createModelB(r_permutationTasks,p,a1);
+//		//--------------------------------------- 
+//		// Model C - travel cost
+//		int travelCost = MDPModelC.createModelC(r_permutationTasks);
+//		
+//		
+//		// 3) check feasibility: , 1=not feaible 
+//		int feasible = 100; //100= feasible permutation of tasks
+//		if(!pathsTransitable)
+//			feasible = 1;   //1  = not feasible due to (a) idling time exceeded OR (b) tasks constraints  
+//		if(idle!=2147483647)
+//			feasible = 2;   //2  = 
+//		if(prob <= Utility.string2double( p.getParameters().ratesucc)) 
+//			feasible = 3;
+//		
+//		
+//		
+//		
+//		
+//				
+//		
+//		
+//		String header = "allocationNum,,permutation,,robotClusters,,idle,,probSucc,,travelCost\n";
+//		Utility.WriteToFile(Constants.optimisedSolutionsData,s);
+//		
+//		//allocationNum,,permutation,,robotClusters,,idle,,probSucc,,travelCost 
+//		String s = allocNum + ",," 
+//				   + geneString + ",,"
+//				   + a1.getGroupsOfRobot().toString() + ",," 
+//				   + idle + ",," +  prob + ",," + travelCost + "time"
+//				   + "\n";
+//		Utility.WriteToFile(Constants.optimisedSolutionsData,s);
+//		
+//		
+//		String path = "";
+//		saveInfo(idle,prob,travelCost,path);
+//		
+//	}
+	
+	private static void saveInfo(int idle, double prob, int travelCost, String path) {
+		
+		
+	}
+
 	/**Run prism: idle and adversary
 	 * idle - return the minimum idle time
 	 * if > 0 -> permutation of tasks is possible
@@ -261,7 +502,7 @@ public class Scheduler extends AbstractAlgorithmRunner{
 	    for (IntegerSolution solution_i : populationSolution) {
 	    	System.out.println( solution_i.toString() );
 	    }
-	    // - save // this method do not work as solutions return feasible and unfeasible solutions
+	    // - save // this method do not work as solutions return feasible and infeasible solutions
 	    //printFinalSolutionSet(populationSolution) ;
 	    
 		System.out.println("GA Done");			

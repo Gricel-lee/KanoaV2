@@ -98,16 +98,22 @@ public class KanoaErrorHandler {
 		throw new IOError(null); //stop and print trace
 	}
 
-	public static void NoPathExistsToCompleteRunTestPermutation(HashMap<String, Integer> robots2PermNum, Permutation perm) {
-		System.err.println("ERROR: Not enough paths exists to complete run test permutation.");
+	public static void NoPathExistsToCompleteRunTestPermutation(HashMap<String, Integer> robots2PermNum, Permutation perm, int allocNum) {
+		System.err.println("ERROR: Paths do not exists to complete permutation "+ perm.numPerm + " for robot "+ perm.robID +" in alloction "+allocNum);
+		System.err.println("tasks: "+ perm.tasksInPerm );
 		System.out.println("a) robots to permutation Number"+robots2PermNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
 		System.out.println("b) robots to permutation Number"+robots2PermNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
 		System.out.println("Check paths of robot:"+perm.robID);
-		throw new IOError(null); //stop and print trace
+		//throw new IOError(null); //stop and print trace
 	}
 
 	public static void ErrorExpectingPathInDSL(String loc1, String loc2) {
 		System.err.println("ERROR In Code: Path expected to be in DSL: "+loc1+" to "+loc2);
+		throw new IOError(null); //stop and print trace
+	}
+
+	public static void ErrorObjectiveNotRecognised(String string) {
+		System.err.println("ERROR: Objective not recognised. Expecting one of these {minIdle,minTravel,maxSucc}, but read: "+string);
 		throw new IOError(null); //stop and print trace
 	}
 

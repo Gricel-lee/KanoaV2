@@ -26,7 +26,10 @@ import uoy.mrs.uoy.mrs.types.impl.Robot;
 public class MDPModelA {
 	
 	
-	public static File createModelA(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a) {
+	public static File createModelA(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString) {
+		
+		System.out.println("\n\n--Starting Model A");
+		
 		// a) get info
 		// - total time available
 		int TT = Utility.string2int(p.getParameters().timeAvailable); 
@@ -230,7 +233,7 @@ public class MDPModelA {
 		//b) allocation num
 		String allocNum = a.getNum();
 		String outputFolder = Constants.prismFilesDir;
-		String mdpFileName = "modelA_"+"All"+allocNum+"_Perm"+0 +".mdp";
+		String mdpFileName = "modelA_"+"Alloc"+allocNum+"_Perm"+ geneString +".mdp";
 		String mdpFilePath = outputFolder+mdpFileName;
 		
 		System.out.println("MDP: "+ outputFolder+mdpFilePath );
@@ -351,7 +354,7 @@ public class MDPModelA {
 				timeTask.add(ritj);
 				
 				//e.g. timeTask_i:r4,at1_1,4.0
-				System.out.println("timeTask_i:"+ritj[0]+","+ritj[1]+","+ritj[2]);
+				//System.out.println("timeTask_i:"+ritj[0]+","+ritj[1]+","+ritj[2]);
 				
 			}
 		}

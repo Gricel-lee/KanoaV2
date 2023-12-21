@@ -6,7 +6,6 @@ import java.util.List;
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.PermutationGenerator;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
-import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 
 public class Permutation {
