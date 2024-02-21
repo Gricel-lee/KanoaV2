@@ -16,6 +16,7 @@ import prism.PrismLog;
 import prism.Result;
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
+import uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
 import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
@@ -25,21 +26,55 @@ import uoy.mrs.uoy.mrs.types.impl.Robot;
 
 public class MDPModelA {
 	
+	private static int getIdle(File file, String property) {
+		int idle = -1;
+		idle =  (int) MDPModelA.RunPrism(file,property);  //<-- return the idle time (computed using PRISM PMC)
+		return idle;
+	}
 	
-	public static File createModelA(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString) {
+
+	
+	
+	public static int checkModelA(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString, HashMap<String, Integer> r_permNum) {
+		int totalIdle = 0;
 		
 		System.out.println("\n\n--Starting Model A");
+		
+		//for each group, check if path feasible
+		for (int i=0 ; i< a.getGroupsOfRobot().size(); i++) {
+			
+			System.out.println("\n-group:"+i);
+			
+			File file = createModelA_groupi(r_permutationTasks,p,a,geneString,i);
+			
+			int idle = getIdle(file, "R{\"idle\"}min=?[F done]"); // - Prism PMC
+			
+			//if not feasible
+			if(idle==2147483647) { //Infinite = 2147483647
+				System.out.println("MODEL A. Plan not feasible."+idle);
+				return idle;
+			}
+			//if feasible
+			totalIdle += idle;
+		}
+		
+		return totalIdle;
+	}
+	
+	
+	
+	public static File createModelA_groupi(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString, int group_i) {
 		
 		// a) get info
 		// - total time available
 		int TT = Utility.string2int(p.getParameters().timeAvailable); 
 		
-		// -list robot IDs in allocation
-		ArrayList<String> robIDset = a.getRobotsList();
+		// -list robot IDs in allocation     //ArrayList<String> robIDset = a.getRobotsList(); //one MDP for all robots
+		ArrayList<String> group_robID = a.getGroupsOfRobot().get(group_i); //MDP only for group i
 		
 		/**Array: robot id, task, duration: {"r1","t1","3.0"}*/
 		ArrayList<String[]> timeTask = new ArrayList<String[]>();
-		timeTask = get_timeTask(p,a);
+		timeTask = get_timeTask(p,a,group_robID);
 		
 		/**Array: travelling times - name 'l0' for initial location*/
 		//String[] trip1 = {"r1","l0","t1","3"}; tTravel.add(trip1);
@@ -56,7 +91,7 @@ public class MDPModelA {
 		model.append("mdp\n\n");
 		model.append("const int TT=").append(TT).append(";//total time available \n\n");
 		//
-		for(String rID:robIDset) {
+		for(String rID:group_robID) {
 			Permutation r_permutation = r_permutationTasks.get(rID);
 			//task
 			String t1ID= r_permutation.tasksInPerm.get(0);
@@ -87,9 +122,12 @@ public class MDPModelA {
 		
 		
 		// -- tasks time const
+		
+		//group
 		for(Permutation r_perm: r_permutationTasks.values()) {
 			for(String at:r_perm.tasksInPerm) {
-				model.append("const int "+r_perm.robID+at+"Time="+ r_perm.getTasksDuration(at) +";\n");
+				if (group_robID.contains(r_perm.robID))
+					model.append("const int "+r_perm.robID+at+"Time="+ r_perm.getTasksDuration(at) +";\n");
 			}
 		}
 		
@@ -99,8 +137,8 @@ public class MDPModelA {
 			model.append("const int travel"+strings[0]+strings[1]+ strings[2]+"="+strings[3]+";\n");
 		}
 		//if idle
-		for (int i = 0; i < robIDset.size(); i++) {
-			String r = robIDset.get(i);
+		for (int i = 0; i < group_robID.size(); i++) {
+			String r = group_robID.get(i);
 			Permutation r_perm = r_permutationTasks.get(r); 
 			if(r_perm.idleTime > 0) {
 				model.append("const int maxIdle"+r+"="+ r_perm.idleTime +";\n");}
@@ -108,8 +146,8 @@ public class MDPModelA {
 		//---------------------------------------
 		// -- formula done
 		model.append("\nformula done=(");
-		for (int i = 0; i < robIDset.size(); i++) {
-			String rID = robIDset.get(i);
+		for (int i = 0; i < group_robID.size(); i++) {
+			String rID = group_robID.get(i);
 			int n = a.numTasks(timeTask,rID);
 			model.append(rID+"order="+n +"&");
 		}
@@ -142,8 +180,8 @@ public class MDPModelA {
 		
 		//---------------------------------------
 		// -- modules
-		for (int i = 0; i < robIDset.size(); i++) {
-			String r = robIDset.get(i);
+		for (int i = 0; i < group_robID.size(); i++) {
+			String r = group_robID.get(i);
 			Permutation r_perm = r_permutationTasks.get(r);
 			
 			model.append("module "+r+"\n");
@@ -218,8 +256,8 @@ public class MDPModelA {
 		//---------------------------------------
 		// -- reward
 		model.append("rewards \"idle\"\n //Note- there is no idle option for robot ri if maxIdleri==0 (computed beforehand)\n");
-		for (int i = 0; i < robIDset.size(); i++) {
-			String r = robIDset.get(i);
+		for (int i = 0; i < group_robID.size(); i++) {
+			String r = group_robID.get(i);
 			//if idle
 			if(r_permutationTasks.get(r).idleTime > 0) { model.append(" ["+r+"idle] true: 1;\n"); }
 		}
@@ -233,7 +271,7 @@ public class MDPModelA {
 		//b) allocation num
 		String allocNum = a.getNum();
 		String outputFolder = Constants.prismFilesDir;
-		String mdpFileName = "modelA_"+"Alloc"+allocNum+"_Perm"+ geneString +".mdp";
+		String mdpFileName = "modelA_"+allocNum+"_"+ geneString+"_"+group_i +".mdp";
 		String mdpFilePath = outputFolder+mdpFileName;
 		
 		System.out.println("MDP: "+ outputFolder+mdpFilePath );
@@ -339,11 +377,11 @@ public class MDPModelA {
 	
 	
 	/*Get array: robot id, task, duration: {"r1","t1","3"}*/
-	private static ArrayList<String[]> get_timeTask(ProblemSpecification p, Allocation a) {
+	private static ArrayList<String[]> get_timeTask(ProblemSpecification p, Allocation a, ArrayList<String> robIDset) {
 		ArrayList<String[]> timeTask = new ArrayList<String[]>();
 		// - time completion tasks
-		for (int i = 0; i < a.getRobotsList().size(); i++) {
-			String rID = a.getRobotsList().get(i);
+		for (int i = 0; i < robIDset.size(); i++) {
+			String rID = robIDset.get(i);
 			for (int j = 0; j < a.robotToAtomicTasksIds.get(rID).size(); j++) {
 				//get duration
 				String tID = a.robotToAtomicTasksIds.get(rID).get(j);

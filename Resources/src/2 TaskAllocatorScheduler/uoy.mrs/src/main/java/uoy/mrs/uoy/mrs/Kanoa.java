@@ -30,7 +30,9 @@ public class Kanoa {
 		//TestDummyRefactor4ORD_CON
 		//TestDummyRefactor-IdleNotFeasible
 		
-		String fileTest = "TestDummyRefactor-ProbNotFeasible/config.properties"; //"TestCase3-var4/config.properties"); //Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
+		String fileTest = "TestDummyRefactor-IdleNotFeasible/config.properties"; //"TestCase3-var4/config.properties"); //Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
+		fileTest = "TestDummyRefactor/config.properties"; //"TestCase3-var4/config.properties"); //Constants.setProperties("TestAlloyPreallocatedTasks/HospitalPreallocatedTasks1/config.properties");
+		System.out.println(fileTest);
 		kanoaMRS.setPropertiesFile(args,fileTest);
 		
 		/**Run**/ 
@@ -111,7 +113,7 @@ public class Kanoa {
 	 */
 	public void runScheduler() throws Exception {
 		System.out.println("\n\n---- 11Running Scheduler");
-				
+		
 		// get feasible permutation of tasks
 		//Scheduler.getPermutations();
 		// get MDP files

@@ -34,8 +34,7 @@ public class Constants {
 	public static String outputDir;
 	public static String allAllocations;
 	public static String alloyoutputDir;
-	public static String transClosureOutputDir;
-	public static String allocationsCSVFile;
+	public static String allocClustersCSVFile;
 	public static String prismFilesDir;
 	public static String permutationsFile;
 	public static String allsolutionsMDPFiles;
@@ -51,7 +50,7 @@ public class Constants {
 	//Database 3 = infeasible solutions - possible values of not-feasible column: "somePathsDontExist", "idlingOrTaskConstraints", 
 	public static String db3_infeaibleSolutions;///infeasibleData.csv";
 	
-	
+	public static String alloc_perm;
 	
 	
 	public static Integer countallsolutions;
@@ -119,11 +118,9 @@ public class Constants {
 		
 		alloyoutputDir = outputDir + "/Alloy/";
 		
-		transClosureOutputDir = outputDir + "/Clusters/";
-		
 		solutionsDatabasesDir = outputDir + "/Solutions/";
 		
-		allocationsCSVFile = Constants.outputDir + "./Allocations.csv";
+		allocClustersCSVFile = outputDir + "/Solutions/AllocInfo.txt";
 		
 		prismFilesDir = outputDir + "/PrismFiles/";
 		

@@ -136,6 +136,7 @@ public class Utility {
 	public static void createEmptyFile (String filename) {
 		File file = new File(filename);
 		file.delete();
+		System.out.println(filename);
     	try {
 			file.getParentFile().createNewFile();
 		} catch (IOException e) {

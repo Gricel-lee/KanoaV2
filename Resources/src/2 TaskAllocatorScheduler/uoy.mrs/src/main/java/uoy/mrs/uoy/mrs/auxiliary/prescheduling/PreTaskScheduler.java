@@ -191,6 +191,11 @@ public class PreTaskScheduler {
 	
 	/**Grouping robots*/
 	public static void getRobotsGroupsForAllocations(ProblemSpecification p) {
+
+		//save
+		Utility.createEmptyFile(Constants.allocClustersCSVFile);
+		Utility.WriteToFile(Constants.allocClustersCSVFile , "alloc,,clusters,,tasksAlloc,,file");
+		
 		//------------------
 		// ----- Stage (a) - do bread first to get constrained tasks
 		ArrayList<String> firstencountered_constrainedTasks = BreadthFirst.breadthFirstTree(p);
@@ -278,6 +283,14 @@ public class PreTaskScheduler {
 			if(Constants.verbose) {System.out.println("transitive matrix"); TransitiveClosure.printMatrix(tcMatrix);}
 			
 			a.setGroupsOfRobot(groupsOfRobot);
+			
+			//save -> "alloc,clusters,tasksAlloc, file"
+			Utility.WriteToFile(Constants.allocClustersCSVFile , a.getNum() + ",," 
+					+  groupsOfRobot.toString() + ",," 
+					+ a.robotToAtomicTasksIds.toString() + ",,"
+					+ a.getFile());
+			
+			
 		}
 	}
 	

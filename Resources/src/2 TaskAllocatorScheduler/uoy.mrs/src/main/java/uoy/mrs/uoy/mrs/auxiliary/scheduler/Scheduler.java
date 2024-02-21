@@ -3,10 +3,8 @@ package uoy.mrs.uoy.mrs.auxiliary.scheduler;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
-import org.netlib.util.doubleW;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
@@ -36,7 +34,9 @@ import uoy.mrs.uoy.mrs.types.impl.Robot;
 
 public class Scheduler extends AbstractAlgorithmRunner{
 	
-
+	
+	
+	
 	public static void run(ProblemSpecification p) {
 		System.out.println(""+ p.getParameters().getNumObjectives()+" objectives:"+p.getParameters().getListObjectiveStrings());
 		
@@ -61,96 +61,99 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		Utility.createEmptyFile(Constants.db1_optimisedSolutions);
 		Utility.createEmptyFile(Constants.db2_feasibleSolutions);
 		Utility.createEmptyFile(Constants.db3_infeaibleSolutions);
-		// -- Header database 1 = Pareto-optimal solutions per allocation 
-		String header1 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost\n";
-		Utility.WriteToFile(header1 ,Constants.db1_optimisedSolutions);
-		// --Header database 2 = Feasible solutions (optimal and sub-optimal)
-		String header2 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost\n";
-		Utility.WriteToFile(header2 ,Constants.db2_feasibleSolutions);
-		// --Header database 3 = infeasible solutions
-		String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost,,violatedReq\n";
-		Utility.WriteToFile(header3 ,Constants.db3_infeaibleSolutions);
+
+		Utility.WriteToFile(Constants.db1_optimisedSolutions , "alloc,,permut,,prob,,idle,,travel");
+		Utility.WriteToFile(Constants.db2_feasibleSolutions , "alloc,,robots,,permut,,prob,,idle,,travel");
+		Utility.WriteToFile(Constants.db3_infeaibleSolutions , "alloc,,robots,,perm,,reason");
 		
+		System.out.println("Solutions file:" +Constants.db1_optimisedSolutions);
 	}
+	
+	
+	/**Return true if feasible to travel between locations*/
+	public static Boolean checkPaths(HashMap<String, Permutation> r_permutationTasks, HashMap<String, Integer> r_permNum, Integer allocNum, Allocation a1) {
+		for(Permutation perm:r_permutationTasks.values()) {
+			// not feasible - save in database 3 and return false
+			if(!perm.isFeasible_AllPathsExist) {
+				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(r_permNum,perm,allocNum);
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static void saveViolationDatabase(HashMap<String, Integer> r_permNum, String allocNumString, String violationTypeString) {
+		//String header3 = "alloc,,robots,,perm,,reason\n";
+		String s = allocNumString+",,"
+				+ r_permNum.keySet()+",,"
+				+ r_permNum.values() +",,"
+				+ violationTypeString + "\n";
+		Utility.WriteToFile(s, Constants.db3_infeaibleSolutions); //database 3
+	}
+	
 	
 	
 	// --for tests
 	public static ArrayList<Integer> runTest(ProblemSpecification p) {
-		
-		
 		//---------------------------------------
-		//Create new variables
-		// -- new databases
-		System.out.println("HI");
+		// -- New databases
 		startDatabases();
-		// -- new array for optimisation objectives names to values
+		
+		// -- Optimisation objectives
 		HashMap<String, Integer> objectiveValuesHashmap = new HashMap<String, Integer>(); // initialise array (this could be size 1 to 3 depending on number of optimisation objectives declared in DSL)
-		// -- check for feasibility (i.e., all travelling paths exists, no constraint (tasks, time, min. success rate) is violated)
+		System.out.println(objectiveValuesHashmap.toString());
+		// -- check feasibility (i.e., all travelling paths exists, no constraint (tasks, time, min. success rate) is violated)
 		Boolean feasible = true;
 		
-		//---------------------------------------
+		//------Input: (allocation, permutation)
 		// 1 get info - create allocation (Test creating alloc./permutation)
 		int allocNum = 0;
 		Allocation a1 = p.getAllocations().get(allocNum); //get first allocation
 		//1.1 get JMetal permutation. String type, e.g.: "(1,1,1,1,443438)" where each number is the robot's task permutation
 		String geneString = getMadeUpPermuation_forTest(a1,p); // create string permutation for testing, in JMetal encoded
-		//1.2 array robot ID to permutation */		
-		HashMap<String, Integer> robots2PermNum = getrobots2PermuationNumberArray(a1,p,geneString);
-		HashMap<String, Permutation> r_permutationTasks = getPerm(p,a1,robots2PermNum);
-		//1.3 list of objectives declared in DSL
-		ArrayList<String> objectiveList = p.getParameters().getListObjectiveStrings();
-				
 		
-		//1.3 ==print==
+		
+		
+		//---------------------------------------
+		//1.2 Permutation info */		
+		HashMap<String, Integer> r_permNum = getrobots2PermutationNum(a1,p,geneString);
+		HashMap<String, Permutation> r_permutationTasks = getPerm(p,a1,r_permNum);
+		
+		//==print==
 		if(Constants.verbose) {
 			System.out.println("allocation num:" + a1.getNum());
 			//same as:  System.out.println("robots:" +a1.getRobotsList());
-			System.out.println("a) 'robots' to permutation Number"+robots2PermNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
+			System.out.println("a) 'robots' to permutation Number"+r_permNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
 			//same as: System.out.println("permutation"+geneString);
-			System.out.println("b) robots to 'permutation Number'"+robots2PermNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
+			System.out.println("b) robots to 'permutation Number'"+r_permNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
 		}
 		
+		
+		//1.3 Optimisation objectives declared in DSL
+		ArrayList<String> objectiveList = p.getParameters().getListObjectiveStrings();
+						
+				
+				
 		//---------------------------------------
-		//2 check if all paths are feasible
-		Boolean pathsTransitable = true;
-		for(Permutation perm:r_permutationTasks.values()) {
-			//2.1 not feasible : save in database 3 and return
-			if(!perm.isFeasible_AllPathsExist) {
-				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(robots2PermNum,perm,allocNum);
-				//String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost,,violatedReq\n";
-				String s = allocNum+",,"
-						+ robots2PermNum.keySet()+",,"
-						+ robots2PermNum.values() +",,"
-						+ a1.getGroupsOfRobot().toString() +",,"
-						+ "NA" +",,"
-						+ "NA" +",,"
-						+ "NA" +",,"
-						+ "somePathsDontExist" + "\n";
-				Utility.WriteToFile(s, Constants.db3_infeaibleSolutions); //database 3
-				feasible=false; //<----- infeasible
-				return createInViolationList(p);
-			}}
+		//2 check if all paths are feasible 
+		feasible = checkPaths(r_permutationTasks,  r_permNum, allocNum, a1); //must be declared in DSL or in config.prop ALLOW_PATH_DISTANCE_EUCLIDIAN = true
+		if(!feasible) {
+			saveViolationDatabase(r_permNum, a1.getNum(), "pathsDontExist");
+			return createInViolationList(p);
+		}
+				
+				
 		
 		//---------------------------------------
 		//3 check if task permutation is feasible due to idle and task constraints (model A must not return infinite=2147483647)
-		File file = MDPModelA.createModelA(r_permutationTasks,p,a1,geneString);
-		int idle = getIdle(file, "R{\"idle\"}min=?[F done]");
-		//3.1 not feasible : save in database 3 and return
-		if(idle==2147483647) { //Infinite = 2147483647
-			System.out.println("MODEL A. Plan not feasible."+idle);
-			//String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,probSucc,,travelCost,,violatedReq\n";
-			String s = allocNum+",,"
-					+ robots2PermNum.keySet()+",,"
-					+ robots2PermNum.values() +",,"
-					+ a1.getGroupsOfRobot().toString() +",,"
-					+ "NA" +",,"
-					+ "NA" +",,"
-					+ "NA" +",,"
-					+ "idlingTimeLimitOrTaskConstraintsOrTimeLimit" + "\n";
-			Utility.WriteToFile(s, Constants.db3_infeaibleSolutions); //database 3
-			feasible=false; //<----- infeasible
+		
+		int idle = MDPModelA.checkModelA(r_permutationTasks,p,a1,geneString,r_permNum);
+		if (idle==2147483647) {feasible=false;} //infinity
+		if(!feasible) {
+			saveViolationDatabase(r_permNum, a1.getNum(), "planNoSynthesised");
 			return createInViolationList(p);
 		}
+		
 		
 		//---------------------------------------
 		//4) get optimisation values array (this could be 1, 2 or 3 depending on objectives declared in DSL)
@@ -189,8 +192,8 @@ public class Scheduler extends AbstractAlgorithmRunner{
 				System.out.println("Plan not feasible. Success rate expected >"+p.getParameters().ratesucc+" but computed: "+succRate);
 				//String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost,,violatedReq\n";
 				String s = allocNum+",,"
-						+ robots2PermNum.keySet()+",,"
-						+ robots2PermNum.values() +",,"
+						+ r_permNum.keySet()+",,"
+						+ r_permNum.values() +",,"
 						+ a1.getGroupsOfRobot().toString() +",,"
 						// ******* CHECK HERE: SOME may not have all 3 !! - only 1, or 2 
 						+ objectiveValuesHashmap.get("minIdle") +",,"
@@ -209,8 +212,8 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		System.out.println("Plan is feasible!");
 		//String header2 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost\n";
 		String s = allocNum+",,"
-				+ robots2PermNum.keySet()+",,"
-				+ robots2PermNum.values() +",,"
+				+ r_permNum.keySet()+",,"
+				+ r_permNum.values() +",,"
 				+ a1.getGroupsOfRobot().toString() +",,"
 				// ******* CHECK HERE: SOME may not have all 3 !! - only 1, or 2
 				+ objectiveValuesHashmap.get("minIdle") +",,"
@@ -387,7 +390,7 @@ public class Scheduler extends AbstractAlgorithmRunner{
 	}
 	
 	/** <allocation,permutation> as a HashMap <robotID,numOfPermutation>*/
-	private static HashMap<String, Integer> getrobots2PermuationNumberArray(Allocation a1, ProblemSpecification p,String geneString) {
+	private static HashMap<String, Integer> getrobots2PermutationNum(Allocation a1, ProblemSpecification p,String geneString) {
 		HashMap<String, Integer> robots2PermNum = new HashMap<String, Integer>();
 		
 		//e.g. geneString= "(2,2,479001600)" -> "2,2,479001600"

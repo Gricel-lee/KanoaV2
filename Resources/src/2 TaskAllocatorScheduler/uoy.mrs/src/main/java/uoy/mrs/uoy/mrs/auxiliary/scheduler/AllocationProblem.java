@@ -71,10 +71,10 @@ public class AllocationProblem extends AbstractIntegerProblem {
  		catch (PrismException e1) {KanoaErrorHandler.PrismNotInitialising(e1,"Try 1");}
  		
  		try {prism.initialise();}
- 		catch (PrismException e) {KanoaErrorHandler.PrismNotInitialising(e,"Try 2");}
+ 		catch (PrismException e) {KanoaErrorHandler.PrismNotInitialising(e,"Try 2");} //sometimes retry required
  		this.PRISM = prism;
- 		
 	}
+	
 	
 	/**Upper bounds is an array of size = number of robots
 	 * and numbers being the number of possible permutations
@@ -111,11 +111,11 @@ public class AllocationProblem extends AbstractIntegerProblem {
 		
 		
 		// 1) get genes as string
-		String genesString = getGenesString(solution);
-		System.out.println("\n:: Genes:" + genesString + "  ::Alloc:" + this.allocation.getNum());
+		String permutationString = getGenesString(solution);
+		System.out.println("\n:: Permutation:" + permutationString + "  ::Alloc:" + this.allocation.getNum());
 		
 		// 2) evaluate gene
-		double[] res = Auxx.evalChromosomeMDP(solution,genesString,allocation,PRISM,p); //results
+		double[] res = Auxx.evalChromosomeMDP(solution,permutationString,allocation,PRISM,p); //results
 
 		// 3) save results to solution object
 		for(int i=0; i<res.length-1 ; i++) {
@@ -150,10 +150,6 @@ public class AllocationProblem extends AbstractIntegerProblem {
 	}
 	
 	
-	
-	/* This creates solutions before running the algorithm.  For example, if population=20, creates 20 chromosomes (not evaluated yet), just their values. */
-	@Override
-	public IntegerSolution createSolution() { return new DefaultIntegerSolution(getNumberOfObjectives(), getNumberOfConstraints(),getBoundsForVariables()); }
 	
 
 }
