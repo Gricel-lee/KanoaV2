@@ -1,0 +1,58 @@
+mdp
+
+const int TT=120;//total time available 
+
+//r2 velocity:2.0
+const int travelr2at4_12=5 ;// from location: l2 (robot initial loc) to location: room5 (at4_12)    distance:9
+const int travelr2at3_7=4 ;// from location: room5 (at4_12) to location: room3(at3_7)    distance:7
+const int travelr2at4_6=0 ;// from location: room3 (at3_7) to location: room3(at4_6)    distance:0
+const int travelr2at2_14=4 ;// from location: room3 (at4_6) to location: room5(at2_14)    distance:7
+const int travelr2at2_8=4 ;// from location: room5 (at2_14) to location: room3(at2_8)    distance:7
+const int travelr2at4_3=4 ;// from location: room3 (at2_8) to location: room2(at4_3)    distance:7
+const int travelr2at3_4=0 ;// from location: room2 (at4_3) to location: room2(at3_4)    distance:0
+const int travelr2at2_5=0 ;// from location: room2 (at3_4) to location: room2(at2_5)    distance:0
+const int travelr2at3_10=6 ;// from location: room2 (at2_5) to location: room4(at3_10)    distance:11
+const int r2at4_12Time=3;
+const int r2at3_7Time=5;
+const int r2at4_6Time=3;
+const int r2at2_14Time=7;
+const int r2at2_8Time=7;
+const int r2at4_3Time=3;
+const int r2at3_4Time=5;
+const int r2at2_5Time=7;
+const int r2at3_10Time=5;
+const int maxIdler2=20;
+
+formula done=(r2order=9);
+
+//formulae for ordered tasks
+
+
+//formulae for consecutive tasks
+
+
+
+
+module r2
+ r2order:[0..9];
+ r2time:[0..120];
+ r2idleTime:[0..maxIdler2];
+ [r2at4_12] r2order=0 & (r2time+r2at4_12Time+travelr2at4_12<=TT) -> (r2order'=1) & (r2time'=r2time+r2at4_12Time+travelr2at4_12);
+ [r2at3_7] r2order=1 & (r2time+r2at3_7Time+travelr2at3_7<=TT) -> (r2order'=2) & (r2time'=r2time+r2at3_7Time+travelr2at3_7);
+ [r2at4_6] r2order=2 & (r2time+r2at4_6Time+travelr2at4_6<=TT) -> (r2order'=3) & (r2time'=r2time+r2at4_6Time+travelr2at4_6);
+ [r2at2_14] r2order=3 & (r2time+r2at2_14Time+travelr2at2_14<=TT) -> (r2order'=4) & (r2time'=r2time+r2at2_14Time+travelr2at2_14);
+ [r2at2_8] r2order=4 & (r2time+r2at2_8Time+travelr2at2_8<=TT) -> (r2order'=5) & (r2time'=r2time+r2at2_8Time+travelr2at2_8);
+ [r2at4_3] r2order=5 & (r2time+r2at4_3Time+travelr2at4_3<=TT) -> (r2order'=6) & (r2time'=r2time+r2at4_3Time+travelr2at4_3);
+ [r2at3_4] r2order=6 & (r2time+r2at3_4Time+travelr2at3_4<=TT) -> (r2order'=7) & (r2time'=r2time+r2at3_4Time+travelr2at3_4);
+ [r2at2_5] r2order=7 & (r2time+r2at2_5Time+travelr2at2_5<=TT) -> (r2order'=8) & (r2time'=r2time+r2at2_5Time+travelr2at2_5);
+ [r2at3_10] r2order=8 & (r2time+r2at3_10Time+travelr2at3_10<=TT) -> (r2order'=9) & (r2time'=r2time+r2at3_10Time+travelr2at3_10);
+ [r2idle] r2order!=9 & (r2time+1<=TT) & (r2idleTime+1<=maxIdler2) -> (r2time'=r2time+1) & (r2idleTime'=r2idleTime+1);
+endmodule
+
+rewards "idle"
+ //Note- there is no idle option for robot ri if maxIdleri==0 (computed beforehand)
+ [r2idle] true: 1;
+endrewards
+
+
+

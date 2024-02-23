@@ -108,24 +108,19 @@ public class AllocationProblem extends AbstractIntegerProblem {
 	 */
 	@Override
 	public IntegerSolution evaluate(IntegerSolution solution)  {
-		
-		
-		// 1) get genes as string
+		// get genes as string
 		String permutationString = getGenesString(solution);
-		System.out.println("\n:: Permutation:" + permutationString + "  ::Alloc:" + this.allocation.getNum());
+		// get attributes
+		double[] attr = Scheduler.getAttrib(p,allocation,permutationString); //permutationString e.g., (5,3,1,2,58)
+		// save to JMetal solution
+		for(int i=0; i<attr.length-1 ; i++) { solution.objectives()[i] = attr[i];}
 		
-		// 2) evaluate gene
-		double[] res = Auxx.evalChromosomeMDP(solution,permutationString,allocation,PRISM,p); //results
-
-		// 3) save results to solution object
-		for(int i=0; i<res.length-1 ; i++) {
-			System.out.println("::obj result"+i+": "+res[i]);
-			solution.objectives()[i] = res[i];
-		}
-		System.out.println("::constraint 0:"+res[res.length-1]);
-		solution.constraints()[0] = res[res.length-1];// res[res.length-1];	 //constrained by feasible permutation	
+		//System.out.println("::constraint 0:"+attr[attr.length-1]);
+		//solution.constraints()[0] = attr[attr.length-1];// res[res.length-1];	 //constrained by feasible permutation	
 		
 		// add file info
+		
+		\\HERE
 		
 		long time = Timer.getTime_restart();
 		solution.attributes().put("fileAlloc", allocation.getFile());

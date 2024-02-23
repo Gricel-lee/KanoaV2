@@ -112,14 +112,18 @@ public class Kanoa {
 	 * @throws Exception
 	 */
 	public void runScheduler() throws Exception {
-		System.out.println("\n\n---- 11Running Scheduler");
-		
+		System.out.println("\n\n---- Running Scheduler, GA optimisation");
+		// timer
+		long startTime = System.nanoTime();
+				
 		// get feasible permutation of tasks
 		//Scheduler.getPermutations();
 		// get MDP files
 		//Scheduler.getMDPs();
 		
 		// a) get Pareto solutions
+		Scheduler.run(problemSpec);
+		
 		Scheduler.runTest(problemSpec);
 		
 		///****** HERE missing when idle <0 computed when doing model A *******

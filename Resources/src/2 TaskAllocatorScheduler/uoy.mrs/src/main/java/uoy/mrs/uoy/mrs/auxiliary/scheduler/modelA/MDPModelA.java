@@ -16,7 +16,6 @@ import prism.PrismLog;
 import prism.Result;
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
-import uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
 import uoy.mrs.uoy.mrs.types.impl.AtomicTaskInstance;
@@ -34,16 +33,14 @@ public class MDPModelA {
 	
 
 	
-	
+	/**Join idle time for all groups - create model A for each group*/
 	public static int checkModelA(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString, HashMap<String, Integer> r_permNum) {
+		//--Starting Model A
 		int totalIdle = 0;
 		
-		System.out.println("\n\n--Starting Model A");
-		
+		System.out.print("ModelA (idle)- ");
 		//for each group, check if path feasible
 		for (int i=0 ; i< a.getGroupsOfRobot().size(); i++) {
-			
-			System.out.println("\n-group:"+i);
 			
 			File file = createModelA_groupi(r_permutationTasks,p,a,geneString,i);
 			
@@ -51,26 +48,35 @@ public class MDPModelA {
 			
 			//if not feasible
 			if(idle==2147483647) { //Infinite = 2147483647
-				System.out.println("MODEL A. Plan not feasible."+idle);
+				if(Constants.verbose) {System.out.print("g"+i + ":not feasible.");}
 				return idle;
+			}
+			//feasible
+			else {
+				if(Constants.verbose) {System.out.print("g"+i + ":"+idle+", ");}
 			}
 			//if feasible
 			totalIdle += idle;
+
+			
+			
 		}
 		
+		System.out.print("Total idle:"+ totalIdle);
 		return totalIdle;
 	}
 	
 	
 	
+	/**Create MDP model*/
 	public static File createModelA_groupi(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString, int group_i) {
 		
 		// a) get info
 		// - total time available
 		int TT = Utility.string2int(p.getParameters().timeAvailable); 
 		
-		// -list robot IDs in allocation     //ArrayList<String> robIDset = a.getRobotsList(); //one MDP for all robots
-		ArrayList<String> group_robID = a.getGroupsOfRobot().get(group_i); //MDP only for group i
+		// -list robot IDs in allocation     		
+		ArrayList<String> group_robID = a.getGroupsOfRobot().get(group_i);   //ArrayList<String> robIDset = a.getRobotsList(); //if one MDP for all robots
 		
 		/**Array: robot id, task, duration: {"r1","t1","3.0"}*/
 		ArrayList<String[]> timeTask = new ArrayList<String[]>();
@@ -90,6 +96,10 @@ public class MDPModelA {
 		StringBuilder model = new StringBuilder();
 		model.append("mdp\n\n");
 		model.append("const int TT=").append(TT).append(";//total time available \n\n");
+		//
+		
+		//***MISSING HERE! -> check model B, already done there-> check all paths exists
+		
 		//
 		for(String rID:group_robID) {
 			Permutation r_permutation = r_permutationTasks.get(rID);
@@ -274,7 +284,7 @@ public class MDPModelA {
 		String mdpFileName = "modelA_"+allocNum+"_"+ geneString+"_"+group_i +".mdp";
 		String mdpFilePath = outputFolder+mdpFileName;
 		
-		System.out.println("MDP: "+ outputFolder+mdpFilePath );
+		//System.out.println("MDP: "+ outputFolder+mdpFilePath );
 		
 		//-Save to file
 		createMDPFile(outputFolder,mdpFileName,model);
@@ -367,7 +377,7 @@ public class MDPModelA {
 		//Result result = prism.modelCheck(propertiesFile, propertiesFile.getPropertyObject(0));
 		d = Double.parseDouble( rIdle.getResult().toString() );
 		
-		System.out.println("Prism formulae: "+ property+" =" + d);
+		//System.out.println("Prism formulae: "+ property+" =" + d);
 
 		} catch (PrismException | FileNotFoundException e) {
 			e.printStackTrace();

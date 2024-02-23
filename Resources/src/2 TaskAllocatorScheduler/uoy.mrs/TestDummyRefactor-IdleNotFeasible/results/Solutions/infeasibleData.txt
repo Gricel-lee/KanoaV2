@@ -1,0 +1,3 @@
+alloc,,robots,,perm,,reason
+1,,[r2, r3, r4, r5, r1],,[6, 1, 2, 2, 40320],,noPlanSynthesised
+

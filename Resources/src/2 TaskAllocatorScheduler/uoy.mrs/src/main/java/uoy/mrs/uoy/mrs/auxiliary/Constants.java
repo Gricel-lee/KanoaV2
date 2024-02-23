@@ -131,11 +131,11 @@ public class Constants {
 		allsolutionsData = outputDir + "/Solutions/allData.csv";
 		
 		//Database 1 = optimised solutions
-		db1_optimisedSolutions = outputDir + "/Solutions/optimalData.csv";
+		db1_optimisedSolutions = outputDir + "/Solutions/optimalData.txt";
 		//Database 2 = sub-optimal but feasible solutions
-		db2_feasibleSolutions = outputDir + "/Solutions/suboptimalData.csv";
+		db2_feasibleSolutions = outputDir + "/Solutions/suboptimalData.txt";
 		//Database 3 = infeasible solutions
-		db3_infeaibleSolutions = outputDir + "/Solutions/infeasibleData.csv";
+		db3_infeaibleSolutions = outputDir + "/Solutions/infeasibleData.txt";
 		
 		
 		

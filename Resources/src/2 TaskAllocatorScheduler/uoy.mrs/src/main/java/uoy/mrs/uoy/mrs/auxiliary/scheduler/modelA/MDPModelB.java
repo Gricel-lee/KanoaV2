@@ -12,27 +12,58 @@ import uoy.mrs.uoy.mrs.types.impl.Permutation;
 
 public class MDPModelB {
 	
-	
-	
-	
-	
 	//-- Note about paths:
 	// Paths are read from the DSL. However, if "Constants.euclidian_path_distances" is declared as string:"true",
 	// the paths between all locations not added explicitly are added with Euclidian distances and success rate =100
-	
+	/**Join prob. for all groups - create model B for each group*/
 	public static double createModelB(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString) {
+		//--Starting Model B
+		double totalProb = 1;
 		
-		System.out.println("\n\n--Starting Model B");
+		System.out.print("\nModelB (prob)- ");
 		
-		//probability of success - return the minimum probability of completion without failure
-		// prob > 0 
-		double prob = -1;
-		
-		
+		//for each group, get prob
+		for (int i=0 ; i< a.getGroupsOfRobot().size(); i++) {
+			
+			String mdpFilePath = createModelB_groupi(r_permutationTasks,p,a,geneString,i);
+			
+			//check not feasible 
+			if(mdpFilePath=="missingPath") {
+				if(Constants.verbose) {System.out.print("g"+i + ":missing path");}
+				return 99; //code for missing path in DSL
+			}
+			
+			//check not feasible
+			File file = new File(mdpFilePath);
+			String property = "Pmin=?[F done]";
+			double prob = MDPModelA.RunPrism(file,property); //<-- return the travelling time (computed using PRISM PMC)
+			if (prob>1) { //if not feasible
+				if(Constants.verbose) {System.out.print("g"+i + ":PRISM returns "+prob);}
+				return 999; //code for failed PMC for DTMC
+			}
+			
+			//Note: probability threshold requirement checked in Scheduler.getAttrib
+			
+			//feasible
+			else {
+				if(Constants.verbose) {System.out.print("g"+i + ":"+prob+", ");}
+			}
+			
+			
+			//if feasible
+			totalProb = totalProb * prob;
+		}
+		System.out.print("Total prob:"+ totalProb);
+		return totalProb;
+	}
+	
+	
+	/**Probability of success DTMC file*/
+	public static String createModelB_groupi(HashMap<String, Permutation> r_permutationTasks, ProblemSpecification p, Allocation a, String geneString, int group_i) {
 		
 		// a) get info
 		// -list robot IDs in allocation
-		ArrayList<String> robIDset = a.getRobotsList();
+		ArrayList<String> group_robID = a.getGroupsOfRobot().get(group_i);			//ArrayList<String> robIDset = a.getRobotsList(); //if one DTMC for all robots
 		
 		//paths info -- returnrs a path object with the 
 		
@@ -44,7 +75,7 @@ public class MDPModelB {
 		model.append("dtmc\n\n");
 		
 		// - prob. of travelling
-		for(String rID:robIDset) {
+		for(String rID:group_robID) {
 			Permutation r_permutation = r_permutationTasks.get(rID);
 			//tasks
 			String t1ID= r_permutation.tasksInPerm.get(0);
@@ -55,7 +86,7 @@ public class MDPModelB {
 			double probTravel = p.getWorldModel().getProbabilityPathTravel(robotLocation , t1IDLocation, p);
 			// =================================---
 			// if prob. -1, path does not exist -> permutation not allowed 
-			if (probTravel==-1) {return Double.POSITIVE_INFINITY;} //infinite as JMetal has minimisation by default
+			if (probTravel==-1) {return "missingPath";} //(Model A should have detected it already and return-no model synthesised)
 			// =================================---
 			model.append("const double p_travel_"+rID+t1ID+"="+probTravel +" ;// from location: "+robotLocation +" (robot initial loc) to location: "+ t1IDLocation+" ("+t1ID+")"+"\n");
 			
@@ -70,7 +101,7 @@ public class MDPModelB {
 				probTravel = p.getWorldModel().getProbabilityPathTravel(t1IDLocation , t2IDLocation, p);
 				// =================================---
 				// if prob. -1, path does not exist -> permutation not allowed 
-				if (probTravel==-1) {return Double.POSITIVE_INFINITY;} //infinite as JMetal has minimisation by default
+				if (probTravel==-1) {return "missingPath";} //(Model A should have detected it already and return-no model synthesised)
 				// =================================---
 				model.append("const double p_travel_"+rID+t2ID+"="+probTravel +" ;// from location: "+t1IDLocation +" ("+t1ID+") to location: "+ t2IDLocation+"("+t2ID+")"+"\n");
 			}
@@ -79,7 +110,7 @@ public class MDPModelB {
 		
 		// - prob. of succeeding with tasks
 		
-		for(String rID:robIDset) {
+		for(String rID:group_robID) {
 			Permutation r_permutation = r_permutationTasks.get(rID);
 			for (int i = 0; i < r_permutation.tasksInPerm.size(); i++) {
 				String t1ID = r_permutation.tasksInPerm.get(i);
@@ -104,8 +135,8 @@ public class MDPModelB {
 		// to implicitly calculate the num. of states used by each robot)
 		HashMap<String, Integer> r_numStates = new HashMap<String,Integer>(); //robotID to total num of states used
 		
-		for (int i = 0; i < robIDset.size(); i++) {
-			String r = robIDset.get(i);
+		for (int i = 0; i < group_robID.size(); i++) {
+			String r = group_robID.get(i);
 			Permutation r_perm = r_permutationTasks.get(r);
 			int succState = 0; //count total num of states needed - success state
 			
@@ -128,8 +159,8 @@ public class MDPModelB {
 		String s = "";
 		
 		// -- 
-		for (int i = 0; i < robIDset.size(); i++) { //for each robot
-			String rID = robIDset.get(i);
+		for (int i = 0; i < group_robID.size(); i++) { //for each robot
+			String rID = group_robID.get(i);
 			Permutation r_perm = r_permutationTasks.get(rID);
 			int nState = 0; //this tracks the value of the state variable robot i, e.g. "r1:[0..10];"
 			int succState = 0;
@@ -186,7 +217,7 @@ public class MDPModelB {
 		// -- formula done
 		model.append("\nformula done=(");
 		for (int i = 0; i < r_numStates.size(); i++) {
-			String rID = robIDset.get(i);
+			String rID = group_robID.get(i);
 			model.append(rID+"="+ r_numStates.get(rID) +"&");
 		}
 		model.deleteCharAt(model.length() - 1);
@@ -234,12 +265,12 @@ public class MDPModelB {
 		//b) allocation num
 		String allocNum = a.getNum();
 		String outputFolder = Constants.prismFilesDir;
-		String mdpFileName = "modelB_"+"Alloc"+allocNum+"_Perm"+ geneString +".dtmc";
+		String mdpFileName = "modelB_"+allocNum+"_"+ geneString +"_"+group_i +".dtmc";
 		String mdpFilePath = outputFolder+mdpFileName;
 		
 		// ==print--
-		if(Constants.verbose) 
-			System.out.println("DTMC: "+ outputFolder+mdpFilePath );
+		//if(Constants.verbose) 
+			//System.out.println("DTMC: "+ outputFolder+mdpFilePath );
 		
 		//-Save to file
 		MDPModelA.createMDPFile(outputFolder,mdpFileName,model);
@@ -247,11 +278,8 @@ public class MDPModelB {
 		//=========================================================
 		//=========================================================
 		//Run prism:
-		File file = new File(mdpFilePath);
-		String property = "Pmin=?[F done]";
-		prob = MDPModelA.RunPrism(file,property); //<-- return the travelling time (computed using PRISM PMC)
+		return mdpFilePath;
 		
-		return prob;
 	}
 	
 		

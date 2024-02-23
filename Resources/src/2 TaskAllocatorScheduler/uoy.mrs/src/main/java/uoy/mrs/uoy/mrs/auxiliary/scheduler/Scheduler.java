@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.netlib.util.doubleW;
 import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
@@ -45,8 +46,7 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		
 	    // -- run
 		for (Allocation a: p.getAllocations()) {
-			System.out.println("\n-Running scheduler for allocation: "+a.getNum());
-			System.out.println("-robot clusters: "+a.getGroupsOfRobot());
+			System.out.println("\n-Task schedules for Allocation "+a.getNum() +" with " + a.getGroupsOfRobot().size() +" clusters." );
 			runner(a,p);
 		}
 	}
@@ -66,16 +66,16 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		Utility.WriteToFile(Constants.db2_feasibleSolutions , "alloc,,robots,,permut,,prob,,idle,,travel");
 		Utility.WriteToFile(Constants.db3_infeaibleSolutions , "alloc,,robots,,perm,,reason");
 		
-		System.out.println("Solutions file:" +Constants.db1_optimisedSolutions);
+		//System.out.println("Solutions file:" +Constants.db1_optimisedSolutions);
 	}
 	
 	
 	/**Return true if feasible to travel between locations*/
-	public static Boolean checkPaths(HashMap<String, Permutation> r_permutationTasks, HashMap<String, Integer> r_permNum, Integer allocNum, Allocation a1) {
+	public static Boolean checkPaths(HashMap<String, Permutation> r_permutationTasks, HashMap<String, Integer> r_permNum, Allocation a1) {
 		for(Permutation perm:r_permutationTasks.values()) {
 			// not feasible - save in database 3 and return false
 			if(!perm.isFeasible_AllPathsExist) {
-				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(r_permNum,perm,allocNum);
+				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(r_permNum,perm,a1);
 				return false;
 			}
 		}
@@ -88,22 +88,16 @@ public class Scheduler extends AbstractAlgorithmRunner{
 				+ r_permNum.keySet()+",,"
 				+ r_permNum.values() +",,"
 				+ violationTypeString + "\n";
-		Utility.WriteToFile(s, Constants.db3_infeaibleSolutions); //database 3
+		Utility.WriteToFile(Constants.db3_infeaibleSolutions, s); //database 3
 	}
 	
 	
 	
 	// --for tests
-	public static ArrayList<Integer> runTest(ProblemSpecification p) {
+	public static void runTest(ProblemSpecification p) {
 		//---------------------------------------
 		// -- New databases
 		startDatabases();
-		
-		// -- Optimisation objectives
-		HashMap<String, Integer> objectiveValuesHashmap = new HashMap<String, Integer>(); // initialise array (this could be size 1 to 3 depending on number of optimisation objectives declared in DSL)
-		System.out.println(objectiveValuesHashmap.toString());
-		// -- check feasibility (i.e., all travelling paths exists, no constraint (tasks, time, min. success rate) is violated)
-		Boolean feasible = true;
 		
 		//------Input: (allocation, permutation)
 		// 1 get info - create allocation (Test creating alloc./permutation)
@@ -112,7 +106,23 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		//1.1 get JMetal permutation. String type, e.g.: "(1,1,1,1,443438)" where each number is the robot's task permutation
 		String geneString = getMadeUpPermuation_forTest(a1,p); // create string permutation for testing, in JMetal encoded
 		
+		System.out.println("allocation num:" + a1.getNum());
 		
+		getAttrib(p,a1,geneString);
+	}
+	
+	
+	/** Get attributes for one combination (alloc,perm)
+	 * @param geneString */
+	public static double[] getAttrib(ProblemSpecification p, Allocation a1, String geneString) {
+		
+		String allocNum = a1.getNum();
+		
+		// -- 1 Optimisation objectives
+		HashMap<String, Double> objectiveValuesHashmap = new HashMap<String, Double>(); //initialise array {} (this could be size 1 to 3 depending on number of optimisation objectives declared in DSL)
+		
+		// -- check feasibility (i.e., all travelling paths exists, no constraint (tasks, time, min. success rate) is violated)
+		Boolean feasible = true;
 		
 		//---------------------------------------
 		//1.2 Permutation info */		
@@ -121,120 +131,77 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		
 		//==print==
 		if(Constants.verbose) {
-			System.out.println("allocation num:" + a1.getNum());
-			//same as:  System.out.println("robots:" +a1.getRobotsList());
-			System.out.println("a) 'robots' to permutation Number"+r_permNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
-			//same as: System.out.println("permutation"+geneString);
-			System.out.println("b) robots to 'permutation Number'"+r_permNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
+			System.out.println("permutation: "+r_permNum.values()+", robots: "+r_permNum.keySet()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
 		}
-		
 		
 		//1.3 Optimisation objectives declared in DSL
 		ArrayList<String> objectiveList = p.getParameters().getListObjectiveStrings();
-						
-				
 				
 		//---------------------------------------
 		//2 check if all paths are feasible 
-		feasible = checkPaths(r_permutationTasks,  r_permNum, allocNum, a1); //must be declared in DSL or in config.prop ALLOW_PATH_DISTANCE_EUCLIDIAN = true
+		feasible = checkPaths(r_permutationTasks,  r_permNum, a1); //must be declared in DSL or in config.prop ALLOW_PATH_DISTANCE_EUCLIDIAN = true
 		if(!feasible) {
 			saveViolationDatabase(r_permNum, a1.getNum(), "pathsDontExist");
 			return createInViolationList(p);
 		}
-				
-				
 		
 		//---------------------------------------
 		//3 check if task permutation is feasible due to idle and task constraints (model A must not return infinite=2147483647)
-		
-		int idle = MDPModelA.checkModelA(r_permutationTasks,p,a1,geneString,r_permNum);
+		double idle = (double) MDPModelA.checkModelA(r_permutationTasks,p,a1,geneString,r_permNum);
 		if (idle==2147483647) {feasible=false;} //infinity
 		if(!feasible) {
-			saveViolationDatabase(r_permNum, a1.getNum(), "planNoSynthesised");
+			saveViolationDatabase(r_permNum, a1.getNum(), "noPlanSynthesised");//due to time limit, task constraint or idling limit
 			return createInViolationList(p);
 		}
 		
-		
 		//---------------------------------------
-		//4) get optimisation values array (this could be 1, 2 or 3 depending on objectives declared in DSL)
+		//4) get attrib/optimisation values array (this could be 1, 2 or 3 depending on objectives declared in DSL)
 		for (int i = 0; i <objectiveList.size() ; i++) {
-			if(Constants.verbose) {System.out.println("Getting value of optimisation objective: "+ objectiveList.get(i));}
+			//if(Constants.verbose) {System.out.println("Getting value of optimisation objective: "+ objectiveList.get(i));}
 			// 4.1 idle
-			if(objectiveList.get(i)=="minIdle") { //already computed, & feasible is this part of the code is reached
+			if(objectiveList.get(i)=="minIdle") { //already computed, & feasible is this part is reached
 				objectiveValuesHashmap.put(objectiveList.get(i), idle);}
 			// 4.2 probability of success
 			else if(objectiveList.get(i)=="maxSucc") {
 				double prob = MDPModelB.createModelB(r_permutationTasks,p,a1, geneString); //computed prob. of succ.
-				objectiveValuesHashmap.put(objectiveList.get(i), (int) (prob*100) );}
+				objectiveValuesHashmap.put(objectiveList.get(i), (prob*100) );}
 			// 4.3 travelling cost
 			else if(objectiveList.get(i)=="minTravel") {
-				int travelCost = MDPModelC.createModelC(r_permutationTasks);
+				double travelCost = MDPModelC.createModelC(r_permutationTasks);
 				objectiveValuesHashmap.put(objectiveList.get(i), travelCost);}
 			// ERROR
 			else {KanoaErrorHandler.ErrorObjectiveNotRecognised(objectiveList.get(i));}
 		}
 		// print
-		if(Constants.verbose){System.out.println(objectiveValuesHashmap.toString());}
+		if(Constants.verbose){System.out.println("\n"+objectiveValuesHashmap.toString());}
 		
 		
 		//---------------------------------------
-		//5) check violations of requirement (only rate of success missing to be checked)
-		//5.1 success rate constraint - if constraint declared in DSL then !=0
-		if(p.getParameters().ratesucc!="0") { 
-			//5.1.2 check if prob. NOT computed as part of the optimisation objectives (otherwise calculate it as needed for this requirement)
-			double succRate = 0;
-			if(!objectiveValuesHashmap.keySet().contains("maxSucc"))
-				succRate = MDPModelB.createModelB(r_permutationTasks,p,a1,geneString)*100;
-			else
-				succRate = objectiveValuesHashmap.get("maxSucc");
-			//5.1.3 check if requirement does not hold (succ.rate has to be greater that N in the DSL)
-			if( succRate <= Utility.string2double( p.getParameters().ratesucc )) {
-				System.out.println("Plan not feasible. Success rate expected >"+p.getParameters().ratesucc+" but computed: "+succRate);
-				//String header3 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost,,violatedReq\n";
-				String s = allocNum+",,"
-						+ r_permNum.keySet()+",,"
-						+ r_permNum.values() +",,"
-						+ a1.getGroupsOfRobot().toString() +",,"
-						// ******* CHECK HERE: SOME may not have all 3 !! - only 1, or 2 
-						+ objectiveValuesHashmap.get("minIdle") +",,"
-						+ objectiveValuesHashmap.get("maxSucc") +",,"
-						+ objectiveValuesHashmap.get("minTravel") +",,"
-						+ "rateSuccessViolated" + "\n";
-				Utility.WriteToFile(s, Constants.db3_infeaibleSolutions); //database 3
-				feasible=false; //<----- infeasible
-				return createInViolationList(p);
-			}
-		}
+		//5) check violation prob. success - if constraint declared in DSL then !=0
+		double succRate = 0;
+		if(p.getParameters().ratesucc!="0" && !objectiveList.contains("maxSucc")) //if prob. NOT computed yet
+			succRate = MDPModelB.createModelB(r_permutationTasks,p,a1,geneString)*100;
+		else{succRate = objectiveValuesHashmap.get("maxSucc");}
+		//5.2 check if requirement holds (succ.rate has to be greater that N in the DSL)
+		if(succRate <= Utility.string2double( p.getParameters().ratesucc )) {
+			saveViolationDatabase(r_permNum, a1.getNum(), "probSuccessViolated");//due to time limit, task constraint or idling limit
+			return createInViolationList(p);}
 		
 		//---------------------------------------
-		//5) if nothing is violated, save in feasible solutions and return values
-		//5.1 save
+		//6) feasible solution
 		System.out.println("Plan is feasible!");
-		//String header2 = "allocationNum,,robots,,permutation,,robotClusters,,idle,,rateSucc,,travelCost\n";
-		String s = allocNum+",,"
-				+ r_permNum.keySet()+",,"
-				+ r_permNum.values() +",,"
-				+ a1.getGroupsOfRobot().toString() +",,"
-				// ******* CHECK HERE: SOME may not have all 3 !! - only 1, or 2
-				+ objectiveValuesHashmap.get("minIdle") +",,"
-				+ objectiveValuesHashmap.get("maxSucc") +",,"
-				+ objectiveValuesHashmap.get("minTravel") + "\n";
-				
-		Utility.WriteToFile(s, Constants.db2_feasibleSolutions); //database 2 --all feasible (including sub-optimal solutions)
-		feasible=true; //<----- feasible
-		
-		//5.2 return
 		return createFeasibleValuesList(objectiveValuesHashmap, p);
 	}
 	
 	
-	private static ArrayList<Integer> createFeasibleValuesList(HashMap<String, Integer> objectiveValuesHashmap, ProblemSpecification p) {
-		ArrayList<Integer> optimisationValues = new ArrayList<Integer>();
+	private static double[] createFeasibleValuesList(HashMap<String, Double> objectiveValuesHashmap, ProblemSpecification p) {
+		
+		ArrayList<Double> optimisationValues = new ArrayList<Double>();
 		for(int i=0; i<p.getParameters().getListObjectiveStrings().size();i++) {
-			Integer val = objectiveValuesHashmap.get(p.getParameters().getListObjectiveStrings().get(i));
+			Double val = objectiveValuesHashmap.get(p.getParameters().getListObjectiveStrings().get(i));
 			optimisationValues.add(val); //values of idle, succRate and travelCost
 		}
-		return optimisationValues;
+		return Utility.arrayDouble2doubleList( optimisationValues);
 	}
 
 
@@ -242,11 +209,11 @@ public class Scheduler extends AbstractAlgorithmRunner{
 	/** Return array with the size of optimisation objectives 
 	 * populated with 'infinite', i.e., infeasible  
 	 * **/
-	private static ArrayList<Integer> createInViolationList(ProblemSpecification p){
+	private static double[] createInViolationList(ProblemSpecification p){
 		ArrayList<Integer> optimisationValues = new ArrayList<Integer>();
 		for(int i=0; i<p.getParameters().getListObjectiveStrings().size();i++) 
 			optimisationValues.add( Utility.infiniteInt ); //set to infinite as the optimisation problem in JMetal is a minimisation problem.
-		return optimisationValues;
+		return Utility.arrayInt2doubleList( optimisationValues );
 	}
 		
 	
@@ -431,26 +398,19 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		//System.out.println("Num of Variables (robots):"+problem.getNumberOfVariables());
 		
 		// crossover
-		double crossoverProbability = 0.95;
-		// - example: double crossoverProbability = 0.9;
+		double crossoverProbability = 0.95; // - example: double crossoverProbability = 0.9;
 		
-		double crossoverDistributionIndex = 5.0;
-		//-example: double crossoverDistributionIndex = 20.0;
+		double crossoverDistributionIndex = 5.0; //-example: double crossoverDistributionIndex = 20.0;
 		
-		CrossoverOperator<IntegerSolution> crossover = new IntegerSBXCrossover(crossoverProbability, crossoverDistributionIndex); //CrossoverOperator<DoubleSolution> crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex);
-		//-example: CrossoverOperator<DoubleSolution> crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex);
-		
+		CrossoverOperator<IntegerSolution> crossover = new IntegerSBXCrossover(crossoverProbability, crossoverDistributionIndex); //CrossoverOperator<DoubleSolution> crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex);  //-example: CrossoverOperator<DoubleSolution> crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex);
 		
 		// mutation
 		//- PlanScheduler
-		double mutationProbability = 0.9;
-		//- AllocationScheduler and example: double mutationProbability = 1.0 / problem.getNumberOfVariables();
+		double mutationProbability = 0.9; //- AllocationScheduler and example: double mutationProbability = 1.0 / problem.getNumberOfVariables();
 		
-		double mutationDistributionIndex = 10.0;
-		//- example: 20, plan schedule =5
+		double mutationDistributionIndex = 10.0; //- example: 20, plan schedule =5
 		
-		MutationOperator<IntegerSolution> mutation = new IntegerPolynomialMutation(mutationProbability, mutationDistributionIndex);  //MutationOperator<DoubleSolution> mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex);
-		// -example: MutationOperator<DoubleSolution> mutation = new PolynomialMutation(mutationProbability,mutationDistributionIndex);
+		MutationOperator<IntegerSolution> mutation = new IntegerPolynomialMutation(mutationProbability, mutationDistributionIndex);  //MutationOperator<DoubleSolution> mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex); // -example: MutationOperator<DoubleSolution> mutation = new PolynomialMutation(mutationProbability,mutationDistributionIndex);
 		
 		
 		//new PolynomialMutation(1.0/problem.getNumberOfVariables() , 20 )
@@ -477,14 +437,10 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		
 		SelectionOperator<List<IntegerSolution>, IntegerSolution> selection = new BinaryTournamentSelection<IntegerSolution>();
 		
-		
-		
-		NSGAII<IntegerSolution> algorithm =
-		    new NSGAIIBuilder<>(problem, crossover, mutation, populationSize)
+		NSGAII<IntegerSolution> algorithm = new NSGAIIBuilder<>(problem, crossover, mutation, populationSize)
 		        .setSelectionOperator(selection)
 		        .setMaxEvaluations(600)//25000)
 		        .build();
-		
 		
 		
 		// c) ------ run GA algorithm	-------					// instead of algorithm.run(); to get more info

@@ -9,7 +9,8 @@ public class MDPModelC {
 	
 	/**Return the sum of the travelling cost of all robots in a given allocation and permutation.*/
 	public static int createModelC(HashMap<String, Permutation> r_permutationTasks) {
-		System.out.println("\n\n--Starting Model C");
+		
+		System.out.print("\nModelC (travel)- ");
 		
 		int travelCost = 0;
 		for(Permutation r_perm : r_permutationTasks.values()) {
@@ -18,7 +19,7 @@ public class MDPModelC {
 		
 		// ==print--
 		if(Constants.verbose) 
-			System.out.println("MODEL C. Travel cost: "+ travelCost );
+			System.out.print("total cost: "+ travelCost );
 		
 		return travelCost;
 	}

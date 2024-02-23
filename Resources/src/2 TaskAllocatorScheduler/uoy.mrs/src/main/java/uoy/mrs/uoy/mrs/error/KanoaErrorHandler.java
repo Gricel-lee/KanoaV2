@@ -4,6 +4,7 @@ import java.io.IOError;
 import java.util.HashMap;
 
 import prism.PrismException;
+import uoy.mrs.uoy.mrs.types.impl.Allocation;
 import uoy.mrs.uoy.mrs.types.impl.Permutation;
 
 public class KanoaErrorHandler {
@@ -98,8 +99,8 @@ public class KanoaErrorHandler {
 		throw new IOError(null); //stop and print trace
 	}
 
-	public static void NoPathExistsToCompleteRunTestPermutation(HashMap<String, Integer> robots2PermNum, Permutation perm, int allocNum) {
-		System.err.println("ERROR: Paths do not exists to complete permutation "+ perm.numPerm + " for robot "+ perm.robID +" in alloction "+allocNum);
+	public static void NoPathExistsToCompleteRunTestPermutation(HashMap<String, Integer> robots2PermNum, Permutation perm, Allocation a1) {
+		System.err.println("ERROR: Paths do not exists to complete permutation "+ perm.numPerm + " for robot "+ perm.robID +" in alloction "+a1.getNum());
 		System.err.println("tasks: "+ perm.tasksInPerm );
 		System.out.println("a) robots to permutation Number"+robots2PermNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
 		System.out.println("b) robots to permutation Number"+robots2PermNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]

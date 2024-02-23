@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.apache.commons.io.FilenameUtils;
+import org.netlib.util.doubleW;
 
 import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
 
@@ -115,6 +116,27 @@ public class Utility {
     }
 	
 	
+	//ArrayList<Integer> to double[]     //also works: double[] arr = res.stream().mapToDouble(Double::doubleValue).toArray(); //array to []
+    public static double[] arrayInt2doubleList(ArrayList<Integer> l) {
+		double[] doubleArray = new double[l.size()];
+        for (int i = 0; i < l.size(); i++) {
+            doubleArray[i] = l.get(i).doubleValue();
+        }
+        return doubleArray;
+    }
+    
+  //ArrayList<Double> to double[]
+    public static double[] arrayDouble2doubleList(ArrayList<Double> l) {
+		double[] doubleArray = new double[l.size()];
+        for (int i = 0; i < l.size(); i++) {
+            doubleArray[i] = l.get(i).doubleValue();
+        }
+        return doubleArray;
+    }
+    	
+    		
+	
+	
 	public static boolean string2boolean(String s) {
 		// .trim remove spaces 
         return Boolean.valueOf(s.trim());  //allows Boolean, which includes boolean
@@ -136,7 +158,6 @@ public class Utility {
 	public static void createEmptyFile (String filename) {
 		File file = new File(filename);
 		file.delete();
-		System.out.println(filename);
     	try {
 			file.getParentFile().createNewFile();
 		} catch (IOException e) {

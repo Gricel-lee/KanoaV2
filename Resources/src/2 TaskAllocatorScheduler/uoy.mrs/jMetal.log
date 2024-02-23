@@ -2,9 +2,9 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-11-04T15:43:43.706704Z</date>
-  <millis>1699112623706</millis>
-  <nanos>704000</nanos>
+  <date>2024-02-23T20:15:51.550576Z</date>
+  <millis>1708719351550</millis>
+  <nanos>576000</nanos>
   <sequence>0</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -14,33 +14,33 @@
   <message>Loggers configured with null</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:43.797366Z</date>
-  <millis>1699112623797</millis>
-  <nanos>366000</nanos>
+  <date>2024-02-23T20:15:51.602214Z</date>
+  <millis>1708719351602</millis>
+  <nanos>214000</nanos>
   <sequence>1</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
   <method>runner</method>
   <thread>1</thread>
-  <message>Total execution time: 15ms</message>
+  <message>Total execution time: 420ms</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:43.822625Z</date>
-  <millis>1699112623822</millis>
-  <nanos>625000</nanos>
+  <date>2024-02-23T20:15:51.616968Z</date>
+  <millis>1708719351616</millis>
+  <nanos>968000</nanos>
   <sequence>2</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
   <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Random seed: 1699112623667</message>
+  <message>Random seed: 1708719351106</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:43.823634Z</date>
-  <millis>1699112623823</millis>
-  <nanos>634000</nanos>
+  <date>2024-02-23T20:15:51.618598Z</date>
+  <millis>1708719351618</millis>
+  <nanos>598000</nanos>
   <sequence>3</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -50,9 +50,9 @@
   <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:43.824924Z</date>
-  <millis>1699112623824</millis>
-  <nanos>924000</nanos>
+  <date>2024-02-23T20:15:51.619699Z</date>
+  <millis>1708719351619</millis>
+  <nanos>699000</nanos>
   <sequence>4</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -62,33 +62,33 @@
   <message>Variables values have been written to file VAR.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.158992Z</date>
-  <millis>1699112624158</millis>
-  <nanos>992000</nanos>
+  <date>2024-02-23T20:15:52.102100Z</date>
+  <millis>1708719352102</millis>
+  <nanos>100000</nanos>
   <sequence>5</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
   <method>runner</method>
   <thread>1</thread>
-  <message>Total execution time: 160ms</message>
+  <message>Total execution time: 324ms</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.162585Z</date>
-  <millis>1699112624162</millis>
-  <nanos>585000</nanos>
+  <date>2024-02-23T20:15:52.103676Z</date>
+  <millis>1708719352103</millis>
+  <nanos>676000</nanos>
   <sequence>6</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
   <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Random seed: 1699112623667</message>
+  <message>Random seed: 1708719351106</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.163939Z</date>
-  <millis>1699112624163</millis>
-  <nanos>939000</nanos>
+  <date>2024-02-23T20:15:52.104772Z</date>
+  <millis>1708719352104</millis>
+  <nanos>772000</nanos>
   <sequence>7</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -98,9 +98,9 @@
   <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.164913Z</date>
-  <millis>1699112624164</millis>
-  <nanos>913000</nanos>
+  <date>2024-02-23T20:15:52.105406Z</date>
+  <millis>1708719352105</millis>
+  <nanos>406000</nanos>
   <sequence>8</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -110,33 +110,33 @@
   <message>Variables values have been written to file VAR.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.455646Z</date>
-  <millis>1699112624455</millis>
-  <nanos>646000</nanos>
+  <date>2024-02-23T20:15:52.372243Z</date>
+  <millis>1708719352372</millis>
+  <nanos>243000</nanos>
   <sequence>9</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
   <method>runner</method>
   <thread>1</thread>
-  <message>Total execution time: 137ms</message>
+  <message>Total execution time: 121ms</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.460116Z</date>
-  <millis>1699112624460</millis>
-  <nanos>116000</nanos>
+  <date>2024-02-23T20:15:52.373654Z</date>
+  <millis>1708719352373</millis>
+  <nanos>654000</nanos>
   <sequence>10</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
   <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Random seed: 1699112623667</message>
+  <message>Random seed: 1708719351106</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.461781Z</date>
-  <millis>1699112624461</millis>
-  <nanos>781000</nanos>
+  <date>2024-02-23T20:15:52.374136Z</date>
+  <millis>1708719352374</millis>
+  <nanos>136000</nanos>
   <sequence>11</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -146,9 +146,9 @@
   <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.462557Z</date>
-  <millis>1699112624462</millis>
-  <nanos>557000</nanos>
+  <date>2024-02-23T20:15:52.375808Z</date>
+  <millis>1708719352375</millis>
+  <nanos>808000</nanos>
   <sequence>12</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -158,33 +158,33 @@
   <message>Variables values have been written to file VAR.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.661063Z</date>
-  <millis>1699112624661</millis>
-  <nanos>63000</nanos>
+  <date>2024-02-23T20:15:52.828196Z</date>
+  <millis>1708719352828</millis>
+  <nanos>196000</nanos>
   <sequence>13</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
   <method>runner</method>
   <thread>1</thread>
-  <message>Total execution time: 36ms</message>
+  <message>Total execution time: 293ms</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.663663Z</date>
-  <millis>1699112624663</millis>
-  <nanos>663000</nanos>
+  <date>2024-02-23T20:15:52.830146Z</date>
+  <millis>1708719352830</millis>
+  <nanos>146000</nanos>
   <sequence>14</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
   <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Random seed: 1699112623667</message>
+  <message>Random seed: 1708719351106</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.664988Z</date>
-  <millis>1699112624664</millis>
-  <nanos>988000</nanos>
+  <date>2024-02-23T20:15:52.830545Z</date>
+  <millis>1708719352830</millis>
+  <nanos>545000</nanos>
   <sequence>15</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -194,9 +194,9 @@
   <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.665251Z</date>
-  <millis>1699112624665</millis>
-  <nanos>251000</nanos>
+  <date>2024-02-23T20:15:52.830814Z</date>
+  <millis>1708719352830</millis>
+  <nanos>814000</nanos>
   <sequence>16</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -206,33 +206,33 @@
   <message>Variables values have been written to file VAR.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.852936Z</date>
-  <millis>1699112624852</millis>
-  <nanos>936000</nanos>
+  <date>2024-02-23T20:15:53.356822Z</date>
+  <millis>1708719353356</millis>
+  <nanos>822000</nanos>
   <sequence>17</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
   <method>runner</method>
   <thread>1</thread>
-  <message>Total execution time: 29ms</message>
+  <message>Total execution time: 361ms</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.855536Z</date>
-  <millis>1699112624855</millis>
-  <nanos>536000</nanos>
+  <date>2024-02-23T20:15:53.358265Z</date>
+  <millis>1708719353358</millis>
+  <nanos>265000</nanos>
   <sequence>18</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
   <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Random seed: 1699112623667</message>
+  <message>Random seed: 1708719351106</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.858417Z</date>
-  <millis>1699112624858</millis>
-  <nanos>417000</nanos>
+  <date>2024-02-23T20:15:53.360261Z</date>
+  <millis>1708719353360</millis>
+  <nanos>261000</nanos>
   <sequence>19</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -242,9 +242,9 @@
   <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:44.858760Z</date>
-  <millis>1699112624858</millis>
-  <nanos>760000</nanos>
+  <date>2024-02-23T20:15:53.360728Z</date>
+  <millis>1708719353360</millis>
+  <nanos>728000</nanos>
   <sequence>20</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -254,33 +254,33 @@
   <message>Variables values have been written to file VAR.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:45.053751Z</date>
-  <millis>1699112625053</millis>
-  <nanos>751000</nanos>
+  <date>2024-02-23T20:15:53.734013Z</date>
+  <millis>1708719353734</millis>
+  <nanos>13000</nanos>
   <sequence>21</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
   <method>runner</method>
   <thread>1</thread>
-  <message>Total execution time: 35ms</message>
+  <message>Total execution time: 209ms</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:45.057927Z</date>
-  <millis>1699112625057</millis>
-  <nanos>927000</nanos>
+  <date>2024-02-23T20:15:53.736987Z</date>
+  <millis>1708719353736</millis>
+  <nanos>987000</nanos>
   <sequence>22</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
   <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Random seed: 1699112623667</message>
+  <message>Random seed: 1708719351106</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:45.061902Z</date>
-  <millis>1699112625061</millis>
-  <nanos>902000</nanos>
+  <date>2024-02-23T20:15:53.740963Z</date>
+  <millis>1708719353740</millis>
+  <nanos>963000</nanos>
   <sequence>23</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -290,9 +290,9 @@
   <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:45.062224Z</date>
-  <millis>1699112625062</millis>
-  <nanos>224000</nanos>
+  <date>2024-02-23T20:15:53.741456Z</date>
+  <millis>1708719353741</millis>
+  <nanos>456000</nanos>
   <sequence>24</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -302,33 +302,33 @@
   <message>Variables values have been written to file VAR.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:45.241478Z</date>
-  <millis>1699112625241</millis>
-  <nanos>478000</nanos>
+  <date>2024-02-23T20:15:54.051731Z</date>
+  <millis>1708719354051</millis>
+  <nanos>731000</nanos>
   <sequence>25</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
   <method>runner</method>
   <thread>1</thread>
-  <message>Total execution time: 16ms</message>
+  <message>Total execution time: 135ms</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:45.243909Z</date>
-  <millis>1699112625243</millis>
-  <nanos>909000</nanos>
+  <date>2024-02-23T20:15:54.053711Z</date>
+  <millis>1708719354053</millis>
+  <nanos>711000</nanos>
   <sequence>26</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
   <method>printFinalSolutionSet</method>
   <thread>1</thread>
-  <message>Random seed: 1699112623667</message>
+  <message>Random seed: 1708719351106</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:45.244745Z</date>
-  <millis>1699112625244</millis>
-  <nanos>745000</nanos>
+  <date>2024-02-23T20:15:54.053925Z</date>
+  <millis>1708719354053</millis>
+  <nanos>925000</nanos>
   <sequence>27</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
@@ -338,10 +338,346 @@
   <message>Objectives values have been written to file FUN.tsv</message>
 </record>
 <record>
-  <date>2023-11-04T15:43:45.244973Z</date>
-  <millis>1699112625244</millis>
-  <nanos>973000</nanos>
+  <date>2024-02-23T20:15:54.054126Z</date>
+  <millis>1708719354054</millis>
+  <nanos>126000</nanos>
   <sequence>28</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:54.334472Z</date>
+  <millis>1708719354334</millis>
+  <nanos>472000</nanos>
+  <sequence>29</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
+  <method>runner</method>
+  <thread>1</thread>
+  <message>Total execution time: 120ms</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:54.335386Z</date>
+  <millis>1708719354335</millis>
+  <nanos>386000</nanos>
+  <sequence>30</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1708719351106</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:54.336114Z</date>
+  <millis>1708719354336</millis>
+  <nanos>114000</nanos>
+  <sequence>31</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:54.336546Z</date>
+  <millis>1708719354336</millis>
+  <nanos>546000</nanos>
+  <sequence>32</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:54.711690Z</date>
+  <millis>1708719354711</millis>
+  <nanos>690000</nanos>
+  <sequence>33</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
+  <method>runner</method>
+  <thread>1</thread>
+  <message>Total execution time: 199ms</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:54.713285Z</date>
+  <millis>1708719354713</millis>
+  <nanos>285000</nanos>
+  <sequence>34</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1708719351106</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:54.715291Z</date>
+  <millis>1708719354715</millis>
+  <nanos>291000</nanos>
+  <sequence>35</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:54.717611Z</date>
+  <millis>1708719354717</millis>
+  <nanos>611000</nanos>
+  <sequence>36</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.008494Z</date>
+  <millis>1708719355008</millis>
+  <nanos>494000</nanos>
+  <sequence>37</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
+  <method>runner</method>
+  <thread>1</thread>
+  <message>Total execution time: 117ms</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.012952Z</date>
+  <millis>1708719355012</millis>
+  <nanos>952000</nanos>
+  <sequence>38</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1708719351106</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.014032Z</date>
+  <millis>1708719355014</millis>
+  <nanos>32000</nanos>
+  <sequence>39</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.014397Z</date>
+  <millis>1708719355014</millis>
+  <nanos>397000</nanos>
+  <sequence>40</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.398879Z</date>
+  <millis>1708719355398</millis>
+  <nanos>879000</nanos>
+  <sequence>41</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
+  <method>runner</method>
+  <thread>1</thread>
+  <message>Total execution time: 216ms</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.401679Z</date>
+  <millis>1708719355401</millis>
+  <nanos>679000</nanos>
+  <sequence>42</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1708719351106</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.402239Z</date>
+  <millis>1708719355402</millis>
+  <nanos>239000</nanos>
+  <sequence>43</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.402414Z</date>
+  <millis>1708719355402</millis>
+  <nanos>414000</nanos>
+  <sequence>44</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.671223Z</date>
+  <millis>1708719355671</millis>
+  <nanos>223000</nanos>
+  <sequence>45</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
+  <method>runner</method>
+  <thread>1</thread>
+  <message>Total execution time: 109ms</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.672129Z</date>
+  <millis>1708719355672</millis>
+  <nanos>129000</nanos>
+  <sequence>46</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1708719351106</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.672395Z</date>
+  <millis>1708719355672</millis>
+  <nanos>395000</nanos>
+  <sequence>47</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.672540Z</date>
+  <millis>1708719355672</millis>
+  <nanos>540000</nanos>
+  <sequence>48</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.946890Z</date>
+  <millis>1708719355946</millis>
+  <nanos>890000</nanos>
+  <sequence>49</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
+  <method>runner</method>
+  <thread>1</thread>
+  <message>Total execution time: 103ms</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.950166Z</date>
+  <millis>1708719355950</millis>
+  <nanos>166000</nanos>
+  <sequence>50</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1708719351106</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.951528Z</date>
+  <millis>1708719355951</millis>
+  <nanos>528000</nanos>
+  <sequence>51</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:55.951875Z</date>
+  <millis>1708719355951</millis>
+  <nanos>875000</nanos>
+  <sequence>52</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Variables values have been written to file VAR.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:56.241021Z</date>
+  <millis>1708719356241</millis>
+  <nanos>21000</nanos>
+  <sequence>53</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler</class>
+  <method>runner</method>
+  <thread>1</thread>
+  <message>Total execution time: 105ms</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:56.243631Z</date>
+  <millis>1708719356243</millis>
+  <nanos>631000</nanos>
+  <sequence>54</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Random seed: 1708719351106</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:56.244887Z</date>
+  <millis>1708719356244</millis>
+  <nanos>887000</nanos>
+  <sequence>55</sequence>
+  <logger>org.uma.jmetal.util.JMetalLogger</logger>
+  <level>INFO</level>
+  <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
+  <method>printFinalSolutionSet</method>
+  <thread>1</thread>
+  <message>Objectives values have been written to file FUN.tsv</message>
+</record>
+<record>
+  <date>2024-02-23T20:15:56.246199Z</date>
+  <millis>1708719356246</millis>
+  <nanos>199000</nanos>
+  <sequence>56</sequence>
   <logger>org.uma.jmetal.util.JMetalLogger</logger>
   <level>INFO</level>
   <class>org.uma.jmetal.util.AbstractAlgorithmRunner</class>
