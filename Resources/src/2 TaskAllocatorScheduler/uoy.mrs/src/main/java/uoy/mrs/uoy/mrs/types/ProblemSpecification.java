@@ -23,6 +23,7 @@ import uoy.mrs.uoy.mrs.types.impl.MissionTaskInstance;
 import uoy.mrs.uoy.mrs.types.impl.Parameters;
 import uoy.mrs.uoy.mrs.types.impl.Robot;
 import uoy.mrs.uoy.mrs.types.impl.RobotsModel;
+import uoy.mrs.uoy.mrs.types.impl.ScheduleGA;
 import uoy.mrs.uoy.mrs.types.impl.TaskInstances;
 import uoy.mrs.uoy.mrs.types.impl.WorldModel;
 
@@ -42,14 +43,19 @@ public class ProblemSpecification{
 	//Allocations
 	ArrayList<Allocation> allocationList = new ArrayList<Allocation>();
 	//Clusters - inside each allocation, getGroupsOfRobot()
-	
-	
+
+	//Multiple Pareto-optimal solutions from GA loop, one for each allocation
+	ArrayList<ScheduleGA> schedulesGAList = new ArrayList<ScheduleGA>();
+		
+	//Pareto-optimal solutions
+	ArrayList<ScheduleGA> schedulesOptimal = new ArrayList<ScheduleGA>();
+		
+		
 	//Tasks (not instantiated) (not used but JIC)
 	MultiKeyMap<String, Object> atFromDSL = new MultiKeyMap<>(); //ats.get(at1) = 2,l1  - numrobots, location
 	MultiKeyMap<String, Object> ctFromDSL = new MultiKeyMap<>(); //cts.get(ct1) = [at3,at2],"true,false" - subtasks,ordered,consecutive
 	
 	
-
 	
 	public TaskInstances getTasks() {
 		return tasksModelI;
@@ -326,10 +332,17 @@ public class ProblemSpecification{
 		}
 	}
 
+	public void addScheduleGA(ScheduleGA sch) {
+		schedulesGAList.add(sch);
+	}
 	
+	public ArrayList<ScheduleGA> getSchedulesGA() {	
+		return schedulesGAList;
+	}
 	
-	
-	
+	public void setOptimalSchedules(ArrayList<ScheduleGA> s){
+		schedulesOptimal = s;
+	}
 	
 
 } 

@@ -13,6 +13,7 @@ import uoy.mrs.uoy.mrs.auxiliary.prescheduling.PreTaskScheduler;
 import uoy.mrs.uoy.mrs.auxiliary.scheduler.Scheduler;
 import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
+import uoy.mrs.uoy.mrs.types.impl.Optimal;
 
 public class Kanoa {
 	
@@ -67,7 +68,7 @@ public class Kanoa {
     	//------ Scheduler
     	runScheduler();
     	//-------Read Data
-    	//readSchedules();
+    	readSchedules();  //HERE + check models - check previous Kanoa 
     	
     	//------ Get Plans Info
     	//PlotFactory.plotParetoFront(3);
@@ -115,39 +116,20 @@ public class Kanoa {
 		System.out.println("\n\n---- Running Scheduler, GA optimisation");
 		// timer
 		long startTime = System.nanoTime();
-				
-		// get feasible permutation of tasks
-		//Scheduler.getPermutations();
-		// get MDP files
-		//Scheduler.getMDPs();
 		
-		// a) get Pareto solutions
-		Scheduler.run(problemSpec);
-		
-		Scheduler.runTest(problemSpec);
-		
-		///****** HERE missing when idle <0 computed when doing model A *******
+		// a) -- if testing -- 
+		//Scheduler.runTest(problemSpec); //- test one of the models
 		
 		
-		//Scheduler.run(problemSpec);
-//		
-//		System.out.println(Constants.num_population);
-//		
-//		System.err.println("DONE --");
-//		
-//		System.exit(0);
-//		
-//		
-//		// @depricated
-//    	// a) get pareto for each allocations
-//    	AllocationScheduler.setAllocations(Constants.allocationsList);
-//    	AllocationScheduler.run();
-//    	
-//		// 3) run pareto among all allocations
-//    	if (Constants.allocationSchedules.size()==0)
-//    		System.err.println("NO solutions found");
-//    	else
-//    		PlanScheduler.run();
+		// a) get Pareto set of solutions for each allocation
+		Scheduler.run(problemSpec); //- run GA
+		
+		// 3) get single Pareto set
+		Optimal.getParetoOptimal(problemSpec);
+		
+		
+		System.exit(0);
+    	
 		
 	}
 }

@@ -30,7 +30,7 @@ public class AllocationProblem extends AbstractIntegerProblem {
 	private static final long serialVersionUID = 1L;
 	
 	
-	Allocation allocation; // save info about allocation
+	Allocation a1; // save info about allocation
 	
 	ProblemSpecification p;
 	
@@ -40,25 +40,17 @@ public class AllocationProblem extends AbstractIntegerProblem {
 	
 	// counter for average times
 	int countFeas = 0;
-	int countIdle = 0;
-	// timer
-	long timerFeas = 0;
-	long timerIdle = 0;
-
-
-	int countEvalChrom;
-	long timerEvalChrom;
+	int countTotal = 0;
 	
 	/** a) Constructor */
 	public AllocationProblem(Allocation a, ProblemSpecification p) {
 		setName("Allocation"+a.getNum());
 		setNumberOfVariables(a.getNumRobots());
 	    setNumberOfObjectives(p.getParameters().getNumObjectives());
-	    setNumberOfConstraints(1); //constraint: permutation must be feasible
+	    //setNumberOfConstraints(1); // as JMetal not consider constraints to remove solutions but as a quality parameter (the less constraints violated the better), not considered here -- before: constraint meant permutation must be feasible
 		setVariableBounds(getLowerBounds(a), getUpperBounds(a));
 		// set local variables
-	    this.allocation = a;
-	    this.p = p;
+	    this.a1 = a; this.p = p;
 	    // initialise PRISM engine     --- it takes 2ms less if initialised here, rather than from Constants.initializePrism
  		PrismLog mainLog = new PrismDevNullLog(); //new PrismFileLog("stdout");   // Create a log for PRISM output (hidden or stdout)
  		Prism prism = new Prism(mainLog);
@@ -111,33 +103,27 @@ public class AllocationProblem extends AbstractIntegerProblem {
 		// get genes as string
 		String permutationString = getGenesString(solution);
 		// get attributes
-		double[] attr = Scheduler.getAttrib(p,allocation,permutationString); //permutationString e.g., (5,3,1,2,58)
+		double[] attr = Scheduler.getAttrib(p,a1,permutationString); //permutationString e.g., (5,3,1,2,58)
+
 		// save to JMetal solution
-		for(int i=0; i<attr.length-1 ; i++) { solution.objectives()[i] = attr[i];}
+		for(int i=0; i<attr.length ; i++) { solution.objectives()[i] = attr[i];}//System.out.println(solution.objectives()[i]);}
+		//count fesible solutions
+		if(attr[0]!= (double) Utility.infiniteInt ) {countFeas+=1;countTotal+=1;}//System.out.println("feasible");}
+		else {countTotal+=1;}
 		
-		//System.out.println("::constraint 0:"+attr[attr.length-1]);
-		//solution.constraints()[0] = attr[attr.length-1];// res[res.length-1];	 //constrained by feasible permutation	
-		
-		// add file info
-		
-		\\HERE
-		
+		//get time
 		long time = Timer.getTime_restart();
-		solution.attributes().put("fileAlloc", allocation.getFile());
-		solution.attributes().put("allocNum", allocation.getNum());
-		solution.attributes().put("atributes", p.getParameters().getListObjectiveStrings());
-		solution.attributes().put("time", time);
-		
-		//print timer
 		System.out.println("Time to eval chromosome: "+ time + "ms");
-		
+		// add solution info in JMetal
+		solution.attributes().put("perm", permutationString);
+		solution.attributes().put("attr", p.getParameters().getListObjectiveStrings());
+		solution.attributes().put("time", time);
 		return solution;
 	  }
 	
 	
 	public static String getGenesString(IntegerSolution solution) {
 		String genesStr = "(";
-		String genesString = null;
 		for (int i = 0; i < solution.variables().size(); i++) {
 			Integer s = solution.variables().get(i); //get gene value
 			genesStr = genesStr + String.valueOf(s) + ",";}

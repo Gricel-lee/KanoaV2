@@ -193,6 +193,7 @@ public class PreTaskScheduler {
 	public static void getRobotsGroupsForAllocations(ProblemSpecification p) {
 
 		//save
+		Utility.checkPath(Constants.solutionsDatabasesDir);
 		Utility.createEmptyFile(Constants.allocClustersCSVFile);
 		Utility.WriteToFile(Constants.allocClustersCSVFile , "alloc,,clusters,,tasksAlloc,,file");
 		

@@ -1,12 +1,11 @@
 package uoy.mrs.uoy.mrs.auxiliary.scheduler;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.netlib.util.doubleW;
-import org.uma.jmetal.algorithm.Algorithm;
+//import org.netlib.util.doubleW;
+//import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.example.AlgorithmRunner;
@@ -16,26 +15,27 @@ import org.uma.jmetal.operator.mutation.MutationOperator;
 import org.uma.jmetal.operator.mutation.impl.IntegerPolynomialMutation;
 import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
-import org.uma.jmetal.operator.selection.impl.RandomSelection;
+//import org.uma.jmetal.operator.selection.impl.RandomSelection;
 import org.uma.jmetal.solution.integersolution.IntegerSolution;
 import org.uma.jmetal.util.AbstractAlgorithmRunner;
-import org.uma.jmetal.util.JMetalLogger;
-import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
+//import org.uma.jmetal.util.JMetalLogger;
+//import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import uoy.mrs.uoy.mrs.auxiliary.Constants;
 import uoy.mrs.uoy.mrs.auxiliary.Utility;
-import uoy.mrs.uoy.mrs.auxiliary.scheduler.modelA.MDPModelA;
-import uoy.mrs.uoy.mrs.auxiliary.scheduler.modelA.MDPModelB;
-import uoy.mrs.uoy.mrs.auxiliary.scheduler.modelA.MDPModelC;
+import uoy.mrs.uoy.mrs.auxiliary.scheduler.models.MDPModelA;
+import uoy.mrs.uoy.mrs.auxiliary.scheduler.models.MDPModelB;
+import uoy.mrs.uoy.mrs.auxiliary.scheduler.models.MDPModelC;
 import uoy.mrs.uoy.mrs.error.KanoaErrorHandler;
 import uoy.mrs.uoy.mrs.types.ProblemSpecification;
 import uoy.mrs.uoy.mrs.types.impl.Allocation;
 import uoy.mrs.uoy.mrs.types.impl.Permutation;
 import uoy.mrs.uoy.mrs.types.impl.Robot;
+import uoy.mrs.uoy.mrs.types.impl.ScheduleGA;
 
 public class Scheduler extends AbstractAlgorithmRunner{
 	
-	
+	private static int countSol_id = 0;
 	
 	
 	public static void run(ProblemSpecification p) {
@@ -47,7 +47,7 @@ public class Scheduler extends AbstractAlgorithmRunner{
 	    // -- run
 		for (Allocation a: p.getAllocations()) {
 			System.out.println("\n-Task schedules for Allocation "+a.getNum() +" with " + a.getGroupsOfRobot().size() +" clusters." );
-			runner(a,p);
+			runGA(a,p);
 		}
 	}
 	
@@ -57,16 +57,15 @@ public class Scheduler extends AbstractAlgorithmRunner{
 	 * Create new databases to save: 1) optimal, 2) feasible (optimal and suboptimal) and 3) unfeasible solutions
 	 */
 	public static void startDatabases() {
-		Utility.checkPath(Constants.solutionsDatabasesDir);//check if folder exists
 		Utility.createEmptyFile(Constants.db1_optimisedSolutions);
 		Utility.createEmptyFile(Constants.db2_feasibleSolutions);
 		Utility.createEmptyFile(Constants.db3_infeaibleSolutions);
+		Utility.createEmptyFile(Constants.db4_paretoSolutions); //used after GA
 
-		Utility.WriteToFile(Constants.db1_optimisedSolutions , "alloc,,permut,,prob,,idle,,travel");
-		Utility.WriteToFile(Constants.db2_feasibleSolutions , "alloc,,robots,,permut,,prob,,idle,,travel");
+		Utility.WriteToFile(Constants.db1_optimisedSolutions , "alloc,,robots,,permut,,attr,,time   (maxSucc value=prob. of failing times 100)");
+		Utility.WriteToFile(Constants.db2_feasibleSolutions , "alloc,,robots,,permut,,attr  (maxSucc value=prob. of failing times 100)");
 		Utility.WriteToFile(Constants.db3_infeaibleSolutions , "alloc,,robots,,perm,,reason");
-		
-		//System.out.println("Solutions file:" +Constants.db1_optimisedSolutions);
+		Utility.WriteToFile(Constants.db4_paretoSolutions , "alloc,,robots,,perm,,attr  (maxSucc value=prob. of failing times 100)"); //used after GA
 	}
 	
 	
@@ -75,21 +74,43 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		for(Permutation perm:r_permutationTasks.values()) {
 			// not feasible - save in database 3 and return false
 			if(!perm.isFeasible_AllPathsExist) {
-				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(r_permNum,perm,a1);
+				//KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(r_permNum,perm,a1);
 				return false;
 			}
 		}
 		return true;
 	}
 	
-	public static void saveViolationDatabase(HashMap<String, Integer> r_permNum, String allocNumString, String violationTypeString) {
+	private static void saveViolationDatabase(HashMap<String, Integer> r_permNum, String allocNum, String violationType) {
 		//String header3 = "alloc,,robots,,perm,,reason\n";
-		String s = allocNumString+",,"
+		String s = allocNum+",,"
 				+ r_permNum.keySet()+",,"
 				+ r_permNum.values() +",,"
-				+ violationTypeString + "\n";
+				+ violationType ;
 		Utility.WriteToFile(Constants.db3_infeaibleSolutions, s); //database 3
 	}
+	
+	private static void saveFeasibleDatabase(HashMap<String, Integer> r_permNum, String allocNum, HashMap<String, Double> objectiveVal) {
+		//String header3 = "alloc,,robots,,permut,,attr";
+		
+		String s = allocNum+",,"
+				+ r_permNum.keySet()+",,"
+				+ r_permNum.values() +",,"
+				+ objectiveVal ;
+		Utility.WriteToFile(Constants.db2_feasibleSolutions, s); //database 3
+	}
+	
+	private static void saveGAOptimalDatabase(String anum, ArrayList<String> rob, Object perm, HashMap<String, Double> attr,
+			Object time) {
+		//String header3 = "alloc,,robots,,permut,,attr,,attrVal,,time";
+		String s = anum+",,"
+				+ rob+",,"
+				+ perm +",,"
+				+ attr +",,"
+				+ time;
+		Utility.WriteToFile(Constants.db1_optimisedSolutions, s); //database 1
+	}
+	
 	
 	
 	
@@ -190,6 +211,10 @@ public class Scheduler extends AbstractAlgorithmRunner{
 		//---------------------------------------
 		//6) feasible solution
 		System.out.println("Plan is feasible!");
+		
+		//save
+		saveFeasibleDatabase(r_permNum, a1.getNum(), objectiveValuesHashmap);
+		
 		return createFeasibleValuesList(objectiveValuesHashmap, p);
 	}
 	
@@ -215,119 +240,6 @@ public class Scheduler extends AbstractAlgorithmRunner{
 			optimisationValues.add( Utility.infiniteInt ); //set to infinite as the optimisation problem in JMetal is a minimisation problem.
 		return Utility.arrayInt2doubleList( optimisationValues );
 	}
-		
-	
-	
-	
-	
-//	private static void runModelA(ProblemSpecification p) {
-//		// Test creating models A, B and C for a specific allocation & permutation
-//		//--------------------------------------- 
-//		//1 get info - create allocation
-//		int allocNum = 0;
-//		Allocation a1 = p.getAllocations().get(allocNum); //get first allocation
-//		//2 get JMetal permutation. String type, e.g.: "(1,1,1,1,443438)" where each number is the robot's task permutation
-//		String geneString = getMadeUpPermuation_forTest(a1,p); // create string permutation for testing, in JMetal encoded
-//		HashMap<String, Integer> robots2PermNum = getrobots2PermuationNumberArray(a1,p,geneString);
-//		
-//		// ==print==
-//		if(Constants.verbose) {
-//			System.out.println("allocation num:" + a1.getNum());
-//			//same as:  System.out.println("robots:" +a1.getRobotsList());
-//			System.out.println("a) 'robots' to permutation Number"+robots2PermNum.keySet()); //e.g.: robots2PermNum[r2, r3, r4, r5, r1]
-//			//same as: System.out.println("permutation"+geneString);
-//			System.out.println("b) robots to 'permutation Number'"+robots2PermNum.values()); //e.g.: robots2PermNum[1, 1, 2, 2, 3628800]
-//		}
-//		
-//		//3 array robot ID to permutation */		
-//		HashMap<String, Permutation> r_permutationTasks = getPerm(p,a1,robots2PermNum);
-//		
-//		// -check if permutation feasible due to feasible to travel paths between locations
-//		Boolean pathsTransitable = true;
-//		for(Permutation perm:r_permutationTasks.values())
-//			if(!perm.isFeasible_AllPathsExist) {
-//				KanoaErrorHandler.NoPathExistsToCompleteRunTestPermutation(robots2PermNum,perm,allocNum);
-//				pathsTransitable =false;
-//			}
-//		
-//		
-//		// ==print--
-//		if(Constants.verbose) 
-//			for(Permutation perm:r_permutationTasks.values()) {perm.print();}
-//		
-//		// 2) run specialised models
-//		//--------------------------------------- 
-//		// Model A - idling
-//		File file = MDPModelA.createModelA(r_permutationTasks,p,a1);
-//		int idle = getIdle(file, "R{\"idle\"}min=?[F done]");
-//		
-//		if(idle!=2147483647) //Infinite = 2147483647
-//			System.out.println("MODEL A. Idle: "+idle);
-//		else
-//			System.out.println("MODEL A. Plan not feasible."+idle);
-//		//=========================================================
-//		
-//		
-//		//--------------------------------------- 
-//		// Model B - prob. of success
-//		double prob = MDPModelB.createModelB(r_permutationTasks,p,a1);
-//		//--------------------------------------- 
-//		// Model C - travel cost
-//		int travelCost = MDPModelC.createModelC(r_permutationTasks);
-//		
-//		
-//		// 3) check feasibility: , 1=not feaible 
-//		int feasible = 100; //100= feasible permutation of tasks
-//		if(!pathsTransitable)
-//			feasible = 1;   //1  = not feasible due to (a) idling time exceeded OR (b) tasks constraints  
-//		if(idle!=2147483647)
-//			feasible = 2;   //2  = 
-//		if(prob <= Utility.string2double( p.getParameters().ratesucc)) 
-//			feasible = 3;
-//		
-//		
-//		
-//		
-//		
-//				
-//		
-//		
-//		String header = "allocationNum,,permutation,,robotClusters,,idle,,probSucc,,travelCost\n";
-//		Utility.WriteToFile(Constants.optimisedSolutionsData,s);
-//		
-//		//allocationNum,,permutation,,robotClusters,,idle,,probSucc,,travelCost 
-//		String s = allocNum + ",," 
-//				   + geneString + ",,"
-//				   + a1.getGroupsOfRobot().toString() + ",," 
-//				   + idle + ",," +  prob + ",," + travelCost + "time"
-//				   + "\n";
-//		Utility.WriteToFile(Constants.optimisedSolutionsData,s);
-//		
-//		
-//		String path = "";
-//		saveInfo(idle,prob,travelCost,path);
-//		
-//	}
-	
-	private static void saveInfo(int idle, double prob, int travelCost, String path) {
-		
-		
-	}
-
-	/**Run prism: idle and adversary
-	 * idle - return the minimum idle time
-	 * if > 0 -> permutation of tasks is possible
-	 * if < 0 -> permutation of tasks is NOT possible
-	 * @param file = modelA
-	 * @param property = "R{\"idle\"}min=?[F done]";
-	 * @return
-	 */ 
-	private static int getIdle(File file, String property) {
-		int idle = -1;
-		idle =  (int) MDPModelA.RunPrism(file,property);  //<-- return the idle time (computed using PRISM PMC)
-		return idle;
-	}
-	
 	
 	
 	/*Array permutation of tasks*/
@@ -348,9 +260,6 @@ public class Scheduler extends AbstractAlgorithmRunner{
 			// permutation per robot
 			Permutation perm = new Permutation(rID, p, a, numPerm);
 			
-			// Print
-			//if(Constants.verbose) {perm.print();}
-
 			r_permutationTasks.put(rID, perm);
 		}
 		return r_permutationTasks;
@@ -387,85 +296,99 @@ public class Scheduler extends AbstractAlgorithmRunner{
 	
 
 	// 3) GA runner
-	public static void runner(Allocation a, ProblemSpecification p) {
-		// a) MRS problem									// based on https://jmetal.readthedocs.io/en/latest/experimentation.html
+	public static void runGA(Allocation a, ProblemSpecification p) {
+		//----- SET UP
+		// a) problem setup    // based on https://jmetal.readthedocs.io/en/latest/experimentation.html
 		AllocationProblem problem = new AllocationProblem(a,p);
-		
-		// print
-		//System.out.println("Scheduler name:" + problem.getName());
-		//System.out.println("Num of Objectives:"+problem.getNumberOfObjectives());
-		//System.out.println("Num Constraints:" + problem.getNumberOfConstraints());
-		//System.out.println("Num of Variables (robots):"+problem.getNumberOfVariables());
-		
 		// crossover
 		double crossoverProbability = 0.95; // - example: double crossoverProbability = 0.9;
-		
 		double crossoverDistributionIndex = 5.0; //-example: double crossoverDistributionIndex = 20.0;
-		
 		CrossoverOperator<IntegerSolution> crossover = new IntegerSBXCrossover(crossoverProbability, crossoverDistributionIndex); //CrossoverOperator<DoubleSolution> crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex);  //-example: CrossoverOperator<DoubleSolution> crossover = new SBXCrossover(crossoverProbability, crossoverDistributionIndex);
-		
 		// mutation
-		//- PlanScheduler
 		double mutationProbability = 0.9; //- AllocationScheduler and example: double mutationProbability = 1.0 / problem.getNumberOfVariables();
-		
 		double mutationDistributionIndex = 10.0; //- example: 20, plan schedule =5
-		
 		MutationOperator<IntegerSolution> mutation = new IntegerPolynomialMutation(mutationProbability, mutationDistributionIndex);  //MutationOperator<DoubleSolution> mutation = new PolynomialMutation(mutationProbability, mutationDistributionIndex); // -example: MutationOperator<DoubleSolution> mutation = new PolynomialMutation(mutationProbability,mutationDistributionIndex);
-		
+		//selector
+		SelectionOperator<List<IntegerSolution>, IntegerSolution> selection = new BinaryTournamentSelection<IntegerSolution>();
 		
 		//new PolynomialMutation(1.0/problem.getNumberOfVariables() , 20 )
 		//Termination termination = new TerminationByEvaluations(75000);
 		//Ranking<DoubleSolution> ranking = new MergeNonDominatedSortRanking<>();
 		
-		//HERE:----CHANGE it to be proportional to the number of possible permutations
-		int populationSize = 10; //HAS to be even num.
+		//Future work----make it proportional to the number of possible permutations
+		int populationSize = Utility.checkEven("GA population", Utility.string2int(Constants.num_population)); //HAS to be even num.
 		
 		// b) set NSGAII algorithm
-		@SuppressWarnings("unchecked")   // solutions are DOUBLE, genes are INTEGERS
-		Algorithm<List<IntegerSolution>> algorithm22 = new NSGAII( // following example of builder from: org.uma.jmetal.algorithm.multiobjective.nsgaii
-											problem,
-											Integer.parseInt(Constants.num_evaluations),//maxEvaluations
-											populationSize, //populationSize
-											populationSize, //matingPoolSize
-											populationSize, //offspringSize
-											crossover, //crossoverOperator
-											mutation, //mutationOperator  - second parameter: distribution index: he distribution index η in the SBX operator controls the distance between two offsprings and two parents. If the value of η is large, the probability that the generated offsprings are closer to the two parents is greater; if the value of η is relatively small, the probability that the generated offsprings are farther away from the two parents is greater. 
-											new RandomSelection(), //selectionOperator     - I selected randomed based on results table from: https://www.researchgate.net/publication/2372815_Comparison_of_Selection_Methods_for_Evolutionary_Optimization
-											//new MultiThreadedSolutionListEvaluator<AllocationProblem>(1) //not working
-											new SequentialSolutionListEvaluator<AllocationProblem>() // evaluator
-											);
-		
-		SelectionOperator<List<IntegerSolution>, IntegerSolution> selection = new BinaryTournamentSelection<IntegerSolution>();
-		
 		NSGAII<IntegerSolution> algorithm = new NSGAIIBuilder<>(problem, crossover, mutation, populationSize)
 		        .setSelectionOperator(selection)
-		        .setMaxEvaluations(600)//25000)
+		        .setMaxEvaluations(Utility.string2int(Constants.num_evaluations))//25000)
 		        .build();
 		
 		
-		// c) ------ run GA algorithm	-------					// instead of algorithm.run(); to get more info
-		AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm).execute() ;
+//		@SuppressWarnings("unchecked")   // solutions are DOUBLE, genes are INTEGERS
+//		Algorithm<List<IntegerSolution>> algorithm22 = new NSGAII( // following example of builder from: org.uma.jmetal.algorithm.multiobjective.nsgaii
+//											problem,
+//											Integer.parseInt(Constants.num_evaluations),//maxEvaluations
+//											populationSize, //populationSize
+//											populationSize, //matingPoolSize
+//											populationSize, //offspringSize
+//											crossover, //crossoverOperator
+//											mutation, //mutationOperator  - second parameter: distribution index: he distribution index η in the SBX operator controls the distance between two offsprings and two parents. If the value of η is large, the probability that the generated offsprings are closer to the two parents is greater; if the value of η is relatively small, the probability that the generated offsprings are farther away from the two parents is greater. 
+//											new RandomSelection(), //selectionOperator     - I selected randomed based on results table from: https://www.researchgate.net/publication/2372815_Comparison_of_Selection_Methods_for_Evolutionary_Optimization
+//											//new MultiThreadedSolutionListEvaluator<AllocationProblem>(1) //not working
+//											new SequentialSolutionListEvaluator<AllocationProblem>() // evaluator
+//											);
 		
-		// d) read and save solutions
+		
+		
+		//-------- RUN GA
+		// c) run GA algorithm				// instead of algorithm.run(); to get more info
+		AlgorithmRunner algorithmRunner = new AlgorithmRunner.Executor(algorithm).execute() ; //if accessing info at runtime
+		
+		//--------- READ RESULTS
+		// d) Pareto optimal solutions
+		//save
 		List<IntegerSolution> populationSolution = algorithm.getResult() ;
-	    long computingTime = algorithmRunner.getComputingTime() ;
-	    JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
-
+		for (IntegerSolution solution : populationSolution) {
+	        //get solution info
+            ArrayList<String> rob = a.getRobotsList();
+            String perm = (String) solution.attributes().get("perm");
+            String time = Long.toString(Long.parseLong(solution.attributes().get("time").toString()));
+            HashMap<String, Double> attr =  optimalVal2Map(p,solution);
+            // save in database
+            saveGAOptimalDatabase(a.getNum(), rob, perm, attr,  time); // in database
+            // save in problem spec.
+            countSol_id+=1;
+            ScheduleGA sol = new ScheduleGA(countSol_id,rob,a.getNum(),perm,attr,time); //in problem spec.
+    		p.addScheduleGA(sol);
+        }	
+		
+	    //print JMetal info
 	    printFinalSolutionSet(populationSolution);
 	    
-	    // - print info
+	    // print time
+	    long computingTime = algorithmRunner.getComputingTime() ;
 	    System.out.println("Total execution time: " + computingTime + "ms");
+	    //JMetalLogger.logger.info("Total execution time: " + computingTime + "ms");
 	    
-	    //System.out.println("PARETO FRONT SOLUTIONS:");
-	    System.out.println("Pareto solutions of allocation: "+a.getNum());
-	    for (IntegerSolution solution_i : populationSolution) {
-	    	System.out.println( solution_i.toString() );
-	    }
-	    // - save // this method do not work as solutions return feasible and infeasible solutions
-	    //printFinalSolutionSet(populationSolution) ;
-	    
-		System.out.println("GA Done");			
+		System.out.println("GA loop done");	
 	}
+	
+	
+	/**Reading GA Pareto-optimal front and map to attributes names*/
+	private static HashMap<String, Double> optimalVal2Map(ProblemSpecification p, IntegerSolution solution) {
+		HashMap<String, Double> attr = new HashMap<String, Double>();
+		double[] attr_val = solution.objectives(); //values from GA
+		for(int i=0; i<attr_val.length ; i++) {
+			String name = p.getParameters().getListObjectiveStrings().get(i); //name of objective
+			attr.put(name,attr_val[i]);
+		}
+		return attr;
+	}
+
+
+
+	
 	
 	
 	

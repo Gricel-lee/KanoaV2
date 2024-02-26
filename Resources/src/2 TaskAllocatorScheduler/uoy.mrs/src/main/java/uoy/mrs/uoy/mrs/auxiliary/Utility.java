@@ -144,11 +144,24 @@ public class Utility {
 	}
 	
 	
+	//double[] to string, e.g.: "[1.0, 40.0, 0.01604911362823439]"
+	public static String arrayToString(double[] arr) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]);
+            if (i < arr.length - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 	
 	//*********************************************************************//
 	//============== File related auxiliary functions ====================//
 	
-	public static void checkPath(String path) {
+	public static void checkPath(String path) { //e.g. path= Constants.outputDir+"/Solutions" - make sure ends without /, i.e., "/Solutions/" not accepted
 		/**Check if path exists and create one if it does not*/
 		File dir = new File(path);
 		if (!dir.exists()) dir.mkdirs();
@@ -368,6 +381,12 @@ public class Utility {
         return intdistance;
 	}
 	
+	public static int checkEven(String numDescription, int num) {
+		if (num % 2 != 0) {//odd
+			KanoaErrorHandler.notEven(numDescription, num);
+        }
+		return num;
+	}
 	
 	/**'Infinite' for integer type*/
 	public static int infiniteInt = 2147483647;
@@ -549,6 +568,9 @@ public class Utility {
         }
     return feasible;
 	}
+
+
+	
 	
 	
 }

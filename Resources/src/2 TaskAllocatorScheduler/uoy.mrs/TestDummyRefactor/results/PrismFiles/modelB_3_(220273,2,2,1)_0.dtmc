@@ -1,0 +1,64 @@
+dtmc
+
+const double p_travel_r2at2_8=1.0 ;// from location: l2 (robot initial loc) to location: room3 (at2_8)
+const double p_travel_r2at4_3=1.0 ;// from location: room3 (at2_8) to location: room2(at4_3)
+const double p_travel_r2at4_6=1.0 ;// from location: room2 (at4_3) to location: room3(at4_6)
+const double p_travel_r2at2_5=1.0 ;// from location: room3 (at4_6) to location: room2(at2_5)
+const double p_travel_r2at3_10=1.0 ;// from location: room2 (at2_5) to location: room4(at3_10)
+const double p_travel_r2at2_11=1.0 ;// from location: room4 (at3_10) to location: room4(at2_11)
+const double p_travel_r2at4_9=1.0 ;// from location: room4 (at2_11) to location: room4(at4_9)
+const double p_travel_r2at2_14=1.0 ;// from location: room4 (at4_9) to location: room5(at2_14)
+const double p_travel_r2at4_12=1.0 ;// from location: room5 (at2_14) to location: room5(at4_12)
+const double p_r2at2_8=0.85 ;
+const double p_r2at4_3=0.85 ;
+const double p_r2at4_6=0.85 ;
+const double p_r2at2_5=0.85 ;
+const double p_r2at3_10=0.99 ;
+const double p_r2at2_11=0.85 ;
+const double p_r2at4_9=0.85 ;
+const double p_r2at2_14=0.85 ;
+const double p_r2at4_12=0.85 ;
+
+formula done=(r2=36);
+
+module r2
+ r2:[0..36];
+ //travel to at2_8
+ [r2travel_at2_8] r2=0->p_travel_r2at2_8:(r2'=2) + 1-p_travel_r2at2_8:(r2'=1);
+ //try at2_8, no retry allowed
+ []r2=2 -> 0.85:(r2'=4) + 1-0.85:(r2'=3); //fail task at r2=3
+ //travel to at4_3
+ [r2travel_at4_3] r2=4->p_travel_r2at4_3:(r2'=6) + 1-p_travel_r2at4_3:(r2'=5);
+ //try at4_3, no retry allowed
+ []r2=6 -> 0.85:(r2'=8) + 1-0.85:(r2'=7); //fail task at r2=7
+ //travel to at4_6
+ [r2travel_at4_6] r2=8->p_travel_r2at4_6:(r2'=10) + 1-p_travel_r2at4_6:(r2'=9);
+ //try at4_6, no retry allowed
+ []r2=10 -> 0.85:(r2'=12) + 1-0.85:(r2'=11); //fail task at r2=11
+ //travel to at2_5
+ [r2travel_at2_5] r2=12->p_travel_r2at2_5:(r2'=14) + 1-p_travel_r2at2_5:(r2'=13);
+ //try at2_5, no retry allowed
+ []r2=14 -> 0.85:(r2'=16) + 1-0.85:(r2'=15); //fail task at r2=15
+ //travel to at3_10
+ [r2travel_at3_10] r2=16->p_travel_r2at3_10:(r2'=18) + 1-p_travel_r2at3_10:(r2'=17);
+ //try at3_10, no retry allowed
+ []r2=18 -> 0.99:(r2'=20) + 1-0.99:(r2'=19); //fail task at r2=19
+ //travel to at2_11
+ [r2travel_at2_11] r2=20->p_travel_r2at2_11:(r2'=22) + 1-p_travel_r2at2_11:(r2'=21);
+ //try at2_11, no retry allowed
+ []r2=22 -> 0.85:(r2'=24) + 1-0.85:(r2'=23); //fail task at r2=23
+ //travel to at4_9
+ [r2travel_at4_9] r2=24->p_travel_r2at4_9:(r2'=26) + 1-p_travel_r2at4_9:(r2'=25);
+ //try at4_9, no retry allowed
+ []r2=26 -> 0.85:(r2'=28) + 1-0.85:(r2'=27); //fail task at r2=27
+ //travel to at2_14
+ [r2travel_at2_14] r2=28->p_travel_r2at2_14:(r2'=30) + 1-p_travel_r2at2_14:(r2'=29);
+ //try at2_14, no retry allowed
+ []r2=30 -> 0.85:(r2'=32) + 1-0.85:(r2'=31); //fail task at r2=31
+ //travel to at4_12
+ [r2travel_at4_12] r2=32->p_travel_r2at4_12:(r2'=34) + 1-p_travel_r2at4_12:(r2'=33);
+ //try at4_12, no retry allowed
+ []r2=34 -> 0.85:(r2'=36) + 1-0.85:(r2'=35); //fail task at r2=35
+endmodule
+
+

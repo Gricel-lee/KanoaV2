@@ -118,6 +118,11 @@ public class KanoaErrorHandler {
 		throw new IOError(null); //stop and print trace
 	}
 
+	public static void notEven(String numDescription, int num) {
+		System.err.println("Number "+numDescription+" has to be even, no "+num);
+		throw new IOError(null); //stop and print trace
+	}
+
 
 	
 

@@ -2,12 +2,12 @@ package jmetaltest;
 
 import java.io.IOException;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import org.uma.jmetal.algorithm.Algorithm;
+//import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.examples.AlgorithmRunner;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
@@ -19,17 +19,17 @@ import org.uma.jmetal.operator.selection.SelectionOperator;
 import org.uma.jmetal.operator.selection.impl.BinaryTournamentSelection;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.problem.ProblemFactory;
-import org.uma.jmetal.qualityindicator.QualityIndicatorUtils;
-import org.uma.jmetal.solution.Solution;
+//import org.uma.jmetal.qualityindicator.QualityIndicatorUtils;
+//import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.solution.doublesolution.DoubleSolution;
 import org.uma.jmetal.util.AbstractAlgorithmRunner;
 import org.uma.jmetal.util.JMetalLogger;
-import org.uma.jmetal.util.SolutionListUtils;
-import org.uma.jmetal.util.VectorUtils;
-import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
+//import org.uma.jmetal.util.SolutionListUtils;
+//import org.uma.jmetal.util.VectorUtils;
+//import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
 import org.uma.jmetal.util.errorchecking.JMetalException;
 
-import org.uma.jmetal.problem.multiobjective.Kursawe;
+//import org.uma.jmetal.problem.multiobjective.Kursawe;
 
 /**
  * Class to configure and run the NSGA-II algorithm to solve problem ZDT1

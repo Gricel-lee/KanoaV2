@@ -45,10 +45,13 @@ public class Constants {
 	public static String solutionsDatabasesDir;
 	//Database 1 = optimised solutions
 	public static String db1_optimisedSolutions; //optimalData.csv"
-	//Database 2 = sub-optimal but feasible solutions
-	public static String db2_feasibleSolutions;//suboptimalData.csv";
+	//Database 2 = all feasible solutions
+	public static String db2_feasibleSolutions;//feasible.csv";
 	//Database 3 = infeasible solutions - possible values of not-feasible column: "somePathsDontExist", "idlingOrTaskConstraints", 
 	public static String db3_infeaibleSolutions;///infeasibleData.csv";
+	//Database 1 = optimised solutions
+	public static String db4_paretoSolutions; //optimalData.csv"
+		
 	
 	public static String alloc_perm;
 	
@@ -118,7 +121,7 @@ public class Constants {
 		
 		alloyoutputDir = outputDir + "/Alloy/";
 		
-		solutionsDatabasesDir = outputDir + "/Solutions/";
+		solutionsDatabasesDir = outputDir + "/Solutions";
 		
 		allocClustersCSVFile = outputDir + "/Solutions/AllocInfo.txt";
 		
@@ -131,12 +134,13 @@ public class Constants {
 		allsolutionsData = outputDir + "/Solutions/allData.csv";
 		
 		//Database 1 = optimised solutions
-		db1_optimisedSolutions = outputDir + "/Solutions/optimalData.txt";
-		//Database 2 = sub-optimal but feasible solutions
-		db2_feasibleSolutions = outputDir + "/Solutions/suboptimalData.txt";
+		db1_optimisedSolutions = outputDir + "/Solutions/optimal.txt";
+		//Database 2 = all feasible solutions
+		db2_feasibleSolutions = outputDir + "/Solutions/feasible.txt";
 		//Database 3 = infeasible solutions
-		db3_infeaibleSolutions = outputDir + "/Solutions/infeasibleData.txt";
-		
+		db3_infeaibleSolutions = outputDir + "/Solutions/infeasible.txt";
+		//Database 4 = Pareto optimal accross all solutions
+		db4_paretoSolutions = outputDir + "/Solutions/Pareto.txt";
 		
 		
 		countallsolutions = 0; //counter of all possible schedules

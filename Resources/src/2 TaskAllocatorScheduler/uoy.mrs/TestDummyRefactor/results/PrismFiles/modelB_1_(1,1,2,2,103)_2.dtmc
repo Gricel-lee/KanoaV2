@@ -1,0 +1,38 @@
+dtmc
+
+const double p_travel_r4at1_1=1.0 ;// from location: l4 (robot initial loc) to location: room1 (at1_1)
+const double p_travel_r4at1_2=1.0 ;// from location: room1 (at1_1) to location: room6(at1_2)
+const double p_travel_r5at1_1=1.0 ;// from location: l5 (robot initial loc) to location: room1 (at1_1)
+const double p_travel_r5at1_2=1.0 ;// from location: room1 (at1_1) to location: room6(at1_2)
+const double p_r4at1_1=0.99 ;
+const double p_r4at1_2=0.99 ;
+const double p_r5at1_1=0.99 ;
+const double p_r5at1_2=0.99 ;
+
+formula done=(r4=8&r5=8);
+
+module r4
+ r4:[0..8];
+ //travel to at1_1
+ [r4travel_at1_1] r4=0->p_travel_r4at1_1:(r4'=2) + 1-p_travel_r4at1_1:(r4'=1);
+ //try at1_1, no retry allowed
+ []r4=2 -> 0.99:(r4'=4) + 1-0.99:(r4'=3); //fail task at r4=3
+ //travel to at1_2
+ [r4travel_at1_2] r4=4->p_travel_r4at1_2:(r4'=6) + 1-p_travel_r4at1_2:(r4'=5);
+ //try at1_2, no retry allowed
+ []r4=6 -> 0.99:(r4'=8) + 1-0.99:(r4'=7); //fail task at r4=7
+endmodule
+
+module r5
+ r5:[0..8];
+ //travel to at1_1
+ [r5travel_at1_1] r5=0->p_travel_r5at1_1:(r5'=2) + 1-p_travel_r5at1_1:(r5'=1);
+ //try at1_1, no retry allowed
+ []r5=2 -> 0.99:(r5'=4) + 1-0.99:(r5'=3); //fail task at r5=3
+ //travel to at1_2
+ [r5travel_at1_2] r5=4->p_travel_r5at1_2:(r5'=6) + 1-p_travel_r5at1_2:(r5'=5);
+ //try at1_2, no retry allowed
+ []r5=6 -> 0.99:(r5'=8) + 1-0.99:(r5'=7); //fail task at r5=7
+endmodule
+
+
