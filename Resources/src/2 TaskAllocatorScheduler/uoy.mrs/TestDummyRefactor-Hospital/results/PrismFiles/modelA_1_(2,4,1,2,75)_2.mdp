@@ -1,0 +1,53 @@
+mdp
+
+const int TT=120;//total time available 
+
+//r4 velocity:3.0
+const int travelr4at1_2=1 ;// from location: l4 (robot initial loc) to location: room6 (at1_2)    distance:2
+const int travelr4at1_1=3 ;// from location: room6 (at1_2) to location: room1(at1_1)    distance:8
+//r5 velocity:3.0
+const int travelr5at1_1=3 ;// from location: l5 (robot initial loc) to location: room1 (at1_1)    distance:7
+const int travelr5at1_2=3 ;// from location: room1 (at1_1) to location: room6(at1_2)    distance:8
+const int r4at1_2Time=4;
+const int r4at1_1Time=4;
+const int r5at1_1Time=4;
+const int r5at1_2Time=4;
+const int maxIdler4=20;
+const int maxIdler5=20;
+
+formula done=(r4order=2&r5order=2);
+
+//formulae for ordered tasks
+
+
+//formulae for consecutive tasks
+
+
+
+
+module r4
+ r4order:[0..2];
+ r4time:[0..120];
+ r4idleTime:[0..maxIdler4];
+ [at1_2] r4order=0 & (r4time+r4at1_2Time+travelr4at1_2<=TT) & (r4time+travelr4at1_2 = r5time+travelr5at1_2) -> (r4order'=1) & (r4time'=r4time+r4at1_2Time+travelr4at1_2);
+ [at1_1] r4order=1 & (r4time+r4at1_1Time+travelr4at1_1<=TT) & (r4time+travelr4at1_1 = r5time+travelr5at1_1) -> (r4order'=2) & (r4time'=r4time+r4at1_1Time+travelr4at1_1);
+ [r4idle] r4order!=2 & (r4time+1<=TT) & (r4idleTime+1<=maxIdler4) -> (r4time'=r4time+1) & (r4idleTime'=r4idleTime+1);
+endmodule
+
+module r5
+ r5order:[0..2];
+ r5time:[0..120];
+ r5idleTime:[0..maxIdler5];
+ [at1_1] r5order=0 & (r5time+r5at1_1Time+travelr5at1_1<=TT) & (r5time+travelr5at1_1 = r4time+travelr4at1_1) -> (r5order'=1) & (r5time'=r5time+r5at1_1Time+travelr5at1_1);
+ [at1_2] r5order=1 & (r5time+r5at1_2Time+travelr5at1_2<=TT) & (r5time+travelr5at1_2 = r4time+travelr4at1_2) -> (r5order'=2) & (r5time'=r5time+r5at1_2Time+travelr5at1_2);
+ [r5idle] r5order!=2 & (r5time+1<=TT) & (r5idleTime+1<=maxIdler5) -> (r5time'=r5time+1) & (r5idleTime'=r5idleTime+1);
+endmodule
+
+rewards "idle"
+ //Note- there is no idle option for robot ri if maxIdleri==0 (computed beforehand)
+ [r4idle] true: 1;
+ [r5idle] true: 1;
+endrewards
+
+
+

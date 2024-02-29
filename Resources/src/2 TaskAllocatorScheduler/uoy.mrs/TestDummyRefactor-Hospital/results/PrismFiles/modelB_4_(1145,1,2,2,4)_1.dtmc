@@ -1,0 +1,16 @@
+dtmc
+
+const double p_travel_r3at4_12=1.0 ;// from location: l3 (robot initial loc) to location: room5 (at4_12)
+const double p_r3at4_12=0.85 ;
+
+formula done=(r3=4);
+
+module r3
+ r3:[0..4];
+ //travel to at4_12
+ [r3travel_at4_12] r3=0->p_travel_r3at4_12:(r3'=2) + 1-p_travel_r3at4_12:(r3'=1);
+ //try at4_12, no retry allowed
+ []r3=2 -> 0.85:(r3'=4) + 1-0.85:(r3'=3); //fail task at r3=3
+endmodule
+
+

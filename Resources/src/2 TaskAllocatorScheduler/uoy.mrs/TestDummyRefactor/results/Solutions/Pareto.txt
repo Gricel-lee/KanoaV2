@@ -1,0 +1,2 @@
+alloc,,robots,,perm,,attr  (maxSucc value=prob. of failing times 100)
+2,,[r2, r4, r5, r1],,(74,2,2,4120),,{minIdle=1.0, maxSucc=0.10656619642653245, minTravel=49.0},,193

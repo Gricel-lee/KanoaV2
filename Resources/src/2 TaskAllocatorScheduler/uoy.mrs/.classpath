@@ -33,5 +33,13 @@
 	<classpathentry kind="lib" path="/Users/grisv/GitHub/KanoaV2/Resources/src/2 TaskAllocatorScheduler/uoy.mrs/libs/PyHamcrest-main.zip"/>
 	<classpathentry kind="lib" path="/Users/grisv/GitHub/KanoaV2/Resources/src/2 TaskAllocatorScheduler/uoy.mrs/libs/jython-installer-2.7.3.jar"/>
 	<classpathentry kind="lib" path="libs/PrismExecutor.jar"/>
+<<<<<<< Updated upstream
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+>>>>>>> Stashed changes
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

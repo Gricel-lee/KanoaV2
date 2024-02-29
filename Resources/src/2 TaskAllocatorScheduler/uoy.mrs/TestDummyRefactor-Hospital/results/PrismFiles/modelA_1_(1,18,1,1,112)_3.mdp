@@ -1,0 +1,46 @@
+mdp
+
+const int TT=120;//total time available 
+
+//r1 velocity:2.0
+const int travelr1at3_7=2 ;// from location: l1 (robot initial loc) to location: room3 (at3_7)    distance:3
+const int travelr1at2_11=3 ;// from location: room3 (at3_7) to location: room4(at2_11)    distance:6
+const int travelr1at2_14=2 ;// from location: room4 (at2_11) to location: room5(at2_14)    distance:4
+const int travelr1at3_13=0 ;// from location: room5 (at2_14) to location: room5(at3_13)    distance:0
+const int travelr1at4_6=4 ;// from location: room5 (at3_13) to location: room3(at4_6)    distance:7
+const int r1at3_7Time=4;
+const int r1at2_11Time=5;
+const int r1at2_14Time=5;
+const int r1at3_13Time=4;
+const int r1at4_6Time=2;
+const int maxIdler1=20;
+
+formula done=(r1order=5);
+
+//formulae for ordered tasks
+
+
+//formulae for consecutive tasks
+
+
+
+
+module r1
+ r1order:[0..5];
+ r1time:[0..120];
+ r1idleTime:[0..maxIdler1];
+ [r1at3_7] r1order=0 & (r1time+r1at3_7Time+travelr1at3_7<=TT) -> (r1order'=1) & (r1time'=r1time+r1at3_7Time+travelr1at3_7);
+ [r1at2_11] r1order=1 & (r1time+r1at2_11Time+travelr1at2_11<=TT) -> (r1order'=2) & (r1time'=r1time+r1at2_11Time+travelr1at2_11);
+ [r1at2_14] r1order=2 & (r1time+r1at2_14Time+travelr1at2_14<=TT) -> (r1order'=3) & (r1time'=r1time+r1at2_14Time+travelr1at2_14);
+ [r1at3_13] r1order=3 & (r1time+r1at3_13Time+travelr1at3_13<=TT) -> (r1order'=4) & (r1time'=r1time+r1at3_13Time+travelr1at3_13);
+ [r1at4_6] r1order=4 & (r1time+r1at4_6Time+travelr1at4_6<=TT) -> (r1order'=5) & (r1time'=r1time+r1at4_6Time+travelr1at4_6);
+ [r1idle] r1order!=5 & (r1time+1<=TT) & (r1idleTime+1<=maxIdler1) -> (r1time'=r1time+1) & (r1idleTime'=r1idleTime+1);
+endmodule
+
+rewards "idle"
+ //Note- there is no idle option for robot ri if maxIdleri==0 (computed beforehand)
+ [r1idle] true: 1;
+endrewards
+
+
+
